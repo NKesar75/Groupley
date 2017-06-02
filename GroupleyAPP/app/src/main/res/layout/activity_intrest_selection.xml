@@ -4,15 +4,337 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="domain.teamgroupley.groupleyapp.IntrestSelection">
+    tools:context="domain.teamgroupley.groupleyapp.IntrestSelection"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="366dp"
+        android:layout_height="495dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:editable="false"
+                    android:ems="10"
+                    android:fontFamily="sans-serif-condensed"
+                    android:inputType="none"
+                    android:text="INTERESTS"
+                    android:textAlignment="center"
+                    android:textStyle="bold|italic"
+                    tools:layout_editor_absoluteX="2dp"
+                    tools:layout_editor_absoluteY="16dp" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SPORTS "
+                    android:textAlignment="center"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <CheckBox
+                    android:id="@+id/Archery_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ARCHERY" />
+
+                <CheckBox
+                    android:id="@+id/Base_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="BASEBALL" />
+
+                <CheckBox
+                    android:id="@+id/BASK_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="BASKETBALL" />
+
+                <CheckBox
+                    android:id="@+id/BIKE_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="CYCLING" />
+
+                <CheckBox
+                    android:id="@+id/Foot_cb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="FOOTBALL" />
+
+                <CheckBox
+                    android:id="@+id/Fri_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="FRISBEE" />
+
+                <CheckBox
+                    android:id="@+id/Golf_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="GOLF" />
+
+                <CheckBox
+                    android:id="@+id/Hoc_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="HOCKEY" />
+
+                <CheckBox
+                    android:id="@+id/Hunt_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="HUNTING" />
+
+                <CheckBox
+                    android:id="@+id/Skate_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SKATEBOARDING" />
+
+                <CheckBox
+                    android:id="@+id/Snow_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SNOWBOARDING" />
+
+                <CheckBox
+                    android:id="@+id/WS_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="WATER SPORTS" />
+
+                <CheckBox
+                    android:id="@+id/Wres_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="WRESTLING" />
+
+                <TextView
+                    android:id="@+id/PARTY_TXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Parties"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <CheckBox
+                    android:id="@+id/Fest_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="FESTIVALS" />
+
+                <CheckBox
+                    android:id="@+id/Hp_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="HOUSE PARTIES" />
+
+                <CheckBox
+                    android:id="@+id/Nc_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="NIGHT CLUB" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="VIDEO GAMES"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <CheckBox
+                    android:id="@+id/Act_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ACTION" />
+
+                <CheckBox
+                    android:id="@+id/Ad_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ADVENTURE" />
+
+                <CheckBox
+                    android:id="@+id/Fps_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="FIRST PERSON SHOOTERS" />
+
+                <CheckBox
+                    android:id="@+id/Ind_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="INDIES" />
+
+                <CheckBox
+                    android:id="@+id/Mmo_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="MASS MULTIPLAYER ONLINE" />
+
+                <CheckBox
+                    android:id="@+id/Pf_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="PARTY / FAMILY " />
+
+                <CheckBox
+                    android:id="@+id/Rpg_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ROLE PLAYING GAMES" />
+
+                <CheckBox
+                    android:id="@+id/Sim_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SIMULATION" />
+
+                <CheckBox
+                    android:id="@+id/Spo_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SPORTS" />
+
+                <CheckBox
+                    android:id="@+id/Str_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="STRATEGY"
+                    android:textAllCaps="true" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="MUSIC"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <CheckBox
+                    android:id="@+id/Country_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="COUNTRY" />
+
+                <CheckBox
+                    android:id="@+id/Dr_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="DRILL RAP" />
+
+                <CheckBox
+                    android:id="@+id/Edm_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="EDM" />
+
+                <CheckBox
+                    android:id="@+id/Jazz_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="JAZZ" />
+
+                <CheckBox
+                    android:id="@+id/Rap_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="RAP" />
+
+                <CheckBox
+                    android:id="@+id/Rock_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ROCK" />
+
+                <CheckBox
+                    android:id="@+id/Rnb_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="R AND B" />
+
+                <CheckBox
+                    android:id="@+id/Scremo_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SCREMO" />
+
+                <CheckBox
+                    android:id="@+id/checkBox47"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="CheckBox" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

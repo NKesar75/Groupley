@@ -33,11 +33,23 @@ public class MenuPage extends AppCompatActivity
         });
     }
 
+    public Button btn1;
+    public void newpage()
+    {
+        btn1 = (Button) findViewById(R.id.INTREST_BTN);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent changepage = new Intent(MenuPage.this,IntrestSelection.class);
+                startActivity(changepage);
+            }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_page);
-        insertpage();
-        createaccountpage();
+            newpage();
     }
 }

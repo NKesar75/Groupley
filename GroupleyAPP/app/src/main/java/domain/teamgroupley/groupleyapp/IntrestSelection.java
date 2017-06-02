@@ -9,7 +9,21 @@ import android.widget.Button;
 public class IntrestSelection extends AppCompatActivity {
 
     public Button btn1;
-    public void newpage()
+    public Button btn2;
+
+    public void savechanges()
+    {
+        btn2 = (Button) findViewById(R.id.Save_CB);
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent changepage = new Intent(IntrestSelection.this, MenuPage.class);
+                startActivity(changepage);
+            }
+        });
+    }
+
+    public void gotomenu()
     {
         btn1 = (Button) findViewById(R.id.menu_btn);
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -19,11 +33,15 @@ public class IntrestSelection extends AppCompatActivity {
                 startActivity(changepage);
             }
         });
+
     }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intrest_selection);
-        newpage();
+        gotomenu();
+        savechanges();
     }
 }

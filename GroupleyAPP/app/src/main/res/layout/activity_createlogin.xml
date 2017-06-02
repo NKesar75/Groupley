@@ -12,6 +12,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed"
         android:text="Menu"
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="2dp" />
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="1dp" />
 </android.support.constraint.ConstraintLayout>

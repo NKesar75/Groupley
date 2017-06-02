@@ -6,4 +6,25 @@
     android:layout_height="match_parent"
     tools:context="domain.teamgroupley.groupleyapp.MenuPage">
 
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:text="Interest Page"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.034" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:text="Create Account Page"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.179"
+        app:layout_constraintRight_toRightOf="parent" />
 </android.support.constraint.ConstraintLayout>

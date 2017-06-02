@@ -15,7 +15,7 @@ public class IntrestSelection extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent changepage = new Intent(IntrestSelection.this,Createlogin.class);
+                Intent changepage = new Intent(IntrestSelection.this,MenuPage.class);
                 startActivity(changepage);
             }
         });

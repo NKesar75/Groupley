@@ -8,30 +8,7 @@ import android.widget.Button;
 
 public class MenuPage extends AppCompatActivity
 {
-    public Button btn1;
-    public void insertpage()
-    {
-        btn1 = (Button) findViewById(R.id.button4);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent changepage = new Intent(MenuPage.this,IntrestSelection.class);
-                startActivity(changepage);
-            }
-        });
-    }
-    public Button btn2;
-    public void createaccountpage()
-    {
-        btn2 = (Button) findViewById(R.id.button6);
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent changepage2 = new Intent(MenuPage.this,Createlogin.class);
-                startActivity(changepage2);
-            }
-        });
-    }
+
 
     public Button btn1;
     public void newpage()
@@ -45,11 +22,24 @@ public class MenuPage extends AppCompatActivity
             }
         });
     }
+    public Button btn;
+    public void createloginpage()
+    {
+        btn = (Button) findViewById(R.id.createlogin_btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent changepage = new Intent(MenuPage.this,Createlogin.class);
+                startActivity(changepage);
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_page);
             newpage();
+        createloginpage();
     }
 }

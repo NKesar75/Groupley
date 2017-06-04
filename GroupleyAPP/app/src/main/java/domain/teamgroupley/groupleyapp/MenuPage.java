@@ -11,6 +11,9 @@ public class MenuPage extends AppCompatActivity
 
 
     public Button btn1;
+    public Button btn2;
+
+
     public void newpage()
     {
         btn1 = (Button) findViewById(R.id.INTREST_BTN);
@@ -22,15 +25,15 @@ public class MenuPage extends AppCompatActivity
             }
         });
     }
-    public Button btn;
+
     public void createloginpage()
     {
-        btn = (Button) findViewById(R.id.createlogin_btn);
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn2 = (Button) findViewById(R.id.createlogin_btn);
+        btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent changepage = new Intent(MenuPage.this,Createlogin.class);
-                startActivity(changepage);
+                Intent changepage2 = new Intent(MenuPage.this,Createlogin.class);
+                startActivity(changepage2);
             }
         });
     }

@@ -18,4 +18,5 @@ public class CreateLogin extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
     }
+    dsajkgjdsgjgad;
 }

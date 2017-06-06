@@ -12,10 +12,10 @@ public class CreateLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_login);
 
-    Spinner mySpinner = (Spinner) findViewById(R.id.GENDER_SPINNER);
-    ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(CreateLogin.this,
-            android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Genders));
-    myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    mySpinner.setAdapter(myAdapter);
+        Spinner mySpinner = (Spinner) findViewById(R.id.GENDER_SPINNER);
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(CreateLogin.this,
+                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Genders));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mySpinner.setAdapter(myAdapter);
     }
 }

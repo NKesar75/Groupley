@@ -149,7 +149,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
+                    android:text="    "
+                    android:layout_weight="0.50" />
 
                 <TextView
                     android:id="@+id/textView37"
@@ -166,6 +167,7 @@
                     android:id="@+id/textView26"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1.05"
                     android:fontFamily="sans-serif-condensed"
                     android:text="    " />
 
@@ -242,7 +244,8 @@
                     android:inputType="textEmailAddress"
                     android:text="JoeSmith@example.com"
                     android:textAlignment="textStart"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_weight="0.26" />
 
                 <EditText
                     android:id="@+id/USERNAME_TXT"
@@ -263,7 +266,7 @@
                     android:inputType="textPassword"
                     android:text="adsfasdff"
                     android:textSize="14sp"
-                    android:layout_weight="0.58" />
+                    android:layout_weight="0.43" />
 
                 <EditText
                     android:id="@+id/REPASS_TXT"
@@ -274,7 +277,7 @@
                     android:inputType="textPassword"
                     android:text="dafaadsf"
                     android:textSize="14sp"
-                    android:layout_weight="0.47" />
+                    android:layout_weight="0.33" />
             </LinearLayout>
 
         </LinearLayout>

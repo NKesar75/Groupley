@@ -16,8 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Createlogin" />
-        <activity android:name=".IntrestSelection"></activity>
+        <activity android:name=".IntrestSelection" />
+        <activity android:name=".CreateLogin"></activity>
     </application>
 
 </manifest>

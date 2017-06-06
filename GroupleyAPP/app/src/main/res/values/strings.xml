@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">GroupleyAPP</string>
+
+
+    <string-array name="Genders">
+        <item>MALE</item>
+        <item>FEMALE</item>
+    </string-array>
 </resources>

@@ -10,7 +10,7 @@ import android.widget.Button;
 
 public class Createlogin extends AppCompatActivity {
 
-    public Button btn1;
+   /* public Button btn1;
     public void newpage()
     {
         btn1 = (Button) findViewById(R.id.button2);
@@ -41,14 +41,14 @@ public class Createlogin extends AppCompatActivity {
                 alert.show();
             }
         });
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createlogin);
         setContentView(R.layout.activity_intrest_selection);
-        newpage();
-        alertbox();
+//        newpage();
+//        alertbox();
     }
 }

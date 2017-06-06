@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".IntrestSelection" />
-        <activity android:name=".CreateLogin"></activity>
+        <activity android:name=".CreateLogin" />
+        <activity android:name=".createLoginatstart"></activity>
     </application>
 
 </manifest>

@@ -32,7 +32,7 @@ public class MenuPage extends AppCompatActivity
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent changepage2 = new Intent(MenuPage.this,CreateLogin.class);
+                Intent changepage2 = new Intent(MenuPage.this,createLoginatstart.class);
                 startActivity(changepage2);
             }
         });

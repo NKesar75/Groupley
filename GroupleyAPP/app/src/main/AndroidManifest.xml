@@ -22,7 +22,7 @@
         <activity android:name=".event_page" />
         <activity android:name=".descrpition1" />
         <activity android:name=".descrpition2" />
-        <activity android:name=".join_page" />
+        <activity android:name=".join"></activity>
     </application>
 
 </manifest>

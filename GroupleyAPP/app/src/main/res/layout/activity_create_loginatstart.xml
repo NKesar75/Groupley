@@ -231,9 +231,9 @@
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
                     android:inputType="date"
-                    android:text="MM/DD/YYYY"
                     android:textAlignment="textStart"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="MM/DD/YYYY" />
 
                 <EditText
                     android:id="@+id/EMAIL_TXT"
@@ -243,9 +243,9 @@
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
                     android:inputType="textEmailAddress"
-                    android:text="JoeSmith@example.com"
                     android:textAlignment="textStart"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="JoeSmith@example.com" />
 
                 <EditText
                     android:id="@+id/USERNAME_TXT"
@@ -254,8 +254,8 @@
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
                     android:inputType="textPersonName"
-                    android:text="USERNAME"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="USERNAME" />
 
                 <EditText
                     android:id="@+id/PASS_TXT"
@@ -265,8 +265,8 @@
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
                     android:inputType="textPassword"
-                    android:text="adsfasdff"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="adsfasdff" />
 
                 <EditText
                     android:id="@+id/REPASS_TXT"
@@ -276,8 +276,8 @@
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
                     android:inputType="textPassword"
-                    android:text="dafaadsf"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="dafdasfa" />
             </LinearLayout>
 
         </LinearLayout>

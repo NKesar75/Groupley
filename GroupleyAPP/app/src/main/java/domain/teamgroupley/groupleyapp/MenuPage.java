@@ -12,6 +12,7 @@ public class MenuPage extends AppCompatActivity
 
     public Button btn1;
     public Button btn2;
+    public Button btn;
 
 
     public void newpage()
@@ -38,11 +39,24 @@ public class MenuPage extends AppCompatActivity
         });
     }
 
+    public void evetnspage()
+    {
+        btn = (Button) findViewById(R.id.event_btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent changepage2 = new Intent(MenuPage.this,event_page.class);
+                startActivity(changepage2);
+            }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_page);
             newpage();
         createloginpage();
+        evetnspage();
     }
 }

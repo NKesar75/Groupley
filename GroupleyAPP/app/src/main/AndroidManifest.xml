@@ -18,7 +18,11 @@
         </activity>
         <activity android:name=".IntrestSelection" />
         <activity android:name=".CreateLogin" />
-        <activity android:name=".createLoginatstart"></activity>
+        <activity android:name=".createLoginatstart" />
+        <activity android:name=".event_page" />
+        <activity android:name=".descrpition1" />
+        <activity android:name=".descrpition2" />
+        <activity android:name=".join_page" />
     </application>
 
 </manifest>

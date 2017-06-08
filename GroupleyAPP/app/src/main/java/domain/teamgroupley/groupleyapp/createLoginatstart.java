@@ -29,7 +29,7 @@ public class createLoginatstart extends AppCompatActivity {
     public EditText Username;
     public EditText Password;
     public EditText Repassword;
-
+    public Spinner  Gender;
 
 
     public void CreateAccount()
@@ -53,6 +53,9 @@ public class createLoginatstart extends AppCompatActivity {
 
                 Username = (EditText) findViewById(R.id.USERNAME_TXT);
                 String User = Username.getText().toString();
+
+                Gender = (Spinner) findViewById(R.id.GENDER_SPINNER) ;
+                String Sex = Gender.getSelectedItem().toString();
 
                 Password = (EditText) findViewById(R.id.PASS_TXT);
                 String Pass = Password.getText().toString();

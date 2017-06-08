@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "925936789757",
+    "firebase_url": "https://groupleyproject.firebaseio.com",
+    "project_id": "groupleyproject",
+    "storage_bucket": "groupleyproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:925936789757:android:0f372ad7462f5aaa",
+        "android_client_info": {
+          "package_name": "domain.teamgroupley.groupleyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "925936789757-s8ih7amc4rq6qjspr6b2ntdmv4k5gu9l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "domain.teamgroupley.groupleyapp",
+            "certificate_hash": "c70a394a830c12d11c4af31da10c91247ceeb344"
+          }
+        },
+        {
+          "client_id": "925936789757-njeta017bje0s979jcoouok324789mpt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeeNyLYSb9ejMrbfn5VRaEbhOKjeHi-zQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "925936789757-njeta017bje0s979jcoouok324789mpt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

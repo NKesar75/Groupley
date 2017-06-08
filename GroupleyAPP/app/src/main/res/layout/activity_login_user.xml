@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="domain.teamgroupley.groupleyapp.LoginUser">
+
+    <LinearLayout
+        android:layout_width="364dp"
+        android:layout_height="494dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="9dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <EditText
+            android:id="@+id/Email_Login_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="46dp" />
+
+        <EditText
+            android:id="@+id/Password_login_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="121dp" />
+
+        <Button
+            android:id="@+id/Loginbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            tools:layout_editor_absoluteX="148dp"
+            tools:layout_editor_absoluteY="242dp" />
+
+        <Button
+            android:id="@+id/SIgnout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SIgnout" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

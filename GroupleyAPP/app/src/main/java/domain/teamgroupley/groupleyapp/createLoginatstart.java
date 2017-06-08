@@ -10,7 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -34,37 +38,61 @@ public class createLoginatstart extends AppCompatActivity {
 
     public void CreateAccount()
     {
+        FirstName = (EditText) findViewById(R.id.First_NAME_Txt);
+        LastName = (EditText) findViewById(R.id.LAST_NAME_txt);
+        EmailAccount = (EditText) findViewById(R.id.EMAIL_TXT);
+        Dateofbirth = (EditText) findViewById(R.id.DOB_txt);
+        Username = (EditText) findViewById(R.id.USERNAME_TXT);
+        Gender = (Spinner) findViewById(R.id.GENDER_SPINNER);
+        Password = (EditText) findViewById(R.id.PASS_TXT);
+        Repassword = (EditText) findViewById(R.id.REPASS_TXT);
 
         Create = (Button) findViewById(R.id.Create_account_btn);
         Create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirstName = (EditText) findViewById(R.id.First_NAME_Txt);
+
                 String First = FirstName.getText().toString();
 
-                LastName = (EditText) findViewById(R.id.LAST_NAME_txt);
+
                 String Last = LastName.getText().toString();
 
-               EmailAccount = (EditText) findViewById(R.id.EMAIL_TXT);
+
                 String Email = EmailAccount.getText().toString();
 
-                Dateofbirth = (EditText) findViewById(R.id.DOB_txt);
+
                 String DOB = Dateofbirth.getText().toString();
 
-                Username = (EditText) findViewById(R.id.USERNAME_TXT);
+
                 String User = Username.getText().toString();
 
-                Gender = (Spinner) findViewById(R.id.GENDER_SPINNER) ;
+
                 String Sex = Gender.getSelectedItem().toString();
 
-                Password = (EditText) findViewById(R.id.PASS_TXT);
+
                 String Pass = Password.getText().toString();
 
-                Repassword = (EditText) findViewById(R.id.REPASS_TXT);
+
                 String Repass = Repassword.getText().toString();
-                if (!Email.equals(" ") && !Pass.equals(" ")){
+                if (!Email.equals("") && !Pass.equals("")){
                     if (Pass.equals(Repass)) {
-                        mAuth.createUserWithEmailAndPassword(Email, Pass);
+                        mAuth.createUserWithEmailAndPassword(Email, Pass)
+                     .addOnCompleteListener(createLoginatstart.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
+
+                                // If sign in fails, display a message to the user. If sign in succeeds
+                                // the auth state listener will be notified and logic to handle the
+                                // signed in user can be handled in the listener.
+                                if (!task.isSuccessful()) {
+                                    Toast.makeText(createLoginatstart.this, "Could not create Account.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+
+                                // ...
+                            }
+                        });
                     }
                 }
 
@@ -93,6 +121,7 @@ public class createLoginatstart extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");

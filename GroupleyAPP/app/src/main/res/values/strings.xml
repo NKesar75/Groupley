@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">GroupleyAPP</string>
     <string name="Failed">Failed.</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
     <string-array name="Genders">
         <item>MALE</item>
         <item>FEMALE</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

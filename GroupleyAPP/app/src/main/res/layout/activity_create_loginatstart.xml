@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="domain.teamgroupley.groupleyapp.createLoginatstart">
+    tools:context="domain.teamgroupley.groupleyapp.createLoginatstart"
+    android:id="@+id/create_acc">
 
     <LinearLayout
         android:layout_width="369dp"

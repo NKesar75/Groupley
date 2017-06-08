@@ -10,9 +10,9 @@ public class MenuPage extends AppCompatActivity
 {
 
 
-    public Button btn1;
-    public Button btn2;
-    public Button btn;
+   private Button btn1;
+   private Button btn2;
+   private Button btn;
 
 
     public void newpage()

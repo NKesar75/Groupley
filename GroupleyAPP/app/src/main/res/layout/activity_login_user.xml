@@ -7,43 +7,162 @@
     tools:context="domain.teamgroupley.groupleyapp.LoginUser">
 
     <LinearLayout
-        android:layout_width="364dp"
-        android:layout_height="494dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteY="9dp"
-        tools:layout_editor_absoluteX="8dp">
+        android:weightSum="1">
 
-        <EditText
-            android:id="@+id/Email_Login_txt"
+        <TextView
+            android:id="@+id/textView48"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            tools:layout_editor_absoluteX="60dp"
-            tools:layout_editor_absoluteY="46dp" />
+            android:layout_weight="0.29"
+            android:text=" " />
 
-        <EditText
-            android:id="@+id/Password_login_txt"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="207dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="111dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/textView41"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.05"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text=" "
+                    android:textAlignment="textEnd"
+                    android:textAllCaps="true"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/textView40"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Email:"
+                    android:textAlignment="textEnd"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/textView46"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.09"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text=" "
+                    android:textAlignment="textEnd"
+                    android:textAllCaps="true"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/textView47"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.04"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="PASSWORD:"
+                    android:textAlignment="textEnd"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/textView42"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.03"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text=" "
+                    android:textColor="@android:color/background_dark" />
+
+                <EditText
+                    android:id="@+id/Email_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="sans-serif-condensed"
+                    android:hint="Joe@Gmail.com"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@android:color/background_dark" />
+
+                <TextView
+                    android:id="@+id/textView45"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.03"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text=" "
+                    android:textColor="@android:color/background_dark" />
+
+                <EditText
+                    android:id="@+id/Password_txxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.03"
+                    android:ems="10"
+                    android:fontFamily="sans-serif-condensed"
+                    android:hint="**********"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/background_dark" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView49"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword"
-            tools:layout_editor_absoluteX="60dp"
-            tools:layout_editor_absoluteY="121dp" />
+            android:layout_weight="0.22"
+            android:text=" " />
 
         <Button
-            android:id="@+id/Loginbutton"
+            android:id="@+id/LOGIN_BTN_LOgin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button"
-            tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="242dp" />
+            android:fontFamily="sans-serif-condensed"
+            android:text="LOGIN"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/textView50"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:fontFamily="sans-serif-condensed"
+            android:text=" "
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textStyle="bold|italic" />
 
         <Button
-            android:id="@+id/SIgnout"
+            android:id="@+id/CREATE__ACCOUNT_BTN_LOGin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SIgnout" />
+            android:fontFamily="sans-serif-condensed"
+            android:text="CREATE ACCOUNT"
+            android:textAllCaps="true"
+            android:textColor="@android:color/black"
+            android:textStyle="bold|italic" />
+
     </LinearLayout>
-
 </android.support.v4.widget.DrawerLayout>

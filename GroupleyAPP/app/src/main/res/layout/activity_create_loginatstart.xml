@@ -167,7 +167,7 @@
                     android:id="@+id/textView26"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.05"
+                    android:layout_weight="0.51"
                     android:fontFamily="sans-serif-condensed"
                     android:text="    " />
 
@@ -203,10 +203,10 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
+                    android:hint="John"
                     android:inputType="textPersonName"
                     android:textAlignment="textStart"
-                    android:textSize="14sp"
-                    tools:text="FIRST NAME" />
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/LAST_NAME_txt"
@@ -214,10 +214,10 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
+                    android:hint="Smith"
                     android:inputType="textPersonName"
                     android:textAlignment="textStart"
-                    android:textSize="14sp"
-                    tools:text="LAST NAME" />
+                    android:textSize="14sp" />
 
                 <Spinner
                     android:id="@+id/GENDER_SPINNER"
@@ -230,10 +230,10 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
+                    android:hint="MM/DD/YYYY"
                     android:inputType="date"
                     android:textAlignment="textStart"
-                    android:textSize="14sp"
-                    tools:text="MM/DD/YYYY" />
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/EMAIL_TXT"
@@ -242,10 +242,10 @@
                     android:layout_weight="0.26"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
+                    android:hint="JoeSmith@example.com"
                     android:inputType="textEmailAddress"
                     android:textAlignment="textStart"
-                    android:textSize="14sp"
-                    tools:text="JoeSmith@example.com" />
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/USERNAME_TXT"
@@ -253,9 +253,9 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
+                    android:hint="Dainel123"
                     android:inputType="textPersonName"
-                    android:textSize="14sp"
-                    tools:text="USERNAME" />
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/PASS_TXT"
@@ -264,9 +264,9 @@
                     android:layout_weight="0.43"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
+                    android:hint="At Least 8 Characters"
                     android:inputType="textPassword"
-                    android:textSize="14sp"
-                    tools:text="adsfasdff" />
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/REPASS_TXT"
@@ -275,9 +275,9 @@
                     android:layout_weight="0.33"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
+                    android:hint="At Least 8 Characters"
                     android:inputType="textPassword"
-                    android:textSize="14sp"
-                    tools:text="dafdasfa" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
         </LinearLayout>

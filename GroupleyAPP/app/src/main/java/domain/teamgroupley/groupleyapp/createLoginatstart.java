@@ -38,15 +38,6 @@ public class createLoginatstart extends AppCompatActivity {
 
     public void CreateAccount()
     {
-        FirstName = (EditText) findViewById(R.id.First_NAME_Txt);
-        LastName = (EditText) findViewById(R.id.LAST_NAME_txt);
-        EmailAccount = (EditText) findViewById(R.id.EMAIL_TXT);
-        Dateofbirth = (EditText) findViewById(R.id.DOB_txt);
-        Username = (EditText) findViewById(R.id.USERNAME_TXT);
-        Gender = (Spinner) findViewById(R.id.GENDER_SPINNER);
-        Password = (EditText) findViewById(R.id.PASS_TXT);
-        Repassword = (EditText) findViewById(R.id.REPASS_TXT);
-
         Create = (Button) findViewById(R.id.Create_account_btn);
         Create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,24 +45,17 @@ public class createLoginatstart extends AppCompatActivity {
 
                 String First = FirstName.getText().toString();
 
-
                 String Last = LastName.getText().toString();
-
 
                 String Email = EmailAccount.getText().toString();
 
-
                 String DOB = Dateofbirth.getText().toString();
-
 
                 String User = Username.getText().toString();
 
-
                 String Sex = Gender.getSelectedItem().toString();
 
-
                 String Pass = Password.getText().toString();
-
 
                 String Repass = Repassword.getText().toString();
                 if (!Email.equals("") && !Pass.equals("")){
@@ -81,12 +65,13 @@ public class createLoginatstart extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-
+                                Toast.makeText(createLoginatstart.this,"Account created.",
+                                        Toast.LENGTH_SHORT).show();
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(createLoginatstart.this, "Could not create Account.",
+                                    Toast.makeText(createLoginatstart.this, "Account not created.",
                                             Toast.LENGTH_SHORT).show();
                                 }
 
@@ -96,7 +81,7 @@ public class createLoginatstart extends AppCompatActivity {
                     }
                 }
 
-                Intent changepage = new Intent(createLoginatstart.this, MenuPage.class);
+                Intent changepage = new Intent(createLoginatstart.this, LoginUser.class);
                 startActivity(changepage);
             }
         });
@@ -106,13 +91,20 @@ public class createLoginatstart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_loginatstart);
-
+        FirstName = (EditText) findViewById(R.id.First_NAME_Txt);
+        LastName = (EditText) findViewById(R.id.LAST_NAME_txt);
+        EmailAccount = (EditText) findViewById(R.id.EMAIL_TXT);
+        Dateofbirth = (EditText) findViewById(R.id.DOB_txt);
+        Username = (EditText) findViewById(R.id.USERNAME_TXT);
+        Gender = (Spinner) findViewById(R.id.GENDER_SPINNER);
+        Password = (EditText) findViewById(R.id.PASS_TXT);
+        Repassword = (EditText) findViewById(R.id.REPASS_TXT);
         Spinner mySpinner = (Spinner) findViewById(R.id.GENDER_SPINNER);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(createLoginatstart.this,
                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Genders));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
-        CreateAccount();
+
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -121,7 +113,6 @@ public class createLoginatstart extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -129,6 +120,7 @@ public class createLoginatstart extends AppCompatActivity {
                 // ...
             }
         };
+        CreateAccount();
     }
     @Override
     public void onStart() {

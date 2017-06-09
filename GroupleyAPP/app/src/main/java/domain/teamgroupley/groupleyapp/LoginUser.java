@@ -56,6 +56,13 @@ public class LoginUser extends AppCompatActivity {
                 // ...
             }
         };
+        mcreate.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent changepage2 = new Intent(LoginUser.this, createLoginatstart.class);
+                startActivity(changepage2);
+            }
+        }));
         mlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,14 +87,6 @@ public class LoginUser extends AppCompatActivity {
                         }
 
                     });
-
-                    mcreate.setOnClickListener((new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent changepage2 = new Intent(LoginUser.this, createLoginatstart.class);
-                            startActivity(changepage2);
-                        }
-                    }));
                 }
             }
         });

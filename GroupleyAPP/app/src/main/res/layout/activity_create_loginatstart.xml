@@ -130,7 +130,7 @@
                 <TextView
                     android:id="@+id/textView23"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="29dp"
                     android:fontFamily="sans-serif-condensed"
                     android:text="    " />
 
@@ -149,9 +149,9 @@
                     android:id="@+id/textView28"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.50"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
+                    android:text="    "
+                    android:layout_weight="0.61" />
 
                 <TextView
                     android:id="@+id/textView37"
@@ -168,9 +168,9 @@
                     android:id="@+id/textView26"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.51"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
+                    android:text="    "
+                    android:layout_weight="0.47" />
 
                 <TextView
                     android:id="@+id/textView25"
@@ -295,7 +295,6 @@
             android:id="@+id/Create_account_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.31"
             android:text="CREATE ACCOUNT" />
 
     </LinearLayout>

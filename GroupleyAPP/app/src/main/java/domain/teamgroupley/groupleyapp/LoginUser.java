@@ -46,7 +46,9 @@ public class LoginUser extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    startActivity(new Intent(LoginUser.this,MenuPage.class));
+                    Toast.makeText(LoginUser.this, "Successfully logged in",
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -59,25 +61,36 @@ public class LoginUser extends AppCompatActivity {
             public void onClick(View v) {
                 String Mail = Email.getText().toString();
                 String Pass = Password.getText().toString();
-                if (!Mail.equals("") && !Pass.equals("")){
-                    mAuth.signInWithEmailAndPassword(Mail,Pass);
-                    startActivity(new Intent(LoginUser.this,MenuPage.class));
-                }
-                else{
-                    Toast.makeText(LoginUser.this, "Username or Password is invalid.",
-                            Toast.LENGTH_SHORT).show();
-                }
+                if (!Mail.equals("") && !Pass.equals("")) {
+                    mAuth.signInWithEmailAndPassword(Mail, Pass).addOnCompleteListener(LoginUser.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
 
+                            // If sign in fails, display a message to the user. If sign in succeeds
+                            // the auth state listener will be notified and logic to handle the
+                            // signed in user can be handled in the listener.
+                            if (!task.isSuccessful()) {
+                                Log.w(TAG, "signInWithEmail:failed", task.getException());
+                                Toast.makeText(LoginUser.this, "Username or Password is invalid.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        }
+
+                    });
+
+                    mcreate.setOnClickListener((new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent changepage2 = new Intent(LoginUser.this, createLoginatstart.class);
+                            startActivity(changepage2);
+                        }
+                    }));
+                }
             }
         });
-
-        mcreate.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent changepage2 = new Intent(LoginUser.this,createLoginatstart.class);
-                startActivity(changepage2);
-            }
-        }));
     }
     @Override
     public void onStart() {

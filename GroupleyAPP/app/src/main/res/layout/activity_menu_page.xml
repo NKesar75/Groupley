@@ -30,5 +30,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Events" />
+
+        <Button
+            android:id="@+id/Logout_BTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOGOUT" />
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

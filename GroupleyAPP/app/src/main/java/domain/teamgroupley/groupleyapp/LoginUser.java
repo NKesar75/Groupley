@@ -46,7 +46,7 @@ public class LoginUser extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                    startActivity(new Intent(LoginUser.this,MenuPage.class));
+                    startActivity(new Intent(LoginUser.this,navigation_Content.class));
                     Toast.makeText(LoginUser.this, "Successfully logged in",
                             Toast.LENGTH_SHORT).show();
                 } else {

@@ -20,11 +20,11 @@
         </activity>
         <activity android:name=".IntrestSelection" />
         <activity android:name=".createLoginatstart" />
-        <activity android:name=".event_page" />
         <activity android:name=".descrpition1" />
         <activity android:name=".descrpition2" />
         <activity android:name=".join" />
-        <activity android:name=".MenuPage"></activity>
+        <activity android:name=".MenuPage" />
+        <activity android:name=".navigation_Content"></activity>
     </application>
 
 </manifest>

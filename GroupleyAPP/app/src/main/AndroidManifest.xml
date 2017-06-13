@@ -24,7 +24,13 @@
         <activity android:name=".descrpition2" />
         <activity android:name=".join" />
         <activity android:name=".MenuPage" />
-        <activity android:name=".navigation_Content"></activity>
+        <activity android:name=".navigation_Content" />
+        <activity android:name=".Home" />
+        <activity android:name=".Registered_Events" />
+        <activity android:name=".Create_Event" />
+        <activity android:name=".Profile" />
+        <activity android:name=".Settings" />
+        <activity android:name=".Create_Interest"></activity>
     </application>
 
 </manifest>

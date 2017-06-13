@@ -25,13 +25,10 @@
                 android:orientation="vertical"
                 android:weightSum="1">
 
-                <Button
-                    android:id="@+id/menu_btn"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="MENU" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
 
                 <EditText
                     android:id="@+id/editText"
@@ -47,11 +44,6 @@
                     android:textStyle="bold|italic"
                     tools:layout_editor_absoluteX="2dp"
                     tools:layout_editor_absoluteY="16dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"></LinearLayout>
 
                 <TextView
                     android:id="@+id/textView2"
@@ -79,7 +71,7 @@
                     android:text="BASEBALL" />
 
                 <CheckBox
-                    android:id="@+id/BASK_CB"
+                    android:id="@+id/BASK_CB_create"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"

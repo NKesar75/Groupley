@@ -373,7 +373,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.07"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="DOCUMENTARYS" />
+                    android:text="DOCUMENTARY" />
 
                 <CheckBox
                     android:id="@+id/Family_CB_create"
@@ -405,7 +405,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.07"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="SI FI" />
+                    android:text="SCI FI" />
 
                 <CheckBox
                     android:id="@+id/Sports_CB_create"
@@ -457,7 +457,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.07"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="ADVNTURE" />
+                    android:text="ADVENTURE" />
 
                 <CheckBox
                     android:id="@+id/Anima_CB_create"

@@ -29,25 +29,11 @@ public class IntrestSelection extends AppCompatActivity {
     }
 
 
-    public void gotomenu()
-    {
-        btn1 = (Button) findViewById(R.id.menu_btn);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent changepage = new Intent(IntrestSelection.this,MenuPage.class);
-                startActivity(changepage);
-            }
-        });
-
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intrest_selection);
-        gotomenu();
         savechanges();
     }
 }

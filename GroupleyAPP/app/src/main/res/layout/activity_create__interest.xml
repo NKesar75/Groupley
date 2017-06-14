@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="domain.teamgroupley.groupleyapp.Create_Interest">
+
+    <LinearLayout
+        android:layout_width="356dp"
+        android:layout_height="491dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="13dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:editable="false"
+                    android:ems="10"
+                    android:fontFamily="sans-serif-condensed"
+                    android:inputType="none"
+                    android:text="INTERESTS"
+                    android:textAlignment="center"
+                    android:textStyle="bold|italic"
+                    tools:layout_editor_absoluteX="2dp"
+                    tools:layout_editor_absoluteY="16dp" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SPORTS "
+                    android:textAlignment="center"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <CheckBox
+                    android:id="@+id/Archery_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ARCHERY" />
+
+                <CheckBox
+                    android:id="@+id/Base_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="BASEBALL" />
+
+                <CheckBox
+                    android:id="@+id/BASK_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="BASKETBALL" />
+
+                <CheckBox
+                    android:id="@+id/BIKE_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="CYCLING" />
+
+                <CheckBox
+                    android:id="@+id/Foot_cb_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="FOOTBALL" />
+
+                <CheckBox
+                    android:id="@+id/Fri_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="FRISBEE" />
+
+                <CheckBox
+                    android:id="@+id/Golf_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="GOLF" />
+
+                <CheckBox
+                    android:id="@+id/Hoc_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="HOCKEY" />
+
+                <CheckBox
+                    android:id="@+id/Hunt_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="HUNTING" />
+
+                <CheckBox
+                    android:id="@+id/Skate_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SKATEBOARDING" />
+
+                <CheckBox
+                    android:id="@+id/Snow_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SNOWBOARDING" />
+
+                <CheckBox
+                    android:id="@+id/WS_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="WATER SPORTS" />
+
+                <CheckBox
+                    android:id="@+id/Wres_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="WRESTLING" />
+
+                <TextView
+                    android:id="@+id/PARTY_TXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Parties"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <CheckBox
+                    android:id="@+id/Fest_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="FESTIVALS" />
+
+                <CheckBox
+                    android:id="@+id/Hp_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="HOUSE PARTIES" />
+
+                <CheckBox
+                    android:id="@+id/Nc_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="NIGHT CLUBS" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="VIDEO GAMES"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <CheckBox
+                    android:id="@+id/Act_cb__create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ACTION" />
+
+                <CheckBox
+                    android:id="@+id/Ad_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ADVENTURE" />
+
+                <CheckBox
+                    android:id="@+id/Fps_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="FIRST PERSON SHOOTERS" />
+
+                <CheckBox
+                    android:id="@+id/Ind_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="INDIES" />
+
+                <CheckBox
+                    android:id="@+id/Mmo_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="MASS MULTIPLAYER ONLINE" />
+
+                <CheckBox
+                    android:id="@+id/Pf_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="PARTY / FAMILY " />
+
+                <CheckBox
+                    android:id="@+id/Rpg_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ROLE PLAYING GAMES" />
+
+                <CheckBox
+                    android:id="@+id/Sim_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SIMULATION" />
+
+                <CheckBox
+                    android:id="@+id/Spo_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SPORTS" />
+
+                <CheckBox
+                    android:id="@+id/Str_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="STRATEGY"
+                    android:textAllCaps="true" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="MUSIC GENRES"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <CheckBox
+                    android:id="@+id/Country_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="COUNTRY" />
+
+                <CheckBox
+                    android:id="@+id/Dr_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="DRILL RAP" />
+
+                <CheckBox
+                    android:id="@+id/Edm_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="EDM" />
+
+                <CheckBox
+                    android:id="@+id/Jazz_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="JAZZ" />
+
+                <CheckBox
+                    android:id="@+id/Rap_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="RAP" />
+
+                <CheckBox
+                    android:id="@+id/Rock_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ROCK" />
+
+                <CheckBox
+                    android:id="@+id/Rnb_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="R AND B" />
+
+                <CheckBox
+                    android:id="@+id/Scremo_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SCREMO" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="MOIVE GENRES"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <CheckBox
+                    android:id="@+id/Action_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ACTION" />
+
+                <CheckBox
+                    android:id="@+id/Animation_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ANIMATION" />
+
+                <CheckBox
+                    android:id="@+id/Comedy_btn_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="COMEDY" />
+
+                <CheckBox
+                    android:id="@+id/Documentary_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="DOCUMENTARYS" />
+
+                <CheckBox
+                    android:id="@+id/Family_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="FAMILY" />
+
+                <CheckBox
+                    android:id="@+id/Horror_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="HORROR" />
+
+                <CheckBox
+                    android:id="@+id/Musical_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="MUSICAL" />
+
+                <CheckBox
+                    android:id="@+id/SIFI_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SI FI" />
+
+                <CheckBox
+                    android:id="@+id/Sports_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SPORTS" />
+
+                <CheckBox
+                    android:id="@+id/Thriller_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="THRILLER" />
+
+                <CheckBox
+                    android:id="@+id/War_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="WAR" />
+
+                <TextView
+                    android:id="@+id/Tv_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="TELEVISION"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <CheckBox
+                    android:id="@+id/Act_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ACTION" />
+
+                <CheckBox
+                    android:id="@+id/Addy_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ADVNTURE" />
+
+                <CheckBox
+                    android:id="@+id/Anima_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="ANIMATION" />
+
+                <CheckBox
+                    android:id="@+id/Bio_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="BIOGRAPHY" />
+
+                <CheckBox
+                    android:id="@+id/Come_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="COMEDY" />
+
+                <CheckBox
+                    android:id="@+id/Crime_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="CRIME" />
+
+                <CheckBox
+                    android:id="@+id/Docu_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="DOCUMENTARY" />
+
+                <CheckBox
+                    android:id="@+id/Drama_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="DRAMA" />
+
+                <CheckBox
+                    android:id="@+id/Fam_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="FAMILY" />
+
+                <CheckBox
+                    android:id="@+id/Game_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="GAME SHOW" />
+
+                <CheckBox
+                    android:id="@+id/History_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="HISTORY" />
+
+                <CheckBox
+                    android:id="@+id/Hor_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="HORROR" />
+
+                <CheckBox
+                    android:id="@+id/Mystry_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="MYSTERY" />
+
+                <CheckBox
+                    android:id="@+id/Real_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="REALITY TV" />
+
+                <CheckBox
+                    android:id="@+id/Sitcom_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SITCOM" />
+
+                <CheckBox
+                    android:id="@+id/Spo_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SPORTS" />
+
+                <CheckBox
+                    android:id="@+id/Talk_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="TALK SHOWS" />
+
+                <CheckBox
+                    android:id="@+id/W_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="WAR" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="DRESSING UP"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <CheckBox
+                    android:id="@+id/Acting_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:text="Acting" />
+
+                <CheckBox
+                    android:id="@+id/Cosplay_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:text="COSPLAY" />
+
+                <CheckBox
+                    android:id="@+id/Larp_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:text="LARPING" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="COLLECTIONS"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <CheckBox
+                    android:id="@+id/Actionfigure_CB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:text="ACTION FIGURES" />
+
+                <CheckBox
+                    android:id="@+id/Cars_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:text="CARS" />
+
+                <CheckBox
+                    android:id="@+id/Coins_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:text="COIN COLLECTING" />
+
+                <CheckBox
+                    android:id="@+id/Comic_books_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:text="COMIC BOOKS" />
+
+                <CheckBox
+                    android:id="@+id/Guns_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:text="GUNS" />
+
+                <CheckBox
+                    android:id="@+id/Trucks_CB_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:text="TRUCKS" />
+
+                <Button
+                    android:id="@+id/Create_Account_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:text="CREATE ACCOUNT" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</android.support.v4.widget.DrawerLayout>

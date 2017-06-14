@@ -16,12 +16,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginUser extends AppCompatActivity {
 
     private static final String TAG = "LoginUser";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
 
     private Button mlogin;
     private Button mcreate;
@@ -46,7 +50,7 @@ public class LoginUser extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                    startActivity(new Intent(LoginUser.this,navigation_Content.class));
+                    startActivity(new Intent(LoginUser.this,MenuPage.class));
                     Toast.makeText(LoginUser.this, "Successfully logged in",
                             Toast.LENGTH_SHORT).show();
                 } else {
@@ -73,7 +77,6 @@ public class LoginUser extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
-
                             // If sign in fails, display a message to the user. If sign in succeeds
                             // the auth state listener will be notified and logic to handle the
                             // signed in user can be handled in the listener.
@@ -103,5 +106,4 @@ public class LoginUser extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
-
 }

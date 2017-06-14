@@ -24,8 +24,6 @@ public class LoginUser extends AppCompatActivity {
     private static final String TAG = "LoginUser";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference myRef;
 
     private Button mlogin;
     private Button mcreate;
@@ -85,7 +83,6 @@ public class LoginUser extends AppCompatActivity {
                                 Toast.makeText(LoginUser.this, "Username or Password is invalid.",
                                         Toast.LENGTH_SHORT).show();
                             }
-
 
                         }
 

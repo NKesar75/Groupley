@@ -56,14 +56,13 @@ public class UserInfoStats extends AppCompatActivity {
                     FirebaseUser user = mAuth.getCurrentUser();
                     String userID = user.getUid();
                     Userinformaiton userinformaiton = new Userinformaiton(First, Last, DOB, User, Sex);
-                    myRef.child(userID).setValue(userinformaiton);
-
+                    myRef.child(userID).child("UserInfo").setValue(userinformaiton);
+                    Intent changepage = new Intent(UserInfoStats.this, Create_Interest.class);
+                    startActivity(changepage);
                 }
                 else{
                     Toast.makeText(UserInfoStats.this, "Missing some information", Toast.LENGTH_SHORT).show();
                 }
-                Intent changepage = new Intent(UserInfoStats.this, MenuPage.class);
-                startActivity(changepage);
             }
         });
     }

@@ -76,8 +76,6 @@ public class createLoginatstart extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
-                                    Toast.makeText(createLoginatstart.this, "Logined in.",
-                                            Toast.LENGTH_SHORT).show();
                                     // If sign in fails, display a message to the user. If sign in succeeds
                                     // the auth state listener will be notified and logic to handle the
                                     // signed in user can be handled in the listener.

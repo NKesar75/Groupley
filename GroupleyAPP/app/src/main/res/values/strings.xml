@@ -9,6 +9,35 @@
         <item>FEMALE</item>
     </string-array>
 
+    <string-array name="Category">
+        <item>ARCHERY</item>
+        <item>BASEBALL</item>
+        <item>BASKETBALL</item>
+        <item>CYCLING</item>
+        <item>FOOTBALL</item>
+        <item>FRISBEE</item>
+        <item>GOLF</item>
+        <item>HOCKEY</item>
+        <item>HUNTING</item>
+        <item>SKATEBOARDING</item>
+        <item>SNOWBOARDING</item>
+        <item>WATER SPORTS</item>
+        <item>WRESTLING</item>
+        <item>FESTIVALS</item>
+        <item>HOUSE PARTIES</item>
+        <item>NIGHT CLUBS</item>
+        <item>VIDEO GAMES</item>
+        <item>MUSIC GENRES</item>
+        <item>MOIVE GENRES</item>
+        <item>TELEVISION</item>
+        <item>ACTING</item>
+        <item>COSPLAY</item>
+        <item>LARPING</item>
+        <item>COLLECTIONS</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_test">test</string>
+    <string name="title_activity_login">login</string>
 </resources>

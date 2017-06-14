@@ -25,5 +25,20 @@
             android:text="Profile Page"
             android:textAlignment="center"
             android:textSize="36sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.30" />
+
+        <Button
+            android:id="@+id/logout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Log Out"
+            android:textAlignment="center"
+            android:textSize="36sp"
+            android:textStyle="bold|italic" />
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

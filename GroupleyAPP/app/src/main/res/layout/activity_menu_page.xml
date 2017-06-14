@@ -14,27 +14,33 @@
         tools:layout_editor_absoluteY="8dp">
 
         <Button
-            android:id="@+id/INTREST_BTN"
+            android:id="@+id/Upcoming_Events_BTN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="INTERESTS" />
+            android:text="HOME PAGE / UPCOMING EVENTS" />
 
         <Button
-            android:id="@+id/createlogin_btn"
+            android:id="@+id/reg_event_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create Login" />
+            android:text="REGISTERED EVENTS" />
 
         <Button
-            android:id="@+id/event_btn"
+            android:id="@+id/create_event_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Events" />
+            android:text="CREATE EVENT" />
 
         <Button
-            android:id="@+id/Logout_BTN"
+            android:id="@+id/profile_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LOGOUT" />
+            android:text="PROFILE" />
+
+        <Button
+            android:id="@+id/settings_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SETTINGS" />
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

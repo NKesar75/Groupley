@@ -17,96 +17,77 @@ public class MenuPage extends AppCompatActivity
 {
 
 
-   private Button btn1;
-   private Button btn2;
-   private Button btn;
-    private Button Logout;
-    private static final String TAG = "MenuPage";
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+   private Button home;
+   private Button reg_event;
+   private Button create_event;
+    private Button profile;
+    private Button settings;
 
-    public void newpage()
+    public void homepage()
     {
-        btn1 = (Button) findViewById(R.id.INTREST_BTN);
-        btn1.setOnClickListener(new View.OnClickListener() {
+        home = (Button) findViewById(R.id.Upcoming_Events_BTN);
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent changepage = new Intent(MenuPage.this,IntrestSelection.class);
+                Intent changepage = new Intent(MenuPage.this,Home.class);
                 startActivity(changepage);
             }
         });
     }
 
-    public void createloginpage()
+    public void registeredeventpage()
     {
-        btn2 = (Button) findViewById(R.id.createlogin_btn);
-        btn2.setOnClickListener(new View.OnClickListener() {
+        reg_event = (Button) findViewById(R.id.reg_event_btn);
+        reg_event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent changepage2 = new Intent(MenuPage.this,createLoginatstart.class);
+                Intent changepage2 = new Intent(MenuPage.this,Registered_Events.class);
                 startActivity(changepage2);
             }
         });
     }
 
-    public void evetnspage()
+    public void createeventpage()
     {
-        btn = (Button) findViewById(R.id.event_btn);
-        btn.setOnClickListener(new View.OnClickListener() {
+        create_event = (Button) findViewById(R.id.create_event_btn);
+        create_event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent changepage2 = new Intent(MenuPage.this,navigation_Content.class);
+                Intent changepage2 = new Intent(MenuPage.this,Create_Event.class);
                 startActivity(changepage2);
             }
         });
     }
-
+    public void profilepage()
+    {
+        profile = (Button) findViewById(R.id.profile_btn);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent changepage2 = new Intent(MenuPage.this,Profile.class);
+                startActivity(changepage2);
+            }
+        });
+    }
+    public void settingspage()
+    {
+        settings = (Button) findViewById(R.id.settings_btn);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent changepage2 = new Intent(MenuPage.this,Settings.class);
+                startActivity(changepage2);
+            }
+        });
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_page);
-        Logout = (Button) findViewById(R.id.Logout_BTN);
-
-            newpage();
-        createloginpage();
-        evetnspage();
-
-        mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                    Toast.makeText(MenuPage.this, "Signed Out", Toast.LENGTH_SHORT).show();
-                }
-                // ...
-            }
-        };
-        Logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.signOut();
-                startActivity(new Intent(MenuPage.this,LoginUser.class));
-
-                }
-
-        });
-    }
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
+        homepage();
+        registeredeventpage();
+        createeventpage();
+        profilepage();
+        settingspage();
     }
 }

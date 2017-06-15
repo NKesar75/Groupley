@@ -29,7 +29,7 @@ public class MenuPage extends AppCompatActivity
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent changepage = new Intent(MenuPage.this,Description.class);
+                Intent changepage = new Intent(MenuPage.this,Home.class);
                 startActivity(changepage);
             }
         });

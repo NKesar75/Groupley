@@ -7,8 +7,8 @@ package domain.teamgroupley.groupleyapp;
 public class Intresetedloggedup {
 
 
-    private boolean SmArchery;
-    private boolean SmBaseball;
+    private boolean SArchery;
+    private boolean SBaseball;
     private boolean SBasketball;
     private boolean SCycling;
     private boolean SFootball;
@@ -30,7 +30,7 @@ public class Intresetedloggedup {
     private boolean GMMO;
     private boolean GPartyfamily;
     private boolean GRPG;
-    private boolean GSim;
+    private boolean GSimulation;
     private boolean GSports;
     private boolean GStragy;
     private boolean MCountry;
@@ -66,13 +66,13 @@ public class Intresetedloggedup {
     private boolean THorror;
     private boolean TMystery;
     private boolean TReality;
-    private boolean TSit;
+    private boolean TSitcom;
     private boolean TSports;
     private boolean TTalkShows;
     private boolean TWar;
     private boolean DActing;
     private boolean DCosplay;
-    private boolean DLarp;
+    private boolean DLarping;
     private boolean CActionfigures;
     private boolean CCars;
     private boolean CCoins;
@@ -93,8 +93,8 @@ public class Intresetedloggedup {
                        boolean Tre, boolean Tsi, boolean TSpo, boolean TTalk, boolean Twa, boolean Dact, boolean Dcos, boolean Dla, boolean CAct,
                        boolean CCr, boolean Ccins, boolean Ccom, boolean CGun, boolean Ctrc){
 
-        SmArchery = SArc;
-        SmBaseball = SBas;
+        SArchery = SArc;
+        SBaseball = SBas;
         SBasketball = SbK;
         SCycling = Cyc;
         SFootball = Foot;
@@ -116,7 +116,7 @@ public class Intresetedloggedup {
         GMMO = GMM;
         GPartyfamily = GpaF;
         GRPG = GRP;
-        GSim = Gsi;
+        GSimulation = Gsi;
         GSports = Gsp;
         GStragy = GStr;
         MCountry = MC;
@@ -152,13 +152,13 @@ public class Intresetedloggedup {
         THorror = Thor;
         TMystery = TMys;
         TReality = Tre;
-        TSit = Tsi;
+        TSitcom = Tsi;
         TSports = TSpo;
         TTalkShows = TTalk;
         TWar = Twa;
         DActing = Dact;
         DCosplay = Dcos;
-        DLarp = Dla;
+        DLarping = Dla;
         CActionfigures = CAct;
         CCars = CCr;
         CCoins = Ccins;
@@ -167,20 +167,20 @@ public class Intresetedloggedup {
         CTrucks = Ctrc;
     }
 
-    public boolean isSmArchery() {
-        return SmArchery;
+    public boolean isSArchery() {
+        return SArchery;
     }
 
-    public void setSmArchery(boolean smArchery) {
-        SmArchery = smArchery;
+    public void setSArchery(boolean SArchery) {
+        this.SArchery = SArchery;
     }
 
-    public boolean isSmBaseball() {
-        return SmBaseball;
+    public boolean isSBaseball() {
+        return SBaseball;
     }
 
-    public void setSmBaseball(boolean smBaseball) {
-        SmBaseball = smBaseball;
+    public void setSBaseball(boolean SBaseball) {
+        this.SBaseball = SBaseball;
     }
 
     public boolean isSBasketball() {
@@ -351,12 +351,12 @@ public class Intresetedloggedup {
         this.GRPG = GRPG;
     }
 
-    public boolean isGSim() {
-        return GSim;
+    public boolean isGSimulation() {
+        return GSimulation;
     }
 
-    public void setGSim(boolean GSim) {
-        this.GSim = GSim;
+    public void setGSimulation(boolean GSimulation) {
+        this.GSimulation = GSimulation;
     }
 
     public boolean isGSports() {
@@ -639,12 +639,12 @@ public class Intresetedloggedup {
         this.TReality = TReality;
     }
 
-    public boolean isTSit() {
-        return TSit;
+    public boolean isTSitcom() {
+        return TSitcom;
     }
 
-    public void setTSit(boolean TSit) {
-        this.TSit = TSit;
+    public void setTSitcom(boolean TSitcom) {
+        this.TSitcom = TSitcom;
     }
 
     public boolean isTSports() {
@@ -687,12 +687,12 @@ public class Intresetedloggedup {
         this.DCosplay = DCosplay;
     }
 
-    public boolean isDLarp() {
-        return DLarp;
+    public boolean isDLarping() {
+        return DLarping;
     }
 
-    public void setDLarp(boolean DLarp) {
-        this.DLarp = DLarp;
+    public void setDLarping(boolean DLarping) {
+        this.DLarping = DLarping;
     }
 
     public boolean isCActionfigures() {

@@ -105,6 +105,7 @@ public class Description extends AppCompatActivity {
             show.SetDate(ds.child(UserID).getValue(CreateEventStatsinfo.class).GetDate());
             show.SetAddess(ds.child(UserID).getValue(CreateEventStatsinfo.class).GetAddess());
             show.SetMax_Peopl(ds.child(UserID).getValue(CreateEventStatsinfo.class).GetMax_People());
+
             Descrip.setText(show.GetDescription());
             Titl.setText(show.GetTitle());
             Cater.setText(show.GetCategory());

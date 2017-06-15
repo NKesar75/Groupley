@@ -7,8 +7,8 @@
     tools:context="domain.teamgroupley.groupleyapp.Create_Event">
 
     <LinearLayout
-        android:layout_width="369dp"
-        android:layout_height="494dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="1"
         tools:layout_editor_absoluteX="7dp"
@@ -27,7 +27,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.24"
+            android:layout_weight="0.95"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -49,25 +49,6 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
                     android:text="TTILE:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="DESCRIPTION:"
                     android:textAlignment="textEnd"
                     android:textColor="@android:color/background_dark"
                     android:textSize="18sp"
@@ -113,7 +94,6 @@
                     android:id="@+id/textView20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.19"
                     android:fontFamily="sans-serif-condensed"
                     android:text="    " />
 
@@ -132,7 +112,7 @@
                     android:id="@+id/textView23"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.56"
+                    android:layout_weight="0.11"
                     android:fontFamily="sans-serif-condensed"
                     android:text="    " />
 
@@ -150,7 +130,8 @@
                 <TextView
                     android:id="@+id/textView43"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.09" />
 
                 <TextView
                     android:id="@+id/textView44"
@@ -160,6 +141,24 @@
                     android:text="MAX PEOPLE ALLOWED:"
                     android:textAlignment="textEnd"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="    " />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="DESCRIPTION:"
+                    android:textAlignment="textEnd"
+                    android:textColor="@android:color/background_dark"
                     android:textSize="18sp"
                     android:textStyle="bold|italic" />
 
@@ -182,21 +181,10 @@
                     android:textAlignment="textStart"
                     android:textSize="14sp" />
 
-                <EditText
-                    android:id="@+id/des_txt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="Come and have fun in the party and meet new people"
-                    android:inputType="textMultiLine"
-                    android:textSize="14sp" />
-
                 <Spinner
                     android:id="@+id/Category_SPINNER"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.22" />
+                    android:layout_height="wrap_content" />
 
                 <EditText
                     android:id="@+id/Date_txt"
@@ -213,7 +201,7 @@
                     android:id="@+id/time_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.38"
+                    android:layout_weight="0.12"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="12:00"
@@ -224,7 +212,7 @@
                     android:id="@+id/address_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.29"
+                    android:layout_weight="0.09"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="3300 University Blvd, Winter Park, FL 32792"
@@ -235,24 +223,26 @@
                     android:id="@+id/max_people_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.26"
+                    android:layout_weight="0.09"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="50"
                     android:inputType="number"
                     android:textSize="14sp" />
 
+                <EditText
+                    android:id="@+id/des_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="sans-serif-condensed"
+                    android:hint="Come and have fun in the party and meet new people"
+                    android:inputType="textMultiLine"
+                    android:textSize="14sp" />
+
             </LinearLayout>
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView29"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.26"
-            android:fontFamily="sans-serif-condensed"
-            android:text="    " />
 
         <Button
             android:id="@+id/Create_event_btn"
@@ -261,4 +251,5 @@
             android:text="CREATE EVENT" />
 
     </LinearLayout>
+
 </android.support.v4.widget.DrawerLayout>

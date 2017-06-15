@@ -30,7 +30,7 @@
         <activity android:name=".Profile" />
         <activity android:name=".Settings" />
         <activity android:name=".Create_Interest" />
-        <activity android:name=".Description"></activity>
+        <activity android:name=".Description" />
     </application>
 
 </manifest>

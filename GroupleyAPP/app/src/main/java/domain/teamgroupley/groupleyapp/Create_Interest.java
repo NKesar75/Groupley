@@ -1,16 +1,23 @@
 package domain.teamgroupley.groupleyapp;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Create_Interest extends AppCompatActivity {
 
@@ -177,8 +184,11 @@ public class Create_Interest extends AppCompatActivity {
                 Intresetedloggedup Logedd = new Intresetedloggedup(SArcy, SBasy, SbKy, Cycy ,Footy ,Frisy,SGofy,Shockeyy,SHunty,SSKatey,SSnowy,Swsy,Wrey,Fesy,Housy,
                         Nighty,Gacty,Gadvy,GFpy,Gindy,GMMy,GpaFy, GRPy,Gsiy,Gspy,GStry,MCy,MDRy,MEdy,MJzy,MRpy,Mroy,MRNy,MScry,MoActy,MOAniy,MOComy,MODoy,MOFy,MOHOry,
                         MoMusy,MOSiy,MOSpoy,MOTHrily,MoWay,TActy, TADvy,TAniy,TBioy,TCom,TCriy,TDoy,TDray,Tfay,TGamey,THisy,Thory,TMysy,Trey,Tsiy,TSpoy,TTalky,Tway,Dacty,
-                        Dcosy,Dlay,CActy,CCry,Ccinsy,Ccomy, CGuny,Ctrcy);
-
+                        Dcosy,Dlay,CActy,CCry,Ccinsy,Ccomy,CGuny,Ctrcy);
+                myRef.child(userID).child("Interests").setValue(Logedd);
+                Intent changepage = new Intent(Create_Interest.this, MenuPage.class);
+                startActivity(changepage);
+                Toast.makeText(Create_Interest.this, "Account Created.", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -262,5 +272,55 @@ public class Create_Interest extends AppCompatActivity {
         CComics          = (CheckBox)findViewById(R.id.Comic_books_CB_create);
         CGuns            = (CheckBox)findViewById(R.id.Guns_CB_create);
         CTrucks          = (CheckBox)findViewById(R.id.Trucks_CB_create);
+
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
+
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Object value = dataSnapshot.getValue();
+                Log.d(TAG, "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+        Setintrest();
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 }

@@ -673,7 +673,7 @@
                     android:text="TRUCKS" />
 
                 <Button
-                    android:id="@+id/Create_Account_btn"
+                    android:id="@+id/Create_Account_btn_INT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.07"

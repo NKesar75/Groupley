@@ -2,10 +2,25 @@ package domain.teamgroupley.groupleyapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.CheckBox;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Create_Interest extends AppCompatActivity {
+
+    private static final String TAG = "Create_Intrest";
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
+
+    private Button SaveIntre;
 
     private CheckBox SmArchery;
     private CheckBox SmBaseball;
@@ -81,6 +96,92 @@ public class Create_Interest extends AppCompatActivity {
     private CheckBox CTrucks;
 
     public void Setintrest(){
+        SaveIntre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean SArcy     = SmArchery.isChecked();
+                boolean SBasy     = SmBaseball.isChecked();
+                boolean SbKy      = SBasketball.isChecked();
+                boolean Cycy      = SCycling.isChecked();
+                boolean Footy     = SFootball.isChecked();
+                boolean Frisy     = SFrisbe.isChecked();
+                boolean SGofy     = SGolf.isChecked();
+                boolean Shockeyy  = SHoccey.isChecked();
+                boolean SHunty    = SHunting.isChecked();
+                boolean SSKatey   = SSkateboarding.isChecked();
+                boolean SSnowy    = SSnowBoarding.isChecked();
+                boolean Swsy      = SWaterSports.isChecked();
+                boolean Wrey      = SWrestling.isChecked();
+                boolean Fesy      = PFestivles.isChecked();
+                boolean Housy     = PHouseParites.isChecked();
+                boolean Nighty    = PNightClubs.isChecked();
+                boolean Gacty     = GAction.isChecked();
+                boolean Gadvy     = GAdventure.isChecked();
+                boolean GFpy      = GFPS.isChecked();
+                boolean Gindy     = GIndies.isChecked();
+                boolean GMMy      = GMMO.isChecked();
+                boolean GpaFy     = GPartfam.isChecked();
+                boolean GRPy      = GRPG.isChecked();
+                boolean Gsiy      = GSim.isChecked();
+                boolean Gspy      = GSports.isChecked();
+                boolean GStry     = GStragy.isChecked();
+                boolean MCy       = MCountry.isChecked();
+                boolean MDRy      = MDrillrap.isChecked();
+                boolean MEdy      = MEDM.isChecked();
+                boolean MJzy      = MJAZZ.isChecked();
+                boolean MRpy      = MRap.isChecked();
+                boolean Mroy      = MRock.isChecked();
+                boolean MRNy      = MRNB.isChecked();
+                boolean MScry     = MScremo.isChecked();
+                boolean MoActy    = MoAction.isChecked();
+                boolean MOAniy    = MoAnimation.isChecked();
+                boolean MOComy    = MoComdey.isChecked();
+                boolean MODoy     = MoDoc.isChecked();
+                boolean MOFy      = MoFam.isChecked();
+                boolean MOHOry    = MoHorror.isChecked();
+                boolean MoMusy    = MoMusical.isChecked();
+                boolean MOSiy     = MoSifi.isChecked();
+                boolean MOSpoy    = MoSports.isChecked();
+                boolean MOTHrily  = MoThriller.isChecked();
+                boolean MoWay     = MoWar.isChecked();
+                boolean TActy     = TAction.isChecked();
+                boolean TADvy     = TAdventure.isChecked();
+                boolean TAniy     = TAnimation.isChecked();
+                boolean TBioy     = TBiography.isChecked();
+                boolean TCom      = TComedy.isChecked();
+                boolean TCriy     = TCrime.isChecked();
+                boolean TDoy      = TDoc.isChecked();
+                boolean TDray     = TDrama.isChecked();
+                boolean Tfay      = TFam.isChecked();
+                boolean TGamey    = TGameShows.isChecked();
+                boolean THisy     = THistory.isChecked();
+                boolean Thory     = THorror.isChecked();
+                boolean TMysy     = TMystery.isChecked();
+                boolean Trey      = TReal.isChecked();
+                boolean Tsiy      = TSit.isChecked();
+                boolean TSpoy     = TSports.isChecked();
+                boolean TTalky    = TTalkShows.isChecked();
+                boolean Tway      = TWar.isChecked();
+                boolean Dacty     = DActing.isChecked();
+                boolean Dcosy     = DCosplay.isChecked();
+                boolean Dlay      = DLarp.isChecked();
+                boolean CActy     = CActionfigs.isChecked();
+                boolean CCry      = CCars.isChecked();
+                boolean Ccinsy    = CCoins.isChecked();
+                boolean Ccomy     = CComics.isChecked();
+                boolean CGuny     = CGuns.isChecked();
+                boolean Ctrcy     = CTrucks.isChecked();
+
+                FirebaseUser user = mAuth.getCurrentUser();
+                String userID = user.getUid();
+                Intresetedloggedup Logedd = new Intresetedloggedup(SArcy, SBasy, SbKy, Cycy ,Footy ,Frisy,SGofy,Shockeyy,SHunty,SSKatey,SSnowy,Swsy,Wrey,Fesy,Housy,
+                        Nighty,Gacty,Gadvy,GFpy,Gindy,GMMy,GpaFy, GRPy,Gsiy,Gspy,GStry,MCy,MDRy,MEdy,MJzy,MRpy,Mroy,MRNy,MScry,MoActy,MOAniy,MOComy,MODoy,MOFy,MOHOry,
+                        MoMusy,MOSiy,MOSpoy,MOTHrily,MoWay,TActy, TADvy,TAniy,TBioy,TCom,TCriy,TDoy,TDray,Tfay,TGamey,THisy,Thory,TMysy,Trey,Tsiy,TSpoy,TTalky,Tway,Dacty,
+                        Dcosy,Dlay,CActy,CCry,Ccinsy,Ccomy, CGuny,Ctrcy);
+
+
+            }
+        });
 
     }
 
@@ -88,7 +189,7 @@ public class Create_Interest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create__interest);
-
+        SaveIntre        = (Button)findViewById(R.id.Create_Account_btn_INT);
         SmArchery        = (CheckBox)findViewById(R.id.Archery_CB_create);
         SmBaseball       = (CheckBox)findViewById(R.id.Base_CB_create);
         SBasketball      = (CheckBox)findViewById(R.id.BASK_CB_create);

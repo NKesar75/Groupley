@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "925936789757-0649cbh2fkalsbrvpt9n35e6760mpbe8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "domain.teamgroupley.groupleyapp",
+            "certificate_hash": "f2f6ac3e4641f7d6e3f09984b3ae856b446ee2c8"
+          }
+        },
+        {
           "client_id": "925936789757-s8ih7amc4rq6qjspr6b2ntdmv4k5gu9l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

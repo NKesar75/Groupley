@@ -248,7 +248,7 @@
                     android:text="SIMULATION" />
 
                 <CheckBox
-                    android:id="@+id/Spo_CB_create"
+                    android:id="@+id/Spor_CB_create"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
@@ -484,7 +484,7 @@
                     android:text="COMEDY" />
 
                 <CheckBox
-                    android:id="@+id/Crime_CB"
+                    android:id="@+id/Crime_CB_create"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.07"
@@ -540,7 +540,7 @@
                     android:text="HORROR" />
 
                 <CheckBox
-                    android:id="@+id/Mystry_CB"
+                    android:id="@+id/Mystry_CB_create"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.07"
@@ -613,7 +613,7 @@
                     android:text="COSPLAY" />
 
                 <CheckBox
-                    android:id="@+id/Larp_CB"
+                    android:id="@+id/Larp_CB_create"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.07"
@@ -631,7 +631,7 @@
                     android:textStyle="bold|italic" />
 
                 <CheckBox
-                    android:id="@+id/Actionfigure_CB"
+                    android:id="@+id/Actionfigure_CB_create"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.07"

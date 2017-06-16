@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,31 +26,42 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Profile extends AppCompatActivity {
 
     private Button Logout;
     private static final String TAG = "Profile";
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser user = mAuth.getCurrentUser();
+    String UserID = user.getUid();
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference myRef;
-    private String userID;
-    private FirebaseDatabase mFirebaseDatabase;
-    private ListView mListView;
+
+    private TextView FirstName;
+    private TextView LastName;
+    private TextView Gender;
+    private TextView DOB;
+    private TextView username;
+
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mFirstName = mRootRef.child(UserID).child("UserInfo").child("Firstname");
+    DatabaseReference mLastName = mRootRef.child(UserID).child("UserInfo").child("Lastname");
+    DatabaseReference mGender = mRootRef.child(UserID).child("UserInfo").child("Sex");
+    DatabaseReference mDOB = mRootRef.child(UserID).child("UserInfo").child("DOB");
+    DatabaseReference mUsername = mRootRef.child(UserID).child("UserInfo").child("UserName");
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        mListView = (ListView)findViewById(R.id.profile_details_list);
-
-        mAuth = FirebaseAuth.getInstance();
-        myRef = mFirebaseDatabase.getReference();
-        FirebaseUser usery = mAuth.getCurrentUser();
-        userID = usery.getUid();
-
         Logout = (Button) findViewById(R.id.logout_btn);
+        FirstName = (TextView)findViewById(R.id.First_name_txtview);
+        LastName = (TextView)findViewById(R.id.Last_Name_txtview);
+        Gender = (TextView)findViewById(R.id.Gender_txtview);
+        DOB = (TextView)findViewById(R.id.DOB_txtview);
+        username = (TextView)findViewById(R.id.Username_txtview);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -75,12 +87,20 @@ public class Profile extends AppCompatActivity {
             }
 
         });
+  }
 
-        myRef.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        mAuth.addAuthStateListener(mAuthListener);
+
+        mFirstName.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
-                showData(dataSnapshot);
+                String first = dataSnapshot.getValue(String.class);
+                FirstName.setText(first);
             }
 
             @Override
@@ -88,41 +108,61 @@ public class Profile extends AppCompatActivity {
 
             }
         });
-  }
 
-    private void showData(DataSnapshot dataSnapshot)
-    {
+        mLastName.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                String last = dataSnapshot.getValue(String.class);
+                LastName.setText(last);
 
-        for(DataSnapshot ds : dataSnapshot.getChildren())
-        {
-            ProfileDataReading info = new ProfileDataReading();
-            info.setFirstName(ds.child(userID).child("UserInfo").getValue(ProfileDataReading.class).getFirstName());
-            info.setLastName(ds.child(userID).child("UserInfo").getValue(ProfileDataReading.class).getLastName());
-            info.setGender(ds.child(userID).child("UserInfo").getValue(ProfileDataReading.class).getGender());
-            info.setDateofbirth(ds.child(userID).child("UserInfo").getValue(ProfileDataReading.class).getDateofbirth());
-            info.setUsername(ds.child(userID).child("UserInfo").getValue(ProfileDataReading.class).getUsername());
+            }
 
-            Log.d(TAG,"showData: Firstname:" + info.getFirstName());
-            Log.d(TAG,"showData: Lastname:" + info.getLastName());
-            Log.d(TAG,"showData: Sex:" + info.getGender());
-            Log.d(TAG,"showData: DOB:" + info.getDateofbirth());
-            Log.d(TAG,"showData: UserName:" + info.getUsername());
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-            ArrayList<String> array = new ArrayList<>();
-            array.add("First Name: "+ info.getFirstName());
-            array.add("Last Name: " + info.getLastName());
-            array.add("Gender: " + info.getGender());
-            array.add("Date of Birth: " + info.getDateofbirth());
-            array.add("Username: " + info.getUsername());
-            ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,array);
-            mListView.setAdapter(adapter);
-        }
-    }
+            }
+        });
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+        mGender.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String gen = dataSnapshot.getValue(String.class);
+                Gender.setText(gen);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDOB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String date = dataSnapshot.getValue(String.class);
+                DOB.setText(date);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mUsername.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String user = dataSnapshot.getValue(String.class);
+                username.setText(user);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
     @Override
     public void onStop() {

@@ -17,6 +17,7 @@ public class ProfileDataReading
     public ProfileDataReading()
     {
 
+        
     }
 
     public String getFirstName() {

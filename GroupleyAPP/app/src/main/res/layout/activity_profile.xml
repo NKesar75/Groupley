@@ -114,7 +114,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
+                    android:text="    "
+                    android:layout_weight="0.13" />
 
                 <TextView
                     android:id="@+id/textView22"
@@ -136,7 +137,7 @@
                 android:weightSum="1">
 
                 <EditText
-                    android:id="@+id/First_NAME_Txt"
+                    android:id="@+id/First_NAME_Tst"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:editable="false"
@@ -146,10 +147,13 @@
                     android:hint="John"
                     android:inputType="textPersonName"
                     android:textAlignment="textStart"
-                    android:textSize="14sp" />
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
 
                 <EditText
-                    android:id="@+id/LAST_NAME_txt"
+                    android:id="@+id/LAST_NAME_tst"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:editable="false"
@@ -159,10 +163,13 @@
                     android:hint="Smith"
                     android:inputType="textPersonName"
                     android:textAlignment="textStart"
-                    android:textSize="14sp" />
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
 
                 <EditText
-                    android:id="@+id/editText3"
+                    android:id="@+id/Gender_TST"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -170,10 +177,13 @@
                     android:fontFamily="sans-serif-condensed"
                     android:inputType="textPersonName"
                     android:text="Gender"
-                    android:textSize="14sp" />
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
 
                 <EditText
-                    android:id="@+id/DOB_txt"
+                    android:id="@+id/DOB_tst"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:editable="false"
@@ -183,17 +193,24 @@
                     android:hint="MM/DD/YYYY"
                     android:inputType="date"
                     android:textAlignment="textStart"
-                    android:textSize="14sp" />
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
 
                 <TextView
                     android:id="@+id/textView32"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
+                    android:text="    "
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
 
                 <EditText
-                    android:id="@+id/USERNAME_TXT"
+                    android:id="@+id/USERNAME_Tst"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -201,7 +218,10 @@
                     android:fontFamily="sans-serif-condensed"
                     android:hint="Dainel123"
                     android:inputType="textPersonName"
-                    android:textSize="14sp" />
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
 
             </LinearLayout>
 

@@ -7,22 +7,48 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Profile extends AppCompatActivity {
 
+    private EditText FirstName;
+    private EditText LastName ;
+    private EditText Gender;
+    private EditText DOB;
+    private EditText username ;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser user = mAuth.getCurrentUser();
+    String USerid = user.getUid();
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mFirstName = mRootRef.child(USerid).child("UserInfo").child("Firstname");
+    DatabaseReference mLastName = mRootRef.child(USerid).child("UserInfo").child("Lastname");
+    DatabaseReference mGender = mRootRef.child(USerid).child("UserInfo").child("Sex");
+    DatabaseReference mDOB = mRootRef.child(USerid).child("UserInfo").child("DOB");
+    DatabaseReference mUsername = mRootRef.child(USerid).child("UserInfo").child("UserName");
+
+
     private Button Logout;
     private static final String TAG = "Profile";
-    private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Logout = (Button) findViewById(R.id.logout_btn);
+        FirstName = (EditText)findViewById(R.id.First_NAME_Tst);
+        LastName = (EditText)findViewById(R.id.LAST_NAME_tst);
+        Gender =   (EditText)findViewById(R.id.Gender_TST);
+        DOB =      (EditText)findViewById(R.id.DOB_tst);
+        username = (EditText)findViewById(R.id.USERNAME_Tst);
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -53,6 +79,67 @@ public class Profile extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
+        mFirstName.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String Name = dataSnapshot.getValue(String.class);
+                FirstName.setText(Name);
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mLastName.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String LName = dataSnapshot.getValue(String.class);
+                LastName.setText(LName);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mDOB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String Temp = dataSnapshot.getValue(String.class);
+                DOB.setText(Temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mGender.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String Temp = dataSnapshot.getValue(String.class);
+                Gender.setText(Temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        ValueEventListener valueEventListener = mUsername.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String Temp = dataSnapshot.getValue(String.class);
+                username.setText(Temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
     @Override
     public void onStop() {

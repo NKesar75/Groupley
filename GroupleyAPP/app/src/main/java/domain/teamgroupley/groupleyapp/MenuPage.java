@@ -41,7 +41,7 @@ public class MenuPage extends AppCompatActivity
         reg_event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent changepage2 = new Intent(MenuPage.this,Registered_Events.class);
+                Intent changepage2 = new Intent(MenuPage.this,Description.class);
                 startActivity(changepage2);
             }
         });

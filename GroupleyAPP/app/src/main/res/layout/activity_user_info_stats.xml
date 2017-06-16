@@ -166,10 +166,12 @@
                     android:id="@+id/DOB_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:editable="false"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="MM/DD/YYYY"
-                    android:inputType="date"
+                    android:selectAllOnFocus="false"
+                    android:singleLine="false"
                     android:textAlignment="textStart"
                     android:textSize="14sp" />
 

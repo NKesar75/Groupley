@@ -20,9 +20,11 @@ import com.google.firebase.database.ValueEventListener;
 public class Description extends AppCompatActivity {
 
     private static final String TAG = "Description";
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
+    FirebaseUser user = mAuth.getCurrentUser();
+    private String UserID = user.getUid();;
     private DatabaseReference myRef;
 
     private EditText Titl;
@@ -32,8 +34,16 @@ public class Description extends AppCompatActivity {
     private EditText Tim;
     private EditText Add;
     private EditText Maxppl;
-    private String UserID;
     private Button Join;
+
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mTitle = mRootRef.child(UserID).child("CreatedEvents").child("Title");
+    DatabaseReference mDesc = mRootRef.child(UserID).child("CreatedEvents").child("Description");
+    DatabaseReference mCater = mRootRef.child(UserID).child("CreatedEvents").child("Category");
+    DatabaseReference mDate = mRootRef.child(UserID).child("CreatedEvents").child("Date");
+    DatabaseReference mTime = mRootRef.child(UserID).child("CreatedEvents").child("Time");
+    DatabaseReference mAddress = mRootRef.child(UserID).child("CreatedEvents").child("Address");
+    DatabaseReference mMax = mRootRef.child(UserID).child("CreatedEvents").child("Max_People");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +60,6 @@ public class Description extends AppCompatActivity {
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
-        mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -65,26 +74,8 @@ public class Description extends AppCompatActivity {
                 // ...
             }
         };
-        FirebaseUser user = mAuth.getCurrentUser();
-        UserID = user.getUid();
 
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                Object value = dataSnapshot.getValue();
-                Log.d(TAG, "Value is: " + value);
-                ShowData(dataSnapshot);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
         Join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,34 +85,104 @@ public class Description extends AppCompatActivity {
         });
     }
 
-    private void ShowData(DataSnapshot dataSnapshot) {
-
-        for (DataSnapshot ds : dataSnapshot.getChildren() ){
-            CreateEventStatsinfo show = new CreateEventStatsinfo();
-            show.SetTitle(ds.child(UserID).getValue(CreateEventStatsinfo.class).GetTitle());
-            show.SetDescription(ds.child(UserID).getValue(CreateEventStatsinfo.class).GetDescription());
-            show.SetCategory(ds.child(UserID).getValue(CreateEventStatsinfo.class).GetCategory());
-            show.SetTime(ds.child(UserID).getValue(CreateEventStatsinfo.class).GetTime());
-            show.SetDate(ds.child(UserID).getValue(CreateEventStatsinfo.class).GetDate());
-            show.SetAddess(ds.child(UserID).getValue(CreateEventStatsinfo.class).GetAddess());
-            show.SetMax_Peopl(ds.child(UserID).getValue(CreateEventStatsinfo.class).GetMax_People());
-
-            Descrip.setText(show.GetDescription());
-            Titl.setText(show.GetTitle());
-            Cater.setText(show.GetCategory());
-            Tim.setText(show.GetTime());
-            Dat.setText(show.GetDate());
-            Add.setText(show.GetAddess());
-            Maxppl.setText(show.GetMax_People());
-        }
-
-    }
-
 
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
+
+        mTitle.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String temp = dataSnapshot.getValue(String.class);
+                Titl.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDesc.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String temp = dataSnapshot.getValue(String.class);
+                Descrip.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mCater.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String temp = dataSnapshot.getValue(String.class);
+                Cater.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDate.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String temp = dataSnapshot.getValue(String.class);
+                Dat.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mTime.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String temp = dataSnapshot.getValue(String.class);
+                Tim.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mAddress.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String temp = dataSnapshot.getValue(String.class);
+                Add.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mMax.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String temp = dataSnapshot.getValue(String.class);
+                Maxppl.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
     @Override
     public void onStop() {

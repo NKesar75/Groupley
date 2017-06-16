@@ -1,13 +1,20 @@
 package domain.teamgroupley.groupleyapp;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,6 +27,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.ParseException;
+import java.util.Date;
 
 public class Create_Event extends AppCompatActivity {
 
@@ -37,6 +47,8 @@ public class Create_Event extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
+
+    private DatePickerDialog.OnDateSetListener mDateSetListner;
 
     public void SendEventTodatabase(){
         Create = (Button)findViewById(R.id.Create_event_btn);
@@ -81,6 +93,67 @@ public class Create_Event extends AppCompatActivity {
         Time = (EditText)findViewById(R.id.time_txt);
         Addey = (EditText)findViewById(R.id.address_txt);
         Max = (EditText)findViewById(R.id.max_people_txt);
+
+        Date.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(Create_Event.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListner,year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable());
+                dialog.show();
+            }
+        });
+
+        mDateSetListner = new DatePickerDialog.OnDateSetListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month + 1;
+                String date = month + "/" + dayOfMonth + "/" + year;
+
+                String mMonth = String.valueOf(month);
+                String mDay = String.valueOf(dayOfMonth);
+                String mYear = String.valueOf(year);
+
+                Calendar cal = Calendar.getInstance();
+                int curYear = cal.get(Calendar.YEAR);
+                int curMonth = cal.get(Calendar.MONTH);
+                int curDay = cal.get(Calendar.DAY_OF_MONTH);
+
+                String mCurMonth = String.valueOf(curMonth);
+                String mCurDay = String.valueOf(curDay);
+                String mCurYear = String.valueOf(curYear);
+
+                try
+                {
+                    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                    java.util.Date enteredDate = sdf.parse(mMonth + "/" + mDay + "/" + mYear);
+                    Date curDate = sdf.parse(mCurMonth + "/" + mCurDay + "/" + mCurYear);
+
+                    if(enteredDate.before(curDate))
+                    {
+                        Toast.makeText(Create_Event.this, "Pick Today's Date or a Date after it", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Date.setText(date);
+                    }
+                } catch (ParseException e)
+                {
+                    e.printStackTrace();
+                }
+
+            }
+        };
+
+
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         mAuth = FirebaseAuth.getInstance();

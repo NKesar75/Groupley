@@ -7,8 +7,8 @@
     tools:context="domain.teamgroupley.groupleyapp.Profile">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="369dp"
+        android:layout_height="494dp"
         android:orientation="vertical"
         android:weightSum="1"
         tools:layout_editor_absoluteX="7dp"
@@ -27,9 +27,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="204dp"
-            android:orientation="horizontal"
-            android:layout_weight="0.36">
+            android:layout_height="wrap_content"
+            android:layout_weight="0.24"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="125dp"
@@ -114,7 +114,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
+                    android:text="    "
+                    android:layout_weight="0.13" />
 
                 <TextView
                     android:id="@+id/textView22"
@@ -135,54 +136,92 @@
                 android:orientation="vertical"
                 android:weightSum="1">
 
-                <TextView
-                    android:id="@+id/First_name_txtview"
+                <EditText
+                    android:id="@+id/First_NAME_Tst"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
-                    android:text="TextView" />
-
-                <TextView
-                    android:id="@+id/Last_Name_txtview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
-                    android:text="TextView" />
-
-                <TextView
-                    android:id="@+id/textView31"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:ems="10"
+                    android:enabled="false"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
+                    android:hint="John"
+                    android:inputType="textPersonName"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
 
-                <TextView
-                    android:id="@+id/Gender_txtview"
+                <EditText
+                    android:id="@+id/LAST_NAME_tst"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
-                    android:text="TextView" />
+                    android:editable="false"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:fontFamily="sans-serif-condensed"
+                    android:hint="Smith"
+                    android:inputType="textPersonName"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
 
-                <TextView
-                    android:id="@+id/DOB_txtview"
+                <EditText
+                    android:id="@+id/Gender_TST"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
-                    android:text="TextView" />
+                    android:ems="10"
+                    android:enabled="false"
+                    android:fontFamily="sans-serif-condensed"
+                    android:inputType="textPersonName"
+                    android:text="Gender"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
+
+                <EditText
+                    android:id="@+id/DOB_tst"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:fontFamily="sans-serif-condensed"
+                    android:hint="MM/DD/YYYY"
+                    android:inputType="date"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
 
                 <TextView
                     android:id="@+id/textView32"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
+                    android:text="    "
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
 
-                <TextView
-                    android:id="@+id/Username_txtview"
+                <EditText
+                    android:id="@+id/USERNAME_Tst"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.10"
-                    android:text="TextView" />
+                    android:ems="10"
+                    android:enabled="false"
+                    android:fontFamily="sans-serif-condensed"
+                    android:hint="Dainel123"
+                    android:inputType="textPersonName"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
 
             </LinearLayout>
 

@@ -4,17 +4,10 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,44 +18,38 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Profile extends AppCompatActivity {
+
+    private EditText FirstName;
+    private EditText LastName ;
+    private EditText Gender;
+    private EditText DOB;
+    private EditText username ;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser user = mAuth.getCurrentUser();
+    String USerid = user.getUid();
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mFirstName = mRootRef.child(USerid).child("UserInfo").child("Firstname");
+    DatabaseReference mLastName = mRootRef.child(USerid).child("UserInfo").child("Lastname");
+    DatabaseReference mGender = mRootRef.child(USerid).child("UserInfo").child("Sex");
+    DatabaseReference mDOB = mRootRef.child(USerid).child("UserInfo").child("DOB");
+    DatabaseReference mUsername = mRootRef.child(USerid).child("UserInfo").child("UserName");
+
 
     private Button Logout;
     private static final String TAG = "Profile";
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    FirebaseUser user = mAuth.getCurrentUser();
-    String UserID = user.getUid();
     private FirebaseAuth.AuthStateListener mAuthListener;
-
-    private TextView FirstName;
-    private TextView LastName;
-    private TextView Gender;
-    private TextView DOB;
-    private TextView username;
-
-    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mFirstName = mRootRef.child(UserID).child("UserInfo").child("Firstname");
-    DatabaseReference mLastName = mRootRef.child(UserID).child("UserInfo").child("Lastname");
-    DatabaseReference mGender = mRootRef.child(UserID).child("UserInfo").child("Sex");
-    DatabaseReference mDOB = mRootRef.child(UserID).child("UserInfo").child("DOB");
-    DatabaseReference mUsername = mRootRef.child(UserID).child("UserInfo").child("UserName");
-
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
         Logout = (Button) findViewById(R.id.logout_btn);
-        FirstName = (TextView)findViewById(R.id.First_name_txtview);
-        LastName = (TextView)findViewById(R.id.Last_Name_txtview);
-        Gender = (TextView)findViewById(R.id.Gender_txtview);
-        DOB = (TextView)findViewById(R.id.DOB_txtview);
-        username = (TextView)findViewById(R.id.Username_txtview);
-
+        FirstName = (EditText)findViewById(R.id.First_NAME_Tst);
+        LastName = (EditText)findViewById(R.id.LAST_NAME_tst);
+        Gender =   (EditText)findViewById(R.id.Gender_TST);
+        DOB =      (EditText)findViewById(R.id.DOB_tst);
+        username = (EditText)findViewById(R.id.USERNAME_Tst);
+        mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -87,48 +74,29 @@ public class Profile extends AppCompatActivity {
             }
 
         });
-  }
-
+    }
     @Override
     public void onStart() {
         super.onStart();
-
         mAuth.addAuthStateListener(mAuthListener);
-
         mFirstName.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-                String first = dataSnapshot.getValue(String.class);
-                FirstName.setText(first);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String Name = dataSnapshot.getValue(String.class);
+                FirstName.setText(Name);
             }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-
         mLastName.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-                String last = dataSnapshot.getValue(String.class);
-                LastName.setText(last);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        mGender.addValueEventListener(new ValueEventListener() {
-            @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String gen = dataSnapshot.getValue(String.class);
-                Gender.setText(gen);
+                String LName = dataSnapshot.getValue(String.class);
+                LastName.setText(LName);
             }
 
             @Override
@@ -136,12 +104,11 @@ public class Profile extends AppCompatActivity {
 
             }
         });
-
         mDOB.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String date = dataSnapshot.getValue(String.class);
-                DOB.setText(date);
+                String Temp = dataSnapshot.getValue(String.class);
+                DOB.setText(Temp);
             }
 
             @Override
@@ -149,12 +116,11 @@ public class Profile extends AppCompatActivity {
 
             }
         });
-
-        mUsername.addValueEventListener(new ValueEventListener() {
+        mGender.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String user = dataSnapshot.getValue(String.class);
-                username.setText(user);
+                String Temp = dataSnapshot.getValue(String.class);
+                Gender.setText(Temp);
             }
 
             @Override
@@ -162,7 +128,18 @@ public class Profile extends AppCompatActivity {
 
             }
         });
+        ValueEventListener valueEventListener = mUsername.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String Temp = dataSnapshot.getValue(String.class);
+                username.setText(Temp);
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
     @Override
     public void onStop() {

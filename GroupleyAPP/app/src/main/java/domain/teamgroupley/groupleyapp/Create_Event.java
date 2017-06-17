@@ -1,6 +1,7 @@
 package domain.teamgroupley.groupleyapp;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.text.SimpleDateFormat;
@@ -19,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,7 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.ParseException;
 import java.util.Date;
 
-public class Create_Event extends AppCompatActivity {
+public class Create_Event extends AppCompatActivity{
 
     EditText Title;
     EditText Disc;
@@ -81,7 +83,7 @@ public class Create_Event extends AppCompatActivity {
         });
     }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create__event);
         Cat = (Spinner) findViewById(R.id.Category_SPINNER);
@@ -155,6 +157,15 @@ public class Create_Event extends AppCompatActivity {
             }
         };
 
+        Time.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View v)
+            {
+                Calendar timechoose = Calendar.getInstance();
+                new TimePickerDialog(Create_Event.this,onTimeSetListener,timechoose.get(Calendar.HOUR_OF_DAY),timechoose.get(Calendar.MINUTE),true).show();
+            }
+        });
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -204,4 +215,12 @@ public class Create_Event extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
+    TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute)
+        {
+            Time.setText(hourOfDay + ":" + minute);
+        }
+    };
 }

@@ -37,6 +37,7 @@ public class Profile extends AppCompatActivity {
 
 
     private Button Logout;
+    private Button Interest;
     private static final String TAG = "Profile";
     private FirebaseAuth.AuthStateListener mAuthListener;
     @Override
@@ -44,6 +45,7 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         Logout = (Button) findViewById(R.id.logout_btn);
+        Interest = (Button)findViewById(R.id.SEE_INTREST_PROFILE_BTN);
         FirstName = (EditText)findViewById(R.id.First_NAME_Tst);
         LastName = (EditText)findViewById(R.id.LAST_NAME_tst);
         Gender =   (EditText)findViewById(R.id.Gender_TST);
@@ -73,6 +75,13 @@ public class Profile extends AppCompatActivity {
 
             }
 
+        });
+
+        Interest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Profile.this,IntrestSelection.class));
+            }
         });
     }
     @Override

@@ -231,6 +231,24 @@
             android:id="@+id/textView29"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:fontFamily="sans-serif-condensed"
+            android:text="    " />
+
+        <Button
+            android:id="@+id/SEE_INTREST_PROFILE_BTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.11"
+            android:fontFamily="sans-serif-condensed"
+            android:text="EDIT INTERESTS"
+            android:textSize="24sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="0.26"
             android:fontFamily="sans-serif-condensed"
             android:text="    " />

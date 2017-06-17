@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Build;
+import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -68,6 +69,7 @@ public class Create_Event extends AppCompatActivity {
                     FirebaseUser user = mAuth.getCurrentUser();
                     String userID = user.getUid();
                     myRef.child(userID).child("CreatedEvents").setValue(Passing);
+                    myRef.child("Events").setValue(Passing);
                     Intent changepage = new Intent(Create_Event.this, MenuPage.class);
                     startActivity(changepage);
                     Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();

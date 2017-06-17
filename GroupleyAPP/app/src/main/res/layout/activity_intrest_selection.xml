@@ -71,7 +71,7 @@
                     android:text="BASEBALL" />
 
                 <CheckBox
-                    android:id="@+id/BASK_CB_create"
+                    android:id="@+id/BASK_CB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
@@ -446,7 +446,7 @@
                     android:textStyle="bold|italic" />
 
                 <CheckBox
-                    android:id="@+id/Act_CB"
+                    android:id="@+id/TAct_CB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.07"
@@ -566,7 +566,7 @@
                     android:text="SITCOM" />
 
                 <CheckBox
-                    android:id="@+id/Spo_CB"
+                    android:id="@+id/Spor_CB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.07"

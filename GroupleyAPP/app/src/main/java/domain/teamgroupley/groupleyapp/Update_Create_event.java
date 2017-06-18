@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Build;
-import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +18,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -34,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.ParseException;
 import java.util.Date;
 
-public class Create_Event extends AppCompatActivity{
+public class Update_Create_event extends AppCompatActivity {
 
     EditText Title;
     EditText Disc;
@@ -45,11 +43,13 @@ public class Create_Event extends AppCompatActivity{
     EditText Max;
     Button Create;
 
-    private static final String TAG = "Create_Event";
-    private FirebaseAuth mAuth;
+    private static final String TAG = "Update_Create_event";
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser user = mAuth.getCurrentUser();
+    String USerid = user.getUid();
 
     private DatePickerDialog.OnDateSetListener mDateSetListner;
 
@@ -70,33 +70,43 @@ public class Create_Event extends AppCompatActivity{
                     CreateEventStatsinfo Passing = new CreateEventStatsinfo(tie,Die,Cator,Day,Tim,ADd,MAxppl);
                     FirebaseUser user = mAuth.getCurrentUser();
                     String userID = user.getUid();
+                    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+                    DatabaseReference mFirstName = mRootRef.child(USerid).child("UserInfo").child("Firstname");
+                    DatabaseReference mLastName = mRootRef.child(USerid).child("UserInfo").child("Lastname");
+                    DatabaseReference mGender = mRootRef.child(USerid).child("UserInfo").child("Sex");
+                    DatabaseReference mDOB = mRootRef.child(USerid).child("UserInfo").child("DOB");
+                    DatabaseReference mUsername = mRootRef.child(USerid).child("UserInfo").child("UserName");
+
+
+
+
                     myRef.child(userID).child("CreatedEvents").child(tie).setValue(Passing);
                     myRef.child("Events").child(tie).setValue(Passing);
-                    Intent changepage = new Intent(Create_Event.this, MenuPage.class);
+                    Intent changepage = new Intent(Update_Create_event.this, MenuPage.class);
                     startActivity(changepage);
-                    Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Update_Create_event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(Create_Event.this, "Missing some information", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Update_Create_event.this, "Missing some information", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create__event);
+        setContentView(R.layout.activity_update__create_event);
         Cat = (Spinner) findViewById(R.id.Category_SPINNER);
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Create_Event.this,
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Update_Create_event.this,
                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Category));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Cat.setAdapter(myAdapter);
-        Title = (EditText)findViewById(R.id.Title_txt);
-        Disc = (EditText) findViewById(R.id.des_txt);
-        Date = (EditText)findViewById(R.id.Date_txt);
-        Time = (EditText)findViewById(R.id.time_txt);
-        Addey = (EditText)findViewById(R.id.address_txt);
-        Max = (EditText)findViewById(R.id.max_people_txt);
+        Title = (EditText)findViewById(R.id.Title_txt_update);
+        Disc = (EditText) findViewById(R.id.des_txt_Update);
+        Date = (EditText)findViewById(R.id.Date_txt_Update);
+        Time = (EditText)findViewById(R.id.time_txt_Update);
+        Addey = (EditText)findViewById(R.id.address_txt_Update);
+        Max = (EditText)findViewById(R.id.max_people_txt_Update);
 
         Date.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -107,10 +117,9 @@ public class Create_Event extends AppCompatActivity{
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(Create_Event.this,
+                DatePickerDialog dialog = new DatePickerDialog(Update_Create_event.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListner,year,month,day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable());
                 dialog.show();
             }
         });
@@ -139,11 +148,11 @@ public class Create_Event extends AppCompatActivity{
                 {
                     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                     java.util.Date enteredDate = sdf.parse(mMonth + "/" + mDay + "/" + mYear);
-                    Date curDate = sdf.parse(mCurMonth + "/" + mCurDay + "/" + mCurYear);
+                    java.util.Date curDate = sdf.parse(mCurMonth + "/" + mCurDay + "/" + mCurYear);
 
                     if(enteredDate.before(curDate))
                     {
-                        Toast.makeText(Create_Event.this, "Pick Today's Date or a Date after it", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Update_Create_event.this, "Pick Today's Date or a Date after it", Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
@@ -163,7 +172,7 @@ public class Create_Event extends AppCompatActivity{
             public void onClick(View v)
             {
                 Calendar timechoose = Calendar.getInstance();
-                new TimePickerDialog(Create_Event.this,onTimeSetListener,timechoose.get(Calendar.HOUR_OF_DAY),timechoose.get(Calendar.MINUTE),true).show();
+                new TimePickerDialog(Update_Create_event.this,onTimeSetListener,timechoose.get(Calendar.HOUR_OF_DAY),timechoose.get(Calendar.MINUTE),true).show();
             }
         });
 
@@ -224,3 +233,4 @@ public class Create_Event extends AppCompatActivity{
         }
     };
 }
+

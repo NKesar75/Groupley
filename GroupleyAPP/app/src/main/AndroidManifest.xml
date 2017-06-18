@@ -31,6 +31,7 @@
         <activity android:name=".Settings" />
         <activity android:name=".Create_Interest" />
         <activity android:name=".Description" />
+        <activity android:name=".Update_Create_event"></activity>
     </application>
 
 </manifest>

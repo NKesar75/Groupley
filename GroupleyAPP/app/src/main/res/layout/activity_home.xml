@@ -6,27 +6,8 @@
     android:layout_height="match_parent"
     tools:context="domain.teamgroupley.groupleyapp.Home">
 
-    <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:orientation="vertical"
-        android:weightSum="1"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
-
-        <TextView
-            android:id="@+id/textView51"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.32" />
-
-        <TextView
-            android:id="@+id/textView52"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Home Page / Upcoming Events"
-            android:textAlignment="center"
-            android:textSize="36sp" />
-    </LinearLayout>
+    <ListView
+        android:id="@+id/Upcoming_Events_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </android.support.v4.widget.DrawerLayout>

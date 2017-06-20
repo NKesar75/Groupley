@@ -34,7 +34,8 @@
         <activity android:name=".My_Events" />
         <activity android:name=".Update_Create_event" />
         <activity android:name=".CreatedEventList" />
-        <activity android:name=".RegisteredEventDesc"></activity>
+        <activity android:name=".RegisteredEventDesc" />
+        <activity android:name=".UpdateProfile"></activity>
     </application>
 
 </manifest>

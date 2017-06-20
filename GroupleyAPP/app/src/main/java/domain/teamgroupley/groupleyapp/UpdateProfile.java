@@ -18,16 +18,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Profile extends AppCompatActivity {
+public class UpdateProfile extends AppCompatActivity {
 
     private EditText FirstName;
     private EditText LastName ;
     private EditText Gender;
     private EditText DOB;
     private EditText username ;
+
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
     String USerid = user.getUid();
+
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mFirstName = mRootRef.child(USerid).child("UserInfo").child("Firstname");
     DatabaseReference mLastName = mRootRef.child(USerid).child("UserInfo").child("Lastname");
@@ -35,24 +37,21 @@ public class Profile extends AppCompatActivity {
     DatabaseReference mDOB = mRootRef.child(USerid).child("UserInfo").child("DOB");
     DatabaseReference mUsername = mRootRef.child(USerid).child("UserInfo").child("UserName");
 
+    private Button Save;
 
-    private Button Logout;
-    private Button Interest;
-    private Button EditProfile;
-    private static final String TAG = "Profile";
+    private static final String TAG = "UpdateProfile";
     private FirebaseAuth.AuthStateListener mAuthListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        Logout = (Button) findViewById(R.id.logout_btn);
-        Interest = (Button)findViewById(R.id.SEE_INTREST_PROFILE_BTN);
-        EditProfile = (Button)findViewById(R.id.EDIT_PROFILE_BTN);
-        FirstName = (EditText)findViewById(R.id.First_NAME_Tst);
-        LastName = (EditText)findViewById(R.id.LAST_NAME_tst);
-        Gender =   (EditText)findViewById(R.id.Gender_TST);
-        DOB =      (EditText)findViewById(R.id.DOB_tst);
-        username = (EditText)findViewById(R.id.USERNAME_Tst);
+        setContentView(R.layout.activity_update_profile);
+        Save = (Button)findViewById(R.id.EDIT_PROFILE_BTN_update);
+        FirstName = (EditText)findViewById(R.id.First_NAME_Tst_update);
+        LastName = (EditText)findViewById(R.id.LAST_NAME_tst_update);
+        Gender =   (EditText)findViewById(R.id.Gender_TST_update);
+        DOB =      (EditText)findViewById(R.id.DOB_tst_update);
+        username = (EditText)findViewById(R.id.USERNAME_Tst_update);
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -64,32 +63,37 @@ public class Profile extends AppCompatActivity {
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
-                    Toast.makeText(Profile.this, "Signed Out", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateProfile.this, "Signed Out", Toast.LENGTH_SHORT).show();
                 }
                 // ...
             }
         };
-        Logout.setOnClickListener(new View.OnClickListener() {
+
+        Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mAuth.signOut();
-                startActivity(new Intent(Profile.this,LoginUser.class));
+                String First = FirstName.getText().toString();
+                String Last = LastName.getText().toString();
+                String User = username.getText().toString();
 
-            }
 
-        });
+                if (!First.equals("") && !Last.equals("") && !User.equals("")) {
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    String userID = user.getUid();
 
-        Interest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Profile.this,IntrestSelection.class));
-            }
-        });
+                    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+                    mRootRef.child(userID).child("UserInfo").child("Firstname").setValue(First);
+                    mRootRef.child(userID).child("UserInfo").child("Lastname").setValue(Last);
+                    mRootRef.child(userID).child("UserInfo").child("UserName").setValue(User);
 
-        EditProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Profile.this,UpdateProfile.class));
+                    Intent changepage = new Intent(UpdateProfile.this, Create_Interest.class);
+                    startActivity(changepage);
+                }
+                else{
+                    Toast.makeText(UpdateProfile.this, "Missing some information", Toast.LENGTH_SHORT).show();
+                }
+                startActivity(new Intent(UpdateProfile.this,Profile.class));
+                Toast.makeText(UpdateProfile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -103,7 +107,6 @@ public class Profile extends AppCompatActivity {
                 String Name = dataSnapshot.getValue(String.class);
                 FirstName.setText(Name);
             }
-
 
             @Override
             public void onCancelled(DatabaseError databaseError) {

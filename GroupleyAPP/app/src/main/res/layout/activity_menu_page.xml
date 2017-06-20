@@ -32,6 +32,12 @@
             android:text="CREATE EVENT" />
 
         <Button
+            android:id="@+id/update_event_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update your Events" />
+
+        <Button
             android:id="@+id/profile_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -4,22 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="domain.teamgroupley.groupleyapp.Update_Create_event">
+    tools:context="domain.teamgroupley.groupleyapp.RegisteredEventDesc">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="369dp"
+        android:layout_height="494dp"
         android:orientation="vertical"
         android:weightSum="1"
         tools:layout_editor_absoluteX="7dp"
         tools:layout_editor_absoluteY="9dp">
 
-        <TextView
-            android:id="@+id/textView10"
+        <EditText
+            android:id="@+id/Title_txt_reg_des"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ems="10"
+            android:enabled="false"
             android:fontFamily="sans-serif-condensed"
-            android:text="UPDATE EVENT"
+            android:hint="House Party"
+            android:inputType="textPersonName"
             android:textAlignment="center"
             android:textSize="36sp"
             android:textStyle="bold|italic" />
@@ -27,7 +30,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.95"
+            android:layout_weight="0.66"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -40,24 +43,6 @@
                     android:id="@+id/textView15"
                     android:layout_width="match_parent"
                     android:layout_height="6dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="TTILE:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
                     android:text="    " />
 
@@ -112,7 +97,6 @@
                     android:id="@+id/textView23"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.11"
                     android:fontFamily="sans-serif-condensed"
                     android:text="    " />
 
@@ -131,7 +115,7 @@
                     android:id="@+id/textView43"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.09" />
+                    android:layout_weight="0.12" />
 
                 <TextView
                     android:id="@+id/textView44"
@@ -145,9 +129,10 @@
                     android:textStyle="bold|italic" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/textView17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.10"
                     android:fontFamily="sans-serif-condensed"
                     android:text="    " />
 
@@ -171,80 +156,68 @@
                 android:weightSum="1">
 
                 <EditText
-                    android:id="@+id/Title_txt_update"
+                    android:id="@+id/Catergory_txt_reg_des"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:editable="false"
                     android:ems="10"
+                    android:enabled="false"
                     android:fontFamily="sans-serif-condensed"
-                    android:hint="House Party"
-                    android:inputType="textPersonName"
-                    android:textAlignment="textStart"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/Catergory_txt_updt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:ems="10"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="House Party"
+                    android:hint="Party"
                     android:inputType="textPersonName"
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/Date_txt_Update"
+                    android:id="@+id/Date_txt_reg_des"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:editable="false"
                     android:ems="10"
+                    android:enabled="false"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="MM/DD/YYYY"
-                    android:isScrollContainer="false"
+                    android:inputType="date"
                     android:textAlignment="textStart"
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/time_txt_Update"
+                    android:id="@+id/time_txt_reg_des"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.12"
-                    android:editable="false"
                     android:ems="10"
-                    android:enabled="true"
+                    android:enabled="false"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="12:00"
                     android:inputType="time"
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/address_txt_Update"
+                    android:id="@+id/address_txt_reg_des"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.09"
+                    android:layout_weight="0.32"
                     android:ems="10"
+                    android:enabled="false"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="3300 University Blvd, Winter Park, FL 32792"
                     android:inputType="textPostalAddress"
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/max_people_txt_Update"
+                    android:id="@+id/max_people_txt_reg_des"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.09"
                     android:ems="10"
+                    android:enabled="false"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="50"
                     android:inputType="number"
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/des_txt_Update"
+                    android:id="@+id/des_txt_des_reg_des"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="96dp"
                     android:ems="10"
+                    android:enabled="false"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="Come and have fun in the party and meet new people"
                     android:inputType="textMultiLine"
@@ -254,11 +227,13 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/Update_event_btn"
+        <TextView
+            android:id="@+id/textView29"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="UPDATE EVENT" />
+            android:layout_weight="0.15"
+            android:fontFamily="sans-serif-condensed"
+            android:text="    " />
 
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

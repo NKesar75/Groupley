@@ -41,7 +41,7 @@ public class MenuPage extends AppCompatActivity
         reg_event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent changepage2 = new Intent(MenuPage.this,Description.class);
+                Intent changepage2 = new Intent(MenuPage.this,Registered_Events.class);
                 startActivity(changepage2);
             }
         });
@@ -58,6 +58,19 @@ public class MenuPage extends AppCompatActivity
             }
         });
     }
+
+    public void updateCreatedEventsListpage()
+    {
+        reg_event = (Button) findViewById(R.id.update_event_btn);
+        reg_event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent changepage2 = new Intent(MenuPage.this,Update_Create_event.class);
+                startActivity(changepage2);
+            }
+        });
+    }
+
     public void profilepage()
     {
         profile = (Button) findViewById(R.id.profile_btn);
@@ -89,5 +102,6 @@ public class MenuPage extends AppCompatActivity
         createeventpage();
         profilepage();
         settingspage();
+        updateCreatedEventsListpage();
     }
 }

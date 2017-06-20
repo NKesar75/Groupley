@@ -31,8 +31,10 @@
         <activity android:name=".Settings" />
         <activity android:name=".Create_Interest" />
         <activity android:name=".Description" />
-        <activity android:name=".My_Events"></activity>
-        <activity android:name=".Update_Create_event"></activity>
+        <activity android:name=".My_Events" />
+        <activity android:name=".Update_Create_event" />
+        <activity android:name=".CreatedEventList" />
+        <activity android:name=".RegisteredEventDesc"></activity>
     </application>
 
 </manifest>

@@ -34,15 +34,15 @@ public class Registered_Events extends AppCompatActivity {
     String USerid = user.getUid();
     private String data;
 
-    private ArrayList<String> marr = new ArrayList();
+    private ArrayList<String> marry = new ArrayList();
 
-    public static String EventTitle;
-
+    public static String regEventTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registered__events);
-        mListView = (ListView)findViewById(R.id.Upcoming_Events_list);
+
+        mListView = (ListView)findViewById(R.id.REG_LIST_VIEW);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -76,19 +76,20 @@ public class Registered_Events extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                EventTitle = marr.get(position);
-                startActivity(new Intent(Registered_Events.this,Description.class));
+                regEventTitle = marry.get(position);
+                startActivity(new Intent(Registered_Events.this,RegisteredEventDesc.class));
             }
         });
     }
+
     private void shoData(DataSnapshot dataSnapshot)
     {
         ArrayList<String> array = new ArrayList<>();
-        for (DataSnapshot ds: dataSnapshot.child("RegisteredEvents").getChildren())
+        for (DataSnapshot ds: dataSnapshot.child(USerid).child("RegisteredEvents").getChildren())
         {
             data = ds.getKey().toString();
             array.add(data);
-            marr.add(data);
+            marry.add(data);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,array);
         mListView.setAdapter(adapter);

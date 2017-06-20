@@ -72,6 +72,7 @@ public class Create_Event extends AppCompatActivity{
                     String userID = user.getUid();
                     myRef.child(userID).child("CreatedEvents").child(tie).setValue(Passing);
                     myRef.child("Events").child(tie).setValue(Passing);
+                    myRef.child(userID).child("RegisteredEvents").child(tie).setValue(Passing);
                     Intent changepage = new Intent(Create_Event.this, MenuPage.class);
                     startActivity(changepage);
                     Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();

@@ -1,9 +1,12 @@
 package domain.teamgroupley.groupleyapp;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -30,6 +33,9 @@ public class CreatedEventList extends AppCompatActivity
     FirebaseUser user = mAuth.getCurrentUser();
     String Userid = user.getUid();
     public String data;
+
+    private ArrayList<String> cmarr = new ArrayList();
+    public static String CreateEventTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +71,14 @@ public class CreatedEventList extends AppCompatActivity
 
                 }
             });
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                CreateEventTitle = cmarr.get(position);
+                startActivity(new Intent(CreatedEventList.this,Update_Create_event.class));
+            }
+        });
     }
 
     private void shoData(DataSnapshot dataSnapshot)
@@ -74,9 +88,11 @@ public class CreatedEventList extends AppCompatActivity
         {
             data = ds.getKey().toString();
             array.add(data);
+            cmarr.add(data);
         }
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,array);
         mListView.setAdapter(adapter);
+
     }
 
     @Override

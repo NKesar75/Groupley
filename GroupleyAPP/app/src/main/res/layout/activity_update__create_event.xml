@@ -176,10 +176,12 @@
                     android:layout_height="wrap_content"
                     android:editable="false"
                     android:ems="10"
+                    android:enabled="false"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="House Party"
                     android:inputType="textPersonName"
                     android:textAlignment="textStart"
+                    android:textColor="@android:color/background_dark"
                     android:textSize="14sp" />
 
                 <EditText
@@ -188,9 +190,11 @@
                     android:layout_height="wrap_content"
                     android:editable="false"
                     android:ems="10"
+                    android:enabled="false"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="House Party"
                     android:inputType="textPersonName"
+                    android:textColor="@android:color/background_dark"
                     android:textSize="14sp" />
 
                 <EditText
@@ -203,6 +207,7 @@
                     android:hint="MM/DD/YYYY"
                     android:isScrollContainer="false"
                     android:textAlignment="textStart"
+                    android:textColor="@android:color/background_dark"
                     android:textSize="14sp" />
 
                 <EditText
@@ -216,6 +221,7 @@
                     android:fontFamily="sans-serif-condensed"
                     android:hint="12:00"
                     android:inputType="time"
+                    android:textColor="@android:color/background_dark"
                     android:textSize="14sp" />
 
                 <EditText
@@ -227,6 +233,7 @@
                     android:fontFamily="sans-serif-condensed"
                     android:hint="3300 University Blvd, Winter Park, FL 32792"
                     android:inputType="textPostalAddress"
+                    android:textColor="@android:color/background_dark"
                     android:textSize="14sp" />
 
                 <EditText
@@ -238,6 +245,7 @@
                     android:fontFamily="sans-serif-condensed"
                     android:hint="50"
                     android:inputType="number"
+                    android:textColor="@android:color/background_dark"
                     android:textSize="14sp" />
 
                 <EditText
@@ -248,6 +256,7 @@
                     android:fontFamily="sans-serif-condensed"
                     android:hint="Come and have fun in the party and meet new people"
                     android:inputType="textMultiLine"
+                    android:textColor="@android:color/background_dark"
                     android:textSize="14sp" />
 
             </LinearLayout>

@@ -43,9 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:fontFamily="sans-serif-condensed"
-            android:inputType="textPersonName"
-            android:textSize="24sp" />
+            android:inputType="number"
+            android:layout_weight="0.05" />
 
         <TextView
             android:id="@+id/textView39"

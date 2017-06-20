@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,19 +32,21 @@ public class Description extends AppCompatActivity {
     private EditText Descrip;
     private EditText Cater;
     private EditText Dat;
-    private EditText Tim;
+    private EditText Timy;
     private EditText Add;
     private EditText Maxppl;
     private Button Join;
 
+    private String Eventtie = Home.EventTitle.toString();
+
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mTitle = mRootRef.child(UserID).child("CreatedEvents").child("Title");
-    DatabaseReference mDesc = mRootRef.child(UserID).child("CreatedEvents").child("Description");
-    DatabaseReference mCater = mRootRef.child(UserID).child("CreatedEvents").child("Category");
-    DatabaseReference mDate = mRootRef.child(UserID).child("CreatedEvents").child("Date");
-    DatabaseReference mTime = mRootRef.child(UserID).child("CreatedEvents").child("Time");
-    DatabaseReference mAddress = mRootRef.child(UserID).child("CreatedEvents").child("Address");
-    DatabaseReference mMax = mRootRef.child(UserID).child("CreatedEvents").child("Max_People");
+    DatabaseReference mTitle = mRootRef.child("Events").child(Eventtie).child("Title");
+    DatabaseReference mDesc = mRootRef.child("Events").child(Eventtie).child("Description");
+    DatabaseReference mCater = mRootRef.child("Events").child(Eventtie).child("Category");
+    DatabaseReference mDate = mRootRef.child("Events").child(Eventtie).child("Date");
+    DatabaseReference mTime = mRootRef.child("Events").child(Eventtie).child("Time");
+    DatabaseReference mAddress = mRootRef.child("Events").child(Eventtie).child("Address");
+    DatabaseReference mMax = mRootRef.child("Events").child(Eventtie).child("Max_People");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +55,7 @@ public class Description extends AppCompatActivity {
         Descrip = (EditText)findViewById(R.id.des_txt_des);
         Cater = (EditText)findViewById(R.id.Catergory_txt_des);
         Dat = (EditText)findViewById(R.id.Date_txt_des);
-        Tim = (EditText)findViewById(R.id.time_txt_des);
+        Timy = (EditText)findViewById(R.id.time_txt_des);
         Add = (EditText)findViewById(R.id.address_txt_des);
         Maxppl = (EditText)findViewById(R.id.max_people_txt_des);
         Titl = (EditText)findViewById(R.id.Title_txt_des);
@@ -79,8 +82,20 @@ public class Description extends AppCompatActivity {
         Join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent changepage2 = new Intent(Description.this,join.class);
-                startActivity(changepage2);
+                String tie = Titl.getText().toString();
+                String Die = Descrip.getText().toString();
+                String Cator = Cater.getText().toString();
+                String Day = Dat.getText().toString();
+                String Tim = Timy.getText().toString();
+                String ADd = Add.getText().toString();
+                String MAxppl = Maxppl.getText().toString();
+
+                    CreateEventStatsinfo Passing = new CreateEventStatsinfo(tie,Die,Cator,Day,Tim,ADd,MAxppl);
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    String userID = user.getUid();
+                    myRef.child(userID).child("RegisteredEvents").child(tie).setValue(Passing);
+                startActivity(new Intent(Description.this,MenuPage.class));
+                Toast.makeText(Description.this, "You Have Joined.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -147,7 +162,7 @@ public class Description extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String temp = dataSnapshot.getValue(String.class);
-                Tim.setText(temp);
+                Timy.setText(temp);
             }
 
             @Override

@@ -51,13 +51,8 @@ public class Update_Create_event extends AppCompatActivity {
     FirebaseUser user = mAuth.getCurrentUser();
     String USerid = user.getUid();
 
-    String tie = Title.getText().toString();
-    String Die = Disc.getText().toString();
-    String Cator = Cat.getText().toString();
-    String Day = Date.getText().toString();
-    String Tim = Time.getText().toString();
-    String ADd = Addey.getText().toString();
-    String MAxppl = Max.getText().toString();
+    String tie = CreatedEventList.CreateEventTitle.toString();
+
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mTitle = mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Title");
@@ -72,22 +67,28 @@ public class Update_Create_event extends AppCompatActivity {
 
     public void UpdateCreatedEvents()
     {
+
         Update = (Button)findViewById(R.id.Update_event_btn);
         Update.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                if (!tie.equals("") && !Die.equals("")&& !Cator.equals("")&& !Day.equals("")&& !Tim.equals("")
+                String Die = Disc.getText().toString();
+                String Day = Date.getText().toString();
+                String Tim = Time.getText().toString();
+                String ADd = Addey.getText().toString();
+                String MAxppl = Max.getText().toString();
+
+                if (!Die.equals("")&& !Day.equals("")&& !Tim.equals("")
                         && !ADd.equals("") && !MAxppl.equals("")){
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    String userID = user.getUid();
+
                     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-                    mRootRef.child(userID).child("CreatedEvents").child(tie).child("Description").setValue(Die);
-                    mRootRef.child(userID).child("CreatedEvents").child(tie).child("Date").setValue(Day);
-                    mRootRef.child(userID).child("CreatedEvents").child(tie).child("Time").setValue(Tim);
-                    mRootRef.child(userID).child("CreatedEvents").child(tie).child("Address").setValue(ADd);
-                    mRootRef.child(userID).child("CreatedEvents").child(tie).child("Max_People").setValue(MAxppl);
+                    mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Description").setValue(Die);
+                    mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Date").setValue(Day);
+                    mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Time").setValue(Tim);
+                    mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Address").setValue(ADd);
+                    mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Max_People").setValue(MAxppl);
 
                     mRootRef.child("Events").child(tie).child("Description").setValue(Die);
                     mRootRef.child("Events").child(tie).child("Date").setValue(Day);
@@ -117,7 +118,6 @@ public class Update_Create_event extends AppCompatActivity {
         Addey = (EditText)findViewById(R.id.address_txt_Update);
         Max = (EditText)findViewById(R.id.max_people_txt_Update);
 
-        UpdateCreatedEvents();
 
         Date.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -204,23 +204,7 @@ public class Update_Create_event extends AppCompatActivity {
                 // ...
             }
         };
-
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                Object value = dataSnapshot.getValue();
-                Log.d(TAG, "Value is: " + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
+        UpdateCreatedEvents();
     }
     @Override
     public void onStart()

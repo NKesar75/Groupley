@@ -208,7 +208,6 @@
                     android:enabled="true"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="12:00"
-                    android:inputType="time"
                     android:textSize="14sp" />
 
                 <EditText
@@ -241,7 +240,8 @@
                     android:fontFamily="sans-serif-condensed"
                     android:hint="Come and have fun in the party and meet new people"
                     android:inputType="textMultiLine"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:layout_weight="0.30" />
 
             </LinearLayout>
 

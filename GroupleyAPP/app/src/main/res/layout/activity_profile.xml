@@ -228,10 +228,27 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView29"
+            android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.10"
+            android:layout_weight="0.28"
+            android:fontFamily="sans-serif-condensed"
+            android:text="    " />
+
+        <Button
+            android:id="@+id/EDIT_PROFILE_BTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.11"
+            android:fontFamily="sans-serif-condensed"
+            android:text="EDIT PROFile"
+            android:textSize="24sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
             android:fontFamily="sans-serif-condensed"
             android:text="    " />
 
@@ -248,8 +265,7 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.26"
+            android:layout_height="0dp"
             android:fontFamily="sans-serif-condensed"
             android:text="    " />
 

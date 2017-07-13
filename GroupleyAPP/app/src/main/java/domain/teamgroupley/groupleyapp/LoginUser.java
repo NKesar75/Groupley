@@ -71,22 +71,27 @@ public class LoginUser extends AppCompatActivity {
                 String Mail = Email.getText().toString();
                 String Pass = Password.getText().toString();
                 if (!Mail.equals("") && !Pass.equals("")) {
-                    mAuth.signInWithEmailAndPassword(Mail, Pass).addOnCompleteListener(LoginUser.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
-                            // If sign in fails, display a message to the user. If sign in succeeds
-                            // the auth state listener will be notified and logic to handle the
-                            // signed in user can be handled in the listener.
-                            if (!task.isSuccessful()) {
-                                Log.w(TAG, "signInWithEmail:failed", task.getException());
-                                Toast.makeText(LoginUser.this, "Username or Password is invalid.",
-                                        Toast.LENGTH_SHORT).show();
+                    if (!Mail.contains(" ")) {
+                        mAuth.signInWithEmailAndPassword(Mail, Pass).addOnCompleteListener(LoginUser.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+                                // If sign in fails, display a message to the user. If sign in succeeds
+                                // the auth state listener will be notified and logic to handle the
+                                // signed in user can be handled in the listener.
+                                if (!task.isSuccessful()) {
+                                    Log.w(TAG, "signInWithEmail:failed", task.getException());
+                                    Toast.makeText(LoginUser.this, "Username or Password is invalid.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
                             }
 
-                        }
 
-                    });
+                        });
+                    }
+                    else {
+                        Toast.makeText(LoginUser.this, "Email can not contain spaces.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

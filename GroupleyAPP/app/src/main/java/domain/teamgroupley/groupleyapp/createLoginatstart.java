@@ -52,38 +52,43 @@ public class createLoginatstart extends AppCompatActivity {
 
                     if (!Email.equals("") && !Pass.equals("") && !Repass.equals("")) {
                         if (Pass.equals(Repass)) {
-                            mAuth.createUserWithEmailAndPassword(Email, Pass)
-                                    .addOnCompleteListener(createLoginatstart.this, new OnCompleteListener<AuthResult>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                            Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-                                            // If sign in fails, display a message to the user. If sign in succeeds
-                                            // the auth state listener will be notified and logic to handle the
-                                            // signed in user can be handled in the listener.
-                                            if (!task.isSuccessful()) {
-                                                Toast.makeText(createLoginatstart.this, "Account not created.",
-                                                        Toast.LENGTH_SHORT).show();
+                            if (!Email.contains(" ")) {
+                                mAuth.createUserWithEmailAndPassword(Email, Pass)
+                                        .addOnCompleteListener(createLoginatstart.this, new OnCompleteListener<AuthResult>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                                Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
+                                                // If sign in fails, display a message to the user. If sign in succeeds
+                                                // the auth state listener will be notified and logic to handle the
+                                                // signed in user can be handled in the listener.
+                                                if (!task.isSuccessful()) {
+                                                    Toast.makeText(createLoginatstart.this, "Account not created.",
+                                                            Toast.LENGTH_SHORT).show();
+                                                }
+
+                                                // ...
                                             }
 
-                                            // ...
+                                        });
+                                mAuth.signInWithEmailAndPassword(Email, Pass).addOnCompleteListener(createLoginatstart.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+                                        // If sign in fails, display a message to the user. If sign in succeeds
+                                        // the auth state listener will be notified and logic to handle the
+                                        // signed in user can be handled in the listener.
+                                        if (!task.isSuccessful()) {
+                                            Log.w(TAG, "signInWithEmail:failed", task.getException());
                                         }
-
-                                    });
-                            mAuth.signInWithEmailAndPassword(Email,Pass).addOnCompleteListener(createLoginatstart.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
-                                    // If sign in fails, display a message to the user. If sign in succeeds
-                                    // the auth state listener will be notified and logic to handle the
-                                    // signed in user can be handled in the listener.
-                                    if (!task.isSuccessful()) {
-                                        Log.w(TAG, "signInWithEmail:failed", task.getException());
                                     }
-                                }
 
-                            });
-                            Intent changepage = new Intent(createLoginatstart.this, UserInfoStats.class);
-                            startActivity(changepage);
+                                });
+                                Intent changepage = new Intent(createLoginatstart.this, UserInfoStats.class);
+                                startActivity(changepage);
+                            }
+                            else{
+                                Toast.makeText(createLoginatstart.this, "Email can not contain a space", Toast.LENGTH_SHORT).show();
+                            }
                         }
                         else{
                             Toast.makeText(createLoginatstart.this, "Passwords do not match", Toast.LENGTH_SHORT).show();

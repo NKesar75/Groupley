@@ -65,16 +65,33 @@ public class UserInfoStats extends AppCompatActivity {
 
 
                 if (!First.equals("") && !Last.equals("") && !DOB.equals("") && !User.equals("") && !Sex.equals("")) {
+                    if (!First.contains(" ")){
+                      if (!Last.contains(" ")){
+                          if (!User.contains(" ")){
                     FirebaseUser user = mAuth.getCurrentUser();
                     String userID = user.getUid();
                     Userinformaiton userinformaiton = new Userinformaiton(First, Last, DOB, User, Sex);
                     myRef.child(userID).child("UserInfo").setValue(userinformaiton);
                     Intent changepage = new Intent(UserInfoStats.this, Create_Interest.class);
                     startActivity(changepage);
+                    }
+                          else{
+                              Toast.makeText(UserInfoStats.this, "Username can not contain spaces.", Toast.LENGTH_SHORT).show();
+                          }
+                      }
+                      else{
+                          Toast.makeText(UserInfoStats.this, "Last name can not contain spaces.", Toast.LENGTH_SHORT).show();
+                      }
+                    }
+
+                    else{
+                    Toast.makeText(UserInfoStats.this, "First name can not contain spaces.", Toast.LENGTH_SHORT).show();
+                         }
                 }
                 else{
                     Toast.makeText(UserInfoStats.this, "Missing some information", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     }

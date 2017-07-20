@@ -86,6 +86,13 @@
                     android:text="CYCLING" />
 
                 <CheckBox
+                    android:id="@+id/Fish_cb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="FISHING" />
+
+                <CheckBox
                     android:id="@+id/Foot_cb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

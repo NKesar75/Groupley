@@ -128,6 +128,8 @@ public class UserInfoStats extends AppCompatActivity {
                 String mCurDay = String.valueOf(curDay);
                 String mCurYear = String.valueOf(curYear);
 
+
+
                 try
                 {
                     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");

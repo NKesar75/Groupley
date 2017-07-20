@@ -78,6 +78,7 @@ public class IntrestSelection extends AppCompatActivity {
     DatabaseReference mSbaseball = mRootRef.child(USerid).child("Interests").child("sbaseball");
     DatabaseReference mSbasketball = mRootRef.child(USerid).child("Interests").child("sbasketball");
     DatabaseReference mSCycling = mRootRef.child(USerid).child("Interests").child("scycling");
+    DatabaseReference mSFishing = mRootRef.child(USerid).child("Interests").child("sfishing");
     DatabaseReference mSFootball = mRootRef.child(USerid).child("Interests").child("sfootball");
     DatabaseReference mSFrisbe = mRootRef.child(USerid).child("Interests").child("sfrisbe");
     DatabaseReference mSGolf = mRootRef.child(USerid).child("Interests").child("sgolf");
@@ -115,6 +116,7 @@ public class IntrestSelection extends AppCompatActivity {
     private CheckBox SmBaseball;
     private CheckBox SBasketball;
     private CheckBox SCycling;
+    private CheckBox SFishing;
     private CheckBox SFootball;
     private CheckBox SFrisbe;
     private CheckBox SGolf;
@@ -198,6 +200,7 @@ public class IntrestSelection extends AppCompatActivity {
                 boolean SBasy     = SmBaseball.isChecked();
                 boolean SbKy      = SBasketball.isChecked();
                 boolean Cycy      = SCycling.isChecked();
+                boolean Fish      = SFishing.isChecked();
                 boolean Footy     = SFootball.isChecked();
                 boolean Frisy     = SFrisbe.isChecked();
                 boolean SGofy     = SGolf.isChecked();
@@ -312,6 +315,7 @@ public class IntrestSelection extends AppCompatActivity {
                 mRootRef.child(USerid).child("Interests").child("sbaseball").setValue(SBasy);
                 mRootRef.child(USerid).child("Interests").child("sbasketball").setValue(SbKy);
                 mRootRef.child(USerid).child("Interests").child("scycling").setValue(Cycy);
+                mRootRef.child(USerid).child("Interests").child("sfishing").setValue(Fish);
                 mRootRef.child(USerid).child("Interests").child("sfootball").setValue(Footy);
                 mRootRef.child(USerid).child("Interests").child("sfrisbe").setValue(Frisy);
                 mRootRef.child(USerid).child("Interests").child("sgolf").setValue(SGofy);
@@ -357,6 +361,7 @@ public class IntrestSelection extends AppCompatActivity {
         SmBaseball       = (CheckBox)findViewById(R.id.Base_CB);
         SBasketball      = (CheckBox)findViewById(R.id.BASK_CB);
         SCycling         = (CheckBox)findViewById(R.id.BIKE_CB);
+        SFishing         = (CheckBox)findViewById(R.id.Fish_cb);
         SFootball        = (CheckBox)findViewById(R.id.Foot_cb);
         SFrisbe          = (CheckBox)findViewById(R.id.Fri_CB);
         SGolf            = (CheckBox)findViewById(R.id.Golf_CB);
@@ -495,6 +500,19 @@ public class IntrestSelection extends AppCompatActivity {
 
            }
        });
+
+        mSFishing.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean temp = dataSnapshot.getValue(boolean.class);
+                SFishing.setChecked(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mSFootball.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

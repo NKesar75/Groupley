@@ -35,7 +35,8 @@
         <activity android:name=".Update_Create_event" />
         <activity android:name=".CreatedEventList" />
         <activity android:name=".RegisteredEventDesc" />
-        <activity android:name=".UpdateProfile"></activity>
+        <activity android:name=".UpdateProfile" />
+        <activity android:name=".VerfiyEmail"></activity>
     </application>
 
 </manifest>

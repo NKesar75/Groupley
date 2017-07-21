@@ -34,7 +34,9 @@ public class createLoginatstart extends AppCompatActivity {
     public EditText EmailAccount;
     public EditText Password;
     public EditText Repassword;
-
+    public static String Email;
+    public static String Pass;
+    public static String Repass;
 
     public void CreateAccount()
     {
@@ -43,12 +45,9 @@ public class createLoginatstart extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-                String Email = EmailAccount.getText().toString();
-
-                String Pass = Password.getText().toString();
-
-                String Repass = Repassword.getText().toString();
+                Email = EmailAccount.getText().toString();
+                Pass = Password.getText().toString();
+                Repass = Repassword.getText().toString();
 
                     if (!Email.equals("") && !Pass.equals("") && !Repass.equals("")) {
                         if (Pass.equals(Repass)) {
@@ -57,11 +56,12 @@ public class createLoginatstart extends AppCompatActivity {
                                         .addOnCompleteListener(createLoginatstart.this, new OnCompleteListener<AuthResult>() {
                                             @Override
                                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                                Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-                                                // If sign in fails, display a message to the user. If sign in succeeds
-                                                // the auth state listener will be notified and logic to handle the
-                                                // signed in user can be handled in the listener.
-                                                if (!task.isSuccessful()) {
+                                                if (task.isSuccessful()) {
+                                                    SendemailVerication();
+                                                    Intent changepage = new Intent(createLoginatstart.this, VerfiyEmail.class);
+                                                    startActivity(changepage);
+                                                }
+                                                else {
                                                     Toast.makeText(createLoginatstart.this, "Account not created.",
                                                             Toast.LENGTH_SHORT).show();
                                                 }
@@ -70,21 +70,7 @@ public class createLoginatstart extends AppCompatActivity {
                                             }
 
                                         });
-                                mAuth.signInWithEmailAndPassword(Email, Pass).addOnCompleteListener(createLoginatstart.this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
-                                        // If sign in fails, display a message to the user. If sign in succeeds
-                                        // the auth state listener will be notified and logic to handle the
-                                        // signed in user can be handled in the listener.
-                                        if (!task.isSuccessful()) {
-                                            Log.w(TAG, "signInWithEmail:failed", task.getException());
-                                        }
-                                    }
 
-                                });
-                                Intent changepage = new Intent(createLoginatstart.this, UserInfoStats.class);
-                                startActivity(changepage);
                             }
                             else{
                                 Toast.makeText(createLoginatstart.this, "Email can not contain a space", Toast.LENGTH_SHORT).show();
@@ -139,5 +125,21 @@ public class createLoginatstart extends AppCompatActivity {
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+    private void SendemailVerication() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+        if (user != null) {
+            user.sendEmailVerification()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            if (task.isSuccessful()) {
+                                Toast.makeText(createLoginatstart.this, "Verifcation email sent to your email", Toast.LENGTH_SHORT).show();
+                                FirebaseAuth.getInstance().signOut();
+                            }
+                        }
+                    });
+        }
+    }
 }

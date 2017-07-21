@@ -19,6 +19,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -53,6 +56,7 @@ public class UserInfoStats extends AppCompatActivity {
         Create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String First = FirstName.getText().toString();
 
                 String Last = LastName.getText().toString();
@@ -68,6 +72,7 @@ public class UserInfoStats extends AppCompatActivity {
                     if (!First.contains(" ")){
                       if (!Last.contains(" ")){
                           if (!User.contains(" ")){
+
                     FirebaseUser user = mAuth.getCurrentUser();
                     String userID = user.getUid();
                     Userinformaiton userinformaiton = new Userinformaiton(First, Last, DOB, User, Sex);
@@ -191,8 +196,6 @@ public class UserInfoStats extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                Object value = dataSnapshot.getValue();
-                Log.d(TAG, "Value is: " + value);
             }
 
             @Override

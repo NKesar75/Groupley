@@ -75,8 +75,16 @@ public class UserInfoStats extends AppCompatActivity {
 
                     FirebaseUser user = mAuth.getCurrentUser();
                     String userID = user.getUid();
-                    Userinformaiton userinformaiton = new Userinformaiton(First, Last, DOB, User, Sex);
-                    myRef.child(userID).child("UserInfo").setValue(userinformaiton);
+                   // Userinformaiton userinformaiton = new Userinformaiton(First, Last, DOB, User, Sex);
+
+                              myRef.child(userID).child("UserInfo").child("Firstname").setValue(First);
+                              myRef.child(userID).child("UserInfo").child("Lastname").setValue(Last);
+                              myRef.child(userID).child("UserInfo").child("DOB").setValue(DOB);
+                              myRef.child(userID).child("UserInfo").child("UserName").setValue(User);
+                              myRef.child(userID).child("UserInfo").child("Sex").setValue(Sex);
+
+
+                           //   myRef.child(userID).child("UserInfo").setValue(userinformaiton);
                     Intent changepage = new Intent(UserInfoStats.this, Create_Interest.class);
                     startActivity(changepage);
                     }

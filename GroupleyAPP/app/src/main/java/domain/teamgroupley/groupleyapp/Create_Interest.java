@@ -33,6 +33,7 @@ public class Create_Interest extends AppCompatActivity {
     private CheckBox SmBaseball;
     private CheckBox SBasketball;
     private CheckBox SCycling;
+    private CheckBox SFishing;
     private CheckBox SFootball;
     private CheckBox SFrisbe;
     private CheckBox SGolf;
@@ -110,6 +111,7 @@ public class Create_Interest extends AppCompatActivity {
                 boolean SBasy     = SmBaseball.isChecked();
                 boolean SbKy      = SBasketball.isChecked();
                 boolean Cycy      = SCycling.isChecked();
+                boolean Fish      = SFishing.isChecked();
                 boolean Footy     = SFootball.isChecked();
                 boolean Frisy     = SFrisbe.isChecked();
                 boolean SGofy     = SGolf.isChecked();
@@ -181,7 +183,7 @@ public class Create_Interest extends AppCompatActivity {
 
                 FirebaseUser user = mAuth.getCurrentUser();
                 String userID = user.getUid();
-                Intresetedloggedup Logedd = new Intresetedloggedup(SArcy, SBasy, SbKy, Cycy ,Footy ,Frisy,SGofy,Shockeyy,SHunty,SSKatey,SSnowy,Swsy,Wrey,Fesy,Housy,
+                Intresetedloggedup Logedd = new Intresetedloggedup(SArcy, SBasy, SbKy, Cycy ,Fish,Footy ,Frisy,SGofy,Shockeyy,SHunty,SSKatey,SSnowy,Swsy,Wrey,Fesy,Housy,
                         Nighty,Gacty,Gadvy,GFpy,Gindy,GMMy,GpaFy, GRPy,Gsiy,Gspy,GStry,MCy,MDRy,MEdy,MJzy,MRpy,Mroy,MRNy,MScry,MoActy,MOAniy,MOComy,MODoy,MOFy,MOHOry,
                         MoMusy,MOSiy,MOSpoy,MOTHrily,MoWay,TActy, TADvy,TAniy,TBioy,TCom,TCriy,TDoy,TDray,Tfay,TGamey,THisy,Thory,TMysy,Trey,Tsiy,TSpoy,TTalky,Tway,Dacty,
                         Dcosy,Dlay,CActy,CCry,Ccinsy,Ccomy,CGuny,Ctrcy);
@@ -204,6 +206,7 @@ public class Create_Interest extends AppCompatActivity {
         SmBaseball       = (CheckBox)findViewById(R.id.Base_CB_create);
         SBasketball      = (CheckBox)findViewById(R.id.BASK_CB_create);
         SCycling         = (CheckBox)findViewById(R.id.BIKE_CB_create);
+        SFishing         = (CheckBox)findViewById(R.id.Fish_cb_create);
         SFootball        = (CheckBox)findViewById(R.id.Foot_cb_create);
         SFrisbe          = (CheckBox)findViewById(R.id.Fri_CB_create);
         SGolf            = (CheckBox)findViewById(R.id.Golf_CB_create);

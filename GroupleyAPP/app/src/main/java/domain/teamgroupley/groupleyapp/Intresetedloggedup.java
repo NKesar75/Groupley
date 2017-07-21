@@ -11,6 +11,7 @@ public class Intresetedloggedup {
     private boolean SBaseball;
     private boolean SBasketball;
     private boolean SCycling;
+    private boolean SFishing;
     private boolean SFootball;
     private boolean SFrisbe;
     private boolean SGolf;
@@ -83,7 +84,7 @@ public class Intresetedloggedup {
 
 
 
-    Intresetedloggedup(boolean SArc, boolean SBas, boolean SbK, boolean Cyc, boolean Foot, boolean Fris, boolean SGof, boolean Shockey,
+    Intresetedloggedup(boolean SArc, boolean SBas, boolean SbK, boolean Cyc, boolean Fish, boolean Foot, boolean Fris, boolean SGof, boolean Shockey,
                        boolean SHunt, boolean SSKate, boolean SSnow, boolean Sws, boolean Wre, boolean Fes, boolean Hous, boolean Night,
                        boolean Gact, boolean Gadv, boolean GFp, boolean Gind, boolean GMM, boolean GpaF, boolean GRP, boolean Gsi,
                        boolean Gsp, boolean GStr, boolean MC, boolean MDR, boolean MEd, boolean MJz, boolean MRp, boolean Mro, boolean MRN,
@@ -97,6 +98,8 @@ public class Intresetedloggedup {
         SBaseball = SBas;
         SBasketball = SbK;
         SCycling = Cyc;
+        SFishing = Fish;
+
         SFootball = Foot;
         SFrisbe = Fris;
         SGolf = SGof;
@@ -197,6 +200,14 @@ public class Intresetedloggedup {
 
     public void setSCycling(boolean SCycling) {
         this.SCycling = SCycling;
+    }
+
+    public boolean isSFishing() {
+        return SFishing;
+    }
+
+    public void setSFishing(boolean SFishing) {
+        this.SFishing = SFishing;
     }
 
     public boolean isSFootball() {

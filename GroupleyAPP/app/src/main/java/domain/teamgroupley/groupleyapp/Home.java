@@ -1,16 +1,21 @@
 package domain.teamgroupley.groupleyapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static android.R.attr.eventsInterceptionEnabled;
 import static android.R.attr.value;
@@ -44,16 +50,31 @@ public class Home extends AppCompatActivity
     String USerid = user.getUid();
     private String data;
 
-    private ArrayList<String> marr = new ArrayList();
+    private List<String> marr = new ArrayList();
 
     public static String EventTitle;
+
+    private ViewStub stubGrid;
+    private ViewStub stubList;
+    private ListView listview;
+    private GridView gridView;
+    private ListViewAdapter listViewAdapter;
+    private GridViewAdapter gridViewAdapter;
+    private List<Product> productList;
+    private int currentViewMode = 0;
+    private String title;
+    private String date;
+    private ArrayList<String> titlearray = new ArrayList<>();
+    private ArrayList<String> datearray = new ArrayList<>();
+
+    static final int VIEW_MODE_LISTVIEW = 0;
+    static final int VIEW_MODE_GRIDVIEW = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        mListView = (ListView)findViewById(R.id.Upcoming_Events_list);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -75,7 +96,7 @@ public class Home extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
-                shoData(dataSnapshot);
+                getProductList(dataSnapshot);
             }
 
             @Override
@@ -83,28 +104,112 @@ public class Home extends AppCompatActivity
 
             }
         });
-    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view,
-                                int position, long id) {
-            EventTitle = marr.get(position);
-            startActivity(new Intent(Home.this,Description.class));
-        }
-    });
+
+        stubList = (ViewStub)findViewById(R.id.stub_list);
+        stubGrid = (ViewStub)findViewById(R.id.stub_grid);
+
+        //inflate viewstub before get view
+        stubList.inflate();
+        stubGrid.inflate();
+
+        listview = (ListView)findViewById(R.id.my_listview);
+        gridView = (GridView)findViewById(R.id.mygridview);
+
+        //Get current view mode in share refrence
+        SharedPreferences share = getSharedPreferences("ViewMode",MODE_PRIVATE);
+        currentViewMode = share.getInt("CurrentViewMode",VIEW_MODE_LISTVIEW);
+
+        //Register item lick
+        listview.setOnItemClickListener(onItemClick);
+        gridView.setOnItemClickListener(onItemClick);
+
+        switchView();
     }
 
-    private void shoData(DataSnapshot dataSnapshot)
+    private void switchView()
     {
-        ArrayList<String> array = new ArrayList<>();
-        for (DataSnapshot ds: dataSnapshot.child("Events").getChildren())
+        if(VIEW_MODE_LISTVIEW == currentViewMode)
         {
-            data = ds.getKey().toString();
-            array.add(data);
-            marr.add(data);
+            //display listview
+            stubList.setVisibility(View.VISIBLE);
+            //hide gridview
+            stubGrid.setVisibility(View.GONE);
         }
-            ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,array);
-            mListView.setAdapter(adapter);
+        else
+        {
+            stubList.setVisibility(View.GONE);
+            stubGrid.setVisibility(View.VISIBLE);
+        }
+        setAdapters();
+    }
 
+    private void setAdapters()
+    {
+        if(VIEW_MODE_LISTVIEW == currentViewMode)
+        {
+            listViewAdapter = new ListViewAdapter(this,R.layout.list_item,productList);
+            listview.setAdapter(listViewAdapter);
+        }
+        else
+        {
+            gridViewAdapter = new GridViewAdapter(this,R.layout.griditem,productList);
+            gridView.setAdapter(gridViewAdapter);
+        }
+    }
+
+    AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+        {
+            EventTitle = productList.get(position).getTitle();
+            startActivity(new Intent(Home.this,Description.class));
+        }
+    };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.item_menu_1:
+                if(VIEW_MODE_LISTVIEW == currentViewMode)
+                    currentViewMode = VIEW_MODE_GRIDVIEW;
+                else
+                    currentViewMode = VIEW_MODE_LISTVIEW;
+
+                //switch view
+                switchView();
+                //save view mode in share refrence
+                SharedPreferences share = getSharedPreferences("ViewMode",MODE_PRIVATE);
+                SharedPreferences.Editor editor = share.edit();
+                editor.putInt("CurrentViewMode",currentViewMode);
+                editor.commit();
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private List<Product> getProductList(DataSnapshot dataSnapshot)
+    {
+
+        for (DataSnapshot ds: dataSnapshot.child("Events").child(EventTitle).getChildren())
+        {
+            Product value = ds.getValue(Product.class);
+             title = value.getTitle();
+             date = value.getDate();
+            productList = new ArrayList<>();
+            productList.add(new Product(R.mipmap.ic_launcher_round,title,date));
+        }
+        setAdapters();
+        return productList;
     }
 
     @Override

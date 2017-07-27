@@ -40,13 +40,13 @@ public class Description extends AppCompatActivity {
     private String Eventtie = Home.EventTitle.toString();
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mTitle = mRootRef.child("Events").child(Eventtie).child("Title");
-    DatabaseReference mDesc = mRootRef.child("Events").child(Eventtie).child("Description");
-    DatabaseReference mCater = mRootRef.child("Events").child(Eventtie).child("Category");
-    DatabaseReference mDate = mRootRef.child("Events").child(Eventtie).child("Date");
-    DatabaseReference mTime = mRootRef.child("Events").child(Eventtie).child("Time");
-    DatabaseReference mAddress = mRootRef.child("Events").child(Eventtie).child("Address");
-    DatabaseReference mMax = mRootRef.child("Events").child(Eventtie).child("Max_People");
+    DatabaseReference mTitle = mRootRef.child("Events").child("title1").child("Title");
+    DatabaseReference mDesc = mRootRef.child("Events").child("title1").child("Description");
+    DatabaseReference mCater = mRootRef.child("Events").child("title1").child("Category");
+    DatabaseReference mDate = mRootRef.child("Events").child("title1").child("Date");
+    DatabaseReference mTime = mRootRef.child("Events").child("title1").child("Time");
+    DatabaseReference mAddress = mRootRef.child("Events").child("title1").child("Address");
+    DatabaseReference mMax = mRootRef.child("Events").child("title1").child("Max_People");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

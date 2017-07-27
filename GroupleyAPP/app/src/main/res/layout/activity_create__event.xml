@@ -19,8 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
-            android:text="CREATE EVENT"
+            android:text="Create Event "
             android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
             android:textSize="36sp"
             android:textStyle="bold|italic" />
 

@@ -59,10 +59,6 @@ public class Home extends AppCompatActivity
     private GridViewAdapter gridViewAdapter;
     private List<Product> productList = new ArrayList<>();;
     private int currentViewMode = 0;
-    private String title;
-    private String date;
-    private ArrayList<String> titlearray = new ArrayList<>();
-    private ArrayList<String> datearray = new ArrayList<>();
 
     static final int VIEW_MODE_LISTVIEW = 0;
     static final int VIEW_MODE_GRIDVIEW = 1;
@@ -142,23 +138,19 @@ public class Home extends AppCompatActivity
 
     private void setAdapters()
     {
-        if(VIEW_MODE_LISTVIEW == currentViewMode)
-        {
-            listViewAdapter = new ListViewAdapter(this,R.layout.list_item,getProductList());
-            listview.setAdapter(listViewAdapter);
-        }
-        else
-        {
-            gridViewAdapter = new GridViewAdapter(this,R.layout.griditem,getProductList());
-            gridView.setAdapter(gridViewAdapter);
-        }
+        listViewAdapter = new ListViewAdapter(this,R.layout.list_item,productList);
+        gridViewAdapter = new GridViewAdapter(this,R.layout.griditem,productList);
+        listview.setAdapter(listViewAdapter);
+        gridView.setAdapter(gridViewAdapter);
+
     }
 
     AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            EventTitle = getProductList().get(position).getTitle();
+            EventTitle = productList.get(position).getTitle();
+
             startActivity(new Intent(Home.this,Description.class));
         }
     };
@@ -197,19 +189,19 @@ public class Home extends AppCompatActivity
         private void showData(DataSnapshot dataSnapshot)
     {
        productList.clear();
-       for (DataSnapshot ds: dataSnapshot.child("Events").child("title1").getChildren())
+       for (DataSnapshot ds: dataSnapshot.child("Events").getChildren())
        {
-           Product value = ds.getValue(Product.class);
-           value.setImageid(R.mipmap.ic_launcher_round);
+               // Product value = ds.getValue(Product.class);
+               // value.setImageid(R.mipmap.ic_launcher_round);
+              String tit = dataSnapshot.child("Events").child("title1").child("Title").getValue(String.class).toString();
+              String Dat = dataSnapshot.child("Events").child("title1").child("Date").getValue(String.class).toString();
 
-           productList.add(value);
+           productList.add(new Product(tit,Dat,R.mipmap.ic_launcher_round));
        }
+        setAdapters();
     }
 
-    private List<Product> getProductList()
-    {
-        return  productList;
-    }
+
 
     @Override
 public void onStart() {

@@ -47,10 +47,7 @@ public class Home extends AppCompatActivity
     private DatabaseReference myRef;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
-    String USerid = user.getUid();
-    private String data;
 
-    private List<String> marr = new ArrayList();
 
     public static String EventTitle;
 
@@ -60,7 +57,7 @@ public class Home extends AppCompatActivity
     private GridView gridView;
     private ListViewAdapter listViewAdapter;
     private GridViewAdapter gridViewAdapter;
-    private List<Product> productList;
+    private List<Product> productList = new ArrayList<>();;
     private int currentViewMode = 0;
     private String title;
     private String date;
@@ -96,7 +93,7 @@ public class Home extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
-                getProductList(dataSnapshot);
+                showData(dataSnapshot);
             }
 
             @Override
@@ -147,12 +144,12 @@ public class Home extends AppCompatActivity
     {
         if(VIEW_MODE_LISTVIEW == currentViewMode)
         {
-            listViewAdapter = new ListViewAdapter(this,R.layout.list_item,productList);
+            listViewAdapter = new ListViewAdapter(this,R.layout.list_item,getProductList());
             listview.setAdapter(listViewAdapter);
         }
         else
         {
-            gridViewAdapter = new GridViewAdapter(this,R.layout.griditem,productList);
+            gridViewAdapter = new GridViewAdapter(this,R.layout.griditem,getProductList());
             gridView.setAdapter(gridViewAdapter);
         }
     }
@@ -161,7 +158,7 @@ public class Home extends AppCompatActivity
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            EventTitle = productList.get(position).getTitle();
+            EventTitle = getProductList().get(position).getTitle();
             startActivity(new Intent(Home.this,Description.class));
         }
     };
@@ -197,19 +194,21 @@ public class Home extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private List<Product> getProductList(DataSnapshot dataSnapshot)
+        private void showData(DataSnapshot dataSnapshot)
     {
+       productList.clear();
+       for (DataSnapshot ds: dataSnapshot.child("Events").child("title1").getChildren())
+       {
+           Product value = ds.getValue(Product.class);
+           value.setImageid(R.mipmap.ic_launcher_round);
 
-        for (DataSnapshot ds: dataSnapshot.child("Events").child(EventTitle).getChildren())
-        {
-            Product value = ds.getValue(Product.class);
-             title = value.getTitle();
-             date = value.getDate();
-            productList = new ArrayList<>();
-            productList.add(new Product(R.mipmap.ic_launcher_round,title,date));
-        }
-        setAdapters();
-        return productList;
+           productList.add(value);
+       }
+    }
+
+    private List<Product> getProductList()
+    {
+        return  productList;
     }
 
     @Override

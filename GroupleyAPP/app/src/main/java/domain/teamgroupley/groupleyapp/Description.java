@@ -90,10 +90,17 @@ public class Description extends AppCompatActivity {
                 String ADd = Add.getText().toString();
                 String MAxppl = Maxppl.getText().toString();
 
-                    CreateEventStatsinfo Passing = new CreateEventStatsinfo(tie,Die,Cator,Day,Tim,ADd,MAxppl);
                     FirebaseUser user = mAuth.getCurrentUser();
                     String userID = user.getUid();
-                    myRef.child(userID).child("RegisteredEvents").child(tie).setValue(Passing);
+
+                myRef.child(userID).child("RegisteredEvents").child(tie).child("Title").setValue(tie);
+                myRef.child(userID).child("RegisteredEvents").child(tie).child("Description").setValue(Die);
+                myRef.child(userID).child("RegisteredEvents").child(tie).child("Category").setValue(Cator);
+                myRef.child(userID).child("RegisteredEvents").child(tie).child("Date").setValue(Day);
+                myRef.child(userID).child("RegisteredEvents").child(tie).child("Time").setValue(Tim);
+                myRef.child(userID).child("RegisteredEvents").child(tie).child("Address").setValue(ADd);
+                myRef.child(userID).child("RegisteredEvents").child(tie).child("Max_People").setValue(MAxppl);
+
                 startActivity(new Intent(Description.this,MenuPage.class));
                 Toast.makeText(Description.this, "You Have Joined.", Toast.LENGTH_SHORT).show();
             }
@@ -109,7 +116,7 @@ public class Description extends AppCompatActivity {
         mTitle.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String temp = dataSnapshot.getValue(String.class);
+                String temp = dataSnapshot.getValue(String.class).toString();
                 Titl.setText(temp);
             }
 
@@ -122,7 +129,7 @@ public class Description extends AppCompatActivity {
         mDesc.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String temp = dataSnapshot.getValue(String.class);
+                String temp = dataSnapshot.getValue(String.class).toString();
                 Descrip.setText(temp);
             }
 
@@ -135,7 +142,7 @@ public class Description extends AppCompatActivity {
         mCater.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String temp = dataSnapshot.getValue(String.class);
+                String temp = dataSnapshot.getValue(String.class).toString();
                 Cater.setText(temp);
             }
 
@@ -148,7 +155,7 @@ public class Description extends AppCompatActivity {
         mDate.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String temp = dataSnapshot.getValue(String.class);
+                String temp = dataSnapshot.getValue(String.class).toString();
                 Dat.setText(temp);
             }
 
@@ -161,7 +168,7 @@ public class Description extends AppCompatActivity {
         mTime.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String temp = dataSnapshot.getValue(String.class);
+                String temp = dataSnapshot.getValue(String.class).toString();
                 Timy.setText(temp);
             }
 
@@ -174,7 +181,7 @@ public class Description extends AppCompatActivity {
         mAddress.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String temp = dataSnapshot.getValue(String.class);
+                String temp = dataSnapshot.getValue(String.class).toString();
                 Add.setText(temp);
             }
 
@@ -187,7 +194,7 @@ public class Description extends AppCompatActivity {
         mMax.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String temp = dataSnapshot.getValue(String.class);
+                String temp = dataSnapshot.getValue(String.class).toString();
                 Maxppl.setText(temp);
             }
 

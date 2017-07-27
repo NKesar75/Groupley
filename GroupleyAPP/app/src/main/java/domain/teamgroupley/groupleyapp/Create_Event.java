@@ -81,9 +81,32 @@ public class Create_Event extends AppCompatActivity {
                     CreateEventStatsinfo Passing = new CreateEventStatsinfo(tie, Die, Cator, Day, Tim, ADd, MAxppl);
                     FirebaseUser user = mAuth.getCurrentUser();
                     userID = user.getUid();
-                    myRef.child(userID).child("CreatedEvents").child(tie).setValue(Passing);
-                    myRef.child("Events").child(tie).setValue(Passing);
-                    myRef.child(userID).child("RegisteredEvents").child(tie).setValue(Passing);
+
+                    myRef.child(userID).child("CreatedEvents").child(tie).child("Title").setValue(tie);
+                    myRef.child(userID).child("CreatedEvents").child(tie).child("Description").setValue(Die);
+                    myRef.child(userID).child("CreatedEvents").child(tie).child("Category").setValue(Cator);
+                    myRef.child(userID).child("CreatedEvents").child(tie).child("Date").setValue(Day);
+                    myRef.child(userID).child("CreatedEvents").child(tie).child("Time").setValue(Tim);
+                    myRef.child(userID).child("CreatedEvents").child(tie).child("Address").setValue(ADd);
+                    myRef.child(userID).child("CreatedEvents").child(tie).child("Max_People").setValue(MAxppl);
+
+                    myRef.child("Events").child(tie).child("Title").setValue(tie);
+                    myRef.child("Events").child(tie).child("Description").setValue(Die);
+                    myRef.child("Events").child(tie).child("Category").setValue(Cator);
+                    myRef.child("Events").child(tie).child("Date").setValue(Day);
+                    myRef.child("Events").child(tie).child("Time").setValue(Tim);
+                    myRef.child("Events").child(tie).child("Address").setValue(ADd);
+                    myRef.child("Events").child(tie).child("Max_People").setValue(MAxppl);
+
+                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Title").setValue(tie);
+                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Description").setValue(Die);
+                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Category").setValue(Cator);
+                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Date").setValue(Day);
+                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Time").setValue(Tim);
+                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Address").setValue(ADd);
+                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Max_People").setValue(MAxppl);
+
+
                     Intent changepage = new Intent(Create_Event.this, MenuPage.class);
                     startActivity(changepage);
                     Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();
@@ -194,7 +217,7 @@ public class Create_Event extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
 
-                     shoData(dataSnapshot);
+                    // shoData(dataSnapshot);
 
             }
 
@@ -206,7 +229,7 @@ public class Create_Event extends AppCompatActivity {
         });
 
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Create_Event.this,
-                android.R.layout.simple_list_item_1, fifty);
+                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Category));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Cat.setAdapter(myAdapter);
 
@@ -236,347 +259,347 @@ public class Create_Event extends AppCompatActivity {
         }
     };
 
-    private void shoData(DataSnapshot dataSnapshot) {
-
-        for (DataSnapshot ds : dataSnapshot.child(userID).child("Interests").getChildren()) {
-            Intresetedloggedup intey = ds.getValue(Intresetedloggedup.class);
-            if (intey.isCActionfigures()) {
-                fifty.add("Action Figures");
-            }
-            if (intey.isCCars()) {
-                fifty.add("Cars");
-            }
-
-            if (intey.isCCoins())
-            {
-                fifty.add("Coins");
-            }
-
-            if (intey.isCComics())
-            {
-                fifty.add("Comic Books");
-            }
-
-            if (intey.isCGuns())
-            {
-                fifty.add("Guns");
-            }
-
-            if (intey.isCTrucks())
-            {
-                fifty.add("Trucks");
-            }
-
-            if (intey.isDActing())
-            {
-                fifty.add("Acting");
-            }
-
-            if (intey.isDCosplay())
-            {
-                fifty.add("Cosplay");
-            }
-
-            if (intey.isDLarping())
-            {
-                fifty.add("Larping");
-            }
-
-            if (intey.isGAction())
-            {
-                fifty.add("Game Action");
-            }
-
-            if (intey.isGAdventure())
-            {
-                fifty.add("Game Adventure");
-            }
-
-            if (intey.isGFPS())
-            {
-                fifty.add("Game FPS");
-            }
-
-            if (intey.isGIndies())
-            {
-                fifty.add("Game Indies");
-            }
-
-            if (intey.isGMMO())
-            {
-                fifty.add("Game MMO");
-            }
-
-            if (intey.isGPartyfamily())
-            {
-                fifty.add("Game Party/Fam");
-            }
-
-            if (intey.isGRPG())
-            {
-                fifty.add("Game RPG");
-            }
-
-            if (intey.isGSimulation())
-            {
-                fifty.add("Game Sim");
-            }
-
-            if (intey.isGSports())
-            {
-                fifty.add("Game Sports");
-            }
-
-            if (intey.isGStragy())
-            {
-                fifty.add("Game Stragey");
-            }
-
-            if (intey.isGAction())
-            {
-                fifty.add("Game Action");
-            }
-
-            if (intey.isMCountry())
-            {
-                fifty.add("Country");
-            }
-
-            if (intey.isMDrillrap())
-            {
-                fifty.add("Drill Rap");
-            }
-
-            if (intey.isMEDM())
-            {
-                fifty.add("EDM");
-            }
-
-            if (intey.isMJAZZ())
-            {
-                fifty.add("Jazz");
-            }
-
-            if (intey.isMoAction())
-            {
-                fifty.add("Moive Action");
-            }
-
-            if (intey.isMoAnimation())
-            {
-                fifty.add("Moive Animation");
-            }
-
-            if (intey.isMoComdey())
-            {
-                fifty.add("Moive Comedy");
-            }
-
-            if (intey.isMoDocumentary())
-            {
-                fifty.add("Moive Documentary");
-            }
-
-            if (intey.isMoFamily())
-            {
-                fifty.add("Moive Family");
-            }
-
-            if (intey.isMoHorror())
-            {
-                fifty.add("Moive Horror");
-            }
-
-            if (intey.isMoMusical())
-            {
-                fifty.add("Moive Musical");
-            }
-
-            if (intey.isMoSifi())
-            {
-                fifty.add("Movie Sifi");
-            }
-
-            if (intey.isMoSports())
-            {
-                fifty.add("Moive Sports");
-            }
-
-            if (intey.isMoThriller())
-            {
-                fifty.add("Moive Thriller");
-            }
-
-            if (intey.isMoWar())
-            {
-                fifty.add("Moive War");
-            }
-
-            if (intey.isTAction())
-            {
-                fifty.add("Tv Aciton");
-            }
-
-            if (intey.isTAdventure())
-            {
-                fifty.add("Tv Adventure");
-            }
-
-            if (intey.isTAnimation())
-            {
-                fifty.add("Tv Animation");
-            }
-
-            if (intey.isTBiography())
-            {
-                fifty.add("Tv Biography");
-            }
-
-            if (intey.isTComedy())
-            {
-                fifty.add("Tv Comedy");
-            }
-
-            if (intey.isTCrime())
-            {
-                fifty.add("Tv Crime");
-            }
-
-            if (intey.isTDocoumentary())
-            {
-                fifty.add("Tv Documentary");
-            }
-
-            if (intey.isTDrama())
-            {
-                fifty.add("Tv Drama");
-            }
-
-            if (intey.isTFamily())
-            {
-                fifty.add("Tv Family");
-            }
-
-            if (intey.isTGameShows())
-            {
-                fifty.add("Tv Gameshows");
-            }
-
-            if (intey.isTHistory())
-            {
-                fifty.add("Tv History");
-            }
-
-            if (intey.isTHorror())
-            {
-                fifty.add("Tv Horror");
-            }
-
-            if (intey.isTMystery())
-            {
-                fifty.add("Tv Mystery");
-            }
-
-            if (intey.isTReality())
-            {
-                fifty.add("Tv Reality");
-            }
-
-            if (intey.isTSitcom())
-            {
-                fifty.add("Tv Sitcom");
-            }
-
-            if (intey.isTSports())
-            {
-                fifty.add("Tv Sports");
-            }
-
-            if (intey.isTTalkShows())
-            {
-                fifty.add("Tv Talkshows");
-            }
-
-            if (intey.isTWar())
-            {
-                fifty.add("Tv Wars");
-            }
-
-            if (intey.isPFestivles())
-            {
-                fifty.add("Festival");
-            }
-
-            if (intey.isPHouseParites())
-            {
-                fifty.add("House Party");
-            }
-
-            if (intey.isPNightClubs())
-            {
-                fifty.add("Night Club");
-            }
-
-            if (intey.isSArchery())
-            {
-                fifty.add("Archery");
-            }
-
-            if (intey.isSBaseball())
-            {
-                fifty.add("Baseball");
-            }
-
-            if (intey.isSBasketball())
-            {
-                fifty.add("Basketball");
-            }
-
-            if (intey.isSCycling())
-            {
-                fifty.add("Cycling");
-            }
-
-            if (intey.isSFootball())
-            {
-                fifty.add("Football");
-            }
-
-            if (intey.isSFrisbe())
-            {
-                fifty.add("Frisbe");
-            }
-
-            if (intey.isSGolf())
-            {
-                fifty.add("Golf");
-            }
-
-            if (intey.isSHoccey())
-            {
-                fifty.add("Hockey");
-            }
-
-            if (intey.isSHunting())
-            {
-                fifty.add("Hunting");
-            }
-
-            if (intey.isSSkateboarding())
-            {
-                fifty.add("Skateboarding");
-            }
-
-            if (intey.isSSnowBoarding())
-            {
-                fifty.add("Snowboarding");
-            }
-
-            if (intey.isSWaterSports())
-            {
-                fifty.add("Water Sports");
-            }
-        }
-
-    }
+//    private void shoData(DataSnapshot dataSnapshot) {
+//
+//        for (DataSnapshot ds : dataSnapshot.child(userID).child("Interests").getChildren()) {
+//            Intresetedloggedup intey = ds.getValue(Intresetedloggedup.class);
+//            if (intey.isCActionfigures()) {
+//                fifty.add("Action Figures");
+//            }
+//            if (intey.isCCars()) {
+//                fifty.add("Cars");
+//            }
+//
+//            if (intey.isCCoins())
+//            {
+//                fifty.add("Coins");
+//            }
+//
+//            if (intey.isCComics())
+//            {
+//                fifty.add("Comic Books");
+//            }
+//
+//            if (intey.isCGuns())
+//            {
+//                fifty.add("Guns");
+//            }
+//
+//            if (intey.isCTrucks())
+//            {
+//                fifty.add("Trucks");
+//            }
+//
+//            if (intey.isDActing())
+//            {
+//                fifty.add("Acting");
+//            }
+//
+//            if (intey.isDCosplay())
+//            {
+//                fifty.add("Cosplay");
+//            }
+//
+//            if (intey.isDLarping())
+//            {
+//                fifty.add("Larping");
+//            }
+//
+//            if (intey.isGAction())
+//            {
+//                fifty.add("Game Action");
+//            }
+//
+//            if (intey.isGAdventure())
+//            {
+//                fifty.add("Game Adventure");
+//            }
+//
+//            if (intey.isGFPS())
+//            {
+//                fifty.add("Game FPS");
+//            }
+//
+//            if (intey.isGIndies())
+//            {
+//                fifty.add("Game Indies");
+//            }
+//
+//            if (intey.isGMMO())
+//            {
+//                fifty.add("Game MMO");
+//            }
+//
+//            if (intey.isGPartyfamily())
+//            {
+//                fifty.add("Game Party/Fam");
+//            }
+//
+//            if (intey.isGRPG())
+//            {
+//                fifty.add("Game RPG");
+//            }
+//
+//            if (intey.isGSimulation())
+//            {
+//                fifty.add("Game Sim");
+//            }
+//
+//            if (intey.isGSports())
+//            {
+//                fifty.add("Game Sports");
+//            }
+//
+//            if (intey.isGStragy())
+//            {
+//                fifty.add("Game Stragey");
+//            }
+//
+//            if (intey.isGAction())
+//            {
+//                fifty.add("Game Action");
+//            }
+//
+//            if (intey.isMCountry())
+//            {
+//                fifty.add("Country");
+//            }
+//
+//            if (intey.isMDrillrap())
+//            {
+//                fifty.add("Drill Rap");
+//            }
+//
+//            if (intey.isMEDM())
+//            {
+//                fifty.add("EDM");
+//            }
+//
+//            if (intey.isMJAZZ())
+//            {
+//                fifty.add("Jazz");
+//            }
+//
+//            if (intey.isMoAction())
+//            {
+//                fifty.add("Moive Action");
+//            }
+//
+//            if (intey.isMoAnimation())
+//            {
+//                fifty.add("Moive Animation");
+//            }
+//
+//            if (intey.isMoComdey())
+//            {
+//                fifty.add("Moive Comedy");
+//            }
+//
+//            if (intey.isMoDocumentary())
+//            {
+//                fifty.add("Moive Documentary");
+//            }
+//
+//            if (intey.isMoFamily())
+//            {
+//                fifty.add("Moive Family");
+//            }
+//
+//            if (intey.isMoHorror())
+//            {
+//                fifty.add("Moive Horror");
+//            }
+//
+//            if (intey.isMoMusical())
+//            {
+//                fifty.add("Moive Musical");
+//            }
+//
+//            if (intey.isMoSifi())
+//            {
+//                fifty.add("Movie Sifi");
+//            }
+//
+//            if (intey.isMoSports())
+//            {
+//                fifty.add("Moive Sports");
+//            }
+//
+//            if (intey.isMoThriller())
+//            {
+//                fifty.add("Moive Thriller");
+//            }
+//
+//            if (intey.isMoWar())
+//            {
+//                fifty.add("Moive War");
+//            }
+//
+//            if (intey.isTAction())
+//            {
+//                fifty.add("Tv Aciton");
+//            }
+//
+//            if (intey.isTAdventure())
+//            {
+//                fifty.add("Tv Adventure");
+//            }
+//
+//            if (intey.isTAnimation())
+//            {
+//                fifty.add("Tv Animation");
+//            }
+//
+//            if (intey.isTBiography())
+//            {
+//                fifty.add("Tv Biography");
+//            }
+//
+//            if (intey.isTComedy())
+//            {
+//                fifty.add("Tv Comedy");
+//            }
+//
+//            if (intey.isTCrime())
+//            {
+//                fifty.add("Tv Crime");
+//            }
+//
+//            if (intey.isTDocoumentary())
+//            {
+//                fifty.add("Tv Documentary");
+//            }
+//
+//            if (intey.isTDrama())
+//            {
+//                fifty.add("Tv Drama");
+//            }
+//
+//            if (intey.isTFamily())
+//            {
+//                fifty.add("Tv Family");
+//            }
+//
+//            if (intey.isTGameShows())
+//            {
+//                fifty.add("Tv Gameshows");
+//            }
+//
+//            if (intey.isTHistory())
+//            {
+//                fifty.add("Tv History");
+//            }
+//
+//            if (intey.isTHorror())
+//            {
+//                fifty.add("Tv Horror");
+//            }
+//
+//            if (intey.isTMystery())
+//            {
+//                fifty.add("Tv Mystery");
+//            }
+//
+//            if (intey.isTReality())
+//            {
+//                fifty.add("Tv Reality");
+//            }
+//
+//            if (intey.isTSitcom())
+//            {
+//                fifty.add("Tv Sitcom");
+//            }
+//
+//            if (intey.isTSports())
+//            {
+//                fifty.add("Tv Sports");
+//            }
+//
+//            if (intey.isTTalkShows())
+//            {
+//                fifty.add("Tv Talkshows");
+//            }
+//
+//            if (intey.isTWar())
+//            {
+//                fifty.add("Tv Wars");
+//            }
+//
+//            if (intey.isPFestivles())
+//            {
+//                fifty.add("Festival");
+//            }
+//
+//            if (intey.isPHouseParites())
+//            {
+//                fifty.add("House Party");
+//            }
+//
+//            if (intey.isPNightClubs())
+//            {
+//                fifty.add("Night Club");
+//            }
+//
+//            if (intey.isSArchery())
+//            {
+//                fifty.add("Archery");
+//            }
+//
+//            if (intey.isSBaseball())
+//            {
+//                fifty.add("Baseball");
+//            }
+//
+//            if (intey.isSBasketball())
+//            {
+//                fifty.add("Basketball");
+//            }
+//
+//            if (intey.isSCycling())
+//            {
+//                fifty.add("Cycling");
+//            }
+//
+//            if (intey.isSFootball())
+//            {
+//                fifty.add("Football");
+//            }
+//
+//            if (intey.isSFrisbe())
+//            {
+//                fifty.add("Frisbe");
+//            }
+//
+//            if (intey.isSGolf())
+//            {
+//                fifty.add("Golf");
+//            }
+//
+//            if (intey.isSHoccey())
+//            {
+//                fifty.add("Hockey");
+//            }
+//
+//            if (intey.isSHunting())
+//            {
+//                fifty.add("Hunting");
+//            }
+//
+//            if (intey.isSSkateboarding())
+//            {
+//                fifty.add("Skateboarding");
+//            }
+//
+//            if (intey.isSSnowBoarding())
+//            {
+//                fifty.add("Snowboarding");
+//            }
+//
+//            if (intey.isSWaterSports())
+//            {
+//                fifty.add("Water Sports");
+//            }
+//        }
+//
+//    }
 }

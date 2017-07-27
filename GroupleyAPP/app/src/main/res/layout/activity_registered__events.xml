@@ -4,10 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="domain.teamgroupley.groupleyapp.Registered_Events">
+    tools:context="domain.teamgroupley.groupleyapp.Registered_Events"
+    android:background="#ffffff">
 
-    <ListView
-        android:id="@+id/REG_LIST_VIEW"
+    <ViewStub
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:id="@+id/stub_reg_list"
+        android:inflatedId="@+id/showlayout"
+        android:layout="@layout/my_listview"/>
+
+    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/stub_reg_grid"
+        android:inflatedId="@+id/showlayout"
+        android:layout="@layout/my_gridview"/>
+
 </android.support.v4.widget.DrawerLayout>

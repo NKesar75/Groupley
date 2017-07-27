@@ -42,7 +42,7 @@ public class Registered_Events extends AppCompatActivity {
 
     private ArrayList<String> marry = new ArrayList();
 
-    public static String regEventTitle;
+    public static int regEventTitle;
 
     private ViewStub stubGrid;
     private ViewStub stubList;
@@ -141,7 +141,7 @@ public class Registered_Events extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            regEventTitle = productList.get(position).getTitle();
+            regEventTitle = position + 1;
 
             startActivity(new Intent(Registered_Events.this,RegisteredEventDesc.class));
         }
@@ -181,13 +181,16 @@ public class Registered_Events extends AppCompatActivity {
     private void showData(DataSnapshot dataSnapshot)
     {
         productList.clear();
+        String Event = "Event";
+        int count = 1;
+
         for (DataSnapshot ds: dataSnapshot.child(USerid).child("RegisteredEvents").getChildren())
         {
             // Product value = ds.getValue(Product.class);
             // value.setImageid(R.mipmap.ic_launcher_round);
-            String tit = dataSnapshot.child(USerid).child("RegisteredEvents").child("title1").child("Title").getValue(String.class).toString();
-            String Dat = dataSnapshot.child(USerid).child("RegisteredEvents").child("title1").child("Date").getValue(String.class).toString();
-
+            String tit = dataSnapshot.child(USerid).child("RegisteredEvents").child(Event+count).child("Title").getValue(String.class).toString();
+            String Dat = dataSnapshot.child(USerid).child("RegisteredEvents").child(Event+count).child("Date").getValue(String.class).toString();
+            ++count;
             productList.add(new Product(tit,Dat,R.mipmap.ic_launcher_round));
         }
         setAdapters();

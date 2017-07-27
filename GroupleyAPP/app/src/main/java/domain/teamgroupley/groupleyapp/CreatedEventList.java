@@ -41,7 +41,7 @@ public class CreatedEventList extends AppCompatActivity
     public String data;
 
     private ArrayList<String> cmarr = new ArrayList();
-    public static String CreateEventTitle;
+    public static int CreateEventTitle;
 
     private ViewStub stubGrid;
     private ViewStub stubList;
@@ -139,7 +139,7 @@ public class CreatedEventList extends AppCompatActivity
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            CreateEventTitle = productList.get(position).getTitle();
+            CreateEventTitle = position + 1;
 
             startActivity(new Intent(CreatedEventList.this,Update_Create_event.class));
         }
@@ -179,12 +179,16 @@ public class CreatedEventList extends AppCompatActivity
     private void showData(DataSnapshot dataSnapshot)
     {
         productList.clear();
+        String Event = "Event";
+        int count = 1;
+
+
         for (DataSnapshot ds: dataSnapshot.child(Userid).child("CreatedEvents").getChildren())
         {
             // Product value = ds.getValue(Product.class);
             // value.setImageid(R.mipmap.ic_launcher_round);
-            String tit = dataSnapshot.child(Userid).child("CreatedEvents").child("title1").child("Title").getValue(String.class).toString();
-            String Dat = dataSnapshot.child(Userid).child("CreatedEvents").child("title1").child("Date").getValue(String.class).toString();
+            String tit = dataSnapshot.child(Userid).child("CreatedEvents").child(Event+count).child("Title").getValue(String.class).toString();
+            String Dat = dataSnapshot.child(Userid).child("CreatedEvents").child(Event+count).child("Date").getValue(String.class).toString();
 
             productList.add(new Product(tit,Dat,R.mipmap.ic_launcher_round));
         }

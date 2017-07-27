@@ -37,16 +37,17 @@ public class Description extends AppCompatActivity {
     private EditText Maxppl;
     private Button Join;
 
-    private String Eventtie = Home.EventTitle.toString();
+    private int Eventtie = Home.EventTitle;
+    String Event = "Event";
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mTitle = mRootRef.child("Events").child("title1").child("Title");
-    DatabaseReference mDesc = mRootRef.child("Events").child("title1").child("Description");
-    DatabaseReference mCater = mRootRef.child("Events").child("title1").child("Category");
-    DatabaseReference mDate = mRootRef.child("Events").child("title1").child("Date");
-    DatabaseReference mTime = mRootRef.child("Events").child("title1").child("Time");
-    DatabaseReference mAddress = mRootRef.child("Events").child("title1").child("Address");
-    DatabaseReference mMax = mRootRef.child("Events").child("title1").child("Max_People");
+    DatabaseReference mTitle = mRootRef.child("Events").child(Event+Eventtie).child("Title");
+    DatabaseReference mDesc = mRootRef.child("Events").child(Event+Eventtie).child("Description");
+    DatabaseReference mCater = mRootRef.child("Events").child(Event+Eventtie).child("Category");
+    DatabaseReference mDate = mRootRef.child("Events").child(Event+Eventtie).child("Date");
+    DatabaseReference mTime = mRootRef.child("Events").child(Event+Eventtie).child("Time");
+    DatabaseReference mAddress = mRootRef.child("Events").child(Event+Eventtie).child("Address");
+    DatabaseReference mMax = mRootRef.child("Events").child(Event+Eventtie).child("Max_People");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,13 +94,13 @@ public class Description extends AppCompatActivity {
                     FirebaseUser user = mAuth.getCurrentUser();
                     String userID = user.getUid();
 
-                myRef.child(userID).child("RegisteredEvents").child(tie).child("Title").setValue(tie);
-                myRef.child(userID).child("RegisteredEvents").child(tie).child("Description").setValue(Die);
-                myRef.child(userID).child("RegisteredEvents").child(tie).child("Category").setValue(Cator);
-                myRef.child(userID).child("RegisteredEvents").child(tie).child("Date").setValue(Day);
-                myRef.child(userID).child("RegisteredEvents").child(tie).child("Time").setValue(Tim);
-                myRef.child(userID).child("RegisteredEvents").child(tie).child("Address").setValue(ADd);
-                myRef.child(userID).child("RegisteredEvents").child(tie).child("Max_People").setValue(MAxppl);
+                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Title").setValue(tie);
+                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Description").setValue(Die);
+                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Category").setValue(Cator);
+                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Date").setValue(Day);
+                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Time").setValue(Tim);
+                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Address").setValue(ADd);
+                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Max_People").setValue(MAxppl);
 
                 startActivity(new Intent(Description.this,MenuPage.class));
                 Toast.makeText(Description.this, "You Have Joined.", Toast.LENGTH_SHORT).show();

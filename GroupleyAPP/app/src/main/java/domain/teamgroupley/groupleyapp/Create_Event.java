@@ -62,6 +62,9 @@ public class Create_Event extends AppCompatActivity {
     private DatabaseReference myRef;
     String userID;
 
+    long EVENTCOUNT;
+    String Event = "Event";
+
     private DatePickerDialog.OnDateSetListener mDateSetListner;
 
     public void SendEventTodatabase() {
@@ -82,29 +85,31 @@ public class Create_Event extends AppCompatActivity {
                     FirebaseUser user = mAuth.getCurrentUser();
                     userID = user.getUid();
 
-                    myRef.child(userID).child("CreatedEvents").child(tie).child("Title").setValue(tie);
-                    myRef.child(userID).child("CreatedEvents").child(tie).child("Description").setValue(Die);
-                    myRef.child(userID).child("CreatedEvents").child(tie).child("Category").setValue(Cator);
-                    myRef.child(userID).child("CreatedEvents").child(tie).child("Date").setValue(Day);
-                    myRef.child(userID).child("CreatedEvents").child(tie).child("Time").setValue(Tim);
-                    myRef.child(userID).child("CreatedEvents").child(tie).child("Address").setValue(ADd);
-                    myRef.child(userID).child("CreatedEvents").child(tie).child("Max_People").setValue(MAxppl);
 
-                    myRef.child("Events").child(tie).child("Title").setValue(tie);
-                    myRef.child("Events").child(tie).child("Description").setValue(Die);
-                    myRef.child("Events").child(tie).child("Category").setValue(Cator);
-                    myRef.child("Events").child(tie).child("Date").setValue(Day);
-                    myRef.child("Events").child(tie).child("Time").setValue(Tim);
-                    myRef.child("Events").child(tie).child("Address").setValue(ADd);
-                    myRef.child("Events").child(tie).child("Max_People").setValue(MAxppl);
 
-                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Title").setValue(tie);
-                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Description").setValue(Die);
-                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Category").setValue(Cator);
-                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Date").setValue(Day);
-                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Time").setValue(Tim);
-                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Address").setValue(ADd);
-                    myRef.child(userID).child("RegisteredEvents").child(tie).child("Max_People").setValue(MAxppl);
+                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Title").setValue(tie);
+                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Description").setValue(Die);
+                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Category").setValue(Cator);
+                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Date").setValue(Day);
+                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Time").setValue(Tim);
+                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
+                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
+
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Title").setValue(tie);
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Description").setValue(Die);
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Category").setValue(Cator);
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Date").setValue(Day);
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Time").setValue(Tim);
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
+
+                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Title").setValue(tie);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Description").setValue(Die);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Category").setValue(Cator);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Date").setValue(Day);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Time").setValue(Tim);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
 
 
                     Intent changepage = new Intent(Create_Event.this, MenuPage.class);
@@ -218,7 +223,7 @@ public class Create_Event extends AppCompatActivity {
                 // whenever data at this location is updated.
 
                     // shoData(dataSnapshot);
-
+                EVENTCOUNT = dataSnapshot.child("Events").getChildrenCount() + 1;
             }
 
             @Override

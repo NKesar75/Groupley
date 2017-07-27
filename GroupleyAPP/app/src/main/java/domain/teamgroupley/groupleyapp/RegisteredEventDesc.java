@@ -24,16 +24,17 @@ public class RegisteredEventDesc extends AppCompatActivity {
     private String UserID = user.getUid();;
     private DatabaseReference myRef;
 
-    private String Eventtie = Registered_Events.regEventTitle.toString();
+    private int Eventtie = Registered_Events.regEventTitle;
+    String Event = "Event";
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mTitle = mRootRef.child(UserID).child("RegisteredEvents").child(Eventtie).child("Title");
-    DatabaseReference mDesc = mRootRef.child(UserID).child("RegisteredEvents").child(Eventtie).child("Description");
-    DatabaseReference mCater = mRootRef.child(UserID).child("RegisteredEvents").child(Eventtie).child("Category");
-    DatabaseReference mDate = mRootRef.child(UserID).child("RegisteredEvents").child(Eventtie).child("Date");
-    DatabaseReference mTime = mRootRef.child(UserID).child("RegisteredEvents").child(Eventtie).child("Time");
-    DatabaseReference mAddress = mRootRef.child(UserID).child("RegisteredEvents").child(Eventtie).child("Address");
-    DatabaseReference mMax = mRootRef.child(UserID).child("RegisteredEvents").child(Eventtie).child("Max_People");
+    DatabaseReference mTitle = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Title");
+    DatabaseReference mDesc = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Description");
+    DatabaseReference mCater = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Category");
+    DatabaseReference mDate = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Date");
+    DatabaseReference mTime = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Time");
+    DatabaseReference mAddress = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Address");
+    DatabaseReference mMax = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Max_People");
 
     private EditText Titl;
     private EditText Descrip;

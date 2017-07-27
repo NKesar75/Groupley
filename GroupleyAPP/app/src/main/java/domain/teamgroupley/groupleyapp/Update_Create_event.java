@@ -51,17 +51,17 @@ public class Update_Create_event extends AppCompatActivity {
     FirebaseUser user = mAuth.getCurrentUser();
     String USerid = user.getUid();
 
-    String tie = CreatedEventList.CreateEventTitle.toString();
-
+    int EVENTCOUNT = CreatedEventList.CreateEventTitle;
+    String Event = "Event";
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mTitle = mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Title");
-    DatabaseReference mDescription = mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Description");
-    DatabaseReference mCategory = mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Category");
-    DatabaseReference mDate = mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Date");
-    DatabaseReference mTime = mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Time");
-    DatabaseReference mAddress = mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Address");
-    DatabaseReference mMaxPpl = mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Max_People");
+    DatabaseReference mTitle = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Title");
+    DatabaseReference mDescription = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Description");
+    DatabaseReference mCategory = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Category");
+    DatabaseReference mDate = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Date");
+    DatabaseReference mTime = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Time");
+    DatabaseReference mAddress = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Address");
+    DatabaseReference mMaxPpl = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Max_People");
 
     private DatePickerDialog.OnDateSetListener mDateSetListner;
 
@@ -84,17 +84,17 @@ public class Update_Create_event extends AppCompatActivity {
                         && !ADd.equals("") && !MAxppl.equals("")){
 
                     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-                    mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Description").setValue(Die);
-                    mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Date").setValue(Day);
-                    mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Time").setValue(Tim);
-                    mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Address").setValue(ADd);
-                    mRootRef.child(USerid).child("CreatedEvents").child(tie).child("Max_People").setValue(MAxppl);
+                    mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Description").setValue(Die);
+                    mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Date").setValue(Day);
+                    mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Time").setValue(Tim);
+                    mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
+                    mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
 
-                    mRootRef.child("Events").child(tie).child("Description").setValue(Die);
-                    mRootRef.child("Events").child(tie).child("Date").setValue(Day);
-                    mRootRef.child("Events").child(tie).child("Time").setValue(Tim);
-                    mRootRef.child("Events").child(tie).child("Address").setValue(ADd);
-                    mRootRef.child("Events").child(tie).child("Max_People").setValue(MAxppl);
+                    mRootRef.child("Events").child(Event+EVENTCOUNT).child("Description").setValue(Die);
+                    mRootRef.child("Events").child(Event+EVENTCOUNT).child("Date").setValue(Day);
+                    mRootRef.child("Events").child(Event+EVENTCOUNT).child("Time").setValue(Tim);
+                    mRootRef.child("Events").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
+                    mRootRef.child("Events").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
 
                     Intent changepage = new Intent(Update_Create_event.this, MenuPage.class);
                     startActivity(changepage);

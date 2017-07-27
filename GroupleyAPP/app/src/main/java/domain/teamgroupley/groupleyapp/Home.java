@@ -49,7 +49,7 @@ public class Home extends AppCompatActivity
     FirebaseUser user = mAuth.getCurrentUser();
 
 
-    public static String EventTitle;
+    public static int EventTitle;
 
     private ViewStub stubGrid;
     private ViewStub stubList;
@@ -149,7 +149,7 @@ public class Home extends AppCompatActivity
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            EventTitle = productList.get(position).getTitle();
+            EventTitle = position + 1;
 
             startActivity(new Intent(Home.this,Description.class));
         }
@@ -189,13 +189,15 @@ public class Home extends AppCompatActivity
         private void showData(DataSnapshot dataSnapshot)
     {
        productList.clear();
+        String Event = "Event";
+        int count = 1;
        for (DataSnapshot ds: dataSnapshot.child("Events").getChildren())
        {
                // Product value = ds.getValue(Product.class);
                // value.setImageid(R.mipmap.ic_launcher_round);
-              String tit = dataSnapshot.child("Events").child("title1").child("Title").getValue(String.class).toString();
-              String Dat = dataSnapshot.child("Events").child("title1").child("Date").getValue(String.class).toString();
-
+              String tit = dataSnapshot.child("Events").child(Event+count).child("Title").getValue(String.class).toString();
+              String Dat = dataSnapshot.child("Events").child(Event+count).child("Date").getValue(String.class).toString();
+                ++count;
            productList.add(new Product(tit,Dat,R.mipmap.ic_launcher_round));
        }
         setAdapters();

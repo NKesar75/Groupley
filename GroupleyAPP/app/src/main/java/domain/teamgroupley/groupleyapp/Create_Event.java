@@ -63,6 +63,8 @@ public class Create_Event extends AppCompatActivity {
     String userID;
 
     long EVENTCOUNT;
+    long CreatedEVENTCOUNT;
+    long REGISTEREDEVENTCOUNT;
     String Event = "Event";
 
     private DatePickerDialog.OnDateSetListener mDateSetListner;
@@ -87,13 +89,13 @@ public class Create_Event extends AppCompatActivity {
 
 
 
-                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Title").setValue(tie);
-                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Description").setValue(Die);
-                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Category").setValue(Cator);
-                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Date").setValue(Day);
-                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Time").setValue(Tim);
-                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
-                    myRef.child(userID).child("CreatedEvents").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Title").setValue(tie);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Description").setValue(Die);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Category").setValue(Cator);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Date").setValue(Day);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Time").setValue(Tim);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Address").setValue(ADd);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Max_People").setValue(MAxppl);
 
                     myRef.child("Events").child(Event+EVENTCOUNT).child("Title").setValue(tie);
                     myRef.child("Events").child(Event+EVENTCOUNT).child("Description").setValue(Die);
@@ -103,13 +105,13 @@ public class Create_Event extends AppCompatActivity {
                     myRef.child("Events").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
                     myRef.child("Events").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
 
-                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Title").setValue(tie);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Description").setValue(Die);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Category").setValue(Cator);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Date").setValue(Day);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Time").setValue(Tim);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Title").setValue(tie);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Description").setValue(Die);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Category").setValue(Cator);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Date").setValue(Day);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Time").setValue(Tim);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Address").setValue(ADd);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
 
 
                     Intent changepage = new Intent(Create_Event.this, MenuPage.class);
@@ -224,6 +226,8 @@ public class Create_Event extends AppCompatActivity {
 
                     // shoData(dataSnapshot);
                 EVENTCOUNT = dataSnapshot.child("Events").getChildrenCount() + 1;
+                CreatedEVENTCOUNT = dataSnapshot.child(userID).child("CreatedEvents").getChildrenCount() + 1;
+                REGISTEREDEVENTCOUNT = dataSnapshot.child(userID).child("RegisteredEvents").getChildrenCount() + 1;
             }
 
             @Override

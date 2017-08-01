@@ -51,16 +51,16 @@ public class Create_Event extends AppCompatActivity {
     Button Create;
 
 
-    private List<String> fifty = new ArrayList<String>();
-
-
-
     private static final String TAG = "Create_Event";
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
-    String userID;
+
+    FirebaseUser user = mAuth.getCurrentUser();
+    String userID = user.getUid();
+
+    private List<String> Catgorylist = new ArrayList<>();
 
     long EVENTCOUNT;
     long CreatedEVENTCOUNT;
@@ -83,35 +83,34 @@ public class Create_Event extends AppCompatActivity {
                 String MAxppl = Max.getText().toString();
                 if (!tie.equals("") && !Die.equals("") && !Cator.equals("") && !Day.equals("") && !Tim.equals("")
                         && !ADd.equals("") && !MAxppl.equals("")) {
-                    CreateEventStatsinfo Passing = new CreateEventStatsinfo(tie, Die, Cator, Day, Tim, ADd, MAxppl);
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    userID = user.getUid();
+
+                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Title").setValue(tie);
+                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Description").setValue(Die);
+                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Category").setValue(Cator);
+                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Date").setValue(Day);
+                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Time").setValue(Tim);
+                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Address").setValue(ADd);
+                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Max_People").setValue(MAxppl);
+                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+                    myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
+                    myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
+                    myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
+                    myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
+                    myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
+                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").setValue(ADd);
+                    myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                    myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
 
 
-
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Title").setValue(tie);
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Description").setValue(Die);
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Category").setValue(Cator);
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Date").setValue(Day);
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Time").setValue(Tim);
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Address").setValue(ADd);
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Max_People").setValue(MAxppl);
-
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Title").setValue(tie);
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Description").setValue(Die);
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Category").setValue(Cator);
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Date").setValue(Day);
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Time").setValue(Tim);
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
-
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Title").setValue(tie);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Description").setValue(Die);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Category").setValue(Cator);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Date").setValue(Day);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Time").setValue(Tim);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Address").setValue(ADd);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Title").setValue(tie);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Description").setValue(Die);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Category").setValue(Cator);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Date").setValue(Day);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Time").setValue(Tim);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Address").setValue(ADd);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
 
 
                     Intent changepage = new Intent(Create_Event.this, MenuPage.class);
@@ -128,6 +127,7 @@ public class Create_Event extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create__event);
+
         Cat = (Spinner) findViewById(R.id.Category_SPINNER);
         Title = (EditText) findViewById(R.id.Title_txt);
         Disc = (EditText) findViewById(R.id.des_txt);
@@ -217,6 +217,9 @@ public class Create_Event extends AppCompatActivity {
             }
         };
 
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, Catgorylist);
+        Cat.setAdapter(myAdapter);
+
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -224,7 +227,8 @@ public class Create_Event extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
 
-                    // shoData(dataSnapshot);
+                 shoData(dataSnapshot);
+
                 EVENTCOUNT = dataSnapshot.child("Events").getChildrenCount() + 1;
                 CreatedEVENTCOUNT = dataSnapshot.child(userID).child("CreatedEvents").getChildrenCount() + 1;
                 REGISTEREDEVENTCOUNT = dataSnapshot.child(userID).child("RegisteredEvents").getChildrenCount() + 1;
@@ -237,13 +241,7 @@ public class Create_Event extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Create_Event.this,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Category));
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Cat.setAdapter(myAdapter);
-
         SendEventTodatabase();
-
 
     }
 
@@ -268,347 +266,375 @@ public class Create_Event extends AppCompatActivity {
         }
     };
 
-//    private void shoData(DataSnapshot dataSnapshot) {
-//
-//        for (DataSnapshot ds : dataSnapshot.child(userID).child("Interests").getChildren()) {
-//            Intresetedloggedup intey = ds.getValue(Intresetedloggedup.class);
-//            if (intey.isCActionfigures()) {
-//                fifty.add("Action Figures");
-//            }
-//            if (intey.isCCars()) {
-//                fifty.add("Cars");
-//            }
-//
-//            if (intey.isCCoins())
-//            {
-//                fifty.add("Coins");
-//            }
-//
-//            if (intey.isCComics())
-//            {
-//                fifty.add("Comic Books");
-//            }
-//
-//            if (intey.isCGuns())
-//            {
-//                fifty.add("Guns");
-//            }
-//
-//            if (intey.isCTrucks())
-//            {
-//                fifty.add("Trucks");
-//            }
-//
-//            if (intey.isDActing())
-//            {
-//                fifty.add("Acting");
-//            }
-//
-//            if (intey.isDCosplay())
-//            {
-//                fifty.add("Cosplay");
-//            }
-//
-//            if (intey.isDLarping())
-//            {
-//                fifty.add("Larping");
-//            }
-//
-//            if (intey.isGAction())
-//            {
-//                fifty.add("Game Action");
-//            }
-//
-//            if (intey.isGAdventure())
-//            {
-//                fifty.add("Game Adventure");
-//            }
-//
-//            if (intey.isGFPS())
-//            {
-//                fifty.add("Game FPS");
-//            }
-//
-//            if (intey.isGIndies())
-//            {
-//                fifty.add("Game Indies");
-//            }
-//
-//            if (intey.isGMMO())
-//            {
-//                fifty.add("Game MMO");
-//            }
-//
-//            if (intey.isGPartyfamily())
-//            {
-//                fifty.add("Game Party/Fam");
-//            }
-//
-//            if (intey.isGRPG())
-//            {
-//                fifty.add("Game RPG");
-//            }
-//
-//            if (intey.isGSimulation())
-//            {
-//                fifty.add("Game Sim");
-//            }
-//
-//            if (intey.isGSports())
-//            {
-//                fifty.add("Game Sports");
-//            }
-//
-//            if (intey.isGStragy())
-//            {
-//                fifty.add("Game Stragey");
-//            }
-//
-//            if (intey.isGAction())
-//            {
-//                fifty.add("Game Action");
-//            }
-//
-//            if (intey.isMCountry())
-//            {
-//                fifty.add("Country");
-//            }
-//
-//            if (intey.isMDrillrap())
-//            {
-//                fifty.add("Drill Rap");
-//            }
-//
-//            if (intey.isMEDM())
-//            {
-//                fifty.add("EDM");
-//            }
-//
-//            if (intey.isMJAZZ())
-//            {
-//                fifty.add("Jazz");
-//            }
-//
-//            if (intey.isMoAction())
-//            {
-//                fifty.add("Moive Action");
-//            }
-//
-//            if (intey.isMoAnimation())
-//            {
-//                fifty.add("Moive Animation");
-//            }
-//
-//            if (intey.isMoComdey())
-//            {
-//                fifty.add("Moive Comedy");
-//            }
-//
-//            if (intey.isMoDocumentary())
-//            {
-//                fifty.add("Moive Documentary");
-//            }
-//
-//            if (intey.isMoFamily())
-//            {
-//                fifty.add("Moive Family");
-//            }
-//
-//            if (intey.isMoHorror())
-//            {
-//                fifty.add("Moive Horror");
-//            }
-//
-//            if (intey.isMoMusical())
-//            {
-//                fifty.add("Moive Musical");
-//            }
-//
-//            if (intey.isMoSifi())
-//            {
-//                fifty.add("Movie Sifi");
-//            }
-//
-//            if (intey.isMoSports())
-//            {
-//                fifty.add("Moive Sports");
-//            }
-//
-//            if (intey.isMoThriller())
-//            {
-//                fifty.add("Moive Thriller");
-//            }
-//
-//            if (intey.isMoWar())
-//            {
-//                fifty.add("Moive War");
-//            }
-//
-//            if (intey.isTAction())
-//            {
-//                fifty.add("Tv Aciton");
-//            }
-//
-//            if (intey.isTAdventure())
-//            {
-//                fifty.add("Tv Adventure");
-//            }
-//
-//            if (intey.isTAnimation())
-//            {
-//                fifty.add("Tv Animation");
-//            }
-//
-//            if (intey.isTBiography())
-//            {
-//                fifty.add("Tv Biography");
-//            }
-//
-//            if (intey.isTComedy())
-//            {
-//                fifty.add("Tv Comedy");
-//            }
-//
-//            if (intey.isTCrime())
-//            {
-//                fifty.add("Tv Crime");
-//            }
-//
-//            if (intey.isTDocoumentary())
-//            {
-//                fifty.add("Tv Documentary");
-//            }
-//
-//            if (intey.isTDrama())
-//            {
-//                fifty.add("Tv Drama");
-//            }
-//
-//            if (intey.isTFamily())
-//            {
-//                fifty.add("Tv Family");
-//            }
-//
-//            if (intey.isTGameShows())
-//            {
-//                fifty.add("Tv Gameshows");
-//            }
-//
-//            if (intey.isTHistory())
-//            {
-//                fifty.add("Tv History");
-//            }
-//
-//            if (intey.isTHorror())
-//            {
-//                fifty.add("Tv Horror");
-//            }
-//
-//            if (intey.isTMystery())
-//            {
-//                fifty.add("Tv Mystery");
-//            }
-//
-//            if (intey.isTReality())
-//            {
-//                fifty.add("Tv Reality");
-//            }
-//
-//            if (intey.isTSitcom())
-//            {
-//                fifty.add("Tv Sitcom");
-//            }
-//
-//            if (intey.isTSports())
-//            {
-//                fifty.add("Tv Sports");
-//            }
-//
-//            if (intey.isTTalkShows())
-//            {
-//                fifty.add("Tv Talkshows");
-//            }
-//
-//            if (intey.isTWar())
-//            {
-//                fifty.add("Tv Wars");
-//            }
-//
-//            if (intey.isPFestivles())
-//            {
-//                fifty.add("Festival");
-//            }
-//
-//            if (intey.isPHouseParites())
-//            {
-//                fifty.add("House Party");
-//            }
-//
-//            if (intey.isPNightClubs())
-//            {
-//                fifty.add("Night Club");
-//            }
-//
-//            if (intey.isSArchery())
-//            {
-//                fifty.add("Archery");
-//            }
-//
-//            if (intey.isSBaseball())
-//            {
-//                fifty.add("Baseball");
-//            }
-//
-//            if (intey.isSBasketball())
-//            {
-//                fifty.add("Basketball");
-//            }
-//
-//            if (intey.isSCycling())
-//            {
-//                fifty.add("Cycling");
-//            }
-//
-//            if (intey.isSFootball())
-//            {
-//                fifty.add("Football");
-//            }
-//
-//            if (intey.isSFrisbe())
-//            {
-//                fifty.add("Frisbe");
-//            }
-//
-//            if (intey.isSGolf())
-//            {
-//                fifty.add("Golf");
-//            }
-//
-//            if (intey.isSHoccey())
-//            {
-//                fifty.add("Hockey");
-//            }
-//
-//            if (intey.isSHunting())
-//            {
-//                fifty.add("Hunting");
-//            }
-//
-//            if (intey.isSSkateboarding())
-//            {
-//                fifty.add("Skateboarding");
-//            }
-//
-//            if (intey.isSSnowBoarding())
-//            {
-//                fifty.add("Snowboarding");
-//            }
-//
-//            if (intey.isSWaterSports())
-//            {
-//                fifty.add("Water Sports");
-//            }
-//        }
-//
-//    }
+    private void shoData(DataSnapshot dataSnapshot) {
+
+
+
+            boolean SArcy     = dataSnapshot.child(userID).child("Interests").child("sarchery").getValue(boolean.class).booleanValue();
+            boolean SBasy     = dataSnapshot.child(userID).child("Interests").child("sbaseball").getValue(boolean.class).booleanValue();
+            boolean SbKy      = dataSnapshot.child(userID).child("Interests").child("sbasketball").getValue(boolean.class).booleanValue();
+            boolean Cycy      = dataSnapshot.child(userID).child("Interests").child("scycling").getValue(boolean.class).booleanValue();
+            boolean Fish      = dataSnapshot.child(userID).child("Interests").child("sfishing").getValue(boolean.class).booleanValue();
+            boolean Footy     = dataSnapshot.child(userID).child("Interests").child("sfootball").getValue(boolean.class).booleanValue();
+            boolean Frisy     = dataSnapshot.child(userID).child("Interests").child("sfrisbe").getValue(boolean.class).booleanValue();
+            boolean SGofy     = dataSnapshot.child(userID).child("Interests").child("sgolf").getValue(boolean.class).booleanValue();
+            boolean Shockeyy  = dataSnapshot.child(userID).child("Interests").child("shoccey").getValue(boolean.class).booleanValue();
+            boolean SHunty    = dataSnapshot.child(userID).child("Interests").child("shunting").getValue(boolean.class).booleanValue();
+            boolean SSKatey   = dataSnapshot.child(userID).child("Interests").child("sskateboarding").getValue(boolean.class).booleanValue();
+            boolean SSnowy    = dataSnapshot.child(userID).child("Interests").child("ssnowBoarding").getValue(boolean.class).booleanValue();
+            boolean Swsy      = dataSnapshot.child(userID).child("Interests").child("swaterSports").getValue(boolean.class).booleanValue();
+            boolean Wrey      = dataSnapshot.child(userID).child("Interests").child("swrestling").getValue(boolean.class).booleanValue();
+            boolean Fesy      = dataSnapshot.child(userID).child("Interests").child("pfestivles").getValue(boolean.class).booleanValue();
+            boolean Housy     = dataSnapshot.child(userID).child("Interests").child("phouseParites").getValue(boolean.class).booleanValue();
+            boolean Nighty    = dataSnapshot.child(userID).child("Interests").child("pnightClubs").getValue(boolean.class).booleanValue();
+            boolean Gacty     = dataSnapshot.child(userID).child("Interests").child("gaction").getValue(boolean.class).booleanValue();
+            boolean Gadvy     = dataSnapshot.child(userID).child("Interests").child("gadventure").getValue(boolean.class).booleanValue();
+            boolean GFpy      = dataSnapshot.child(userID).child("Interests").child("gfps").getValue(boolean.class).booleanValue();
+            boolean Gindy     = dataSnapshot.child(userID).child("Interests").child("gindies").getValue(boolean.class).booleanValue();
+            boolean GMMy      = dataSnapshot.child(userID).child("Interests").child("gmmo").getValue(boolean.class).booleanValue();
+            boolean GpaFy     = dataSnapshot.child(userID).child("Interests").child("gpartyfamily").getValue(boolean.class).booleanValue();
+            boolean GRPy      = dataSnapshot.child(userID).child("Interests").child("grpg").getValue(boolean.class).booleanValue();
+            boolean Gsiy      = dataSnapshot.child(userID).child("Interests").child("gsimulation").getValue(boolean.class).booleanValue();
+            boolean Gspy      = dataSnapshot.child(userID).child("Interests").child("gsports").getValue(boolean.class).booleanValue();
+            boolean GStry     = dataSnapshot.child(userID).child("Interests").child("gstragy").getValue(boolean.class).booleanValue();
+            boolean MCy       = dataSnapshot.child(userID).child("Interests").child("mcountry").getValue(boolean.class).booleanValue();
+            boolean MDRy      = dataSnapshot.child(userID).child("Interests").child("mdrillrap").getValue(boolean.class).booleanValue();
+            boolean MEdy      = dataSnapshot.child(userID).child("Interests").child("medm").getValue(boolean.class).booleanValue();
+            boolean MJzy      = dataSnapshot.child(userID).child("Interests").child("mjazz").getValue(boolean.class).booleanValue();
+            boolean MRpy      = dataSnapshot.child(userID).child("Interests").child("mrap").getValue(boolean.class).booleanValue();
+            boolean Mroy      = dataSnapshot.child(userID).child("Interests").child("mrock").getValue(boolean.class).booleanValue();
+            boolean MRNy      = dataSnapshot.child(userID).child("Interests").child("mrnb").getValue(boolean.class).booleanValue();
+            boolean MScry     = dataSnapshot.child(userID).child("Interests").child("mscremo").getValue(boolean.class).booleanValue();
+            boolean MoActy    = dataSnapshot.child(userID).child("Interests").child("moAction").getValue(boolean.class).booleanValue();
+            boolean MOAniy    = dataSnapshot.child(userID).child("Interests").child("moAnimation").getValue(boolean.class).booleanValue();
+            boolean MOComy    = dataSnapshot.child(userID).child("Interests").child("moComdey").getValue(boolean.class).booleanValue();
+            boolean MODoy     = dataSnapshot.child(userID).child("Interests").child("moDocumentary").getValue(boolean.class).booleanValue();
+            boolean MOFy      = dataSnapshot.child(userID).child("Interests").child("moFamily").getValue(boolean.class).booleanValue();
+            boolean MOHOry    = dataSnapshot.child(userID).child("Interests").child("moHorror").getValue(boolean.class).booleanValue();
+            boolean MoMusy    = dataSnapshot.child(userID).child("Interests").child("moMusical").getValue(boolean.class).booleanValue();
+            boolean MOSiy     = dataSnapshot.child(userID).child("Interests").child("moSifi").getValue(boolean.class).booleanValue();
+            boolean MOSpoy    = dataSnapshot.child(userID).child("Interests").child("moSports").getValue(boolean.class).booleanValue();
+            boolean MOTHrily  = dataSnapshot.child(userID).child("Interests").child("moThriller").getValue(boolean.class).booleanValue();
+            boolean MoWay     = dataSnapshot.child(userID).child("Interests").child("moWar").getValue(boolean.class).booleanValue();
+            boolean TActy     = dataSnapshot.child(userID).child("Interests").child("taction").getValue(boolean.class).booleanValue();
+            boolean TADvy     = dataSnapshot.child(userID).child("Interests").child("tadventure").getValue(boolean.class).booleanValue();
+            boolean TAniy     = dataSnapshot.child(userID).child("Interests").child("tanimation").getValue(boolean.class).booleanValue();
+            boolean TBioy     = dataSnapshot.child(userID).child("Interests").child("tbiography").getValue(boolean.class).booleanValue();
+            boolean TCom      = dataSnapshot.child(userID).child("Interests").child("tcomedy").getValue(boolean.class).booleanValue();
+            boolean TCriy     = dataSnapshot.child(userID).child("Interests").child("tcrime").getValue(boolean.class).booleanValue();
+            boolean TDoy      = dataSnapshot.child(userID).child("Interests").child("tdocoumentary").getValue(boolean.class).booleanValue();
+            boolean TDray     = dataSnapshot.child(userID).child("Interests").child("tdrama").getValue(boolean.class).booleanValue();
+            boolean Tfay      = dataSnapshot.child(userID).child("Interests").child("tfamily").getValue(boolean.class).booleanValue();
+            boolean TGamey    = dataSnapshot.child(userID).child("Interests").child("tgameShows").getValue(boolean.class).booleanValue();
+            boolean THisy     = dataSnapshot.child(userID).child("Interests").child("thistory").getValue(boolean.class).booleanValue();
+            boolean Thory     = dataSnapshot.child(userID).child("Interests").child("thorror").getValue(boolean.class).booleanValue();
+            boolean TMysy     = dataSnapshot.child(userID).child("Interests").child("tmystery").getValue(boolean.class).booleanValue();
+            boolean Trey      = dataSnapshot.child(userID).child("Interests").child("treality").getValue(boolean.class).booleanValue();
+            boolean Tsiy      = dataSnapshot.child(userID).child("Interests").child("tsitcom").getValue(boolean.class).booleanValue();
+            boolean TSpoy     = dataSnapshot.child(userID).child("Interests").child("tsports").getValue(boolean.class).booleanValue();
+            boolean TTalky    = dataSnapshot.child(userID).child("Interests").child("ttalkShows").getValue(boolean.class).booleanValue();
+            boolean Tway      = dataSnapshot.child(userID).child("Interests").child("twar").getValue(boolean.class).booleanValue();
+            boolean Dacty     = dataSnapshot.child(userID).child("Interests").child("dacting").getValue(boolean.class).booleanValue();
+            boolean Dcosy     = dataSnapshot.child(userID).child("Interests").child("dcosplay").getValue(boolean.class).booleanValue();
+            boolean Dlay      = dataSnapshot.child(userID).child("Interests").child("dlarping").getValue(boolean.class).booleanValue();
+            boolean CActy     = dataSnapshot.child(userID).child("Interests").child("cactionfigures").getValue(boolean.class).booleanValue();
+            boolean CCry      = dataSnapshot.child(userID).child("Interests").child("ccars").getValue(boolean.class).booleanValue();
+            boolean Ccinsy    = dataSnapshot.child(userID).child("Interests").child("ccoins").getValue(boolean.class).booleanValue();
+            boolean Ccomy     = dataSnapshot.child(userID).child("Interests").child("ccomics").getValue(boolean.class).booleanValue();
+            boolean CGuny     = dataSnapshot.child(userID).child("Interests").child("cguns").getValue(boolean.class).booleanValue();
+            boolean Ctrcy     = dataSnapshot.child(userID).child("Interests").child("ctrucks").getValue(boolean.class).booleanValue();
+
+
+        if (SArcy){
+            Catgorylist.add("Archery");
+        }
+
+        if (SBasy){
+            Catgorylist.add("Baseball");
+        }
+
+        if (SbKy){
+            Catgorylist.add("Basketball");
+        }
+
+        if (Cycy){
+            Catgorylist.add("Bicycle");
+        }
+
+        if (Fish){
+            Catgorylist.add("Fishing");
+        }
+
+        if (Footy){
+            Catgorylist.add("Football");
+        }
+
+        if (Frisy){
+            Catgorylist.add("Frisbe");
+        }
+
+        if (SGofy){
+            Catgorylist.add("Golf");
+        }
+
+        if (Shockeyy){
+            Catgorylist.add("Hockey");
+        }
+
+        if (SHunty){
+            Catgorylist.add("Hunting");
+        }
+
+        if (SSKatey){
+            Catgorylist.add("Skateboarding");
+        }
+
+        if (SSnowy){
+            Catgorylist.add("Snowboarding");
+        }
+
+        if (Swsy){
+            Catgorylist.add("Water Sports");
+        }
+
+        if (Wrey){
+            Catgorylist.add("Wrestling");
+        }
+
+        if (Fesy){
+            Catgorylist.add("Festival");
+        }
+
+        if (Housy){
+            Catgorylist.add("House Party");
+        }
+
+        if (Nighty){
+            Catgorylist.add("Night Club");
+        }
+
+        if (Gacty){
+            Catgorylist.add("Action Game");
+        }
+
+        if (Gadvy){
+            Catgorylist.add("Adventure Game");
+        }
+
+        if (GFpy){
+            Catgorylist.add("FPS Game");
+        }
+
+        if (Gindy){
+            Catgorylist.add("Indie Game");
+        }
+
+        if (GMMy){
+            Catgorylist.add("MMO Game");
+        }
+
+        if (GpaFy){
+            Catgorylist.add("Party Game");
+        }
+
+        if (GRPy){
+            Catgorylist.add("RPG Game");
+        }
+
+        if (Gsiy){
+            Catgorylist.add("Simulation Game");
+        }
+
+        if (Gspy){
+            Catgorylist.add("Sports Game");
+        }
+
+        if (GStry){
+            Catgorylist.add("Stragey Game");
+        }
+
+        if (MCy){
+            Catgorylist.add("Country Music");
+        }
+
+        if (MDRy){
+            Catgorylist.add("Drill Rap");
+        }
+
+        if (MEdy){
+            Catgorylist.add("EDM");
+        }
+
+        if (MJzy){
+            Catgorylist.add("Jazz");
+        }
+
+        if (MRpy){
+            Catgorylist.add("Rap");
+        }
+
+        if (Mroy){
+            Catgorylist.add("Rock");
+        }
+
+        if (MRNy){
+            Catgorylist.add("RNB");
+        }
+
+        if (MScry){
+            Catgorylist.add("Scremo");
+        }
+
+        if (MoActy){
+            Catgorylist.add("Action Movie");
+        }
+
+        if (MOAniy){
+            Catgorylist.add("Animation Movie");
+        }
+
+        if (MOComy){
+            Catgorylist.add("Comdey Movie");
+        }
+
+        if (MODoy){
+            Catgorylist.add("Documentary Movie");
+        }
+
+        if (MOFy){
+            Catgorylist.add("Family Movie");
+        }
+
+        if (MOHOry){
+            Catgorylist.add("Horror Movie");
+        }
+
+        if (MoMusy){
+            Catgorylist.add("Musical Movie");
+        }
+
+        if (MOSiy){
+            Catgorylist.add("Sifi Movie");
+        }
+
+        if (MOSpoy){
+            Catgorylist.add("Sports Movie");
+        }
+
+        if (MOTHrily){
+            Catgorylist.add("Thriller Movie");
+        }
+
+        if (MoWay){
+            Catgorylist.add("War Movie");
+        }
+
+        if (TActy){
+            Catgorylist.add("Action Shows");
+        }
+
+        if (TADvy){
+            Catgorylist.add("Adventure Shows");
+        }
+
+        if (TAniy){
+            Catgorylist.add("Animation Shows");
+        }
+
+        if (TBioy){
+            Catgorylist.add("Biography Shows");
+        }
+
+        if (TCom){
+            Catgorylist.add("Comedy Shows");
+        }
+
+        if (TCriy){
+            Catgorylist.add("Crime Shows");
+        }
+
+        if (TDoy){
+            Catgorylist.add("Documentary Shows");
+        }
+
+        if (TDray){
+            Catgorylist.add("Drama Shows");
+        }
+
+        if (Tfay){
+            Catgorylist.add("Family Shows");
+        }
+
+        if (TGamey){
+            Catgorylist.add("Game Shows");
+        }
+
+        if (THisy){
+            Catgorylist.add("History Shows");
+        }
+
+        if (Thory){
+            Catgorylist.add("Horror Shows");
+        }
+
+        if (TMysy){
+            Catgorylist.add("Mystery Shows");
+        }
+
+        if (Trey){
+            Catgorylist.add("Reality Shows");
+        }
+
+        if (Tsiy){
+            Catgorylist.add("Sifi Shows");
+        }
+
+        if (TSpoy){
+            Catgorylist.add("Sports Shows");
+        }
+
+        if (TTalky){
+            Catgorylist.add("Talk Shows");
+        }
+
+        if (Tway){
+            Catgorylist.add("War Shows");
+        }
+
+        if (Dacty){
+            Catgorylist.add("Acting");
+        }
+
+        if (Dcosy){
+            Catgorylist.add("Cosplay");
+        }
+
+        if (Dlay){
+            Catgorylist.add("Larping");
+        }
+
+        if (CActy){
+            Catgorylist.add("Action Figures");
+        }
+
+        if (CCry){
+            Catgorylist.add("Cars");
+        }
+
+        if (Ccinsy){
+            Catgorylist.add("Coins");
+        }
+
+        if (Ccomy){
+            Catgorylist.add("Comics");
+        }
+
+        if (CGuny){
+            Catgorylist.add("Guns");
+        }
+
+        if (Ctrcy){
+            Catgorylist.add("Trucks");
+        }
+    }
 }

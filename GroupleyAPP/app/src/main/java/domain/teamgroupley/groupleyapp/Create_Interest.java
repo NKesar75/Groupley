@@ -107,6 +107,8 @@ public class Create_Interest extends AppCompatActivity {
         SaveIntre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int interstcounter = 0;
+
                 boolean SArcy     = SmArchery.isChecked();
                 boolean SBasy     = SmBaseball.isChecked();
                 boolean SbKy      = SBasketball.isChecked();
@@ -183,14 +185,237 @@ public class Create_Interest extends AppCompatActivity {
 
                 FirebaseUser user = mAuth.getCurrentUser();
                 String userID = user.getUid();
-                Intresetedloggedup Logedd = new Intresetedloggedup(SArcy, SBasy, SbKy, Cycy ,Fish,Footy ,Frisy,SGofy,Shockeyy,SHunty,SSKatey,SSnowy,Swsy,Wrey,Fesy,Housy,
-                        Nighty,Gacty,Gadvy,GFpy,Gindy,GMMy,GpaFy, GRPy,Gsiy,Gspy,GStry,MCy,MDRy,MEdy,MJzy,MRpy,Mroy,MRNy,MScry,MoActy,MOAniy,MOComy,MODoy,MOFy,MOHOry,
-                        MoMusy,MOSiy,MOSpoy,MOTHrily,MoWay,TActy, TADvy,TAniy,TBioy,TCom,TCriy,TDoy,TDray,Tfay,TGamey,THisy,Thory,TMysy,Trey,Tsiy,TSpoy,TTalky,Tway,Dacty,
-                        Dcosy,Dlay,CActy,CCry,Ccinsy,Ccomy,CGuny,Ctrcy);
-                myRef.child(userID).child("Interests").setValue(Logedd);
-                Intent changepage = new Intent(Create_Interest.this, MenuPage.class);
-                startActivity(changepage);
-                Toast.makeText(Create_Interest.this, "Account Created.", Toast.LENGTH_SHORT).show();
+
+                if (SArcy){++interstcounter;}
+
+                if (SBasy){++interstcounter;}
+
+                if (SbKy){++interstcounter;}
+
+                if (Cycy){++interstcounter;}
+
+                if (Fish){++interstcounter;}
+
+                if (Footy){++interstcounter;}
+
+                if (Frisy){++interstcounter;}
+
+                if (SGofy){++interstcounter;}
+
+                if (Shockeyy){++interstcounter;}
+
+                if (SHunty){++interstcounter;}
+
+                if (SSKatey){++interstcounter;}
+
+                if (SSnowy){++interstcounter;}
+
+                if (Swsy){++interstcounter;}
+
+                if (Wrey){++interstcounter;}
+
+                if (Fesy){++interstcounter;}
+
+                if (Housy){++interstcounter;}
+
+                if (Nighty){++interstcounter;}
+
+                if (Gacty){++interstcounter;}
+
+                if (Gadvy){++interstcounter;}
+
+                if (GFpy){++interstcounter;}
+
+                if (Gindy){++interstcounter;}
+
+                if (GMMy) {++interstcounter;}
+
+                if (GpaFy){++interstcounter;}
+
+                if (GRPy){++interstcounter;}
+
+                if (Gsiy){++interstcounter;}
+
+                if (Gspy){++interstcounter;}
+
+                if (GStry){++interstcounter;}
+
+                if (MCy){++interstcounter;}
+
+                if (MDRy){++interstcounter;}
+
+                if (MEdy){++interstcounter;}
+
+                if (MJzy){++interstcounter;}
+
+                if (MRpy){++interstcounter;}
+
+                if (Mroy){++interstcounter;}
+
+                if (MRNy){++interstcounter;}
+
+                if (MScry){++interstcounter;}
+
+                if (MoActy){++interstcounter;}
+
+                if (MOAniy){++interstcounter;}
+
+                if (MOComy){++interstcounter;}
+
+                if (MODoy){++interstcounter;}
+
+                if (MOFy){++interstcounter;}
+
+                if (MOHOry){++interstcounter;}
+
+                if (MoMusy){++interstcounter;}
+
+                if (MOSiy){++interstcounter;}
+
+                if (MOSpoy){++interstcounter;}
+
+                if (MOTHrily){++interstcounter;}
+
+                if (MoWay){++interstcounter;}
+
+                if (TActy){++interstcounter;}
+
+                if (TADvy){++interstcounter;}
+
+                if (TAniy){++interstcounter;}
+
+                if (TBioy){++interstcounter;}
+
+                if (TCom){++interstcounter;}
+
+                if (TCriy){++interstcounter;}
+
+                if (TDoy){++interstcounter;}
+
+                if (TDray){++interstcounter;}
+
+                if (Tfay){++interstcounter;}
+
+                if (TGamey){++interstcounter;}
+
+                if (THisy){++interstcounter;}
+
+                if (Thory){++interstcounter;}
+
+                if (TMysy){++interstcounter;}
+
+                if (Trey){++interstcounter;}
+
+                if (Tsiy){++interstcounter;}
+
+                if (TSpoy){++interstcounter;}
+
+                if (TTalky){++interstcounter;}
+
+                if (Tway){++interstcounter;}
+
+                if (Dacty){++interstcounter;}
+
+                if (Dcosy){++interstcounter;}
+
+                if (Dlay){++interstcounter;}
+
+                if (CActy){++interstcounter;}
+
+                if (CCry){++interstcounter;}
+
+                if (Ccinsy){++interstcounter;}
+
+                if (Ccomy){++interstcounter;}
+
+                if (CGuny){++interstcounter;}
+
+                if (Ctrcy){++interstcounter;}
+
+
+                if (interstcounter >= 10) {
+                    myRef.child(userID).child("Interests").child("cactionfigures").setValue(CActy);
+                    myRef.child(userID).child("Interests").child("ccars").setValue(CCry);
+                    myRef.child(userID).child("Interests").child("ccoins").setValue(Ccinsy);
+                    myRef.child(userID).child("Interests").child("ccomics").setValue(Ccomy);
+                    myRef.child(userID).child("Interests").child("cguns").setValue(CGuny);
+                    myRef.child(userID).child("Interests").child("ctrucks").setValue(Ctrcy);
+                    myRef.child(userID).child("Interests").child("dacting").setValue(Dacty);
+                    myRef.child(userID).child("Interests").child("dcosplay").setValue(Dcosy);
+                    myRef.child(userID).child("Interests").child("dlarping").setValue(Dlay);
+                    myRef.child(userID).child("Interests").child("gaction").setValue(Gacty);
+                    myRef.child(userID).child("Interests").child("gadventure").setValue(Gadvy);
+                    myRef.child(userID).child("Interests").child("gfps").setValue(GFpy);
+                    myRef.child(userID).child("Interests").child("gindies").setValue(Gindy);
+                    myRef.child(userID).child("Interests").child("gmmo").setValue(GMMy);
+                    myRef.child(userID).child("Interests").child("gpartyfamily").setValue(GpaFy);
+                    myRef.child(userID).child("Interests").child("grpg").setValue(GRPy);
+                    myRef.child(userID).child("Interests").child("gsimulation").setValue(Gsiy);
+                    myRef.child(userID).child("Interests").child("gsports").setValue(Gspy);
+                    myRef.child(userID).child("Interests").child("gstragy").setValue(GStry);
+                    myRef.child(userID).child("Interests").child("mcountry").setValue(MCy);
+                    myRef.child(userID).child("Interests").child("mdrillrap").setValue(MDRy);
+                    myRef.child(userID).child("Interests").child("medm").setValue(MEdy);
+                    myRef.child(userID).child("Interests").child("mjazz").setValue(MJzy);
+                    myRef.child(userID).child("Interests").child("moAction").setValue(MoActy);
+                    myRef.child(userID).child("Interests").child("moAnimation").setValue(MOAniy);
+                    myRef.child(userID).child("Interests").child("moComdey").setValue(MOComy);
+                    myRef.child(userID).child("Interests").child("moDocumentary").setValue(MODoy);
+                    myRef.child(userID).child("Interests").child("moFamily").setValue(MOFy);
+                    myRef.child(userID).child("Interests").child("moHorror").setValue(MOHOry);
+                    myRef.child(userID).child("Interests").child("moMusical").setValue(MoMusy);
+                    myRef.child(userID).child("Interests").child("moSifi").setValue(MOSiy);
+                    myRef.child(userID).child("Interests").child("moSports").setValue(MOSpoy);
+                    myRef.child(userID).child("Interests").child("moThriller").setValue(MOTHrily);
+                    myRef.child(userID).child("Interests").child("moWar").setValue(MoWay);
+                    myRef.child(userID).child("Interests").child("mrap").setValue(MRpy);
+                    myRef.child(userID).child("Interests").child("mrnb").setValue(MRNy);
+                    myRef.child(userID).child("Interests").child("mrock").setValue(Mroy);
+                    myRef.child(userID).child("Interests").child("mscremo").setValue(MScry);
+                    myRef.child(userID).child("Interests").child("pfestivles").setValue(Fesy);
+                    myRef.child(userID).child("Interests").child("phouseParites").setValue(Housy);
+                    myRef.child(userID).child("Interests").child("pnightClubs").setValue(Nighty);
+                    myRef.child(userID).child("Interests").child("sarchery").setValue(SArcy);
+                    myRef.child(userID).child("Interests").child("sbaseball").setValue(SBasy);
+                    myRef.child(userID).child("Interests").child("sbasketball").setValue(SbKy);
+                    myRef.child(userID).child("Interests").child("scycling").setValue(Cycy);
+                    myRef.child(userID).child("Interests").child("sfishing").setValue(Fish);
+                    myRef.child(userID).child("Interests").child("sfootball").setValue(Footy);
+                    myRef.child(userID).child("Interests").child("sfrisbe").setValue(Frisy);
+                    myRef.child(userID).child("Interests").child("sgolf").setValue(SGofy);
+                    myRef.child(userID).child("Interests").child("shoccey").setValue(Shockeyy);
+                    myRef.child(userID).child("Interests").child("shunting").setValue(SHunty);
+                    myRef.child(userID).child("Interests").child("sskateboarding").setValue(SSKatey);
+                    myRef.child(userID).child("Interests").child("ssnowBoarding").setValue(SSnowy);
+                    myRef.child(userID).child("Interests").child("swaterSports").setValue(Swsy);
+                    myRef.child(userID).child("Interests").child("swrestling").setValue(Wrey);
+                    myRef.child(userID).child("Interests").child("taction").setValue(TActy);
+                    myRef.child(userID).child("Interests").child("tadventure").setValue(TADvy);
+                    myRef.child(userID).child("Interests").child("tanimation").setValue(TAniy);
+                    myRef.child(userID).child("Interests").child("tbiography").setValue(TBioy);
+                    myRef.child(userID).child("Interests").child("tcomedy").setValue(TCom);
+                    myRef.child(userID).child("Interests").child("tcrime").setValue(TCriy);
+                    myRef.child(userID).child("Interests").child("tdocoumentary").setValue(TDoy);
+                    myRef.child(userID).child("Interests").child("tdrama").setValue(TDray);
+                    myRef.child(userID).child("Interests").child("tfamily").setValue(Tfay);
+                    myRef.child(userID).child("Interests").child("tgameShows").setValue(TGamey);
+                    myRef.child(userID).child("Interests").child("thistory").setValue(THisy);
+                    myRef.child(userID).child("Interests").child("thorror").setValue(Thory);
+                    myRef.child(userID).child("Interests").child("tmystery").setValue(TMysy);
+                    myRef.child(userID).child("Interests").child("treality").setValue(Trey);
+                    myRef.child(userID).child("Interests").child("tsitcom").setValue(Tsiy);
+                    myRef.child(userID).child("Interests").child("tsports").setValue(TSpoy);
+                    myRef.child(userID).child("Interests").child("ttalkShows").setValue(TTalky);
+                    myRef.child(userID).child("Interests").child("twar").setValue(Tway);
+
+
+                    Intent changepage = new Intent(Create_Interest.this, MenuPage.class);
+                    startActivity(changepage);
+                    Toast.makeText(Create_Interest.this, "Account Created.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(Create_Interest.this, "Select Atleast 10 Interests", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

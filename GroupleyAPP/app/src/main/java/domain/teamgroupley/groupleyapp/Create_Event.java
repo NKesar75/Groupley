@@ -69,7 +69,8 @@ public class Create_Event extends AppCompatActivity
     FirebaseUser user = mAuth.getCurrentUser();
     String userID = user.getUid();
 
-    private List<String> Catgorylist = new ArrayList<>();
+    ArrayList<String> Catgorylist;
+
 
     long EVENTCOUNT;
     long CreatedEVENTCOUNT;
@@ -148,10 +149,6 @@ public class Create_Event extends AppCompatActivity
         Addey = (EditText) findViewById(R.id.address_txt);
         Max = (EditText) findViewById(R.id.max_people_txt);
 
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, Catgorylist);
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Cat.setAdapter(myAdapter);
-      
 
         Date.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -234,11 +231,6 @@ public class Create_Event extends AppCompatActivity
                 // ...
             }
         };
-
-
-
-
-
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -370,7 +362,7 @@ public class Create_Event extends AppCompatActivity
 
     private void shoData(DataSnapshot dataSnapshot) {
 
-
+        Catgorylist = new ArrayList<>();
 
         boolean SArcy     = dataSnapshot.child(userID).child("Interests").child("sarchery").getValue(boolean.class).booleanValue();
         boolean SBasy     = dataSnapshot.child(userID).child("Interests").child("sbaseball").getValue(boolean.class).booleanValue();
@@ -452,11 +444,11 @@ public class Create_Event extends AppCompatActivity
         }
 
         if (SBasy){
-            Catgorylist.add("Baseball");
+           Catgorylist.add("Baseball");
         }
 
         if (SbKy){
-            Catgorylist.add("Basketball");
+           Catgorylist.add("Basketball");
         }
 
         if (Cycy){
@@ -738,5 +730,10 @@ public class Create_Event extends AppCompatActivity
         if (Ctrcy){
             Catgorylist.add("Trucks");
         }
+
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Catgorylist);
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Cat.setAdapter(myAdapter);
+
     }
 }

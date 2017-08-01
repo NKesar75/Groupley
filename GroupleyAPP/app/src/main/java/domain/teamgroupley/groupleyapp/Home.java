@@ -61,7 +61,7 @@ public class Home extends AppCompatActivity
     private GridView gridView;
     private ListViewAdapter listViewAdapter;
     private GridViewAdapter gridViewAdapter;
-    private List<Product> productList = new ArrayList<>();;
+    private List<Product> productList = new ArrayList<>();
     private int currentViewMode = 0;
 
     static final int VIEW_MODE_LISTVIEW = 0;

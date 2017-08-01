@@ -196,6 +196,8 @@ public class IntrestSelection extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                int interstcounter = 0;
+
                 boolean SArcy     = SmArchery.isChecked();
                 boolean SBasy     = SmBaseball.isChecked();
                 boolean SbKy      = SBasketball.isChecked();
@@ -270,84 +272,238 @@ public class IntrestSelection extends AppCompatActivity {
                 boolean CGuny     = CGuns.isChecked();
                 boolean Ctrcy     = CTrucks.isChecked();
 
-                mRootRef.child(USerid).child("Interests").child("cactionfigures").setValue(CActy);
-                mRootRef.child(USerid).child("Interests").child("ccars").setValue(CCry);
-                mRootRef.child(USerid).child("Interests").child("ccoins").setValue(Ccinsy);
-                mRootRef.child(USerid).child("Interests").child("ccomics").setValue(Ccomy);
-                mRootRef.child(USerid).child("Interests").child("cguns").setValue(CGuny);
-                mRootRef.child(USerid).child("Interests").child("ctrucks").setValue(Ctrcy);
-                mRootRef.child(USerid).child("Interests").child("dacting").setValue(Dacty);
-                mRootRef.child(USerid).child("Interests").child("dcosplay").setValue(Dcosy);
-                mRootRef.child(USerid).child("Interests").child("dlarping").setValue(Dlay);
-                mRootRef.child(USerid).child("Interests").child("gaction").setValue(Gacty);
-                mRootRef.child(USerid).child("Interests").child("gadventure").setValue(Gadvy);
-                mRootRef.child(USerid).child("Interests").child("gfps").setValue(GFpy);
-                mRootRef.child(USerid).child("Interests").child("gindies").setValue(Gindy);
-                mRootRef.child(USerid).child("Interests").child("gmmo").setValue(GMMy);
-                mRootRef.child(USerid).child("Interests").child("gpartyfamily").setValue(GpaFy);
-                mRootRef.child(USerid).child("Interests").child("grpg").setValue(GRPy);
-                mRootRef.child(USerid).child("Interests").child("gsimulation").setValue(Gsiy);
-                mRootRef.child(USerid).child("Interests").child("gsports").setValue(Gspy);
-                mRootRef.child(USerid).child("Interests").child("gstragy").setValue(GStry);
-                mRootRef.child(USerid).child("Interests").child("mcountry").setValue(MCy);
-                mRootRef.child(USerid).child("Interests").child("mdrillrap").setValue(MDRy);
-                mRootRef.child(USerid).child("Interests").child("medm").setValue(MEdy);
-                mRootRef.child(USerid).child("Interests").child("mjazz").setValue(MJzy);
-                mRootRef.child(USerid).child("Interests").child("moAction").setValue(MoActy);
-                mRootRef.child(USerid).child("Interests").child("moAnimation").setValue(MOAniy);
-                mRootRef.child(USerid).child("Interests").child("moComdey").setValue(MOComy);
-                mRootRef.child(USerid).child("Interests").child("moDocumentary").setValue(MODoy);
-                mRootRef.child(USerid).child("Interests").child("moFamily").setValue(MOFy);
-                mRootRef.child(USerid).child("Interests").child("moHorror").setValue(MOHOry);
-                mRootRef.child(USerid).child("Interests").child("moMusical").setValue(MoMusy);
-                mRootRef.child(USerid).child("Interests").child("moSifi").setValue(MOSiy);
-                mRootRef.child(USerid).child("Interests").child("moSports").setValue(MOSpoy);
-                mRootRef.child(USerid).child("Interests").child("moThriller").setValue(MOTHrily);
-                mRootRef.child(USerid).child("Interests").child("moWar").setValue(MoWay);
-                mRootRef.child(USerid).child("Interests").child("mrap").setValue(MRpy);
-                mRootRef.child(USerid).child("Interests").child("mrnb").setValue(MRNy);
-                mRootRef.child(USerid).child("Interests").child("mrock").setValue(Mroy);
-                mRootRef.child(USerid).child("Interests").child("mscremo").setValue(MScry);
-                mRootRef.child(USerid).child("Interests").child("pfestivles").setValue(Fesy);
-                mRootRef.child(USerid).child("Interests").child("phouseParites").setValue(Housy);
-                mRootRef.child(USerid).child("Interests").child("pnightClubs").setValue(Nighty);
-                mRootRef.child(USerid).child("Interests").child("sarchery").setValue(SArcy);
-                mRootRef.child(USerid).child("Interests").child("sbaseball").setValue(SBasy);
-                mRootRef.child(USerid).child("Interests").child("sbasketball").setValue(SbKy);
-                mRootRef.child(USerid).child("Interests").child("scycling").setValue(Cycy);
-                mRootRef.child(USerid).child("Interests").child("sfishing").setValue(Fish);
-                mRootRef.child(USerid).child("Interests").child("sfootball").setValue(Footy);
-                mRootRef.child(USerid).child("Interests").child("sfrisbe").setValue(Frisy);
-                mRootRef.child(USerid).child("Interests").child("sgolf").setValue(SGofy);
-                mRootRef.child(USerid).child("Interests").child("shoccey").setValue(Shockeyy);
-                mRootRef.child(USerid).child("Interests").child("shunting").setValue(SHunty);
-                mRootRef.child(USerid).child("Interests").child("sskateboarding").setValue(SSKatey);
-                mRootRef.child(USerid).child("Interests").child("ssnowBoarding").setValue(SSnowy);
-                mRootRef.child(USerid).child("Interests").child("swaterSports").setValue(Swsy);
-                mRootRef.child(USerid).child("Interests").child("swrestling").setValue(Wrey);
-                mRootRef.child(USerid).child("Interests").child("taction").setValue(TActy);
-                mRootRef.child(USerid).child("Interests").child("tadventure").setValue(TADvy);
-                mRootRef.child(USerid).child("Interests").child("tanimation").setValue(TAniy);
-                mRootRef.child(USerid).child("Interests").child("tbiography").setValue(TBioy);
-                mRootRef.child(USerid).child("Interests").child("tcomedy").setValue(TCom);
-                mRootRef.child(USerid).child("Interests").child("tcrime").setValue(TCriy);
-                mRootRef.child(USerid).child("Interests").child("tdocoumentary").setValue(TDoy);
-                mRootRef.child(USerid).child("Interests").child("tdrama").setValue(TDray);
-                mRootRef.child(USerid).child("Interests").child("tfamily").setValue(Tfay);
-                mRootRef.child(USerid).child("Interests").child("tgameShows").setValue(TGamey);
-                mRootRef.child(USerid).child("Interests").child("thistory").setValue(THisy);
-                mRootRef.child(USerid).child("Interests").child("thorror").setValue(Thory);
-                mRootRef.child(USerid).child("Interests").child("tmystery").setValue(TMysy);
-                mRootRef.child(USerid).child("Interests").child("treality").setValue(Trey);
-                mRootRef.child(USerid).child("Interests").child("tsitcom").setValue(Tsiy);
-                mRootRef.child(USerid).child("Interests").child("tsports").setValue(TSpoy);
-                mRootRef.child(USerid).child("Interests").child("ttalkShows").setValue(TTalky);
-                mRootRef.child(USerid).child("Interests").child("twar").setValue(Tway);
 
-                Intent changepage = new Intent(IntrestSelection.this, MenuPage.class);
-                startActivity(changepage);
-                Toast.makeText(IntrestSelection.this, "Interest Saved.",
-                        Toast.LENGTH_SHORT).show();
+                if (SArcy){++interstcounter;}
+
+                if (SBasy){++interstcounter;}
+
+                if (SbKy){++interstcounter;}
+
+                if (Cycy){++interstcounter;}
+
+                if (Fish){++interstcounter;}
+
+                if (Footy){++interstcounter;}
+
+                if (Frisy){++interstcounter;}
+
+                if (SGofy){++interstcounter;}
+
+                if (Shockeyy){++interstcounter;}
+
+                if (SHunty){++interstcounter;}
+
+                if (SSKatey){++interstcounter;}
+
+                if (SSnowy){++interstcounter;}
+
+                if (Swsy){++interstcounter;}
+
+                if (Wrey){++interstcounter;}
+
+                if (Fesy){++interstcounter;}
+
+                if (Housy){++interstcounter;}
+
+                if (Nighty){++interstcounter;}
+
+                if (Gacty){++interstcounter;}
+
+                if (Gadvy){++interstcounter;}
+
+                if (GFpy){++interstcounter;}
+
+                if (Gindy){++interstcounter;}
+
+                if (GMMy) {++interstcounter;}
+
+                if (GpaFy){++interstcounter;}
+
+                if (GRPy){++interstcounter;}
+
+                if (Gsiy){++interstcounter;}
+
+                if (Gspy){++interstcounter;}
+
+                if (GStry){++interstcounter;}
+
+                if (MCy){++interstcounter;}
+
+                if (MDRy){++interstcounter;}
+
+                if (MEdy){++interstcounter;}
+
+                if (MJzy){++interstcounter;}
+
+                if (MRpy){++interstcounter;}
+
+                if (Mroy){++interstcounter;}
+
+                if (MRNy){++interstcounter;}
+
+                if (MScry){++interstcounter;}
+
+                if (MoActy){++interstcounter;}
+
+                if (MOAniy){++interstcounter;}
+
+                if (MOComy){++interstcounter;}
+
+                if (MODoy){++interstcounter;}
+
+                if (MOFy){++interstcounter;}
+
+                if (MOHOry){++interstcounter;}
+
+                if (MoMusy){++interstcounter;}
+
+                if (MOSiy){++interstcounter;}
+
+                if (MOSpoy){++interstcounter;}
+
+                if (MOTHrily){++interstcounter;}
+
+                if (MoWay){++interstcounter;}
+
+                if (TActy){++interstcounter;}
+
+                if (TADvy){++interstcounter;}
+
+                if (TAniy){++interstcounter;}
+
+                if (TBioy){++interstcounter;}
+
+                if (TCom){++interstcounter;}
+
+                if (TCriy){++interstcounter;}
+
+                if (TDoy){++interstcounter;}
+
+                if (TDray){++interstcounter;}
+
+                if (Tfay){++interstcounter;}
+
+                if (TGamey){++interstcounter;}
+
+                if (THisy){++interstcounter;}
+
+                if (Thory){++interstcounter;}
+
+                if (TMysy){++interstcounter;}
+
+                if (Trey){++interstcounter;}
+
+                if (Tsiy){++interstcounter;}
+
+                if (TSpoy){++interstcounter;}
+
+                if (TTalky){++interstcounter;}
+
+                if (Tway){++interstcounter;}
+
+                if (Dacty){++interstcounter;}
+
+                if (Dcosy){++interstcounter;}
+
+                if (Dlay){++interstcounter;}
+
+                if (CActy){++interstcounter;}
+
+                if (CCry){++interstcounter;}
+
+                if (Ccinsy){++interstcounter;}
+
+                if (Ccomy){++interstcounter;}
+
+                if (CGuny){++interstcounter;}
+
+                if (Ctrcy){++interstcounter;}
+
+
+                if (interstcounter >= 10) {
+                    mRootRef.child(USerid).child("Interests").child("cactionfigures").setValue(CActy);
+                    mRootRef.child(USerid).child("Interests").child("ccars").setValue(CCry);
+                    mRootRef.child(USerid).child("Interests").child("ccoins").setValue(Ccinsy);
+                    mRootRef.child(USerid).child("Interests").child("ccomics").setValue(Ccomy);
+                    mRootRef.child(USerid).child("Interests").child("cguns").setValue(CGuny);
+                    mRootRef.child(USerid).child("Interests").child("ctrucks").setValue(Ctrcy);
+                    mRootRef.child(USerid).child("Interests").child("dacting").setValue(Dacty);
+                    mRootRef.child(USerid).child("Interests").child("dcosplay").setValue(Dcosy);
+                    mRootRef.child(USerid).child("Interests").child("dlarping").setValue(Dlay);
+                    mRootRef.child(USerid).child("Interests").child("gaction").setValue(Gacty);
+                    mRootRef.child(USerid).child("Interests").child("gadventure").setValue(Gadvy);
+                    mRootRef.child(USerid).child("Interests").child("gfps").setValue(GFpy);
+                    mRootRef.child(USerid).child("Interests").child("gindies").setValue(Gindy);
+                    mRootRef.child(USerid).child("Interests").child("gmmo").setValue(GMMy);
+                    mRootRef.child(USerid).child("Interests").child("gpartyfamily").setValue(GpaFy);
+                    mRootRef.child(USerid).child("Interests").child("grpg").setValue(GRPy);
+                    mRootRef.child(USerid).child("Interests").child("gsimulation").setValue(Gsiy);
+                    mRootRef.child(USerid).child("Interests").child("gsports").setValue(Gspy);
+                    mRootRef.child(USerid).child("Interests").child("gstragy").setValue(GStry);
+                    mRootRef.child(USerid).child("Interests").child("mcountry").setValue(MCy);
+                    mRootRef.child(USerid).child("Interests").child("mdrillrap").setValue(MDRy);
+                    mRootRef.child(USerid).child("Interests").child("medm").setValue(MEdy);
+                    mRootRef.child(USerid).child("Interests").child("mjazz").setValue(MJzy);
+                    mRootRef.child(USerid).child("Interests").child("moAction").setValue(MoActy);
+                    mRootRef.child(USerid).child("Interests").child("moAnimation").setValue(MOAniy);
+                    mRootRef.child(USerid).child("Interests").child("moComdey").setValue(MOComy);
+                    mRootRef.child(USerid).child("Interests").child("moDocumentary").setValue(MODoy);
+                    mRootRef.child(USerid).child("Interests").child("moFamily").setValue(MOFy);
+                    mRootRef.child(USerid).child("Interests").child("moHorror").setValue(MOHOry);
+                    mRootRef.child(USerid).child("Interests").child("moMusical").setValue(MoMusy);
+                    mRootRef.child(USerid).child("Interests").child("moSifi").setValue(MOSiy);
+                    mRootRef.child(USerid).child("Interests").child("moSports").setValue(MOSpoy);
+                    mRootRef.child(USerid).child("Interests").child("moThriller").setValue(MOTHrily);
+                    mRootRef.child(USerid).child("Interests").child("moWar").setValue(MoWay);
+                    mRootRef.child(USerid).child("Interests").child("mrap").setValue(MRpy);
+                    mRootRef.child(USerid).child("Interests").child("mrnb").setValue(MRNy);
+                    mRootRef.child(USerid).child("Interests").child("mrock").setValue(Mroy);
+                    mRootRef.child(USerid).child("Interests").child("mscremo").setValue(MScry);
+                    mRootRef.child(USerid).child("Interests").child("pfestivles").setValue(Fesy);
+                    mRootRef.child(USerid).child("Interests").child("phouseParites").setValue(Housy);
+                    mRootRef.child(USerid).child("Interests").child("pnightClubs").setValue(Nighty);
+                    mRootRef.child(USerid).child("Interests").child("sarchery").setValue(SArcy);
+                    mRootRef.child(USerid).child("Interests").child("sbaseball").setValue(SBasy);
+                    mRootRef.child(USerid).child("Interests").child("sbasketball").setValue(SbKy);
+                    mRootRef.child(USerid).child("Interests").child("scycling").setValue(Cycy);
+                    mRootRef.child(USerid).child("Interests").child("sfishing").setValue(Fish);
+                    mRootRef.child(USerid).child("Interests").child("sfootball").setValue(Footy);
+                    mRootRef.child(USerid).child("Interests").child("sfrisbe").setValue(Frisy);
+                    mRootRef.child(USerid).child("Interests").child("sgolf").setValue(SGofy);
+                    mRootRef.child(USerid).child("Interests").child("shoccey").setValue(Shockeyy);
+                    mRootRef.child(USerid).child("Interests").child("shunting").setValue(SHunty);
+                    mRootRef.child(USerid).child("Interests").child("sskateboarding").setValue(SSKatey);
+                    mRootRef.child(USerid).child("Interests").child("ssnowBoarding").setValue(SSnowy);
+                    mRootRef.child(USerid).child("Interests").child("swaterSports").setValue(Swsy);
+                    mRootRef.child(USerid).child("Interests").child("swrestling").setValue(Wrey);
+                    mRootRef.child(USerid).child("Interests").child("taction").setValue(TActy);
+                    mRootRef.child(USerid).child("Interests").child("tadventure").setValue(TADvy);
+                    mRootRef.child(USerid).child("Interests").child("tanimation").setValue(TAniy);
+                    mRootRef.child(USerid).child("Interests").child("tbiography").setValue(TBioy);
+                    mRootRef.child(USerid).child("Interests").child("tcomedy").setValue(TCom);
+                    mRootRef.child(USerid).child("Interests").child("tcrime").setValue(TCriy);
+                    mRootRef.child(USerid).child("Interests").child("tdocoumentary").setValue(TDoy);
+                    mRootRef.child(USerid).child("Interests").child("tdrama").setValue(TDray);
+                    mRootRef.child(USerid).child("Interests").child("tfamily").setValue(Tfay);
+                    mRootRef.child(USerid).child("Interests").child("tgameShows").setValue(TGamey);
+                    mRootRef.child(USerid).child("Interests").child("thistory").setValue(THisy);
+                    mRootRef.child(USerid).child("Interests").child("thorror").setValue(Thory);
+                    mRootRef.child(USerid).child("Interests").child("tmystery").setValue(TMysy);
+                    mRootRef.child(USerid).child("Interests").child("treality").setValue(Trey);
+                    mRootRef.child(USerid).child("Interests").child("tsitcom").setValue(Tsiy);
+                    mRootRef.child(USerid).child("Interests").child("tsports").setValue(TSpoy);
+                    mRootRef.child(USerid).child("Interests").child("ttalkShows").setValue(TTalky);
+                    mRootRef.child(USerid).child("Interests").child("twar").setValue(Tway);
+
+                    Intent changepage = new Intent(IntrestSelection.this, MenuPage.class);
+                    startActivity(changepage);
+                    Toast.makeText(IntrestSelection.this, "Interest Saved.",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(IntrestSelection.this, "Select Atleast 10 Interests", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

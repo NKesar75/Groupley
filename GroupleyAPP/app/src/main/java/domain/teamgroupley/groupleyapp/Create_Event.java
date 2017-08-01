@@ -59,16 +59,16 @@ public class Create_Event extends AppCompatActivity
     Button Create;
 
 
-    private List<String> fifty = new ArrayList<String>();
-
-
-
     private static final String TAG = "Create_Event";
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
-    String userID;
+
+    FirebaseUser user = mAuth.getCurrentUser();
+    String userID = user.getUid();
+
+    private List<String> Catgorylist = new ArrayList<>();
 
     long EVENTCOUNT;
     long CreatedEVENTCOUNT;
@@ -94,11 +94,6 @@ public class Create_Event extends AppCompatActivity
                 String MAxppl = Max.getText().toString();
                 if (!tie.equals("") && !Die.equals("") && !Cator.equals("") && !Day.equals("") && !Tim.equals("")
                         && !ADd.equals("") && !MAxppl.equals("")) {
-                    CreateEventStatsinfo Passing = new CreateEventStatsinfo(tie, Die, Cator, Day, Tim, ADd, MAxppl);
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    userID = user.getUid();
-
-
 
                     myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Title").setValue(tie);
                     myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Description").setValue(Die);
@@ -107,6 +102,7 @@ public class Create_Event extends AppCompatActivity
                     myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Time").setValue(Tim);
                     myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Address").setValue(ADd);
                     myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Max_People").setValue(MAxppl);
+                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
 
                     myRef.child("Events").child(Event+EVENTCOUNT).child("Title").setValue(tie);
                     myRef.child("Events").child(Event+EVENTCOUNT).child("Description").setValue(Die);
@@ -115,6 +111,8 @@ public class Create_Event extends AppCompatActivity
                     myRef.child("Events").child(Event+EVENTCOUNT).child("Time").setValue(Tim);
                     myRef.child("Events").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
                     myRef.child("Events").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                    myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
 
                     myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Title").setValue(tie);
                     myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Description").setValue(Die);
@@ -123,6 +121,7 @@ public class Create_Event extends AppCompatActivity
                     myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Time").setValue(Tim);
                     myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Address").setValue(ADd);
                     myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
 
 
                     Intent changepage = new Intent(Create_Event.this, MenuPage.class);
@@ -139,6 +138,7 @@ public class Create_Event extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create__event);
+
         Cat = (Spinner) findViewById(R.id.Category_SPINNER);
         Title = (EditText) findViewById(R.id.Title_txt);
         Disc = (EditText) findViewById(R.id.des_txt);
@@ -228,6 +228,9 @@ public class Create_Event extends AppCompatActivity
             }
         };
 
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, Catgorylist);
+        Cat.setAdapter(myAdapter);
+
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -235,10 +238,7 @@ public class Create_Event extends AppCompatActivity
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
 
-                    // shoData(dataSnapshot);
-
-                FirebaseUser user = mAuth.getCurrentUser();
-                userID = user.getUid();
+                 shoData(dataSnapshot);
 
                 EVENTCOUNT = dataSnapshot.child("Events").getChildrenCount() + 1;
                 CreatedEVENTCOUNT = dataSnapshot.child(userID).child("CreatedEvents").getChildrenCount() + 1;
@@ -251,11 +251,6 @@ public class Create_Event extends AppCompatActivity
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Create_Event.this,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Category));
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Cat.setAdapter(myAdapter);
 
         SendEventTodatabase();
 
@@ -310,6 +305,296 @@ public class Create_Event extends AppCompatActivity
             case R.id.nav_your_event:
                 return true;
         }
+
+        if (SBasy){
+            Catgorylist.add("Baseball");
+        }
+
+        if (SbKy){
+            Catgorylist.add("Basketball");
+        }
+
+        if (Cycy){
+            Catgorylist.add("Bicycle");
+        }
+
+        if (Fish){
+            Catgorylist.add("Fishing");
+        }
+
+        if (Footy){
+            Catgorylist.add("Football");
+        }
+
+        if (Frisy){
+            Catgorylist.add("Frisbe");
+        }
+
+        if (SGofy){
+            Catgorylist.add("Golf");
+        }
+
+        if (Shockeyy){
+            Catgorylist.add("Hockey");
+        }
+
+        if (SHunty){
+            Catgorylist.add("Hunting");
+        }
+
+        if (SSKatey){
+            Catgorylist.add("Skateboarding");
+        }
+
+        if (SSnowy){
+            Catgorylist.add("Snowboarding");
+        }
+
+        if (Swsy){
+            Catgorylist.add("Water Sports");
+        }
+
+        if (Wrey){
+            Catgorylist.add("Wrestling");
+        }
+
+        if (Fesy){
+            Catgorylist.add("Festival");
+        }
+
+        if (Housy){
+            Catgorylist.add("House Party");
+        }
+
+        if (Nighty){
+            Catgorylist.add("Night Club");
+        }
+
+        if (Gacty){
+            Catgorylist.add("Action Game");
+        }
+
+        if (Gadvy){
+            Catgorylist.add("Adventure Game");
+        }
+
+        if (GFpy){
+            Catgorylist.add("FPS Game");
+        }
+
+        if (Gindy){
+            Catgorylist.add("Indie Game");
+        }
+
+        if (GMMy){
+            Catgorylist.add("MMO Game");
+        }
+
+        if (GpaFy){
+            Catgorylist.add("Party Game");
+        }
+
+        if (GRPy){
+            Catgorylist.add("RPG Game");
+        }
+
+        if (Gsiy){
+            Catgorylist.add("Simulation Game");
+        }
+
+        if (Gspy){
+            Catgorylist.add("Sports Game");
+        }
+
+        if (GStry){
+            Catgorylist.add("Stragey Game");
+        }
+
+        if (MCy){
+            Catgorylist.add("Country Music");
+        }
+
+        if (MDRy){
+            Catgorylist.add("Drill Rap");
+        }
+
+        if (MEdy){
+            Catgorylist.add("EDM");
+        }
+
+        if (MJzy){
+            Catgorylist.add("Jazz");
+        }
+
+        if (MRpy){
+            Catgorylist.add("Rap");
+        }
+
+        if (Mroy){
+            Catgorylist.add("Rock");
+        }
+
+        if (MRNy){
+            Catgorylist.add("RNB");
+        }
+
+        if (MScry){
+            Catgorylist.add("Scremo");
+        }
+
+        if (MoActy){
+            Catgorylist.add("Action Movie");
+        }
+
+        if (MOAniy){
+            Catgorylist.add("Animation Movie");
+        }
+
+        if (MOComy){
+            Catgorylist.add("Comdey Movie");
+        }
+
+        if (MODoy){
+            Catgorylist.add("Documentary Movie");
+        }
+
+        if (MOFy){
+            Catgorylist.add("Family Movie");
+        }
+
+        if (MOHOry){
+            Catgorylist.add("Horror Movie");
+        }
+
+        if (MoMusy){
+            Catgorylist.add("Musical Movie");
+        }
+
+        if (MOSiy){
+            Catgorylist.add("Sifi Movie");
+        }
+
+        if (MOSpoy){
+            Catgorylist.add("Sports Movie");
+        }
+
+        if (MOTHrily){
+            Catgorylist.add("Thriller Movie");
+        }
+
+        if (MoWay){
+            Catgorylist.add("War Movie");
+        }
+
+        if (TActy){
+            Catgorylist.add("Action Shows");
+        }
+
+        if (TADvy){
+            Catgorylist.add("Adventure Shows");
+        }
+
+        if (TAniy){
+            Catgorylist.add("Animation Shows");
+        }
+
+        if (TBioy){
+            Catgorylist.add("Biography Shows");
+        }
+
+        if (TCom){
+            Catgorylist.add("Comedy Shows");
+        }
+
+        if (TCriy){
+            Catgorylist.add("Crime Shows");
+        }
+
+        if (TDoy){
+            Catgorylist.add("Documentary Shows");
+        }
+
+        if (TDray){
+            Catgorylist.add("Drama Shows");
+        }
+
+        if (Tfay){
+            Catgorylist.add("Family Shows");
+        }
+
+        if (TGamey){
+            Catgorylist.add("Game Shows");
+        }
+
+        if (THisy){
+            Catgorylist.add("History Shows");
+        }
+
+        if (Thory){
+            Catgorylist.add("Horror Shows");
+        }
+
+        if (TMysy){
+            Catgorylist.add("Mystery Shows");
+        }
+
+        if (Trey){
+            Catgorylist.add("Reality Shows");
+        }
+
+        if (Tsiy){
+            Catgorylist.add("Sifi Shows");
+        }
+
+        if (TSpoy){
+            Catgorylist.add("Sports Shows");
+        }
+
+        if (TTalky){
+            Catgorylist.add("Talk Shows");
+        }
+
+        if (Tway){
+            Catgorylist.add("War Shows");
+        }
+
+        if (Dacty){
+            Catgorylist.add("Acting");
+        }
+
+        if (Dcosy){
+            Catgorylist.add("Cosplay");
+        }
+
+        if (Dlay){
+            Catgorylist.add("Larping");
+        }
+
+        if (CActy){
+            Catgorylist.add("Action Figures");
+        }
+
+        if (CCry){
+            Catgorylist.add("Cars");
+        }
+
+        if (Ccinsy){
+            Catgorylist.add("Coins");
+        }
+
+        if (Ccomy){
+            Catgorylist.add("Comics");
+        }
+
+        if (CGuny){
+            Catgorylist.add("Guns");
+        }
+
+        if (Ctrcy){
+            Catgorylist.add("Trucks");
+        }
+    }
+}
         if(toggle.onOptionsItemSelected(item))
         {
             return true;

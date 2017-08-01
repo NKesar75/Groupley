@@ -46,7 +46,7 @@ public class CreatedEventList extends AppCompatActivity
     String Userid = user.getUid();
     public String data;
 
-    private ArrayList<String> cmarr = new ArrayList();
+
     public static int CreateEventTitle;
 
     private ViewStub stubGrid;

@@ -51,7 +51,8 @@ public class Update_Create_event extends AppCompatActivity {
     FirebaseUser user = mAuth.getCurrentUser();
     String USerid = user.getUid();
 
-    int EVENTCOUNT = CreatedEventList.CreateEventTitle;
+    long EVENTCOUNT = CreatedEventList.CreateEventTitle;
+    long updatecount;
     String Event = "Event";
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
@@ -62,6 +63,7 @@ public class Update_Create_event extends AppCompatActivity {
     DatabaseReference mTime = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Time");
     DatabaseReference mAddress = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Address");
     DatabaseReference mMaxPpl = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Max_People");
+    DatabaseReference mNumber = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("EVENTNUMBER");
 
     private DatePickerDialog.OnDateSetListener mDateSetListner;
 
@@ -84,17 +86,20 @@ public class Update_Create_event extends AppCompatActivity {
                         && !ADd.equals("") && !MAxppl.equals("")){
 
                     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+
+                    mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("EVENTNUMBER");
+
                     mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Description").setValue(Die);
                     mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Date").setValue(Day);
                     mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Time").setValue(Tim);
                     mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
                     mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
 
-                    mRootRef.child("Events").child(Event+EVENTCOUNT).child("Description").setValue(Die);
-                    mRootRef.child("Events").child(Event+EVENTCOUNT).child("Date").setValue(Day);
-                    mRootRef.child("Events").child(Event+EVENTCOUNT).child("Time").setValue(Tim);
-                    mRootRef.child("Events").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
-                    mRootRef.child("Events").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                    mRootRef.child("Events").child(Event+updatecount).child("Description").setValue(Die);
+                    mRootRef.child("Events").child(Event+updatecount).child("Date").setValue(Day);
+                    mRootRef.child("Events").child(Event+updatecount).child("Time").setValue(Tim);
+                    mRootRef.child("Events").child(Event+updatecount).child("Address").setValue(ADd);
+                    mRootRef.child("Events").child(Event+updatecount).child("Max_People").setValue(MAxppl);
 
                     Intent changepage = new Intent(Update_Create_event.this, MenuPage.class);
                     startActivity(changepage);
@@ -274,6 +279,18 @@ public class Update_Create_event extends AppCompatActivity {
             {
                 String temp = dataSnapshot.getValue(String.class);
                 Time.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mNumber.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                updatecount = dataSnapshot.getValue(long.class);
             }
 
             @Override

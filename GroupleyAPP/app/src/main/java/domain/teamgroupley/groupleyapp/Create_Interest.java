@@ -409,7 +409,7 @@ public class Create_Interest extends AppCompatActivity {
                     myRef.child(userID).child("Interests").child("twar").setValue(Tway);
 
 
-                    Intent changepage = new Intent(Create_Interest.this, MenuPage.class);
+                    Intent changepage = new Intent(Create_Interest.this, Home.class);
                     startActivity(changepage);
                     Toast.makeText(Create_Interest.this, "Account Created.", Toast.LENGTH_SHORT).show();
                 }

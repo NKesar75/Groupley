@@ -3,6 +3,7 @@ package domain.teamgroupley.groupleyapp;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
@@ -10,9 +11,14 @@ import android.os.Build;
 import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,8 +45,10 @@ import java.util.Date;
 import java.util.List;
 
 import static android.R.attr.data;
+import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 
-public class Create_Event extends AppCompatActivity {
+public class Create_Event extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     EditText Title;
     EditText Disc;
@@ -70,6 +78,9 @@ public class Create_Event extends AppCompatActivity {
 
     private DatePickerDialog.OnDateSetListener mDateSetListner;
 
+    private DrawerLayout draw;
+    private ActionBarDrawerToggle toggle;
+
     public void SendEventTodatabase() {
         Create = (Button) findViewById(R.id.Create_event_btn);
         Create.setOnClickListener(new View.OnClickListener() {
@@ -85,32 +96,32 @@ public class Create_Event extends AppCompatActivity {
                 if (!tie.equals("") && !Die.equals("") && !Cator.equals("") && !Day.equals("") && !Tim.equals("")
                         && !ADd.equals("") && !MAxppl.equals("")) {
 
-                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Title").setValue(tie);
-                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Description").setValue(Die);
-                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Category").setValue(Cator);
-                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Date").setValue(Day);
-                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Time").setValue(Tim);
-                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Address").setValue(ADd);
-                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Max_People").setValue(MAxppl);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Title").setValue(tie);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Description").setValue(Die);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Category").setValue(Cator);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Date").setValue(Day);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Time").setValue(Tim);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Address").setValue(ADd);
+                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Max_People").setValue(MAxppl);
                     myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
 
-                    myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
-                    myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
-                    myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
-                    myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
-                    myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
-                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").setValue(ADd);
-                    myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Title").setValue(tie);
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Description").setValue(Die);
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Category").setValue(Cator);
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Date").setValue(Day);
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Time").setValue(Tim);
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
+                    myRef.child("Events").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
                     myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
 
 
-                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Title").setValue(tie);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Description").setValue(Die);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Category").setValue(Cator);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Date").setValue(Day);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Time").setValue(Tim);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Address").setValue(ADd);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Title").setValue(tie);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Description").setValue(Die);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Category").setValue(Cator);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Date").setValue(Day);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Time").setValue(Tim);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Address").setValue(ADd);
+                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
                     myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
 
 
@@ -252,6 +263,16 @@ public class Create_Event extends AppCompatActivity {
 
         SendEventTodatabase();
 
+        draw = (DrawerLayout)findViewById(R.id.activity_Create_Event);
+        toggle = new ActionBarDrawerToggle(this,draw,R.string.open,R.string.close);
+
+        draw.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NavigationView navigation = (NavigationView)findViewById(R.id.nav_view);
+        navigation.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -275,87 +296,23 @@ public class Create_Event extends AppCompatActivity {
         }
     };
 
-    private void shoData(DataSnapshot dataSnapshot) {
-
-
-
-            boolean SArcy     = dataSnapshot.child(userID).child("Interests").child("sarchery").getValue(boolean.class).booleanValue();
-            boolean SBasy     = dataSnapshot.child(userID).child("Interests").child("sbaseball").getValue(boolean.class).booleanValue();
-            boolean SbKy      = dataSnapshot.child(userID).child("Interests").child("sbasketball").getValue(boolean.class).booleanValue();
-            boolean Cycy      = dataSnapshot.child(userID).child("Interests").child("scycling").getValue(boolean.class).booleanValue();
-            boolean Fish      = dataSnapshot.child(userID).child("Interests").child("sfishing").getValue(boolean.class).booleanValue();
-            boolean Footy     = dataSnapshot.child(userID).child("Interests").child("sfootball").getValue(boolean.class).booleanValue();
-            boolean Frisy     = dataSnapshot.child(userID).child("Interests").child("sfrisbe").getValue(boolean.class).booleanValue();
-            boolean SGofy     = dataSnapshot.child(userID).child("Interests").child("sgolf").getValue(boolean.class).booleanValue();
-            boolean Shockeyy  = dataSnapshot.child(userID).child("Interests").child("shoccey").getValue(boolean.class).booleanValue();
-            boolean SHunty    = dataSnapshot.child(userID).child("Interests").child("shunting").getValue(boolean.class).booleanValue();
-            boolean SSKatey   = dataSnapshot.child(userID).child("Interests").child("sskateboarding").getValue(boolean.class).booleanValue();
-            boolean SSnowy    = dataSnapshot.child(userID).child("Interests").child("ssnowBoarding").getValue(boolean.class).booleanValue();
-            boolean Swsy      = dataSnapshot.child(userID).child("Interests").child("swaterSports").getValue(boolean.class).booleanValue();
-            boolean Wrey      = dataSnapshot.child(userID).child("Interests").child("swrestling").getValue(boolean.class).booleanValue();
-            boolean Fesy      = dataSnapshot.child(userID).child("Interests").child("pfestivles").getValue(boolean.class).booleanValue();
-            boolean Housy     = dataSnapshot.child(userID).child("Interests").child("phouseParites").getValue(boolean.class).booleanValue();
-            boolean Nighty    = dataSnapshot.child(userID).child("Interests").child("pnightClubs").getValue(boolean.class).booleanValue();
-            boolean Gacty     = dataSnapshot.child(userID).child("Interests").child("gaction").getValue(boolean.class).booleanValue();
-            boolean Gadvy     = dataSnapshot.child(userID).child("Interests").child("gadventure").getValue(boolean.class).booleanValue();
-            boolean GFpy      = dataSnapshot.child(userID).child("Interests").child("gfps").getValue(boolean.class).booleanValue();
-            boolean Gindy     = dataSnapshot.child(userID).child("Interests").child("gindies").getValue(boolean.class).booleanValue();
-            boolean GMMy      = dataSnapshot.child(userID).child("Interests").child("gmmo").getValue(boolean.class).booleanValue();
-            boolean GpaFy     = dataSnapshot.child(userID).child("Interests").child("gpartyfamily").getValue(boolean.class).booleanValue();
-            boolean GRPy      = dataSnapshot.child(userID).child("Interests").child("grpg").getValue(boolean.class).booleanValue();
-            boolean Gsiy      = dataSnapshot.child(userID).child("Interests").child("gsimulation").getValue(boolean.class).booleanValue();
-            boolean Gspy      = dataSnapshot.child(userID).child("Interests").child("gsports").getValue(boolean.class).booleanValue();
-            boolean GStry     = dataSnapshot.child(userID).child("Interests").child("gstragy").getValue(boolean.class).booleanValue();
-            boolean MCy       = dataSnapshot.child(userID).child("Interests").child("mcountry").getValue(boolean.class).booleanValue();
-            boolean MDRy      = dataSnapshot.child(userID).child("Interests").child("mdrillrap").getValue(boolean.class).booleanValue();
-            boolean MEdy      = dataSnapshot.child(userID).child("Interests").child("medm").getValue(boolean.class).booleanValue();
-            boolean MJzy      = dataSnapshot.child(userID).child("Interests").child("mjazz").getValue(boolean.class).booleanValue();
-            boolean MRpy      = dataSnapshot.child(userID).child("Interests").child("mrap").getValue(boolean.class).booleanValue();
-            boolean Mroy      = dataSnapshot.child(userID).child("Interests").child("mrock").getValue(boolean.class).booleanValue();
-            boolean MRNy      = dataSnapshot.child(userID).child("Interests").child("mrnb").getValue(boolean.class).booleanValue();
-            boolean MScry     = dataSnapshot.child(userID).child("Interests").child("mscremo").getValue(boolean.class).booleanValue();
-            boolean MoActy    = dataSnapshot.child(userID).child("Interests").child("moAction").getValue(boolean.class).booleanValue();
-            boolean MOAniy    = dataSnapshot.child(userID).child("Interests").child("moAnimation").getValue(boolean.class).booleanValue();
-            boolean MOComy    = dataSnapshot.child(userID).child("Interests").child("moComdey").getValue(boolean.class).booleanValue();
-            boolean MODoy     = dataSnapshot.child(userID).child("Interests").child("moDocumentary").getValue(boolean.class).booleanValue();
-            boolean MOFy      = dataSnapshot.child(userID).child("Interests").child("moFamily").getValue(boolean.class).booleanValue();
-            boolean MOHOry    = dataSnapshot.child(userID).child("Interests").child("moHorror").getValue(boolean.class).booleanValue();
-            boolean MoMusy    = dataSnapshot.child(userID).child("Interests").child("moMusical").getValue(boolean.class).booleanValue();
-            boolean MOSiy     = dataSnapshot.child(userID).child("Interests").child("moSifi").getValue(boolean.class).booleanValue();
-            boolean MOSpoy    = dataSnapshot.child(userID).child("Interests").child("moSports").getValue(boolean.class).booleanValue();
-            boolean MOTHrily  = dataSnapshot.child(userID).child("Interests").child("moThriller").getValue(boolean.class).booleanValue();
-            boolean MoWay     = dataSnapshot.child(userID).child("Interests").child("moWar").getValue(boolean.class).booleanValue();
-            boolean TActy     = dataSnapshot.child(userID).child("Interests").child("taction").getValue(boolean.class).booleanValue();
-            boolean TADvy     = dataSnapshot.child(userID).child("Interests").child("tadventure").getValue(boolean.class).booleanValue();
-            boolean TAniy     = dataSnapshot.child(userID).child("Interests").child("tanimation").getValue(boolean.class).booleanValue();
-            boolean TBioy     = dataSnapshot.child(userID).child("Interests").child("tbiography").getValue(boolean.class).booleanValue();
-            boolean TCom      = dataSnapshot.child(userID).child("Interests").child("tcomedy").getValue(boolean.class).booleanValue();
-            boolean TCriy     = dataSnapshot.child(userID).child("Interests").child("tcrime").getValue(boolean.class).booleanValue();
-            boolean TDoy      = dataSnapshot.child(userID).child("Interests").child("tdocoumentary").getValue(boolean.class).booleanValue();
-            boolean TDray     = dataSnapshot.child(userID).child("Interests").child("tdrama").getValue(boolean.class).booleanValue();
-            boolean Tfay      = dataSnapshot.child(userID).child("Interests").child("tfamily").getValue(boolean.class).booleanValue();
-            boolean TGamey    = dataSnapshot.child(userID).child("Interests").child("tgameShows").getValue(boolean.class).booleanValue();
-            boolean THisy     = dataSnapshot.child(userID).child("Interests").child("thistory").getValue(boolean.class).booleanValue();
-            boolean Thory     = dataSnapshot.child(userID).child("Interests").child("thorror").getValue(boolean.class).booleanValue();
-            boolean TMysy     = dataSnapshot.child(userID).child("Interests").child("tmystery").getValue(boolean.class).booleanValue();
-            boolean Trey      = dataSnapshot.child(userID).child("Interests").child("treality").getValue(boolean.class).booleanValue();
-            boolean Tsiy      = dataSnapshot.child(userID).child("Interests").child("tsitcom").getValue(boolean.class).booleanValue();
-            boolean TSpoy     = dataSnapshot.child(userID).child("Interests").child("tsports").getValue(boolean.class).booleanValue();
-            boolean TTalky    = dataSnapshot.child(userID).child("Interests").child("ttalkShows").getValue(boolean.class).booleanValue();
-            boolean Tway      = dataSnapshot.child(userID).child("Interests").child("twar").getValue(boolean.class).booleanValue();
-            boolean Dacty     = dataSnapshot.child(userID).child("Interests").child("dacting").getValue(boolean.class).booleanValue();
-            boolean Dcosy     = dataSnapshot.child(userID).child("Interests").child("dcosplay").getValue(boolean.class).booleanValue();
-            boolean Dlay      = dataSnapshot.child(userID).child("Interests").child("dlarping").getValue(boolean.class).booleanValue();
-            boolean CActy     = dataSnapshot.child(userID).child("Interests").child("cactionfigures").getValue(boolean.class).booleanValue();
-            boolean CCry      = dataSnapshot.child(userID).child("Interests").child("ccars").getValue(boolean.class).booleanValue();
-            boolean Ccinsy    = dataSnapshot.child(userID).child("Interests").child("ccoins").getValue(boolean.class).booleanValue();
-            boolean Ccomy     = dataSnapshot.child(userID).child("Interests").child("ccomics").getValue(boolean.class).booleanValue();
-            boolean CGuny     = dataSnapshot.child(userID).child("Interests").child("cguns").getValue(boolean.class).booleanValue();
-            boolean Ctrcy     = dataSnapshot.child(userID).child("Interests").child("ctrucks").getValue(boolean.class).booleanValue();
-
-
-        if (SArcy){
-            Catgorylist.add("Archery");
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.nav_home:
+                return true;
+            case R.id.nav_Events:
+                return true;
+            case R.id.nav_create_event:
+                return true;
+            case R.id.nav_profile:
+                return true;
+            case R.id.nav_settings:
+                return true;
+            case R.id.nav_your_event:
+                return true;
         }
 
         if (SBasy){
@@ -645,5 +602,59 @@ public class Create_Event extends AppCompatActivity {
         if (Ctrcy){
             Catgorylist.add("Trucks");
         }
+    }
+}
+        if(toggle.onOptionsItemSelected(item))
+        {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.activity_Create_Event);
+        if(drawerLayout.isDrawerOpen((GravityCompat.START)))
+            drawerLayout.closeDrawer(GravityCompat.START);
+        else
+            super.onBackPressed();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item)
+    {
+        int id = item.getItemId();
+
+        if(id==R.id.nav_home)
+        {
+            startActivity(new Intent(Create_Event.this,Home.class));
+        }
+        else if(id==R.id.nav_Events)
+        {
+            startActivity(new Intent(Create_Event.this,Registered_Events.class));
+        }
+        else if(id == R.id.nav_create_event)
+        {
+            DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.activity_Create_Event);
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+
+        else if(id== nav_profile)
+        {
+            startActivity(new Intent(Create_Event.this,Profile.class));
+
+        }
+        else if(id==R.id.nav_settings)
+        {
+            startActivity(new Intent(Create_Event.this,Settings.class));
+        }
+        else if(id==R.id.nav_your_event)
+        {
+            startActivity(new Intent(Create_Event.this,CreatedEventList.class));
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.activity_Create_Event);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

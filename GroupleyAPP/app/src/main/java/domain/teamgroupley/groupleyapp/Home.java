@@ -200,7 +200,6 @@ public class Home extends AppCompatActivity
 
                 break;
         }
-        int id = item.getItemId();
         switch (item.getItemId())
         {
             case R.id.nav_home:
@@ -212,6 +211,8 @@ public class Home extends AppCompatActivity
             case R.id.nav_profile:
                 return true;
             case R.id.nav_settings:
+                return true;
+            case R.id.nav_your_event:
                 return true;
         }
         if(toggle.onOptionsItemSelected(item))
@@ -290,6 +291,10 @@ public void onStart() {
         else if(id==R.id.nav_settings)
         {
             startActivity(new Intent(Home.this,Settings.class));
+        }
+        else if(id==R.id.nav_your_event)
+        {
+            startActivity(new Intent(Home.this,CreatedEventList.class));
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.activity_home);
         drawer.closeDrawer(GravityCompat.START);

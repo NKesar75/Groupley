@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="domain.teamgroupley.groupleyapp.Registered_Events"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:id="@+id/activity_reg_events">
 
     <ViewStub
         android:layout_width="match_parent"

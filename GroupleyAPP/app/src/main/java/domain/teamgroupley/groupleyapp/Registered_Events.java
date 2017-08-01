@@ -193,6 +193,7 @@ public class Registered_Events extends AppCompatActivity {
             ++count;
             productList.add(new Product(tit,Dat,R.mipmap.ic_launcher_round));
         }
+
         setAdapters();
     }
 

@@ -102,7 +102,7 @@ public class Description extends AppCompatActivity {
                 myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Address").setValue(ADd);
                 myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Max_People").setValue(MAxppl);
 
-                startActivity(new Intent(Description.this,MenuPage.class));
+                startActivity(new Intent(Description.this,Home.class));
                 Toast.makeText(Description.this, "You Have Joined.", Toast.LENGTH_SHORT).show();
             }
         });

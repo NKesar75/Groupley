@@ -86,14 +86,14 @@ public class UpdateProfile extends AppCompatActivity {
                     mRootRef.child(userID).child("UserInfo").child("Lastname").setValue(Last);
                     mRootRef.child(userID).child("UserInfo").child("UserName").setValue(User);
 
-                    Intent changepage = new Intent(UpdateProfile.this, Create_Interest.class);
-                    startActivity(changepage);
+                    startActivity(new Intent(UpdateProfile.this,Profile.class));
+                    Toast.makeText(UpdateProfile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+
                 }
                 else{
                     Toast.makeText(UpdateProfile.this, "Missing some information", Toast.LENGTH_SHORT).show();
                 }
-                startActivity(new Intent(UpdateProfile.this,Profile.class));
-                Toast.makeText(UpdateProfile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+
             }
         });
     }

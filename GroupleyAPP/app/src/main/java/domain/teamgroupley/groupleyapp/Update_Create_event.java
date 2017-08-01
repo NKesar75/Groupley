@@ -101,7 +101,7 @@ public class Update_Create_event extends AppCompatActivity {
                     mRootRef.child("Events").child(Event+updatecount).child("Address").setValue(ADd);
                     mRootRef.child("Events").child(Event+updatecount).child("Max_People").setValue(MAxppl);
 
-                    Intent changepage = new Intent(Update_Create_event.this, MenuPage.class);
+                    Intent changepage = new Intent(Update_Create_event.this, Home.class);
                     startActivity(changepage);
                     Toast.makeText(Update_Create_event.this, "Event Has Been Updated", Toast.LENGTH_SHORT).show();
                 }

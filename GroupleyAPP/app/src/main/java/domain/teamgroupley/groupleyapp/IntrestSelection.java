@@ -495,7 +495,7 @@ public class IntrestSelection extends AppCompatActivity {
                     mRootRef.child(USerid).child("Interests").child("ttalkShows").setValue(TTalky);
                     mRootRef.child(USerid).child("Interests").child("twar").setValue(Tway);
 
-                    Intent changepage = new Intent(IntrestSelection.this, MenuPage.class);
+                    Intent changepage = new Intent(IntrestSelection.this, Profile.class);
                     startActivity(changepage);
                     Toast.makeText(IntrestSelection.this, "Interest Saved.",
                             Toast.LENGTH_SHORT).show();

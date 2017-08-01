@@ -188,7 +188,7 @@ public class Create_Interest extends AppCompatActivity {
                         MoMusy,MOSiy,MOSpoy,MOTHrily,MoWay,TActy, TADvy,TAniy,TBioy,TCom,TCriy,TDoy,TDray,Tfay,TGamey,THisy,Thory,TMysy,Trey,Tsiy,TSpoy,TTalky,Tway,Dacty,
                         Dcosy,Dlay,CActy,CCry,Ccinsy,Ccomy,CGuny,Ctrcy);
                 myRef.child(userID).child("Interests").setValue(Logedd);
-                Intent changepage = new Intent(Create_Interest.this, MenuPage.class);
+                Intent changepage = new Intent(Create_Interest.this, Home.class);
                 startActivity(changepage);
                 Toast.makeText(Create_Interest.this, "Account Created.", Toast.LENGTH_SHORT).show();
 

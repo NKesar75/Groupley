@@ -3,6 +3,7 @@ package domain.teamgroupley.groupleyapp;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
@@ -10,9 +11,14 @@ import android.os.Build;
 import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -38,8 +44,10 @@ import java.util.Date;
 import java.util.List;
 
 import static android.R.attr.data;
+import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 
-public class Create_Event extends AppCompatActivity {
+public class Create_Event extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     EditText Title;
     EditText Disc;
@@ -68,6 +76,9 @@ public class Create_Event extends AppCompatActivity {
     String Event = "Event";
 
     private DatePickerDialog.OnDateSetListener mDateSetListner;
+
+    private DrawerLayout draw;
+    private ActionBarDrawerToggle toggle;
 
     public void SendEventTodatabase() {
         Create = (Button) findViewById(R.id.Create_event_btn);
@@ -248,6 +259,15 @@ public class Create_Event extends AppCompatActivity {
 
         SendEventTodatabase();
 
+        draw = (DrawerLayout)findViewById(R.id.activity_Create_Event);
+        toggle = new ActionBarDrawerToggle(this,draw,R.string.open,R.string.close);
+
+        draw.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NavigationView navigation = (NavigationView)findViewById(R.id.nav_view);
+        navigation.setNavigationItemSelectedListener(this);
 
     }
 
@@ -272,347 +292,75 @@ public class Create_Event extends AppCompatActivity {
         }
     };
 
-//    private void shoData(DataSnapshot dataSnapshot) {
-//
-//        for (DataSnapshot ds : dataSnapshot.child(userID).child("Interests").getChildren()) {
-//            Intresetedloggedup intey = ds.getValue(Intresetedloggedup.class);
-//            if (intey.isCActionfigures()) {
-//                fifty.add("Action Figures");
-//            }
-//            if (intey.isCCars()) {
-//                fifty.add("Cars");
-//            }
-//
-//            if (intey.isCCoins())
-//            {
-//                fifty.add("Coins");
-//            }
-//
-//            if (intey.isCComics())
-//            {
-//                fifty.add("Comic Books");
-//            }
-//
-//            if (intey.isCGuns())
-//            {
-//                fifty.add("Guns");
-//            }
-//
-//            if (intey.isCTrucks())
-//            {
-//                fifty.add("Trucks");
-//            }
-//
-//            if (intey.isDActing())
-//            {
-//                fifty.add("Acting");
-//            }
-//
-//            if (intey.isDCosplay())
-//            {
-//                fifty.add("Cosplay");
-//            }
-//
-//            if (intey.isDLarping())
-//            {
-//                fifty.add("Larping");
-//            }
-//
-//            if (intey.isGAction())
-//            {
-//                fifty.add("Game Action");
-//            }
-//
-//            if (intey.isGAdventure())
-//            {
-//                fifty.add("Game Adventure");
-//            }
-//
-//            if (intey.isGFPS())
-//            {
-//                fifty.add("Game FPS");
-//            }
-//
-//            if (intey.isGIndies())
-//            {
-//                fifty.add("Game Indies");
-//            }
-//
-//            if (intey.isGMMO())
-//            {
-//                fifty.add("Game MMO");
-//            }
-//
-//            if (intey.isGPartyfamily())
-//            {
-//                fifty.add("Game Party/Fam");
-//            }
-//
-//            if (intey.isGRPG())
-//            {
-//                fifty.add("Game RPG");
-//            }
-//
-//            if (intey.isGSimulation())
-//            {
-//                fifty.add("Game Sim");
-//            }
-//
-//            if (intey.isGSports())
-//            {
-//                fifty.add("Game Sports");
-//            }
-//
-//            if (intey.isGStragy())
-//            {
-//                fifty.add("Game Stragey");
-//            }
-//
-//            if (intey.isGAction())
-//            {
-//                fifty.add("Game Action");
-//            }
-//
-//            if (intey.isMCountry())
-//            {
-//                fifty.add("Country");
-//            }
-//
-//            if (intey.isMDrillrap())
-//            {
-//                fifty.add("Drill Rap");
-//            }
-//
-//            if (intey.isMEDM())
-//            {
-//                fifty.add("EDM");
-//            }
-//
-//            if (intey.isMJAZZ())
-//            {
-//                fifty.add("Jazz");
-//            }
-//
-//            if (intey.isMoAction())
-//            {
-//                fifty.add("Moive Action");
-//            }
-//
-//            if (intey.isMoAnimation())
-//            {
-//                fifty.add("Moive Animation");
-//            }
-//
-//            if (intey.isMoComdey())
-//            {
-//                fifty.add("Moive Comedy");
-//            }
-//
-//            if (intey.isMoDocumentary())
-//            {
-//                fifty.add("Moive Documentary");
-//            }
-//
-//            if (intey.isMoFamily())
-//            {
-//                fifty.add("Moive Family");
-//            }
-//
-//            if (intey.isMoHorror())
-//            {
-//                fifty.add("Moive Horror");
-//            }
-//
-//            if (intey.isMoMusical())
-//            {
-//                fifty.add("Moive Musical");
-//            }
-//
-//            if (intey.isMoSifi())
-//            {
-//                fifty.add("Movie Sifi");
-//            }
-//
-//            if (intey.isMoSports())
-//            {
-//                fifty.add("Moive Sports");
-//            }
-//
-//            if (intey.isMoThriller())
-//            {
-//                fifty.add("Moive Thriller");
-//            }
-//
-//            if (intey.isMoWar())
-//            {
-//                fifty.add("Moive War");
-//            }
-//
-//            if (intey.isTAction())
-//            {
-//                fifty.add("Tv Aciton");
-//            }
-//
-//            if (intey.isTAdventure())
-//            {
-//                fifty.add("Tv Adventure");
-//            }
-//
-//            if (intey.isTAnimation())
-//            {
-//                fifty.add("Tv Animation");
-//            }
-//
-//            if (intey.isTBiography())
-//            {
-//                fifty.add("Tv Biography");
-//            }
-//
-//            if (intey.isTComedy())
-//            {
-//                fifty.add("Tv Comedy");
-//            }
-//
-//            if (intey.isTCrime())
-//            {
-//                fifty.add("Tv Crime");
-//            }
-//
-//            if (intey.isTDocoumentary())
-//            {
-//                fifty.add("Tv Documentary");
-//            }
-//
-//            if (intey.isTDrama())
-//            {
-//                fifty.add("Tv Drama");
-//            }
-//
-//            if (intey.isTFamily())
-//            {
-//                fifty.add("Tv Family");
-//            }
-//
-//            if (intey.isTGameShows())
-//            {
-//                fifty.add("Tv Gameshows");
-//            }
-//
-//            if (intey.isTHistory())
-//            {
-//                fifty.add("Tv History");
-//            }
-//
-//            if (intey.isTHorror())
-//            {
-//                fifty.add("Tv Horror");
-//            }
-//
-//            if (intey.isTMystery())
-//            {
-//                fifty.add("Tv Mystery");
-//            }
-//
-//            if (intey.isTReality())
-//            {
-//                fifty.add("Tv Reality");
-//            }
-//
-//            if (intey.isTSitcom())
-//            {
-//                fifty.add("Tv Sitcom");
-//            }
-//
-//            if (intey.isTSports())
-//            {
-//                fifty.add("Tv Sports");
-//            }
-//
-//            if (intey.isTTalkShows())
-//            {
-//                fifty.add("Tv Talkshows");
-//            }
-//
-//            if (intey.isTWar())
-//            {
-//                fifty.add("Tv Wars");
-//            }
-//
-//            if (intey.isPFestivles())
-//            {
-//                fifty.add("Festival");
-//            }
-//
-//            if (intey.isPHouseParites())
-//            {
-//                fifty.add("House Party");
-//            }
-//
-//            if (intey.isPNightClubs())
-//            {
-//                fifty.add("Night Club");
-//            }
-//
-//            if (intey.isSArchery())
-//            {
-//                fifty.add("Archery");
-//            }
-//
-//            if (intey.isSBaseball())
-//            {
-//                fifty.add("Baseball");
-//            }
-//
-//            if (intey.isSBasketball())
-//            {
-//                fifty.add("Basketball");
-//            }
-//
-//            if (intey.isSCycling())
-//            {
-//                fifty.add("Cycling");
-//            }
-//
-//            if (intey.isSFootball())
-//            {
-//                fifty.add("Football");
-//            }
-//
-//            if (intey.isSFrisbe())
-//            {
-//                fifty.add("Frisbe");
-//            }
-//
-//            if (intey.isSGolf())
-//            {
-//                fifty.add("Golf");
-//            }
-//
-//            if (intey.isSHoccey())
-//            {
-//                fifty.add("Hockey");
-//            }
-//
-//            if (intey.isSHunting())
-//            {
-//                fifty.add("Hunting");
-//            }
-//
-//            if (intey.isSSkateboarding())
-//            {
-//                fifty.add("Skateboarding");
-//            }
-//
-//            if (intey.isSSnowBoarding())
-//            {
-//                fifty.add("Snowboarding");
-//            }
-//
-//            if (intey.isSWaterSports())
-//            {
-//                fifty.add("Water Sports");
-//            }
-//        }
-//
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.nav_home:
+                return true;
+            case R.id.nav_Events:
+                return true;
+            case R.id.nav_create_event:
+                return true;
+            case R.id.nav_profile:
+                return true;
+            case R.id.nav_settings:
+                return true;
+            case R.id.nav_your_event:
+                return true;
+        }
+        if(toggle.onOptionsItemSelected(item))
+        {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.activity_Create_Event);
+        if(drawerLayout.isDrawerOpen((GravityCompat.START)))
+            drawerLayout.closeDrawer(GravityCompat.START);
+        else
+            super.onBackPressed();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item)
+    {
+        int id = item.getItemId();
+
+        if(id==R.id.nav_home)
+        {
+            startActivity(new Intent(Create_Event.this,Home.class));
+        }
+        else if(id==R.id.nav_Events)
+        {
+            startActivity(new Intent(Create_Event.this,Registered_Events.class));
+        }
+        else if(id == R.id.nav_create_event)
+        {
+            DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.activity_Create_Event);
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+
+        else if(id== nav_profile)
+        {
+            startActivity(new Intent(Create_Event.this,Profile.class));
+
+        }
+        else if(id==R.id.nav_settings)
+        {
+            startActivity(new Intent(Create_Event.this,Settings.class));
+        }
+        else if(id==R.id.nav_your_event)
+        {
+            startActivity(new Intent(Create_Event.this,CreatedEventList.class));
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.activity_Create_Event);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 }

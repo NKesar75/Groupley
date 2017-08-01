@@ -1,10 +1,16 @@
 package domain.teamgroupley.groupleyapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,7 +24,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Profile extends AppCompatActivity {
+import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
+
+public class Profile extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private EditText FirstName;
     private EditText LastName ;
@@ -41,6 +50,10 @@ public class Profile extends AppCompatActivity {
     private Button EditProfile;
     private static final String TAG = "Profile";
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+    private DrawerLayout draw;
+    private ActionBarDrawerToggle toggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +105,16 @@ public class Profile extends AppCompatActivity {
                 startActivity(new Intent(Profile.this,UpdateProfile.class));
             }
         });
+
+        draw = (DrawerLayout)findViewById(R.id.activity_profile);
+        toggle = new ActionBarDrawerToggle(this,draw,R.string.open,R.string.close);
+
+        draw.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        NavigationView navigation = (NavigationView)findViewById(R.id.nav_view);
+        navigation.setNavigationItemSelectedListener(this);
     }
     @Override
     public void onStart() {
@@ -165,5 +188,76 @@ public class Profile extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.nav_home:
+                return true;
+            case R.id.nav_Events:
+                return true;
+            case R.id.nav_create_event:
+                return true;
+            case R.id.nav_profile:
+                return true;
+            case R.id.nav_settings:
+                return true;
+            case R.id.nav_your_event:
+                return true;
+        }
+        if(toggle.onOptionsItemSelected(item))
+        {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.activity_profile);
+        if(drawerLayout.isDrawerOpen((GravityCompat.START)))
+            drawerLayout.closeDrawer(GravityCompat.START);
+        else
+            super.onBackPressed();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item)
+    {
+        int id = item.getItemId();
+
+        if(id==R.id.nav_home)
+        {
+            startActivity(new Intent(Profile.this,Home.class));
+        }
+        else if(id==R.id.nav_Events)
+        {
+            startActivity(new Intent(Profile.this,Registered_Events.class));
+        }
+        else if(id == R.id.nav_create_event)
+        {
+            startActivity(new Intent(Profile.this,Create_Event.class));
+        }
+
+        else if(id== nav_profile)
+        {
+            DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.activity_profile);
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else if(id==R.id.nav_settings)
+        {
+            startActivity(new Intent(Profile.this,Settings.class));
+        }
+        else if(id==R.id.nav_your_event)
+        {
+            startActivity(new Intent(Profile.this,CreatedEventList.class));
+        }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.activity_profile);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

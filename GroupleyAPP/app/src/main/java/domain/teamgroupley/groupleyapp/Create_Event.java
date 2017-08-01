@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -136,6 +137,11 @@ public class Create_Event extends AppCompatActivity {
         Addey = (EditText) findViewById(R.id.address_txt);
         Max = (EditText) findViewById(R.id.max_people_txt);
 
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, Catgorylist);
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Cat.setAdapter(myAdapter);
+      
+
         Date.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -199,6 +205,7 @@ public class Create_Event extends AppCompatActivity {
             }
         });
 
+
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         mAuth = FirebaseAuth.getInstance();
@@ -217,8 +224,10 @@ public class Create_Event extends AppCompatActivity {
             }
         };
 
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, Catgorylist);
-        Cat.setAdapter(myAdapter);
+
+
+
+
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {

@@ -225,6 +225,10 @@ public class Create_Event extends AppCompatActivity {
                 // whenever data at this location is updated.
 
                     // shoData(dataSnapshot);
+
+                FirebaseUser user = mAuth.getCurrentUser();
+                userID = user.getUid();
+
                 EVENTCOUNT = dataSnapshot.child("Events").getChildrenCount() + 1;
                 CreatedEVENTCOUNT = dataSnapshot.child(userID).child("CreatedEvents").getChildrenCount() + 1;
                 REGISTEREDEVENTCOUNT = dataSnapshot.child(userID).child("RegisteredEvents").getChildrenCount() + 1;

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="domain.teamgroupley.groupleyapp.Create_Event">
+    tools:context="domain.teamgroupley.groupleyapp.Create_Event"
+    android:id="@+id/activity_Create_Event">
 
     <LinearLayout
         android:layout_width="match_parent"

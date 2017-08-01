@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="domain.teamgroupley.groupleyapp.Profile">
+    tools:context="domain.teamgroupley.groupleyapp.Profile"
+    android:id="@+id/activity_profile">
 
     <LinearLayout
         android:layout_width="369dp"

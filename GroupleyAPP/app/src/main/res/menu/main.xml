@@ -2,6 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/item_menu_1"
-        android:title="Switch View"/>
+        android:title="Switch View" />
+
+    <item android:id="@+id/item_menu_2"
+        android:title="Filter" />
 
 </menu>

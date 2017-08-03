@@ -24,6 +24,11 @@ public class Product
         this.Category = category;
     }
 
+    public Product(String date)
+    {
+        this.Date = date;
+    }
+
     public Product(String title, String date, String category,int imageid)
     {
         this.imageid = imageid;

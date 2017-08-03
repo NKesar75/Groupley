@@ -191,6 +191,10 @@ public class CreatedEventList extends AppCompatActivity
                 editor.commit();
 
                 break;
+
+            case R.id.item_menu_2:
+                startActivity(new Intent(CreatedEventList.this,Filter.class));
+                break;
         }
         switch (item.getItemId())
         {

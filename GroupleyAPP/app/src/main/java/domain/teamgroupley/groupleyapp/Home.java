@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +37,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static android.R.attr.eventsInterceptionEnabled;
@@ -134,6 +137,7 @@ public class Home extends AppCompatActivity
 
         NavigationView navigation = (NavigationView)findViewById(R.id.nav_view);
         navigation.setNavigationItemSelectedListener(this);
+
     }
 
     private void switchView()
@@ -199,6 +203,11 @@ public class Home extends AppCompatActivity
                 editor.commit();
 
                 break;
+
+            case R.id.item_menu_2:
+                startActivity(new Intent(Home.this,Filter.class));
+                break;
+
         }
         switch (item.getItemId())
         {
@@ -227,20 +236,23 @@ public class Home extends AppCompatActivity
        productList.clear();
         String Event = "Event";
         int count = 1;
+
+        String tit;
+        String Dat;
+        String Cat;
+
        for (DataSnapshot ds: dataSnapshot.child("Events").getChildren())
        {
                // Product value = ds.getValue(Product.class);
                // value.setImageid(R.mipmap.ic_launcher_round);
-              String tit = dataSnapshot.child("Events").child(Event+count).child("Title").getValue(String.class).toString();
-              String Dat = dataSnapshot.child("Events").child(Event+count).child("Date").getValue(String.class).toString();
-              String Cat = dataSnapshot.child("Events").child(Event+count).child("Category").getValue(String.class).toString();
+              tit = dataSnapshot.child("Events").child(Event+count).child("Title").getValue(String.class).toString();
+              Dat = dataSnapshot.child("Events").child(Event+count).child("Date").getValue(String.class).toString();
+              Cat = dataSnapshot.child("Events").child(Event+count).child("Category").getValue(String.class).toString();
                 ++count;
            productList.add(new Product(tit,"Date: "+Dat,"Category: "+Cat,R.mipmap.ic_launcher_round));
        }
         setAdapters();
     }
-
-
 
     @Override
 public void onStart() {

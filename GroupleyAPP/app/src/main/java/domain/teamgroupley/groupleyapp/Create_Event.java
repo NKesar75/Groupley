@@ -126,7 +126,7 @@ public class Create_Event extends AppCompatActivity
                     myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
 
 
-                    Intent changepage = new Intent(Create_Event.this, MenuPage.class);
+                    Intent changepage = new Intent(Create_Event.this, CreatedEventList.class);
                     startActivity(changepage);
                     Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();
                 } else {

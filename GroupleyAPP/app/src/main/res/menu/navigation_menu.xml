@@ -10,7 +10,7 @@
             android:title="Registered Events" />
         <item
             android:id="@+id/nav_create_event"
-            android:title="Create Events" />
+            android:title="Create Event" />
         <item
             android:id="@+id/nav_your_event"
             android:title="Update Your Events" />

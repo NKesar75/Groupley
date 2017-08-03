@@ -12,6 +12,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -209,8 +210,24 @@ public class Update_Create_event extends AppCompatActivity {
                 // ...
             }
         };
+
         UpdateCreatedEvents();
+
+        if(getSupportActionBar()!= null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if(item.getItemId()==android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public void onStart()
     {

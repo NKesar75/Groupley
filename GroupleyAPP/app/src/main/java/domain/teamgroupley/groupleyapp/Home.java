@@ -235,7 +235,7 @@ public class Home extends AppCompatActivity
               String Dat = dataSnapshot.child("Events").child(Event+count).child("Date").getValue(String.class).toString();
               String Cat = dataSnapshot.child("Events").child(Event+count).child("Category").getValue(String.class).toString();
                 ++count;
-           productList.add(new Product(tit,Dat,Cat,R.mipmap.ic_launcher_round));
+           productList.add(new Product(tit,"Date: "+Dat,"Category: "+Cat,R.mipmap.ic_launcher_round));
        }
         setAdapters();
     }

@@ -230,7 +230,7 @@ public class CreatedEventList extends AppCompatActivity
             String Cat = dataSnapshot.child(Userid).child("CreatedEvents").child(Event+count).child("Category").getValue(String.class).toString();
             ++count;
 
-            productList.add(new Product(tit,Dat,Cat,R.mipmap.ic_launcher_round));
+            productList.add(new Product(tit,"Date: "+Dat,"Category: "+Cat,R.mipmap.ic_launcher_round));
         }
         setAdapters();
     }

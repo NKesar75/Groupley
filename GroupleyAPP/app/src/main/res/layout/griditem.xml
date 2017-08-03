@@ -36,4 +36,13 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtcat"
+        android:text="Category"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+
 </LinearLayout>

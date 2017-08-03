@@ -36,4 +36,16 @@
         android:text="Date"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtcat"
+        android:text="Category"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_alignBaseline="@+id/txtdate"
+        android:layout_alignBottom="@+id/txtdate"
+        android:layout_toEndOf="@+id/txttitle"
+        android:layout_marginStart="65dp" />
+
 </RelativeLayout>

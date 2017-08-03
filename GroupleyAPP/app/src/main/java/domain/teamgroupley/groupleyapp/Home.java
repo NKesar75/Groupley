@@ -233,8 +233,9 @@ public class Home extends AppCompatActivity
                // value.setImageid(R.mipmap.ic_launcher_round);
               String tit = dataSnapshot.child("Events").child(Event+count).child("Title").getValue(String.class).toString();
               String Dat = dataSnapshot.child("Events").child(Event+count).child("Date").getValue(String.class).toString();
+              String Cat = dataSnapshot.child("Events").child(Event+count).child("Category").getValue(String.class).toString();
                 ++count;
-           productList.add(new Product(tit,Dat,R.mipmap.ic_launcher_round));
+           productList.add(new Product(tit,Dat,Cat,R.mipmap.ic_launcher_round));
        }
         setAdapters();
     }

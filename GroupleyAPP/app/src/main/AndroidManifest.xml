@@ -8,7 +8,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginUser">
@@ -22,7 +22,6 @@
         <activity android:name=".createLoginatstart" />
         <activity android:name=".join" />
         <activity android:name=".MenuPage" />
-        <activity android:name=".navigation_Content" />
         <activity android:name=".UserInfoStats" />
         <activity android:name=".Home" />
         <activity android:name=".Registered_Events" />
@@ -36,7 +35,8 @@
         <activity android:name=".CreatedEventList" />
         <activity android:name=".RegisteredEventDesc" />
         <activity android:name=".UpdateProfile" />
-        <activity android:name=".VerfiyEmail"></activity>
+        <activity android:name=".VerfiyEmail" />
+        <activity android:name=".Filter"></activity>
     </application>
 
 </manifest>

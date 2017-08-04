@@ -50,6 +50,8 @@ import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 public class Create_Event extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    EditText Addey;
+    EditText Max;
     Button Create;
      Spinner Cat;
      EditText Date;

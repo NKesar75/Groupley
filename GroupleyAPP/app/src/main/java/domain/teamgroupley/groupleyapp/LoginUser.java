@@ -27,8 +27,7 @@ public class LoginUser extends AppCompatActivity {
 
     private Button mlogin;
     private Button mcreate;
-    private EditText Email;
-    private EditText Password;
+
 
 
 
@@ -38,8 +37,10 @@ public class LoginUser extends AppCompatActivity {
         setContentView(R.layout.activity_login_user);
         mlogin = (Button) findViewById(R.id.LOGIN_BTN_LOgin);
         mcreate = (Button) findViewById(R.id.CREATE__ACCOUNT_BTN_LOGin);
-        Email = (EditText) findViewById(R.id.Email_txt);
-        Password = (EditText) findViewById(R.id.Password_txxt);
+       final EditText Email = (EditText) findViewById(R.id.Email_txt);
+        final EditText Password = (EditText) findViewById(R.id.Password_txxt);
+
+
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -68,33 +69,38 @@ public class LoginUser extends AppCompatActivity {
         mlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String Mail = Email.getText().toString();
                 String Pass = Password.getText().toString();
+
                 if (!Mail.equals("") && !Pass.equals("")) {
                     if (!Mail.contains(" ")) {
-                        mAuth.signInWithEmailAndPassword(Mail, Pass).addOnCompleteListener(LoginUser.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
-                                // If sign in fails, display a message to the user. If sign in succeeds
-                                // the auth state listener will be notified and logic to handle the
-                                // signed in user can be handled in the listener.
-                                if (!task.isSuccessful()) {
-                                    Log.w(TAG, "signInWithEmail:failed", task.getException());
-                                    Toast.makeText(LoginUser.this, "Username or Password is invalid.",
-                                            Toast.LENGTH_SHORT).show();
+                            mAuth.signInWithEmailAndPassword(Mail, Pass).addOnCompleteListener(LoginUser.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+                                    // If sign in fails, display a message to the user. If sign in succeeds
+                                    // the auth state listener will be notified and logic to handle the
+                                    // signed in user can be handled in the listener.
+                                    if (!task.isSuccessful()) {
+                                        Log.w(TAG, "signInWithEmail:failed", task.getException());
+                                        Email.setError("Email or Password is invalid");
+                                        Email.requestFocus();
+
+                                    }
                                 }
-                            }
 
 
-                        });
-                    }
+                            });
+                        }
                     else {
-                        Toast.makeText(LoginUser.this, "Email can not contain spaces.", Toast.LENGTH_SHORT).show();
+                        Email.setError("Email can not contain spaces");
+                        Email.requestFocus();
                     }
                 }
             }
         });
+
 
     }
     @Override

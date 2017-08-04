@@ -232,6 +232,8 @@ public class CreatedEventList extends AppCompatActivity
 
             productList.add(new Product(tit,Dat,Cat,R.mipmap.ic_launcher_round));
         }
+
+
         setAdapters();
     }
 

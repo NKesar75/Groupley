@@ -38,62 +38,15 @@ public class createLoginatstart extends AppCompatActivity {
     public static String Pass;
     public static String Repass;
 
-    public void CreateAccount()
-    {
-        Create = (Button) findViewById(R.id.Create_account_btn);
-        Create.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Email = EmailAccount.getText().toString();
-                Pass = Password.getText().toString();
-                Repass = Repassword.getText().toString();
-
-                    if (!Email.equals("") && !Pass.equals("") && !Repass.equals("")) {
-                        if (Pass.equals(Repass)) {
-                            if (!Email.contains(" ")) {
-                                mAuth.createUserWithEmailAndPassword(Email, Pass)
-                                        .addOnCompleteListener(createLoginatstart.this, new OnCompleteListener<AuthResult>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                                if (task.isSuccessful()) {
-                                                    SendemailVerication();
-                                                    Intent changepage = new Intent(createLoginatstart.this, VerfiyEmail.class);
-                                                    startActivity(changepage);
-                                                }
-                                                else {
-                                                    Toast.makeText(createLoginatstart.this, "Account not created.",
-                                                            Toast.LENGTH_SHORT).show();
-                                                }
-
-                                                // ...
-                                            }
-
-                                        });
-
-                            }
-                            else{
-                                Toast.makeText(createLoginatstart.this, "Email can not contain a space", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        else{
-                            Toast.makeText(createLoginatstart.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
-                        }
-                    } else{
-                        Toast.makeText(createLoginatstart.this, "Missing some information", Toast.LENGTH_SHORT).show();
-                    }
-                    }
-        });
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_loginatstart);
 
-        EmailAccount = (EditText) findViewById(R.id.EMAIL_TXT);
-        Password = (EditText) findViewById(R.id.PASS_TXT);
-        Repassword = (EditText) findViewById(R.id.REPASS_TXT);
+        final EditText EmailAccount = (EditText) findViewById(R.id.EMAIL_TXT);
+        final EditText Password = (EditText) findViewById(R.id.PASS_TXT);
+        final EditText Repassword = (EditText) findViewById(R.id.REPASS_TXT);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -111,7 +64,54 @@ public class createLoginatstart extends AppCompatActivity {
             }
         };
 
-        CreateAccount();
+        Create = (Button) findViewById(R.id.Create_account_btn);
+        Create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Email = EmailAccount.getText().toString();
+                Pass = Password.getText().toString();
+                Repass = Repassword.getText().toString();
+
+                if (!Email.equals("") && !Pass.equals("") && !Repass.equals("")) {
+                    if (Pass.equals(Repass)) {
+                        if (!Email.contains(" ")) {
+                            mAuth.createUserWithEmailAndPassword(Email, Pass)
+                                    .addOnCompleteListener(createLoginatstart.this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()) {
+                                                SendemailVerication();
+                                                Intent changepage = new Intent(createLoginatstart.this, VerfiyEmail.class);
+                                                startActivity(changepage);
+                                            }
+                                            else {
+                                                Toast.makeText(createLoginatstart.this, "Account not created.",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+
+                                            // ...
+                                        }
+
+                                    });
+
+                        }
+                        else{
+                            EmailAccount.setError("Email can not contain a space");
+                            EmailAccount.requestFocus();
+                        }
+                    }
+                    else{
+                        Password.setError("Passwords do not match");
+                        Password.requestFocus();
+
+                    }
+                } else{
+                    EmailAccount.setError("Missing some information");
+                    EmailAccount.requestFocus();
+                }
+            }
+        });
     }
     @Override
     public void onStart() {

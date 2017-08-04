@@ -42,79 +42,17 @@ public class UserInfoStats extends AppCompatActivity {
     private DatabaseReference myRef;
 
     public Button Create;
-    public EditText FirstName;
-    public EditText LastName;
-    public EditText Dateofbirth;
-    public EditText Username;
-    public Spinner Gender;
+   public Spinner Gender;
 
     private DatePickerDialog.OnDateSetListener mDateSetListner;
 
-
-    public void CreateUSerinfo() {
-        Create = (Button) findViewById(R.id.Create_User_stats_btn);
-        Create.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String First = FirstName.getText().toString();
-
-                String Last = LastName.getText().toString();
-
-                String DOB = Dateofbirth.getText().toString();
-
-                String User = Username.getText().toString();
-
-                String Sex = Gender.getSelectedItem().toString();
-
-
-                if (!First.equals("") && !Last.equals("") && !DOB.equals("") && !User.equals("") && !Sex.equals("")) {
-                    if (!First.contains(" ")){
-                      if (!Last.contains(" ")){
-                          if (!User.contains(" ")){
-
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    String userID = user.getUid();
-                   // Userinformaiton userinformaiton = new Userinformaiton(First, Last, DOB, User, Sex);
-
-                              myRef.child(userID).child("UserInfo").child("Firstname").setValue(First);
-                              myRef.child(userID).child("UserInfo").child("Lastname").setValue(Last);
-                              myRef.child(userID).child("UserInfo").child("DOB").setValue(DOB);
-                              myRef.child(userID).child("UserInfo").child("UserName").setValue(User);
-                              myRef.child(userID).child("UserInfo").child("Sex").setValue(Sex);
-
-
-                           //   myRef.child(userID).child("UserInfo").setValue(userinformaiton);
-                    Intent changepage = new Intent(UserInfoStats.this, Create_Interest.class);
-                    startActivity(changepage);
-                    }
-                          else{
-                              Toast.makeText(UserInfoStats.this, "Username can not contain spaces.", Toast.LENGTH_SHORT).show();
-                          }
-                      }
-                      else{
-                          Toast.makeText(UserInfoStats.this, "Last name can not contain spaces.", Toast.LENGTH_SHORT).show();
-                      }
-                    }
-
-                    else{
-                    Toast.makeText(UserInfoStats.this, "First name can not contain spaces.", Toast.LENGTH_SHORT).show();
-                         }
-                }
-                else{
-                    Toast.makeText(UserInfoStats.this, "Missing some information", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-    }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info_stats);
-        FirstName = (EditText)findViewById(R.id.First_NAME_Txt);
-        LastName = (EditText) findViewById(R.id.LAST_NAME_txt);
-        Dateofbirth = (EditText)findViewById(R.id.DOB_txt);
-        Username = (EditText)findViewById(R.id.USERNAME_TXT);
+      final EditText FirstName = (EditText)findViewById(R.id.First_NAME_Txt);
+      final EditText LastName = (EditText) findViewById(R.id.LAST_NAME_txt);
+      final EditText Dateofbirth = (EditText)findViewById(R.id.DOB_txt);
+      final EditText Username = (EditText)findViewById(R.id.USERNAME_TXT);
         Gender = (Spinner) findViewById(R.id.GENDER_SPINNER);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(UserInfoStats.this,
                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Genders));
@@ -214,7 +152,66 @@ public class UserInfoStats extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-        CreateUSerinfo();
+
+        Create = (Button) findViewById(R.id.Create_User_stats_btn);
+        Create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String First = FirstName.getText().toString();
+
+                String Last = LastName.getText().toString();
+
+                String DOB = Dateofbirth.getText().toString();
+
+                String User = Username.getText().toString();
+
+                String Sex = Gender.getSelectedItem().toString();
+
+
+                if (!First.equals("") && !Last.equals("") && !DOB.equals("") && !User.equals("") && !Sex.equals("")) {
+                    if (!First.contains(" ")){
+                        if (!Last.contains(" ")){
+                            if (!User.contains(" ")){
+
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                String userID = user.getUid();
+                                // Userinformaiton userinformaiton = new Userinformaiton(First, Last, DOB, User, Sex);
+
+                                myRef.child(userID).child("UserInfo").child("Firstname").setValue(First);
+                                myRef.child(userID).child("UserInfo").child("Lastname").setValue(Last);
+                                myRef.child(userID).child("UserInfo").child("DOB").setValue(DOB);
+                                myRef.child(userID).child("UserInfo").child("UserName").setValue(User);
+                                myRef.child(userID).child("UserInfo").child("Sex").setValue(Sex);
+
+
+                                //   myRef.child(userID).child("UserInfo").setValue(userinformaiton);
+                                Intent changepage = new Intent(UserInfoStats.this, Create_Interest.class);
+                                startActivity(changepage);
+                            }
+                            else{
+                                Username.setError("Username can not contain spaces");
+                                Username.requestFocus();
+                            }
+                        }
+                        else{
+                            LastName.setError("Last name can not contain spaces");
+                            LastName.requestFocus();
+                        }
+                    }
+
+                    else{
+                        FirstName.setError("First name can not contain spaces");
+                        FirstName.requestFocus();
+                    }
+                }
+                else{
+                    FirstName.setError("Missing Some Information");
+                    FirstName.requestFocus();
+                }
+
+            }
+        });
     }
     @Override
     public void onStart() {

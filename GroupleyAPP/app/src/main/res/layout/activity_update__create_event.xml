@@ -6,268 +6,273 @@
     android:layout_height="match_parent"
     tools:context="domain.teamgroupley.groupleyapp.Update_Create_event">
 
-    <LinearLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/activity_Create_Event"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="1"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="9dp">
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:text="UPDATE EVENT"
-            android:textAlignment="center"
-            android:textSize="36sp"
-            android:textStyle="bold|italic" />
+        android:layout_height="match_parent"
+        tools:context="domain.teamgroupley.groupleyapp.Create_Event">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.95"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:weightSum="1"
+            tools:layout_editor_absoluteX="7dp"
+            tools:layout_editor_absoluteY="9dp">
 
-            <LinearLayout
-                android:layout_width="125dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1">
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="TTILE:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="CATEGORY:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="DATE:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="TIME:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView23"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.11"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="ADDRRESS:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView43"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.09" />
-
-                <TextView
-                    android:id="@+id/textView44"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="MAX PEOPLE ALLOWED:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="DESCRIPTION:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Create Event "
+                android:textAlignment="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="36sp"
+                android:textStyle="bold|italic" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1">
+                android:layout_height="wrap_content"
+                android:layout_weight="0.95"
+                android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/Title_txt_update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="House Party"
-                    android:inputType="textPersonName"
-                    android:textAlignment="textStart"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="14sp" />
+                <LinearLayout
+                    android:layout_width="125dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="1">
 
-                <EditText
-                    android:id="@+id/Catergory_txt_updt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="House Party"
-                    android:inputType="textPersonName"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="    " />
 
-                <EditText
-                    android:id="@+id/Date_txt_Update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:ems="10"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="MM/DD/YYYY"
-                    android:isScrollContainer="false"
-                    android:textAlignment="textStart"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="TTILE:"
+                        android:textAlignment="textEnd"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
 
-                <EditText
-                    android:id="@+id/time_txt_Update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.12"
-                    android:editable="false"
-                    android:ems="10"
-                    android:enabled="true"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="12:00"
-                    android:inputType="time"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="    " />
 
-                <EditText
-                    android:id="@+id/address_txt_Update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.09"
-                    android:ems="10"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="3300 University Blvd, Winter Park, FL 32792"
-                    android:inputType="textPostalAddress"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="CATEGORY:"
+                        android:textAlignment="textEnd"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
 
-                <EditText
-                    android:id="@+id/max_people_txt_Update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.09"
-                    android:ems="10"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="50"
-                    android:inputType="number"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="    " />
 
-                <EditText
-                    android:id="@+id/des_txt_Update"
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="DATE:"
+                        android:textAlignment="textEnd"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="    " />
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="TIME:"
+                        android:textAlignment="textEnd"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
+                    <TextView
+                        android:id="@+id/textView23"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.11"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="    " />
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="ADDRRESS:"
+                        android:textAlignment="textEnd"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
+                    <TextView
+                        android:id="@+id/textView43"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.09" />
+
+                    <TextView
+                        android:id="@+id/textView44"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="MAX PEOPLE ALLOWED:"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="    " />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:text="DESCRIPTION:"
+                        android:textAlignment="textEnd"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="Come and have fun in the party and meet new people"
-                    android:inputType="textMultiLine"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="14sp" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <EditText
+                        android:id="@+id/Title_txt_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:fontFamily="sans-serif-condensed"
+                        android:hint="House Party"
+                        android:inputType="textPersonName"
+                        android:textAlignment="textStart"
+                        android:textSize="14sp" />
+
+                    <Spinner
+                        android:id="@+id/Category_SPINNER_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/Date_txt_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:ems="10"
+                        android:fontFamily="sans-serif-condensed"
+                        android:hint="MM/DD/YYYY"
+                        android:isScrollContainer="false"
+                        android:textAlignment="textStart"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/time_txt_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.12"
+                        android:editable="false"
+                        android:ems="10"
+                        android:enabled="true"
+                        android:fontFamily="sans-serif-condensed"
+                        android:hint="12:00"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/address_txt_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.09"
+                        android:ems="10"
+                        android:fontFamily="sans-serif-condensed"
+                        android:hint="3300 University Blvd, Winter Park, FL 32792"
+                        android:inputType="textPostalAddress"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/max_people_txt_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.09"
+                        android:ems="10"
+                        android:fontFamily="sans-serif-condensed"
+                        android:hint="50"
+                        android:inputType="number"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/des_txt_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.30"
+                        android:ems="10"
+                        android:fontFamily="sans-serif-condensed"
+                        android:hint="Come and have fun in the party and meet new people"
+                        android:inputType="textMultiLine"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/Update_event_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UPDATE EVENT" />
+
         </LinearLayout>
 
-        <Button
-            android:id="@+id/Update_event_btn"
+        <FrameLayout
+            android:id="@+id/fragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="UPDATE EVENT" />
+            android:layout_height="match_parent"></FrameLayout>
 
-    </LinearLayout>
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/navigation_menu"></android.support.design.widget.NavigationView>
+
+    </android.support.v4.widget.DrawerLayout>
 </android.support.v4.widget.DrawerLayout>

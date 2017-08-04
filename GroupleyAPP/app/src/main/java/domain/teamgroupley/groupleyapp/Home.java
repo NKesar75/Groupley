@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static android.R.attr.data;
 import static android.R.attr.eventsInterceptionEnabled;
 import static android.R.attr.value;
 import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
@@ -48,6 +49,7 @@ public class Home extends AppCompatActivity
     private static final String TAG = "Home";
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference toupdate;
     private DatabaseReference myRef;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
@@ -76,6 +78,7 @@ public class Home extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
+        toupdate = FirebaseDatabase.getInstance().getReference("Events");
         myRef = mFirebaseDatabase.getReference();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -224,17 +227,18 @@ public class Home extends AppCompatActivity
 
         private void showData(DataSnapshot dataSnapshot)
     {
-       productList.clear();
+        productList.clear();
+
         String Event = "Event";
         int count = 1;
+
        for (DataSnapshot ds: dataSnapshot.child("Events").getChildren())
        {
-               // Product value = ds.getValue(Product.class);
-               // value.setImageid(R.mipmap.ic_launcher_round);
-              String tit = dataSnapshot.child("Events").child(Event+count).child("Title").getValue(String.class).toString();
-              String Dat = dataSnapshot.child("Events").child(Event+count).child("Date").getValue(String.class).toString();
-              String Cat = dataSnapshot.child("Events").child(Event+count).child("Category").getValue(String.class).toString();
-                ++count;
+            String tit = dataSnapshot.child("Events").child(Event+count).child("Title").getValue(String.class).toString();
+            String Dat = dataSnapshot.child("Events").child(Event+count).child("Date").getValue(String.class).toString();
+            String Cat = dataSnapshot.child("Events").child(Event+count).child("Category").getValue(String.class).toString();
+
+           ++count;
            productList.add(new Product(tit,Dat,Cat,R.mipmap.ic_launcher_round));
        }
         setAdapters();
@@ -246,7 +250,20 @@ public class Home extends AppCompatActivity
 public void onStart() {
     super.onStart();
     mAuth.addAuthStateListener(mAuthListener);
+
+    toupdate.addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            showData(dataSnapshot);
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    });
 }
+
     @Override
     public void onStop() {
         super.onStop();

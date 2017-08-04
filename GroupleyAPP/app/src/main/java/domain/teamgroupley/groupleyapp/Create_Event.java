@@ -50,15 +50,12 @@ import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 public class Create_Event extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    EditText Title;
-    EditText Disc;
-    Spinner Cat;
-    EditText Date;
-    EditText Time;
     EditText Addey;
     EditText Max;
     Button Create;
-
+    Spinner Cat;
+    EditText Date;
+    EditText Time;
 
     private static final String TAG = "Create_Event";
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -82,72 +79,22 @@ public class Create_Event extends AppCompatActivity
     private DrawerLayout draw;
     private ActionBarDrawerToggle toggle;
 
-    public void SendEventTodatabase() {
-        Create = (Button) findViewById(R.id.Create_event_btn);
-        Create.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                String tie = Title.getText().toString();
-                String Die = Disc.getText().toString();
-                String Cator = Cat.getSelectedItem().toString();
-                String Day = Date.getText().toString();
-                String Tim = Time.getText().toString();
-                String ADd = Addey.getText().toString();
-                String MAxppl = Max.getText().toString();
-                if (!tie.equals("") && !Die.equals("") && !Cator.equals("") && !Day.equals("") && !Tim.equals("")
-                        && !ADd.equals("") && !MAxppl.equals("")) {
-
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Title").setValue(tie);
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Description").setValue(Die);
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Category").setValue(Cator);
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Date").setValue(Day);
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Time").setValue(Tim);
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Address").setValue(ADd);
-                    myRef.child(userID).child("CreatedEvents").child(Event+CreatedEVENTCOUNT).child("Max_People").setValue(MAxppl);
-                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Title").setValue(tie);
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Description").setValue(Die);
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Category").setValue(Cator);
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Date").setValue(Day);
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Time").setValue(Tim);
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Address").setValue(ADd);
-                    myRef.child("Events").child(Event+EVENTCOUNT).child("Max_People").setValue(MAxppl);
-                    myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Title").setValue(tie);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Description").setValue(Die);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Category").setValue(Cator);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Date").setValue(Day);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Time").setValue(Tim);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Address").setValue(ADd);
-                    myRef.child(userID).child("RegisteredEvents").child(Event+REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-
-                    Intent changepage = new Intent(Create_Event.this, Home.class);
-                    startActivity(changepage);
-                    Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(Create_Event.this, "Missing some information", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create__event);
 
+
+
+
         Cat = (Spinner) findViewById(R.id.Category_SPINNER);
-        Title = (EditText) findViewById(R.id.Title_txt);
-        Disc = (EditText) findViewById(R.id.des_txt);
         Date = (EditText) findViewById(R.id.Date_txt);
         Time = (EditText) findViewById(R.id.time_txt);
-        Addey = (EditText) findViewById(R.id.address_txt);
-        Max = (EditText) findViewById(R.id.max_people_txt);
+
+        final EditText Title = (EditText) findViewById(R.id.Title_txt);
+        final EditText Disc = (EditText) findViewById(R.id.des_txt);
+        final EditText Addey  = (EditText) findViewById(R.id.address_txt);
+        final EditText Max = (EditText) findViewById(R.id.max_people_txt);
 
 
         Date.setOnClickListener(new View.OnClickListener() {
@@ -204,6 +151,7 @@ public class Create_Event extends AppCompatActivity
             }
         };
 
+
         Time.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -253,7 +201,81 @@ public class Create_Event extends AppCompatActivity
             }
         });
 
-        SendEventTodatabase();
+        Create = (Button) findViewById(R.id.Create_event_btn);
+        Create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tie = Title.getText().toString();
+                String Die = Disc.getText().toString();
+                String Cator = Cat.getSelectedItem().toString();
+                String Day = Date.getText().toString();
+                String Tim = Time.getText().toString();
+                String ADd = Addey.getText().toString();
+                String MAxppl = Max.getText().toString();
+                if (!Cator.equals("") && !Day.equals("") && !Tim.equals("")) {
+                    if (!tie.equals("")) {
+                            if (!ADd.equals("")) {
+                                if (!MAxppl.equals("")) {
+                                    if (!Die.equals("")){
+                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Title").setValue(tie);
+                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Description").setValue(Die);
+                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Category").setValue(Cator);
+                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Date").setValue(Day);
+                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Time").setValue(Tim);
+                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Address").setValue(ADd);
+                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
+                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
+                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
+                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
+                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
+                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").setValue(ADd);
+                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                    myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+
+                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Title").setValue(tie);
+                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Description").setValue(Die);
+                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Category").setValue(Cator);
+                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Date").setValue(Day);
+                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Time").setValue(Tim);
+                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Address").setValue(ADd);
+                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+
+                                    Intent changepage = new Intent(Create_Event.this, Home.class);
+                                    startActivity(changepage);
+                                    Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                        Disc.setError("Description can not be empty");
+                                        Disc.requestFocus();
+                                    }
+                            }
+                                else{
+                                    Max.setError("Max People can not be empty");
+                                    Max.requestFocus();
+                                }
+                        }
+                        else{
+                                Addey.setError("Address can not be empty");
+                                Addey.requestFocus();
+                            }
+                    }
+                        else {
+                        Title.setError("Title can not be empty");
+                        Title.requestFocus();
+                            }
+                    }
+                else {
+                    Title.setError("Missing some information");
+                    Title.requestFocus();
+                }
+            }
+        });
 
         draw = (DrawerLayout)findViewById(R.id.activity_Create_Event);
         toggle = new ActionBarDrawerToggle(this,draw,R.string.open,R.string.close);
@@ -287,7 +309,6 @@ public class Create_Event extends AppCompatActivity
             Time.setText(hourOfDay + ":" + minute);
         }
     };
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {

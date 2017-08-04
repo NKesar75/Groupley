@@ -48,11 +48,12 @@ public class UpdateProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
         Save = (Button)findViewById(R.id.EDIT_PROFILE_BTN_update);
-        FirstName = (EditText)findViewById(R.id.First_NAME_Tst_update);
-        LastName = (EditText)findViewById(R.id.LAST_NAME_tst_update);
-        Gender =   (EditText)findViewById(R.id.Gender_TST_update);
-        DOB =      (EditText)findViewById(R.id.DOB_tst_update);
-        username = (EditText)findViewById(R.id.USERNAME_Tst_update);
+         final EditText FirstName = (EditText)findViewById(R.id.First_NAME_Tst_update);
+         final EditText LastName = (EditText)findViewById(R.id.LAST_NAME_tst_update);
+        Gender = (EditText)findViewById(R.id.Gender_TST_update);
+        DOB = (EditText)findViewById(R.id.DOB_tst_update);
+        final EditText username = (EditText)findViewById(R.id.USERNAME_Tst_update);
+
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -78,7 +79,9 @@ public class UpdateProfile extends AppCompatActivity {
                 String User = username.getText().toString();
 
 
-                if (!First.equals("") && !Last.equals("") && !User.equals("")) {
+                if (!First.equals("") && !First.equals(" ")){
+                    if (!Last.equals("") && !Last.equals(" ")){
+                         if (!User.equals("") && !User.equals(" ")){
                     FirebaseUser user = mAuth.getCurrentUser();
                     String userID = user.getUid();
 
@@ -89,10 +92,18 @@ public class UpdateProfile extends AppCompatActivity {
 
                     startActivity(new Intent(UpdateProfile.this,Profile.class));
                     Toast.makeText(UpdateProfile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-
                 }
                 else{
-                    Toast.makeText(UpdateProfile.this, "Missing some information", Toast.LENGTH_SHORT).show();
+                     username.setError("Username can not be blank or have a space");
+                     username.requestFocus();
+                    }
+                 }else{
+                         LastName.setError("Last name can not be blank or have a space");
+                        LastName.requestFocus();
+                        }
+                }else{
+                    FirstName.setError("First name can not be blank or have a space");
+                    LastName.requestFocus();
                 }
 
             }

@@ -41,6 +41,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import static android.R.attr.data;
 import static android.R.attr.eventsInterceptionEnabled;
 import static android.R.attr.value;
 import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
@@ -51,6 +52,7 @@ public class Home extends AppCompatActivity
     private static final String TAG = "Home";
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference toupdate;
     private DatabaseReference myRef;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
@@ -79,6 +81,7 @@ public class Home extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
+        
         myRef = mFirebaseDatabase.getReference();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -258,7 +261,10 @@ public class Home extends AppCompatActivity
 public void onStart() {
     super.onStart();
     mAuth.addAuthStateListener(mAuthListener);
+
+   
 }
+
     @Override
     public void onStop() {
         super.onStop();

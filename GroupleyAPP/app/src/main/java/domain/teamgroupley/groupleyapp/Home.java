@@ -47,7 +47,7 @@ import static android.R.attr.value;
 import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 
 public class Home extends AppCompatActivity
-    implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "Home";
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -75,13 +75,13 @@ public class Home extends AppCompatActivity
     private DrawerLayout draw;
     private ActionBarDrawerToggle toggle;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        
+
         myRef = mFirebaseDatabase.getReference();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -100,8 +100,7 @@ public class Home extends AppCompatActivity
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 showData(dataSnapshot);
             }
 
@@ -111,19 +110,19 @@ public class Home extends AppCompatActivity
             }
         });
 
-        stubList = (ViewStub)findViewById(R.id.stub_list);
-        stubGrid = (ViewStub)findViewById(R.id.stub_grid);
+        stubList = (ViewStub) findViewById(R.id.stub_list);
+        stubGrid = (ViewStub) findViewById(R.id.stub_grid);
 
         //inflate viewstub before get view
         stubList.inflate();
         stubGrid.inflate();
 
-        listview = (ListView)findViewById(R.id.my_listview);
-        gridView = (GridView)findViewById(R.id.mygridview);
+        listview = (ListView) findViewById(R.id.my_listview);
+        gridView = (GridView) findViewById(R.id.mygridview);
 
         //Get current view mode in share refrence
-        SharedPreferences share = getSharedPreferences("ViewMode",MODE_PRIVATE);
-        currentViewMode = share.getInt("CurrentViewMode",VIEW_MODE_LISTVIEW);
+        SharedPreferences share = getSharedPreferences("ViewMode", MODE_PRIVATE);
+        currentViewMode = share.getInt("CurrentViewMode", VIEW_MODE_LISTVIEW);
 
         //Register item lick
         listview.setOnItemClickListener(onItemClick);
@@ -131,39 +130,34 @@ public class Home extends AppCompatActivity
 
         switchView();
 
-        draw = (DrawerLayout)findViewById(R.id.activity_home);
-        toggle = new ActionBarDrawerToggle(this,draw,R.string.open,R.string.close);
+        draw = (DrawerLayout) findViewById(R.id.activity_home);
+        toggle = new ActionBarDrawerToggle(this, draw, R.string.open, R.string.close);
 
         draw.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        NavigationView navigation = (NavigationView)findViewById(R.id.nav_view);
+        NavigationView navigation = (NavigationView) findViewById(R.id.nav_view);
         navigation.setNavigationItemSelectedListener(this);
 
     }
 
-    private void switchView()
-    {
-        if(VIEW_MODE_LISTVIEW == currentViewMode)
-        {
+    private void switchView() {
+        if (VIEW_MODE_LISTVIEW == currentViewMode) {
             //display listview
             stubList.setVisibility(View.VISIBLE);
             //hide gridview
             stubGrid.setVisibility(View.GONE);
-        }
-        else
-        {
+        } else {
             stubList.setVisibility(View.GONE);
             stubGrid.setVisibility(View.VISIBLE);
         }
         setAdapters();
     }
 
-    private void setAdapters()
-    {
-        listViewAdapter = new ListViewAdapter(this,R.layout.list_item,productList);
-        gridViewAdapter = new GridViewAdapter(this,R.layout.griditem,productList);
+    private void setAdapters() {
+        listViewAdapter = new ListViewAdapter(this, R.layout.list_item, productList);
+        gridViewAdapter = new GridViewAdapter(this, R.layout.griditem, productList);
         listview.setAdapter(listViewAdapter);
         gridView.setAdapter(gridViewAdapter);
 
@@ -171,28 +165,24 @@ public class Home extends AppCompatActivity
 
     AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
         @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-        {
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             EventTitle = position + 1;
 
-            startActivity(new Intent(Home.this,Description.class));
+            startActivity(new Intent(Home.this, Description.class));
         }
     };
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.main,menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.item_menu_1:
-                if(VIEW_MODE_LISTVIEW == currentViewMode)
+                if (VIEW_MODE_LISTVIEW == currentViewMode)
                     currentViewMode = VIEW_MODE_GRIDVIEW;
                 else
                     currentViewMode = VIEW_MODE_LISTVIEW;
@@ -200,20 +190,19 @@ public class Home extends AppCompatActivity
                 //switch view
                 switchView();
                 //save view mode in share refrence
-                SharedPreferences share = getSharedPreferences("ViewMode",MODE_PRIVATE);
+                SharedPreferences share = getSharedPreferences("ViewMode", MODE_PRIVATE);
                 SharedPreferences.Editor editor = share.edit();
-                editor.putInt("CurrentViewMode",currentViewMode);
+                editor.putInt("CurrentViewMode", currentViewMode);
                 editor.commit();
 
                 break;
 
             case R.id.item_menu_2:
-                startActivity(new Intent(Home.this,Filter.class));
+                startActivity(new Intent(Home.this, Filter.class));
                 break;
 
         }
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.nav_home:
                 return true;
             case R.id.nav_Events:
@@ -227,43 +216,567 @@ public class Home extends AppCompatActivity
             case R.id.nav_your_event:
                 return true;
         }
-        if(toggle.onOptionsItemSelected(item))
-        {
+        if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-        private void showData(DataSnapshot dataSnapshot)
-    {
-       productList.clear();
+    private void showData(DataSnapshot dataSnapshot) {
+
+
+        productList.clear();
         String Event = "Event";
         int count = 1;
+
+        FirebaseUser user = mAuth.getCurrentUser();
+        String USerid = user.getUid();
+
+        String tempTilte = dataSnapshot.child(USerid).child("Filter").child("Sortby").getValue(String.class).toString();
+        String tempall = dataSnapshot.child(USerid).child("Filter").child("Filterby").getValue(String.class).toString();
+        String tempspefic = dataSnapshot.child(USerid).child("Filter").child("Spefic").getValue(String.class).toString();
+        String tempkey = dataSnapshot.child(USerid).child("Filter").child("SpeficString").getValue(String.class).toString();
+
+        boolean FilterTitle = false;
+        boolean FilterDate = false;
+        boolean FilterCategory = false;
+
+        boolean FilterAll = false;
+        boolean FilterYourInterest = false;
+
+        boolean FilterAllEvents = false;
+        boolean FilterSpefic = false;
+        String FilterSpefickeyword = "false";
+
+
+        if (tempTilte.equals("DATE")) {
+            FilterTitle = false;
+            FilterDate = true;
+            FilterCategory = false;
+
+        } else if (tempTilte.equals("TITLE")) {
+            FilterTitle = true;
+            FilterDate = false;
+            FilterCategory = false;
+
+        } else if (tempTilte.equals("CATEGORY")) {
+            FilterTitle = false;
+            FilterDate = false;
+            FilterCategory = true;
+        }
+
+        if (tempall.equals("ALL INTERESTS")) {
+            FilterAll = true;
+            FilterYourInterest = false;
+        } else if (tempall.equals("YOUR INTERESTS")) {
+            FilterAll = false;
+            FilterYourInterest = true;
+        }
+
+        if (tempspefic.equals("All")) {
+            FilterAllEvents = true;
+            FilterSpefic = false;
+            FilterSpefickeyword = " ";
+        } else if (tempspefic.equals("spefic")) {
+            FilterAllEvents = false;
+            FilterSpefic = true;
+            FilterSpefickeyword = tempkey;
+        }
 
         String tit;
         String Dat;
         String Cat;
 
-       for (DataSnapshot ds: dataSnapshot.child("Events").getChildren())
-       {
-               // Product value = ds.getValue(Product.class);
-               // value.setImageid(R.mipmap.ic_launcher_round);
-              tit = dataSnapshot.child("Events").child(Event+count).child("Title").getValue(String.class).toString();
-              Dat = dataSnapshot.child("Events").child(Event+count).child("Date").getValue(String.class).toString();
-              Cat = dataSnapshot.child("Events").child(Event+count).child("Category").getValue(String.class).toString();
-                ++count;
-           productList.add(new Product(tit,"Date: "+Dat,"Category: "+Cat,R.mipmap.ic_launcher_round));
-       }
+
+        for (DataSnapshot ds : dataSnapshot.child("Events").getChildren()) {
+            // Product value = ds.getValue(Product.class);
+            // value.setImageid(R.mipmap.ic_launcher_round);
+            tit = dataSnapshot.child("Events").child(Event + count).child("Title").getValue(String.class).toString();
+            Dat = dataSnapshot.child("Events").child(Event + count).child("Date").getValue(String.class).toString();
+            Cat = dataSnapshot.child("Events").child(Event + count).child("Category").getValue(String.class).toString();
+            ++count;
+            productList.add(new Product(tit, "Date: " + Dat, "Category: " + Cat, R.mipmap.ic_launcher_round));
+        }
+
+        Product compare[] = new Product[productList.size()];
+
+        for (int i = 0; i < compare.length; ++i) {
+            compare[i] = productList.get(i);
+        }
+
+
+        if (FilterTitle) {
+            for (int i = 0; i < compare.length; ++i) {
+                for (int j = 0; j < compare.length; ++j) {
+                    if (compare[i].getTitle().compareToIgnoreCase(compare[j].getTitle()) < 0) {
+                        Product temp = compare[i];
+                        compare[i] = compare[j];
+                        compare[j] = temp;
+                    }
+                }
+            }
+        } else if (FilterDate) {
+            for (int i = 0; i < compare.length; ++i) {
+                for (int j = 0; j < compare.length; ++j) {
+                    if (compare[i].getDate().compareToIgnoreCase(compare[j].getDate()) < 0) {
+                        Product temp = compare[i];
+                        compare[i] = compare[j];
+                        compare[j] = temp;
+                    }
+                }
+            }
+        } else if (FilterCategory) {
+            for (int i = 0; i < compare.length; ++i) {
+                for (int j = 0; j < compare.length; ++j) {
+                    if (compare[i].getCategory().compareToIgnoreCase(compare[j].getCategory()) < 0) {
+                        Product temp = compare[i];
+                        compare[i] = compare[j];
+                        compare[j] = temp;
+                    }
+                }
+            }
+        }
+
+
+        if (FilterYourInterest) {
+            List<String> filterCatgorylistforhome = new ArrayList<>();
+
+            boolean SArcy = dataSnapshot.child(USerid).child("Interests").child("sarchery").getValue(boolean.class).booleanValue();
+            boolean SBasy = dataSnapshot.child(USerid).child("Interests").child("sbaseball").getValue(boolean.class).booleanValue();
+            boolean SbKy = dataSnapshot.child(USerid).child("Interests").child("sbasketball").getValue(boolean.class).booleanValue();
+            boolean Cycy = dataSnapshot.child(USerid).child("Interests").child("scycling").getValue(boolean.class).booleanValue();
+            boolean Fish = dataSnapshot.child(USerid).child("Interests").child("sfishing").getValue(boolean.class).booleanValue();
+            boolean Footy = dataSnapshot.child(USerid).child("Interests").child("sfootball").getValue(boolean.class).booleanValue();
+            boolean Frisy = dataSnapshot.child(USerid).child("Interests").child("sfrisbe").getValue(boolean.class).booleanValue();
+            boolean SGofy = dataSnapshot.child(USerid).child("Interests").child("sgolf").getValue(boolean.class).booleanValue();
+            boolean Shockeyy = dataSnapshot.child(USerid).child("Interests").child("shoccey").getValue(boolean.class).booleanValue();
+            boolean SHunty = dataSnapshot.child(USerid).child("Interests").child("shunting").getValue(boolean.class).booleanValue();
+            boolean SSKatey = dataSnapshot.child(USerid).child("Interests").child("sskateboarding").getValue(boolean.class).booleanValue();
+            boolean SSnowy = dataSnapshot.child(USerid).child("Interests").child("ssnowBoarding").getValue(boolean.class).booleanValue();
+            boolean Swsy = dataSnapshot.child(USerid).child("Interests").child("swaterSports").getValue(boolean.class).booleanValue();
+            boolean Wrey = dataSnapshot.child(USerid).child("Interests").child("swrestling").getValue(boolean.class).booleanValue();
+            boolean Fesy = dataSnapshot.child(USerid).child("Interests").child("pfestivles").getValue(boolean.class).booleanValue();
+            boolean Housy = dataSnapshot.child(USerid).child("Interests").child("phouseParites").getValue(boolean.class).booleanValue();
+            boolean Nighty = dataSnapshot.child(USerid).child("Interests").child("pnightClubs").getValue(boolean.class).booleanValue();
+            boolean Gacty = dataSnapshot.child(USerid).child("Interests").child("gaction").getValue(boolean.class).booleanValue();
+            boolean Gadvy = dataSnapshot.child(USerid).child("Interests").child("gadventure").getValue(boolean.class).booleanValue();
+            boolean GFpy = dataSnapshot.child(USerid).child("Interests").child("gfps").getValue(boolean.class).booleanValue();
+            boolean Gindy = dataSnapshot.child(USerid).child("Interests").child("gindies").getValue(boolean.class).booleanValue();
+            boolean GMMy = dataSnapshot.child(USerid).child("Interests").child("gmmo").getValue(boolean.class).booleanValue();
+            boolean GpaFy = dataSnapshot.child(USerid).child("Interests").child("gpartyfamily").getValue(boolean.class).booleanValue();
+            boolean GRPy = dataSnapshot.child(USerid).child("Interests").child("grpg").getValue(boolean.class).booleanValue();
+            boolean Gsiy = dataSnapshot.child(USerid).child("Interests").child("gsimulation").getValue(boolean.class).booleanValue();
+            boolean Gspy = dataSnapshot.child(USerid).child("Interests").child("gsports").getValue(boolean.class).booleanValue();
+            boolean GStry = dataSnapshot.child(USerid).child("Interests").child("gstragy").getValue(boolean.class).booleanValue();
+            boolean MCy = dataSnapshot.child(USerid).child("Interests").child("mcountry").getValue(boolean.class).booleanValue();
+            boolean MDRy = dataSnapshot.child(USerid).child("Interests").child("mdrillrap").getValue(boolean.class).booleanValue();
+            boolean MEdy = dataSnapshot.child(USerid).child("Interests").child("medm").getValue(boolean.class).booleanValue();
+            boolean MJzy = dataSnapshot.child(USerid).child("Interests").child("mjazz").getValue(boolean.class).booleanValue();
+            boolean MRpy = dataSnapshot.child(USerid).child("Interests").child("mrap").getValue(boolean.class).booleanValue();
+            boolean Mroy = dataSnapshot.child(USerid).child("Interests").child("mrock").getValue(boolean.class).booleanValue();
+            boolean MRNy = dataSnapshot.child(USerid).child("Interests").child("mrnb").getValue(boolean.class).booleanValue();
+            boolean MScry = dataSnapshot.child(USerid).child("Interests").child("mscremo").getValue(boolean.class).booleanValue();
+            boolean MoActy = dataSnapshot.child(USerid).child("Interests").child("moAction").getValue(boolean.class).booleanValue();
+            boolean MOAniy = dataSnapshot.child(USerid).child("Interests").child("moAnimation").getValue(boolean.class).booleanValue();
+            boolean MOComy = dataSnapshot.child(USerid).child("Interests").child("moComdey").getValue(boolean.class).booleanValue();
+            boolean MODoy = dataSnapshot.child(USerid).child("Interests").child("moDocumentary").getValue(boolean.class).booleanValue();
+            boolean MOFy = dataSnapshot.child(USerid).child("Interests").child("moFamily").getValue(boolean.class).booleanValue();
+            boolean MOHOry = dataSnapshot.child(USerid).child("Interests").child("moHorror").getValue(boolean.class).booleanValue();
+            boolean MoMusy = dataSnapshot.child(USerid).child("Interests").child("moMusical").getValue(boolean.class).booleanValue();
+            boolean MOSiy = dataSnapshot.child(USerid).child("Interests").child("moSifi").getValue(boolean.class).booleanValue();
+            boolean MOSpoy = dataSnapshot.child(USerid).child("Interests").child("moSports").getValue(boolean.class).booleanValue();
+            boolean MOTHrily = dataSnapshot.child(USerid).child("Interests").child("moThriller").getValue(boolean.class).booleanValue();
+            boolean MoWay = dataSnapshot.child(USerid).child("Interests").child("moWar").getValue(boolean.class).booleanValue();
+            boolean TActy = dataSnapshot.child(USerid).child("Interests").child("taction").getValue(boolean.class).booleanValue();
+            boolean TADvy = dataSnapshot.child(USerid).child("Interests").child("tadventure").getValue(boolean.class).booleanValue();
+            boolean TAniy = dataSnapshot.child(USerid).child("Interests").child("tanimation").getValue(boolean.class).booleanValue();
+            boolean TBioy = dataSnapshot.child(USerid).child("Interests").child("tbiography").getValue(boolean.class).booleanValue();
+            boolean TCom = dataSnapshot.child(USerid).child("Interests").child("tcomedy").getValue(boolean.class).booleanValue();
+            boolean TCriy = dataSnapshot.child(USerid).child("Interests").child("tcrime").getValue(boolean.class).booleanValue();
+            boolean TDoy = dataSnapshot.child(USerid).child("Interests").child("tdocoumentary").getValue(boolean.class).booleanValue();
+            boolean TDray = dataSnapshot.child(USerid).child("Interests").child("tdrama").getValue(boolean.class).booleanValue();
+            boolean Tfay = dataSnapshot.child(USerid).child("Interests").child("tfamily").getValue(boolean.class).booleanValue();
+            boolean TGamey = dataSnapshot.child(USerid).child("Interests").child("tgameShows").getValue(boolean.class).booleanValue();
+            boolean THisy = dataSnapshot.child(USerid).child("Interests").child("thistory").getValue(boolean.class).booleanValue();
+            boolean Thory = dataSnapshot.child(USerid).child("Interests").child("thorror").getValue(boolean.class).booleanValue();
+            boolean TMysy = dataSnapshot.child(USerid).child("Interests").child("tmystery").getValue(boolean.class).booleanValue();
+            boolean Trey = dataSnapshot.child(USerid).child("Interests").child("treality").getValue(boolean.class).booleanValue();
+            boolean Tsiy = dataSnapshot.child(USerid).child("Interests").child("tsitcom").getValue(boolean.class).booleanValue();
+            boolean TSpoy = dataSnapshot.child(USerid).child("Interests").child("tsports").getValue(boolean.class).booleanValue();
+            boolean TTalky = dataSnapshot.child(USerid).child("Interests").child("ttalkShows").getValue(boolean.class).booleanValue();
+            boolean Tway = dataSnapshot.child(USerid).child("Interests").child("twar").getValue(boolean.class).booleanValue();
+            boolean Dacty = dataSnapshot.child(USerid).child("Interests").child("dacting").getValue(boolean.class).booleanValue();
+            boolean Dcosy = dataSnapshot.child(USerid).child("Interests").child("dcosplay").getValue(boolean.class).booleanValue();
+            boolean Dlay = dataSnapshot.child(USerid).child("Interests").child("dlarping").getValue(boolean.class).booleanValue();
+            boolean CActy = dataSnapshot.child(USerid).child("Interests").child("cactionfigures").getValue(boolean.class).booleanValue();
+            boolean CCry = dataSnapshot.child(USerid).child("Interests").child("ccars").getValue(boolean.class).booleanValue();
+            boolean Ccinsy = dataSnapshot.child(USerid).child("Interests").child("ccoins").getValue(boolean.class).booleanValue();
+            boolean Ccomy = dataSnapshot.child(USerid).child("Interests").child("ccomics").getValue(boolean.class).booleanValue();
+            boolean CGuny = dataSnapshot.child(USerid).child("Interests").child("cguns").getValue(boolean.class).booleanValue();
+            boolean Ctrcy = dataSnapshot.child(USerid).child("Interests").child("ctrucks").getValue(boolean.class).booleanValue();
+
+
+            if (SArcy) {
+                filterCatgorylistforhome.add("Archery");
+            }
+
+            if (SBasy) {
+                filterCatgorylistforhome.add("Baseball");
+            }
+
+            if (SbKy) {
+                filterCatgorylistforhome.add("Basketball");
+            }
+
+            if (Cycy) {
+                filterCatgorylistforhome.add("Bicycle");
+            }
+
+            if (Fish) {
+                filterCatgorylistforhome.add("Fishing");
+            }
+
+            if (Footy) {
+                filterCatgorylistforhome.add("Football");
+            }
+
+            if (Frisy) {
+                filterCatgorylistforhome.add("Frisbe");
+            }
+
+            if (SGofy) {
+                filterCatgorylistforhome.add("Golf");
+            }
+
+            if (Shockeyy) {
+                filterCatgorylistforhome.add("Hockey");
+            }
+
+            if (SHunty) {
+                filterCatgorylistforhome.add("Hunting");
+            }
+
+            if (SSKatey) {
+                filterCatgorylistforhome.add("Skateboarding");
+            }
+
+            if (SSnowy) {
+                filterCatgorylistforhome.add("Snowboarding");
+            }
+
+            if (Swsy) {
+                filterCatgorylistforhome.add("Water Sports");
+            }
+
+            if (Wrey) {
+                filterCatgorylistforhome.add("Wrestling");
+            }
+
+            if (Fesy) {
+                filterCatgorylistforhome.add("Festival");
+            }
+
+            if (Housy) {
+                filterCatgorylistforhome.add("House Party");
+            }
+
+            if (Nighty) {
+                filterCatgorylistforhome.add("Night Club");
+            }
+
+            if (Gacty) {
+                filterCatgorylistforhome.add("Action Game");
+            }
+
+            if (Gadvy) {
+                filterCatgorylistforhome.add("Adventure Game");
+            }
+
+            if (GFpy) {
+                filterCatgorylistforhome.add("FPS Game");
+            }
+
+            if (Gindy) {
+                filterCatgorylistforhome.add("Indie Game");
+            }
+
+            if (GMMy) {
+                filterCatgorylistforhome.add("MMO Game");
+            }
+
+            if (GpaFy) {
+                filterCatgorylistforhome.add("Party Game");
+            }
+
+            if (GRPy) {
+                filterCatgorylistforhome.add("RPG Game");
+            }
+
+            if (Gsiy) {
+                filterCatgorylistforhome.add("Simulation Game");
+            }
+
+            if (Gspy) {
+                filterCatgorylistforhome.add("Sports Game");
+            }
+
+            if (GStry) {
+                filterCatgorylistforhome.add("Stragey Game");
+            }
+
+            if (MCy) {
+                filterCatgorylistforhome.add("Country Music");
+            }
+
+            if (MDRy) {
+                filterCatgorylistforhome.add("Drill Rap");
+            }
+
+            if (MEdy) {
+                filterCatgorylistforhome.add("EDM");
+            }
+
+            if (MJzy) {
+                filterCatgorylistforhome.add("Jazz");
+            }
+
+            if (MRpy) {
+                filterCatgorylistforhome.add("Rap");
+            }
+
+            if (Mroy) {
+                filterCatgorylistforhome.add("Rock");
+            }
+
+            if (MRNy) {
+                filterCatgorylistforhome.add("RNB");
+            }
+
+            if (MScry) {
+                filterCatgorylistforhome.add("Scremo");
+            }
+
+            if (MoActy) {
+                filterCatgorylistforhome.add("Action Movie");
+            }
+
+            if (MOAniy) {
+                filterCatgorylistforhome.add("Animation Movie");
+            }
+
+            if (MOComy) {
+                filterCatgorylistforhome.add("Comdey Movie");
+            }
+
+            if (MODoy) {
+                filterCatgorylistforhome.add("Documentary Movie");
+            }
+
+            if (MOFy) {
+                filterCatgorylistforhome.add("Family Movie");
+            }
+
+            if (MOHOry) {
+                filterCatgorylistforhome.add("Horror Movie");
+            }
+
+            if (MoMusy) {
+                filterCatgorylistforhome.add("Musical Movie");
+            }
+
+            if (MOSiy) {
+                filterCatgorylistforhome.add("Sifi Movie");
+            }
+
+            if (MOSpoy) {
+                filterCatgorylistforhome.add("Sports Movie");
+            }
+
+            if (MOTHrily) {
+                filterCatgorylistforhome.add("Thriller Movie");
+            }
+
+            if (MoWay) {
+                filterCatgorylistforhome.add("War Movie");
+            }
+
+            if (TActy) {
+                filterCatgorylistforhome.add("Action Shows");
+            }
+
+            if (TADvy) {
+                filterCatgorylistforhome.add("Adventure Shows");
+            }
+
+            if (TAniy) {
+                filterCatgorylistforhome.add("Animation Shows");
+            }
+
+            if (TBioy) {
+                filterCatgorylistforhome.add("Biography Shows");
+            }
+
+            if (TCom) {
+                filterCatgorylistforhome.add("Comedy Shows");
+            }
+
+            if (TCriy) {
+                filterCatgorylistforhome.add("Crime Shows");
+            }
+
+            if (TDoy) {
+                filterCatgorylistforhome.add("Documentary Shows");
+            }
+
+            if (TDray) {
+                filterCatgorylistforhome.add("Drama Shows");
+            }
+
+            if (Tfay) {
+                filterCatgorylistforhome.add("Family Shows");
+            }
+
+            if (TGamey) {
+                filterCatgorylistforhome.add("Game Shows");
+            }
+
+            if (THisy) {
+                filterCatgorylistforhome.add("History Shows");
+            }
+
+            if (Thory) {
+                filterCatgorylistforhome.add("Horror Shows");
+            }
+
+            if (TMysy) {
+                filterCatgorylistforhome.add("Mystery Shows");
+            }
+
+            if (Trey) {
+                filterCatgorylistforhome.add("Reality Shows");
+            }
+
+            if (Tsiy) {
+                filterCatgorylistforhome.add("Sifi Shows");
+            }
+
+            if (TSpoy) {
+                filterCatgorylistforhome.add("Sports Shows");
+            }
+
+            if (TTalky) {
+                filterCatgorylistforhome.add("Talk Shows");
+            }
+
+            if (Tway) {
+                filterCatgorylistforhome.add("War Shows");
+            }
+
+            if (Dacty) {
+                filterCatgorylistforhome.add("Acting");
+            }
+
+            if (Dcosy) {
+                filterCatgorylistforhome.add("Cosplay");
+            }
+
+            if (Dlay) {
+                filterCatgorylistforhome.add("Larping");
+            }
+
+            if (CActy) {
+                filterCatgorylistforhome.add("Action Figures");
+            }
+
+            if (CCry) {
+                filterCatgorylistforhome.add("Cars");
+            }
+
+            if (Ccinsy) {
+                filterCatgorylistforhome.add("Coins");
+            }
+
+            if (Ccomy) {
+                filterCatgorylistforhome.add("Comics");
+            }
+
+            if (CGuny) {
+                filterCatgorylistforhome.add("Guns");
+            }
+
+            if (Ctrcy) {
+                filterCatgorylistforhome.add("Trucks");
+            }
+            boolean exists;
+
+            List<Product> runitup = new ArrayList<>();
+
+            for (int i = 0; i < compare.length; ++i) {
+                runitup.add(i, compare[i]);
+            }
+
+            for (int i = 0; i < runitup.size(); ++i) {
+                exists = false;
+                for (int j = 0; j < filterCatgorylistforhome.size(); ++j) {
+                    if (runitup.get(i).getCategory().equals(filterCatgorylistforhome.get(j))) {
+                        exists = true;
+                    }
+                }
+                if (!exists) {
+                    runitup.remove(i);
+                }
+            }
+            compare = new Product[runitup.size()];
+            for (int i = 0; i < compare.length; ++i) {
+                compare[i] = runitup.get(i);
+            }
+        }
+
+        if (FilterSpefic) {
+
+            boolean exists;
+            List<Product> runitup = new ArrayList<>();
+
+            for (int i = 0; i < compare.length; ++i) {
+                runitup.add(i, compare[i]);
+            }
+
+            for (int i = 0; i < compare.length; ++i) {
+                exists = false;
+                for (int j = 0; j < runitup.size(); ++j) {
+                    if (runitup.get(i).getCategory().equals(FilterSpefickeyword)) {
+                        exists = true;
+                    }
+                }
+                if (!exists) {
+                    runitup.remove(i);
+                }
+            }
+            compare = new Product[runitup.size()];
+            for (int i = 0; i < compare.length; ++i) {
+                compare[i] = runitup.get(i);
+            }
+        }
+
+        productList.clear();
+
+        for (int i = 0; i < compare.length; ++i) {
+            productList.add(i, compare[i]);
+        }
         setAdapters();
+
     }
 
-    @Override
-public void onStart() {
-    super.onStart();
-    mAuth.addAuthStateListener(mAuthListener);
 
-   
-}
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+
+
+    }
 
     @Override
     public void onStop() {
@@ -320,4 +833,3 @@ public void onStart() {
         return true;
     }
 }
-

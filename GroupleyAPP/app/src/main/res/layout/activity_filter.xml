@@ -15,19 +15,78 @@
         tools:layout_editor_absoluteX="8dp">
 
         <TextView
-            android:id="@+id/textView64"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.22" />
-
-        <TextView
             android:id="@+id/textView55"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
-            android:text="Filter Page"
+            android:text="SORT BY:"
             android:textAlignment="center"
-            android:textSize="36sp" />
+            android:textAllCaps="true"
+            android:textColor="@android:color/background_dark"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/SortbySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Filter BY:"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@android:color/background_dark"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/Filterbyspinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.01">
+
+            <RadioButton
+                android:id="@+id/ALLEVENTSBTN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ALL EVENTS " />
+
+            <RadioButton
+                android:id="@+id/YOUREVENTSBTN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SPEFIC INTEREST" />
+        </RadioGroup>
+
+        <Spinner
+            android:id="@+id/Speficspiner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.14" />
+
+        <TextView
+            android:id="@+id/textView51"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.27" />
+
+        <Button
+            android:id="@+id/FilterSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="FILTEr"
+            android:textAlignment="center"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

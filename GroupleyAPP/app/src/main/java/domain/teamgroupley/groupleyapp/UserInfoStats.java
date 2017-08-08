@@ -184,6 +184,10 @@ public class UserInfoStats extends AppCompatActivity {
                                 myRef.child(userID).child("UserInfo").child("UserName").setValue(User);
                                 myRef.child(userID).child("UserInfo").child("Sex").setValue(Sex);
 
+                                myRef.child(userID).child("Filter").child("Sortby").setValue("DATE");
+                                myRef.child(userID).child("Filter").child("Filterby").setValue("ALL INTEREST");
+                                myRef.child(userID).child("Filter").child("Spefic").setValue("ALL");
+                                myRef.child(userID).child("Filter").child("SpeficString").setValue("sarchery");
 
                                 //   myRef.child(userID).child("UserInfo").setValue(userinformaiton);
                                 Intent changepage = new Intent(UserInfoStats.this, Create_Interest.class);

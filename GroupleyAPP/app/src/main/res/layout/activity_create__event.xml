@@ -128,6 +128,12 @@
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold|italic" />
+                <WebView
+                    android:id="@+id/wvAttribution"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Attribution"
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/textView43"
@@ -230,11 +236,12 @@
                     android:id="@+id/address_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.31"
+                    android:layout_weight="0.12"
+                    android:editable="false"
                     android:ems="10"
+                    android:enabled="true"
                     android:fontFamily="sans-serif-condensed"
-                    android:hint="3300 University Blvd, Winter Park, FL 32792"
-                    android:inputType="textPostalAddress"
+                    android:hint="3300 Full Sail University"
                     android:textSize="14sp" />
 
                 <EditText

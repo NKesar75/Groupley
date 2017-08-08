@@ -1,9 +1,13 @@
 package domain.teamgroupley.groupleyapp;
 
+import android.*;
+import android.Manifest;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
@@ -14,6 +18,7 @@ import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,6 +27,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,6 +39,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,8 +52,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.net.URI;
 import java.sql.Array;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -50,11 +65,12 @@ import java.util.List;
 
 import static android.R.attr.data;
 import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
+import static domain.teamgroupley.groupleyapp.R.id.text;
 
 public class Create_Event extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    EditText Addey;
+    EditText address;
     EditText Max;
     Button Create;
     Spinner Cat;
@@ -70,8 +86,6 @@ public class Create_Event extends AppCompatActivity
     FirebaseUser user = mAuth.getCurrentUser();
     String userID = user.getUid();
 
-
-
     ArrayList<String> Catgorylist;
 
 
@@ -85,21 +99,44 @@ public class Create_Event extends AppCompatActivity
     private DrawerLayout draw;
     private ActionBarDrawerToggle toggle;
 
+    private final static int MY_PERMISSION_FINE_LOCATION = 101;
+    private final static int PLACE_PICKER_REQUEST = 1;
+    WebView attributionText;
+
             @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create__event);
 
+                requestPermission();
+                attributionText = (WebView)findViewById(R.id.wvAttribution);
+                address = (EditText) findViewById(R.id.address_txt);
 
-
-        Cat = (Spinner) findViewById(R.id.Category_SPINNER);
-        Date = (EditText) findViewById(R.id.Date_txt);
-        Time = (EditText) findViewById(R.id.time_txt);
+                Cat = (Spinner) findViewById(R.id.Category_SPINNER);
+                Date = (EditText) findViewById(R.id.Date_txt);
+                Time = (EditText) findViewById(R.id.time_txt);
 
         final EditText Title = (EditText) findViewById(R.id.Title_txt);
         final EditText Disc = (EditText) findViewById(R.id.des_txt);
         final EditText Addey  = (EditText) findViewById(R.id.address_txt);
         final EditText Max = (EditText) findViewById(R.id.max_people_txt);
+
+
+                address.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+                        try {
+                            Intent intent = builder.build(Create_Event.this);
+                            startActivityForResult(intent, PLACE_PICKER_REQUEST);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+//                        } catch (GooglePlayServicesNotAvailableException e) {
+//                            e.printStackTrace();
+                        }
+                    }
+                });
 
 
         Date.setOnClickListener(new View.OnClickListener() {
@@ -216,7 +253,7 @@ public class Create_Event extends AppCompatActivity
                 String Cator = Cat.getSelectedItem().toString();
                 String Day = Date.getText().toString();
                 String Tim = Time.getText().toString();
-                String ADd = Addey.getText().toString();
+                String ADd = address.getText().toString();
                 String MAxppl = Max.getText().toString();
 
                 if (!Cator.equals("") && !Day.equals("") && !Tim.equals("")) {
@@ -294,6 +331,61 @@ public class Create_Event extends AppCompatActivity
         NavigationView navigation = (NavigationView)findViewById(R.id.nav_view);
         navigation.setNavigationItemSelectedListener(this);
 
+    }
+
+
+    private void requestPermission()
+    {
+        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},MY_PERMISSION_FINE_LOCATION);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode)
+        {
+            case MY_PERMISSION_FINE_LOCATION:
+                if(grantResults[0] != PackageManager.PERMISSION_GRANTED)
+                {
+                    Toast.makeText(getApplicationContext(),"This app requires location permissions to be granted",Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if(requestCode == PLACE_PICKER_REQUEST)
+        {
+            if(resultCode == RESULT_OK)
+            {
+                Place place = PlacePicker.getPlace(data,this);
+                String add = place.getAddress().toString();
+                address.setText(add);
+
+//                if (place.getAttributions() == null)
+//                {
+//                    attributionText.loadData("no attribution", "text/html; charset=utf-8", "UFT-8");
+//                } else
+//                    {
+//                    attributionText.loadData(place.getAttributions().toString(), "text/html; charset=utf-8", "UFT-8");
+//                    }
+            }
+        }
+        else
+        {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override

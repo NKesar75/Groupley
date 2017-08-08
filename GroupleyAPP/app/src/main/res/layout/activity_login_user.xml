@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
-                    android:hint="Joe@Gmail.com"
+                    android:hint="YourEmail@Example.com"
                     android:inputType="textEmailAddress"
                     android:textColor="@android:color/background_dark" />
 

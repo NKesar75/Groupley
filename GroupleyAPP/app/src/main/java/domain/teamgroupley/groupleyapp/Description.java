@@ -41,6 +41,8 @@ public class Description extends AppCompatActivity {
     private int Eventtie = Home.EventTitle;
     String Event = "Event";
 
+    int number = 1;
+
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mTitle = mRootRef.child("Events").child(Event+Eventtie).child("Title");
     DatabaseReference mDesc = mRootRef.child("Events").child(Event+Eventtie).child("Description");
@@ -80,6 +82,17 @@ public class Description extends AppCompatActivity {
             }
         };
 
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //dataSnapshot.child()
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         Join.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +115,9 @@ public class Description extends AppCompatActivity {
                 myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Time").setValue(Tim);
                 myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Address").setValue(ADd);
                 myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Max_People").setValue(MAxppl);
+
+            //    myRef.child("Events").child(Event + Eventtie).child("People" + ).
+
 
                 startActivity(new Intent(Description.this,Home.class));
                 Toast.makeText(Description.this, "You Have Joined.", Toast.LENGTH_SHORT).show();

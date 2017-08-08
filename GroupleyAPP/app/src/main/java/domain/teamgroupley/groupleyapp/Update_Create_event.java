@@ -231,7 +231,7 @@ public class Update_Create_event extends AppCompatActivity {
                                     mRootRef.child("Events").child(Event + updatecount).child("Category").setValue(Cator);
 
 
-                                    Intent changepage = new Intent(Update_Create_event.this, Home.class);
+                                    Intent changepage = new Intent(Update_Create_event.this, CreatedEventList.class);
                                     startActivity(changepage);
                                     Toast.makeText(Update_Create_event.this, "Event Has Been Updated", Toast.LENGTH_SHORT).show();
                                 } else {

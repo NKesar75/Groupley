@@ -169,7 +169,7 @@ public class Home extends AppCompatActivity
     AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            EventTitle = position + 1;
+            EventTitle = productList.get(position).getmEventnumber();
 
             startActivity(new Intent(Home.this, Description.class));
         }
@@ -286,7 +286,7 @@ public class Home extends AppCompatActivity
         String tit;
         String Dat;
         String Cat;
-
+        int eventnum;
 
         for (DataSnapshot ds : dataSnapshot.child("Events").getChildren()) {
             // Product value = ds.getValue(Product.class);
@@ -295,8 +295,9 @@ public class Home extends AppCompatActivity
                 tit = dataSnapshot.child("Events").child(Event + count).child("Title").getValue(String.class).toString();
                 Dat = dataSnapshot.child("Events").child(Event + count).child("Date").getValue(String.class).toString();
                 Cat = dataSnapshot.child("Events").child(Event + count).child("Category").getValue(String.class).toString();
-                ++count;
-                productList.add(new Product(tit, Dat, Cat, R.mipmap.ic_launcher_round));
+                eventnum = dataSnapshot.child("Events").child(Event + count).child("EVENTNUMBER").getValue(int.class).intValue();
+            ++count;
+                productList.add(new Product(tit, Dat, Cat, R.mipmap.ic_launcher_round,eventnum));
             }
 
         Product compare[] = new Product[productList.size()];
@@ -798,7 +799,7 @@ public class Home extends AppCompatActivity
         productList.clear();
 
         for (int i = 0; i < compare.length; ++i) {
-            productList.add(i,new Product(compare[i].getTitle(), "Date: " + compare[i].getDate().toString(), "Category: " + compare[i].getCategory().toString(), R.mipmap.ic_launcher_round));
+            productList.add(i,new Product(compare[i].getTitle(), "Date: " + compare[i].getDate().toString(), "Category: " + compare[i].getCategory().toString(), R.mipmap.ic_launcher_round, compare[i].getmEventnumber()));
         }
         setAdapters();
 

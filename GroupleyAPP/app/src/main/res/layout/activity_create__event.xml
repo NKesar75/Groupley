@@ -238,12 +238,13 @@
                     android:id="@+id/des_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.30"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="Come and have fun in the party and meet new people"
                     android:inputType="textMultiLine"
-                    android:textSize="14sp"
-                    android:layout_weight="0.30" />
+                    android:singleLine="false"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

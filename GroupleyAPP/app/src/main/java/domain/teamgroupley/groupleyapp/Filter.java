@@ -1,6 +1,7 @@
 package domain.teamgroupley.groupleyapp;
 
 import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,11 +34,11 @@ public class Filter extends AppCompatActivity {
     String USerid = user.getUid();
 
     Spinner Sortby;
-    Spinner Spefic;
     Spinner Cata;
 
     RadioButton Aevents;
     RadioButton Yevents;
+    RadioButton Sevents;
 
     Button Fil;
 
@@ -45,8 +46,7 @@ public class Filter extends AppCompatActivity {
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mSortby = mRootRef.child(USerid).child("Filter").child("Sortby");
-    DatabaseReference mFilterby = mRootRef.child(USerid).child("Filter").child("Filterby");
-    DatabaseReference mtakeout = mRootRef.child(USerid).child("Filter").child("Spefic");
+    DatabaseReference  mtakeout = mRootRef.child(USerid).child("Filter").child("Spefic");
     DatabaseReference mtakeoutstring = mRootRef.child(USerid).child("Filter").child("SpeficString");
 
     @Override
@@ -64,18 +64,15 @@ public class Filter extends AppCompatActivity {
         Sort.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Sortby.setAdapter(Sort);
 
-        Spefic = (Spinner) findViewById(R.id.Filterbyspinner);
-        ArrayAdapter<String> Filterwith = new ArrayAdapter<String>(Filter.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.Spefic));
-        Filterwith.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spefic.setAdapter(Filterwith);
+
 
         Cata = (Spinner) findViewById(R.id.Speficspiner);
 
         Fil = (Button) findViewById(R.id.FilterSave);
 
         Aevents = (RadioButton) findViewById(R.id.ALLEVENTSBTN);
-        Yevents = (RadioButton) findViewById(R.id.YOUREVENTSBTN);
+        Yevents = (RadioButton) findViewById(R.id.YOUREVEENTSBUTTON);
+        Sevents = (RadioButton) findViewById(R.id.SPEFICEVENTSBTN);
 
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -116,17 +113,17 @@ public class Filter extends AppCompatActivity {
             public void onClick(View v) {
 
                 String Sor = Sortby.getSelectedItem().toString();
-                String Fill = Spefic.getSelectedItem().toString();
                 String Spe;
                 if (Aevents.isChecked()) {
                     Spe = "All";
+                }else if (Yevents.isChecked()){
+                    Spe = "Yours";
                 } else {
                     Spe = "spefic";
                 }
                 String Sepficst = Cata.getSelectedItem().toString();
 
                 mRootRef.child(USerid).child("Filter").child("Sortby").setValue(Sor);
-                mRootRef.child(USerid).child("Filter").child("Filterby").setValue(Fill);
                 mRootRef.child(USerid).child("Filter").child("Spefic").setValue(Spe);
                 mRootRef.child(USerid).child("Filter").child("SpeficString").setValue(Sepficst);
 
@@ -172,24 +169,6 @@ public class Filter extends AppCompatActivity {
             }
         });
 
-        mFilterby.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String Temp = dataSnapshot.getValue(String.class);
-                int index = 0;
-                for (int i = 0; i < Spefic.getCount(); i++) {
-                    if (Spefic.getItemAtPosition(i).equals(Temp)) {
-                        Spefic.setSelection(i);
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         mtakeout.addValueEventListener(new ValueEventListener() {
             @Override
@@ -198,10 +177,17 @@ public class Filter extends AppCompatActivity {
                 if (Temp.equals("All")){
                     Aevents.setChecked(true);
                     Yevents.setChecked(false);
+                    Sevents.setChecked(false);
+                }
+                else if (Temp.equals("Yours")){
+                    Aevents.setChecked(false);
+                    Sevents.setChecked(false);
+                    Yevents.setChecked(true);
                 }
                 else if (Temp.equals("spefic")){
                     Aevents.setChecked(false);
-                    Yevents.setChecked(true);
+                    Sevents.setChecked(true);
+                    Yevents.setChecked(false);
                 }
             }
 

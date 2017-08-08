@@ -44,12 +44,6 @@
             android:textSize="36sp"
             android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/Filterbyspinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.10" />
-
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,13 +53,32 @@
                 android:id="@+id/ALLEVENTSBTN"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ALL EVENTS " />
+                android:text="ALL Interests "
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textStyle="bold" />
 
             <RadioButton
-                android:id="@+id/YOUREVENTSBTN"
+                android:id="@+id/YOUREVEENTSBUTTON"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SPEFIC INTEREST" />
+                android:layout_weight="1"
+                android:text="Your Interests "
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/common_google_signin_btn_text_light_pressed"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/SPEFICEVENTSBTN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SPEFIC INTERESTs"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/cast_expanded_controller_background_color"
+                android:textStyle="bold" />
+
         </RadioGroup>
 
         <Spinner

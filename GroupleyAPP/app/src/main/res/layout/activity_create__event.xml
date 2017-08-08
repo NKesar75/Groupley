@@ -164,6 +164,20 @@
                     android:textSize="18sp"
                     android:textStyle="bold|italic" />
 
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="    "
+                    android:layout_weight="0.12" />
+
+                <Button
+                    android:id="@+id/image_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Click to Add Image" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -216,7 +230,7 @@
                     android:id="@+id/address_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.09"
+                    android:layout_weight="0.31"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
                     android:hint="3300 University Blvd, Winter Park, FL 32792"
@@ -238,12 +252,18 @@
                     android:id="@+id/des_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.09"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
-                    android:hint="Come and have fun in the party and meet new people"
-                    android:inputType="textMultiLine"
-                    android:textSize="14sp"
-                    android:layout_weight="0.30" />
+                    android:hint="Description"
+                    android:inputType="textPostalAddress"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
 
@@ -261,6 +281,7 @@
         android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
     </FrameLayout>
 
     <android.support.design.widget.NavigationView

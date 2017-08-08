@@ -31,9 +31,6 @@ public class createLoginatstart extends AppCompatActivity {
 
 
     public Button Create;
-    public EditText EmailAccount;
-    public EditText Password;
-    public EditText Repassword;
     public static String Email;
     public static String Pass;
     public static String Repass;

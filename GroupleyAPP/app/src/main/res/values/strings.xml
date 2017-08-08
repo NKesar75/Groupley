@@ -11,6 +11,17 @@
         <item>PREFER NOT TO ANSWER</item>
     </string-array>
 
+    <string-array name="Sort">
+        <item>DATE</item>
+        <item>TITLE</item>
+        <item>CATEGORY</item>
+    </string-array>
+
+    <string-array name="Spefic">
+        <item>ALL INTEREST</item>
+        <item>YOUR INTEREST</item>
+    </string-array>
+
     <string-array name="Category">
         <item>ARCHERY</item>
         <item>BASEBALL</item>

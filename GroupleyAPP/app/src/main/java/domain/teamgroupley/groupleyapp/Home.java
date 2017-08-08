@@ -2,6 +2,7 @@ package domain.teamgroupley.groupleyapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.text.SimpleDateFormat;
 import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -23,7 +24,6 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,10 +35,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Array;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import static android.R.attr.data;
@@ -233,7 +235,6 @@ public class Home extends AppCompatActivity
 
 
         String tempTilte = dataSnapshot.child(USerid).child("Filter").child("Sortby").getValue(String.class).toString();
-        String tempall = dataSnapshot.child(USerid).child("Filter").child("Filterby").getValue(String.class).toString();
         String tempspefic = dataSnapshot.child(USerid).child("Filter").child("Spefic").getValue(String.class).toString();
         String tempkey = dataSnapshot.child(USerid).child("Filter").child("SpeficString").getValue(String.class).toString();
 
@@ -241,10 +242,10 @@ public class Home extends AppCompatActivity
         boolean FilterDate = false;
         boolean FilterCategory = false;
 
-        boolean FilterAll = false;
-        boolean FilterYourInterest = false;
+
 
         boolean FilterAllEvents = false;
+        boolean FilterYourInterest = false;
         boolean FilterSpefic = false;
         String FilterSpefickeyword = "false";
 
@@ -265,20 +266,19 @@ public class Home extends AppCompatActivity
             FilterCategory = true;
         }
 
-        if (tempall.equals("ALL INTERESTS")) {
-            FilterAll = true;
-            FilterYourInterest = false;
-        } else if (tempall.equals("YOUR INTERESTS")) {
-            FilterAll = false;
-            FilterYourInterest = true;
-        }
-
         if (tempspefic.equals("All")) {
             FilterAllEvents = true;
+            FilterYourInterest = false;
             FilterSpefic = false;
             FilterSpefickeyword = " ";
+        }else if (tempspefic.equals("Yours")) {
+            FilterAllEvents = false;
+            FilterSpefic = false;
+            FilterSpefickeyword = " ";
+            FilterYourInterest = true;
         } else if (tempspefic.equals("spefic")) {
             FilterAllEvents = false;
+            FilterYourInterest = false;
             FilterSpefic = true;
             FilterSpefickeyword = tempkey;
         }
@@ -291,12 +291,13 @@ public class Home extends AppCompatActivity
         for (DataSnapshot ds : dataSnapshot.child("Events").getChildren()) {
             // Product value = ds.getValue(Product.class);
             // value.setImageid(R.mipmap.ic_launcher_round);
-            tit = dataSnapshot.child("Events").child(Event + count).child("Title").getValue(String.class).toString();
-            Dat = dataSnapshot.child("Events").child(Event + count).child("Date").getValue(String.class).toString();
-            Cat = dataSnapshot.child("Events").child(Event + count).child("Category").getValue(String.class).toString();
-            ++count;
-            productList.add(new Product(tit, "Date: " + Dat, "Category: " + Cat, R.mipmap.ic_launcher_round));
-        }
+
+                tit = dataSnapshot.child("Events").child(Event + count).child("Title").getValue(String.class).toString();
+                Dat = dataSnapshot.child("Events").child(Event + count).child("Date").getValue(String.class).toString();
+                Cat = dataSnapshot.child("Events").child(Event + count).child("Category").getValue(String.class).toString();
+                ++count;
+                productList.add(new Product(tit, Dat, Cat, R.mipmap.ic_launcher_round));
+            }
 
         Product compare[] = new Product[productList.size()];
 
@@ -316,15 +317,44 @@ public class Home extends AppCompatActivity
                 }
             }
         } else if (FilterDate) {
+
+
             for (int i = 0; i < compare.length; ++i) {
                 for (int j = 0; j < compare.length; ++j) {
-                    if (compare[i].getDate().compareToIgnoreCase(compare[j].getDate()) < 0) {
+
+                    if (i == j) {
+                        continue;
+                    }
+
+                    String[] parts1 = compare[i].getDate().split("/");
+
+                    String[] parts2 = compare[j].getDate().split("/");
+
+                    if (Integer.parseInt(parts1[2]) == Integer.parseInt(parts2[2])){
+                        if (Integer.parseInt(parts1[0]) == Integer.parseInt(parts2[0])) {
+                            if (Integer.parseInt(parts1[1]) == Integer.parseInt(parts2[1])) {
+                                   continue;
+                                } else if (Integer.parseInt(parts1[1]) < Integer.parseInt(parts2[1])){
+                                        Product temp = compare[i];
+                                         compare[i] = compare[j];
+                                          compare[j] = temp;
+                            }
+
+                        } else if (Integer.parseInt(parts1[0]) < Integer.parseInt(parts2[0])) {
+                                Product temp = compare[i];
+                                compare[i] = compare[j];
+                                compare[j] = temp;
+                        }
+                    } else if (Integer.parseInt(parts1[2]) < Integer.parseInt(parts2[2])) {
+
                         Product temp = compare[i];
                         compare[i] = compare[j];
                         compare[j] = temp;
+
                     }
                 }
             }
+
         } else if (FilterCategory) {
             for (int i = 0; i < compare.length; ++i) {
                 for (int j = 0; j < compare.length; ++j) {
@@ -709,21 +739,26 @@ public class Home extends AppCompatActivity
             }
             boolean exists;
 
-            List<Product> runitup = new ArrayList<>();
+           List<Product> runitup = new ArrayList<>();
 
             for (int i = 0; i < compare.length; ++i) {
                 runitup.add(i, compare[i]);
             }
 
+            String one;
+            String two;
             for (int i = 0; i < runitup.size(); ++i) {
                 exists = false;
+                one = runitup.get(i).getCategory().toString();
                 for (int j = 0; j < filterCatgorylistforhome.size(); ++j) {
-                    if (runitup.get(i).getCategory().equals(filterCatgorylistforhome.get(j))) {
+                    two = filterCatgorylistforhome.get(j).toString();
+                    if (one.equals(two)) {
                         exists = true;
                     }
                 }
                 if (!exists) {
                     runitup.remove(i);
+                    --i;
                 }
             }
             compare = new Product[runitup.size()];
@@ -732,7 +767,7 @@ public class Home extends AppCompatActivity
             }
         }
 
-        if (FilterSpefic) {
+        else if (FilterSpefic) {
 
             boolean exists;
             List<Product> runitup = new ArrayList<>();
@@ -741,27 +776,29 @@ public class Home extends AppCompatActivity
                 runitup.add(i, compare[i]);
             }
 
-            for (int i = 0; i < compare.length; ++i) {
-                exists = false;
-                for (int j = 0; j < runitup.size(); ++j) {
-                    if (runitup.get(i).getCategory().equals(FilterSpefickeyword)) {
-                        exists = true;
+
+
+                String one;
+                for (int i = 0; i < runitup.size(); ++i) {
+                    one = runitup.get(i).getCategory().toString();
+                    if (!one.equals(FilterSpefickeyword)) {
+                        runitup.remove(i);
+                        --i;
                     }
                 }
-                if (!exists) {
-                    runitup.remove(i);
+
+            if (compare.length != 0) {
+                compare = new Product[runitup.size()];
+                for (int i = 0; i < compare.length; ++i) {
+                    compare[i] = runitup.get(i);
                 }
-            }
-            compare = new Product[runitup.size()];
-            for (int i = 0; i < compare.length; ++i) {
-                compare[i] = runitup.get(i);
             }
         }
 
         productList.clear();
 
         for (int i = 0; i < compare.length; ++i) {
-            productList.add(i, compare[i]);
+            productList.add(i,new Product(compare[i].getTitle(), "Date: " + compare[i].getDate().toString(), "Category: " + compare[i].getCategory().toString(), R.mipmap.ic_launcher_round));
         }
         setAdapters();
 

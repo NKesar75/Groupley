@@ -34,7 +34,7 @@
 
             <meta-data
                 android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyCvaLqOnswl1ZijQHD1aYXIkx6i5woKveg"/>
+                android:value="AIzaSyCEB_JA0__O0z5Rko_vS4pr1wQIPLI2jXU"/>
 
         </activity>
         <activity android:name=".IntrestSelection" />

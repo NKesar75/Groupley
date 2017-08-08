@@ -86,8 +86,14 @@ public class Create_Event extends AppCompatActivity
     FirebaseUser user = mAuth.getCurrentUser();
     String userID = user.getUid();
 
-    ArrayList<String> Catgorylist;
+    private StorageReference storageReference;
+    private ImageView imageView;
+    private Uri imguri;
 
+    public static final String FB_STORAGE_PATH = "image/";
+    public static final String FB_DATABASE_PATH = "image";
+
+    ArrayList<String> Catgorylist;
 
     long EVENTCOUNT;
     long CreatedEVENTCOUNT;
@@ -99,18 +105,10 @@ public class Create_Event extends AppCompatActivity
     private DrawerLayout draw;
     private ActionBarDrawerToggle toggle;
 
-    private final static int MY_PERMISSION_FINE_LOCATION = 101;
-    private final static int PLACE_PICKER_REQUEST = 1;
-    WebView attributionText;
-
             @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create__event);
-
-                requestPermission();
-                attributionText = (WebView)findViewById(R.id.wvAttribution);
-                address = (EditText) findViewById(R.id.address_txt);
 
                 Cat = (Spinner) findViewById(R.id.Category_SPINNER);
                 Date = (EditText) findViewById(R.id.Date_txt);
@@ -120,24 +118,6 @@ public class Create_Event extends AppCompatActivity
         final EditText Disc = (EditText) findViewById(R.id.des_txt);
         final EditText Addey  = (EditText) findViewById(R.id.address_txt);
         final EditText Max = (EditText) findViewById(R.id.max_people_txt);
-
-
-                address.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v)
-                    {
-                        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                        try {
-                            Intent intent = builder.build(Create_Event.this);
-                            startActivityForResult(intent, PLACE_PICKER_REQUEST);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-//                        } catch (GooglePlayServicesNotAvailableException e) {
-//                            e.printStackTrace();
-                        }
-                    }
-                });
-
 
         Date.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -253,7 +233,7 @@ public class Create_Event extends AppCompatActivity
                 String Cator = Cat.getSelectedItem().toString();
                 String Day = Date.getText().toString();
                 String Tim = Time.getText().toString();
-                String ADd = address.getText().toString();
+                String ADd = Addey.getText().toString();
                 String MAxppl = Max.getText().toString();
 
                 if (!Cator.equals("") && !Day.equals("") && !Tim.equals("")) {
@@ -331,61 +311,6 @@ public class Create_Event extends AppCompatActivity
         NavigationView navigation = (NavigationView)findViewById(R.id.nav_view);
         navigation.setNavigationItemSelectedListener(this);
 
-    }
-
-
-    private void requestPermission()
-    {
-        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},MY_PERMISSION_FINE_LOCATION);
-            }
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
-    {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        switch (requestCode)
-        {
-            case MY_PERMISSION_FINE_LOCATION:
-                if(grantResults[0] != PackageManager.PERMISSION_GRANTED)
-                {
-                    Toast.makeText(getApplicationContext(),"This app requires location permissions to be granted",Toast.LENGTH_LONG).show();
-                    finish();
-                }
-                break;
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        if(requestCode == PLACE_PICKER_REQUEST)
-        {
-            if(resultCode == RESULT_OK)
-            {
-                Place place = PlacePicker.getPlace(data,this);
-                String add = place.getAddress().toString();
-                address.setText(add);
-
-//                if (place.getAttributions() == null)
-//                {
-//                    attributionText.loadData("no attribution", "text/html; charset=utf-8", "UFT-8");
-//                } else
-//                    {
-//                    attributionText.loadData(place.getAttributions().toString(), "text/html; charset=utf-8", "UFT-8");
-//                    }
-            }
-        }
-        else
-        {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
     }
 
     @Override

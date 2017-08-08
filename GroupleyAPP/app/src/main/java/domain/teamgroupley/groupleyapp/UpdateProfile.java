@@ -21,11 +21,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class UpdateProfile extends AppCompatActivity {
 
-    private EditText FirstName;
-    private EditText LastName ;
+    private EditText muFirstName;
+    private EditText muLastName ;
     private EditText Gender;
     private EditText DOB;
-    private EditText username ;
+    private EditText muusername ;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
@@ -54,6 +54,9 @@ public class UpdateProfile extends AppCompatActivity {
         DOB = (EditText)findViewById(R.id.DOB_tst_update);
         final EditText username = (EditText)findViewById(R.id.USERNAME_Tst_update);
 
+        muFirstName = (EditText)findViewById(R.id.First_NAME_Tst_update);
+        muLastName = (EditText)findViewById(R.id.LAST_NAME_tst_update);
+        muusername = (EditText)findViewById(R.id.USERNAME_Tst_update);
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -132,7 +135,7 @@ public class UpdateProfile extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String Name = dataSnapshot.getValue(String.class);
-                FirstName.setText(Name);
+                muFirstName.setText(Name);
             }
 
             @Override
@@ -144,7 +147,7 @@ public class UpdateProfile extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String LName = dataSnapshot.getValue(String.class);
-                LastName.setText(LName);
+                muLastName.setText(LName);
             }
 
             @Override
@@ -180,7 +183,7 @@ public class UpdateProfile extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String Temp = dataSnapshot.getValue(String.class);
-                username.setText(Temp);
+                muusername.setText(Temp);
             }
 
             @Override

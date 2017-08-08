@@ -10,6 +10,7 @@ public class Product
     private String title;
     private String Date;
     private String Category;
+    private int mEventnumber;
 
 
     public Product()
@@ -35,6 +36,14 @@ public class Product
         this.title = title;
         this.Date = date;
         this.Category = category;
+    }
+    public Product(String title, String date, String category,int imageid, int Eventnumber)
+    {
+        this.imageid = imageid;
+        this.title = title;
+        this.Date = date;
+        this.Category = category;
+        mEventnumber = Eventnumber;
     }
 
     public int getImageid() {
@@ -67,5 +76,13 @@ public class Product
 
     public void setCategory(String category) {
         Category = category;
+    }
+
+    public int getmEventnumber() {
+        return mEventnumber;
+    }
+
+    public void setmEventnumber(int mEventnumber) {
+        this.mEventnumber = mEventnumber;
     }
 }

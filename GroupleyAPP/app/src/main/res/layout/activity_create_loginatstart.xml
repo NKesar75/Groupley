@@ -129,7 +129,7 @@
                     android:layout_weight="0.26"
                     android:ems="10"
                     android:fontFamily="sans-serif-condensed"
-                    android:hint="JoeSmith@example.com"
+                    android:hint="YourEmail@example.com"
                     android:inputType="textEmailAddress"
                     android:textAlignment="textStart"
                     android:textSize="14sp" />

@@ -69,43 +69,45 @@ public class createLoginatstart extends AppCompatActivity {
                 Email = EmailAccount.getText().toString();
                 Pass = Password.getText().toString();
                 Repass = Repassword.getText().toString();
+                if (Pass.length() >= 8) {
+                    if (!Email.equals("") && !Pass.equals("") && !Repass.equals("")) {
+                        if (Pass.equals(Repass)) {
+                            if (!Email.contains(" ")) {
+                                mAuth.createUserWithEmailAndPassword(Email, Pass)
+                                        .addOnCompleteListener(createLoginatstart.this, new OnCompleteListener<AuthResult>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                                if (task.isSuccessful()) {
+                                                    SendemailVerication();
+                                                    Intent changepage = new Intent(createLoginatstart.this, VerfiyEmail.class);
+                                                    startActivity(changepage);
+                                                } else {
+                                                    Toast.makeText(createLoginatstart.this, "Account not created.",
+                                                            Toast.LENGTH_SHORT).show();
+                                                }
 
-                if (!Email.equals("") && !Pass.equals("") && !Repass.equals("")) {
-                    if (Pass.equals(Repass)) {
-                        if (!Email.contains(" ")) {
-                            mAuth.createUserWithEmailAndPassword(Email, Pass)
-                                    .addOnCompleteListener(createLoginatstart.this, new OnCompleteListener<AuthResult>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                            if (task.isSuccessful()) {
-                                                SendemailVerication();
-                                                Intent changepage = new Intent(createLoginatstart.this, VerfiyEmail.class);
-                                                startActivity(changepage);
+                                                // ...
                                             }
-                                            else {
-                                                Toast.makeText(createLoginatstart.this, "Account not created.",
-                                                        Toast.LENGTH_SHORT).show();
-                                            }
 
-                                            // ...
-                                        }
+                                        });
 
-                                    });
+                            } else {
+                                EmailAccount.setError("Email can not contain a space");
+                                EmailAccount.requestFocus();
+                            }
+                        } else {
+                            Password.setError("Passwords do not match");
+                            Password.requestFocus();
 
                         }
-                        else{
-                            EmailAccount.setError("Email can not contain a space");
-                            EmailAccount.requestFocus();
-                        }
+                    } else {
+                        EmailAccount.setError("Missing some information");
+                        EmailAccount.requestFocus();
                     }
-                    else{
-                        Password.setError("Passwords do not match");
-                        Password.requestFocus();
-
-                    }
-                } else{
-                    EmailAccount.setError("Missing some information");
-                    EmailAccount.requestFocus();
+                }
+                else{
+                    Password.setError("Passwords must be atleast 8 Characters");
+                    Password.requestFocus();
                 }
             }
         });

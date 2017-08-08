@@ -205,6 +205,7 @@ public class Create_Event extends AppCompatActivity
         Create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String tie = Title.getText().toString();
                 String Die = Disc.getText().toString();
                 String Cator = Cat.getSelectedItem().toString();
@@ -212,6 +213,7 @@ public class Create_Event extends AppCompatActivity
                 String Tim = Time.getText().toString();
                 String ADd = Addey.getText().toString();
                 String MAxppl = Max.getText().toString();
+
                 if (!Cator.equals("") && !Day.equals("") && !Tim.equals("")) {
                     if (!tie.equals("")) {
                             if (!ADd.equals("")) {

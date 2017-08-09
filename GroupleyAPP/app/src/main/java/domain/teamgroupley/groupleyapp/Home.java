@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.icu.text.SimpleDateFormat;
 import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
+import android.support.constraint.solver.widgets.Snapshot;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -287,6 +288,7 @@ public class Home extends AppCompatActivity
         String Dat;
         String Cat;
         int eventnum;
+        String img;
 
         for (DataSnapshot ds : dataSnapshot.child("Events").getChildren()) {
             // Product value = ds.getValue(Product.class);
@@ -296,8 +298,9 @@ public class Home extends AppCompatActivity
                 Dat = dataSnapshot.child("Events").child(Event + count).child("Date").getValue(String.class).toString();
                 Cat = dataSnapshot.child("Events").child(Event + count).child("Category").getValue(String.class).toString();
                 eventnum = dataSnapshot.child("Events").child(Event + count).child("EVENTNUMBER").getValue(int.class).intValue();
+                img = dataSnapshot.child("Events").child(Event + count).child("Image").child("url").getValue(String.class).toString();
             ++count;
-                productList.add(new Product(tit, Dat, Cat, R.mipmap.ic_launcher_round,eventnum));
+                productList.add(new Product(tit, Dat, Cat, img,eventnum));
             }
 
         Product compare[] = new Product[productList.size()];
@@ -799,7 +802,7 @@ public class Home extends AppCompatActivity
         productList.clear();
 
         for (int i = 0; i < compare.length; ++i) {
-            productList.add(i,new Product(compare[i].getTitle(), "Date: " + compare[i].getDate().toString(), "Category: " + compare[i].getCategory().toString(), R.mipmap.ic_launcher_round, compare[i].getmEventnumber()));
+            productList.add(i,new Product(compare[i].getTitle(), "Date: " + compare[i].getDate().toString(), "Category: " + compare[i].getCategory().toString(), compare[i].getImageid().toString(), compare[i].getmEventnumber()));
         }
         setAdapters();
 

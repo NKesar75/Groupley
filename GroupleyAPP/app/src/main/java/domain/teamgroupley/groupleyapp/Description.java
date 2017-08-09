@@ -29,6 +29,9 @@ public class Description extends AppCompatActivity {
     private String UserID = user.getUid();;
     private DatabaseReference myRef;
 
+    int refreshcount = 1;
+    DataSnapshot mdatasnapshot;
+
     private EditText Titl;
     private EditText Descrip;
     private EditText Cater;
@@ -37,12 +40,19 @@ public class Description extends AppCompatActivity {
     private EditText Add;
     private EditText Maxppl;
     private Button Join;
+    private Button Peoplechanging;
 
     private int Eventtie = Home.EventTitle;
+    public static int desnum;
+
     String Event = "Event";
 
-    int number = 1;
+    long number = 1;
 
+    long people = 1;
+    String username = "";
+
+    boolean checkifalreadythere = false;
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mTitle = mRootRef.child("Events").child(Event+Eventtie).child("Title");
     DatabaseReference mDesc = mRootRef.child("Events").child(Event+Eventtie).child("Description");
@@ -64,7 +74,7 @@ public class Description extends AppCompatActivity {
         Maxppl = (EditText)findViewById(R.id.max_people_txt_des);
         Titl = (EditText)findViewById(R.id.Title_txt_des);
         Join = (Button) findViewById(R.id.Join_event_btn_des);
-
+        Peoplechanging = (Button)findViewById(R.id.Attending);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -85,7 +95,10 @@ public class Description extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //dataSnapshot.child()
+                mdatasnapshot = dataSnapshot;
+                showData(dataSnapshot);
+
+
             }
 
             @Override
@@ -94,9 +107,19 @@ public class Description extends AppCompatActivity {
             }
         });
 
+        Peoplechanging.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                desnum = Eventtie;
+                startActivity(new Intent(Description.this, PeopleAttending.class));
+            }
+        });
+
         Join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                refresh();
                 String tie = Titl.getText().toString();
                 String Die = Descrip.getText().toString();
                 String Cator = Cater.getText().toString();
@@ -107,20 +130,25 @@ public class Description extends AppCompatActivity {
 
                     FirebaseUser user = mAuth.getCurrentUser();
                     String userID = user.getUid();
+                if (!checkifalreadythere) {
+                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Title").setValue(tie);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Description").setValue(Die);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Category").setValue(Cator);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Date").setValue(Day);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Time").setValue(Tim);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Address").setValue(ADd);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Max_People").setValue(MAxppl);
+                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("EVENTNUMBER").setValue(Eventtie);
 
-                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Title").setValue(tie);
-                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Description").setValue(Die);
-                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Category").setValue(Cator);
-                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Date").setValue(Day);
-                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Time").setValue(Tim);
-                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Address").setValue(ADd);
-                myRef.child(userID).child("RegisteredEvents").child(Event+Eventtie).child("Max_People").setValue(MAxppl);
+                    myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).setValue(username);
 
-            //    myRef.child("Events").child(Event + Eventtie).child("People" + ).
-
-
-                startActivity(new Intent(Description.this,Home.class));
-                Toast.makeText(Description.this, "You Have Joined.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Description.this, Home.class));
+                    Toast.makeText(Description.this, "You Have Joined.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    startActivity(new Intent(Description.this, Home.class));
+                    Toast.makeText(Description.this, "You Have Already Joined This Event.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -128,6 +156,31 @@ public class Description extends AppCompatActivity {
         {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+    }
+
+    private void refresh() {
+        refreshcount = 0;
+        showData(mdatasnapshot);
+    }
+
+    private void showData(DataSnapshot dataSnapshot) {
+        if (refreshcount == 0) {
+            number = dataSnapshot.child(UserID).child("RegisteredEvents").getChildrenCount() + 1;
+            people = dataSnapshot.child("Events").child(Event + Eventtie).child("People").getChildrenCount() + 1;
+            username = dataSnapshot.child(UserID).child("UserInfo").child("UserName").getValue(String.class).toString();
+
+            int counter = 1;
+            int evnum = 1;
+
+            for (DataSnapshot ds : dataSnapshot.child(UserID).child("RegisteredEvents").getChildren()) {
+                evnum = dataSnapshot.child(UserID).child("RegisteredEvents").child(Event + counter).child("EVENTNUMBER").getValue(int.class);
+                if (evnum == Eventtie) {
+                    checkifalreadythere = true;
+                }
+                ++counter;
+            }
+            refreshcount = 1;
         }
     }
 

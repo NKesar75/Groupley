@@ -6,5 +6,7 @@
 
     <item android:id="@+id/item_menu_2"
         android:title="Filter" />
+    <item android:id="@+id/item_menu_3"
+        android:title="Refresh"/>
 
 </menu>

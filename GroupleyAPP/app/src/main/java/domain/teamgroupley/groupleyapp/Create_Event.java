@@ -1,24 +1,20 @@
 package domain.teamgroupley.groupleyapp;
 
-import android.*;
-import android.Manifest;
-import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Build;
-import android.os.storage.StorageManager;
-import android.provider.CalendarContract;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -27,22 +23,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
-import android.widget.AdapterView;
+import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,19 +43,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.net.URI;
-import java.sql.Array;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import static android.R.attr.data;
 import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
-import static domain.teamgroupley.groupleyapp.R.id.text;
 
 public class Create_Event extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -85,13 +73,13 @@ public class Create_Event extends AppCompatActivity
 
     FirebaseUser user = mAuth.getCurrentUser();
     String userID = user.getUid();
+    String username;
 
     private StorageReference storageReference;
     private ImageView imageView;
     private Uri imguri;
 
-    public static final String FB_STORAGE_PATH = "image/";
-    public static final String FB_DATABASE_PATH = "image";
+    public  static final int Request_Code = 1234;
 
     ArrayList<String> Catgorylist;
 
@@ -105,6 +93,7 @@ public class Create_Event extends AppCompatActivity
     private DrawerLayout draw;
     private ActionBarDrawerToggle toggle;
 
+    @SuppressWarnings("VisibleForTests")
             @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +102,9 @@ public class Create_Event extends AppCompatActivity
                 Cat = (Spinner) findViewById(R.id.Category_SPINNER);
                 Date = (EditText) findViewById(R.id.Date_txt);
                 Time = (EditText) findViewById(R.id.time_txt);
+
+                imageView =(ImageView) findViewById(R.id.image_load);
+
 
         final EditText Title = (EditText) findViewById(R.id.Title_txt);
         final EditText Disc = (EditText) findViewById(R.id.des_txt);
@@ -187,6 +179,7 @@ public class Create_Event extends AppCompatActivity
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         mAuth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -213,6 +206,7 @@ public class Create_Event extends AppCompatActivity
 
                 EVENTCOUNT = dataSnapshot.child("Events").getChildrenCount() + 1;
                 CreatedEVENTCOUNT = dataSnapshot.child(userID).child("CreatedEvents").getChildrenCount() + 1;
+                username = dataSnapshot.child(userID).child("UserInfo").child("UserName").getValue(String.class).toString();
                 REGISTEREDEVENTCOUNT = dataSnapshot.child(userID).child("RegisteredEvents").getChildrenCount() + 1;
             }
 
@@ -228,53 +222,77 @@ public class Create_Event extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                String tie = Title.getText().toString();
-                String Die = Disc.getText().toString();
-                String Cator = Cat.getSelectedItem().toString();
-                String Day = Date.getText().toString();
-                String Tim = Time.getText().toString();
-                String ADd = Addey.getText().toString();
-                String MAxppl = Max.getText().toString();
+                final String tie = Title.getText().toString();
+                final String Die = Disc.getText().toString();
+                final String Cator = Cat.getSelectedItem().toString();
+                final String Day = Date.getText().toString();
+                final String Tim = Time.getText().toString();
+                final String ADd = Addey.getText().toString();
+                final String MAxppl = Max.getText().toString();
+
+                final StorageReference ref = storageReference.child(userID).child(Event + EVENTCOUNT).child(System.currentTimeMillis() + "." + getImageExt(imguri));
 
                 if (!Cator.equals("") && !Day.equals("") && !Tim.equals("")) {
                     if (!tie.equals("")) {
                             if (!ADd.equals("")) {
                                 if (!MAxppl.equals("")) {
-                                    if (!Die.equals("")){
-                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Title").setValue(tie);
-                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Description").setValue(Die);
-                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Category").setValue(Cator);
-                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Date").setValue(Day);
-                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Time").setValue(Tim);
-                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Address").setValue(ADd);
-                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Max_People").setValue(MAxppl);
-                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+                                    if (!Die.equals("")) {
+                                        if (imguri != null) {
 
-                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
-                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
-                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
-                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
-                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
-                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").setValue(ADd);
-                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
-                                    myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+                                            ref.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                                @Override
+                                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+                                                {
+                                                    Toast.makeText(getApplicationContext(), "Event Created", Toast.LENGTH_SHORT).show();
+                                                    ImageUpload imageUpload = new ImageUpload(taskSnapshot.getDownloadUrl().toString());
+
+                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Title").setValue(tie);
+                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Description").setValue(Die);
+                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Category").setValue(Cator);
+                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Date").setValue(Day);
+                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Time").setValue(Tim);
+                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Address").setValue(ADd);
+                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Image").setValue(imageUpload);
+
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").setValue(ADd);
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Image").setValue(imageUpload);
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").setValue(username);
 
 
-                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Title").setValue(tie);
-                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Description").setValue(Die);
-                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Category").setValue(Cator);
-                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Date").setValue(Day);
-                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Time").setValue(Tim);
-                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Address").setValue(ADd);
-                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
-                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-
-                                    Intent changepage = new Intent(Create_Event.this, Home.class);
-                                    startActivity(changepage);
-                                    Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();
-                                }
-                                else{
+                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Title").setValue(tie);
+                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Description").setValue(Die);
+                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Category").setValue(Cator);
+                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Date").setValue(Day);
+                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Time").setValue(Tim);
+                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Address").setValue(ADd);
+                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Image").setValue(imageUpload);
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                            Intent changepage = new Intent(Create_Event.this, Home.class);
+                                            startActivity(changepage);
+                                            Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();
+                                        }
+                                        else
+                                            {
+                                                Toast.makeText(getApplicationContext(), "Please select image", Toast.LENGTH_SHORT).show();
+                                            }
+                                    }else{
                                         Disc.setError("Description can not be empty");
                                         Disc.requestFocus();
                                     }
@@ -312,6 +330,83 @@ public class Create_Event extends AppCompatActivity
         navigation.setNavigationItemSelectedListener(this);
 
     }
+
+    public void chooseimg_btn(View v)
+    {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"SelectImage"),Request_Code);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == Request_Code && resultCode == RESULT_OK && data != null && data.getData() != null)
+        {
+            imguri = data.getData();
+            try
+            {
+                Bitmap bm = MediaStore.Images.Media.getBitmap(getContentResolver(),imguri);
+                imageView.setImageBitmap(bm);
+            }
+            catch(FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String getImageExt(Uri uri) {
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+//    @SuppressWarnings("VisibleForTests")
+//    public void btnUpload(View v)
+//    {
+//        if(imguri != null)
+//        {
+//            final ProgressDialog dialog = new ProgressDialog(this);
+//            dialog.setTitle("Uploading Image.......");
+//            dialog.show();
+//
+//            StorageReference ref = storageReference.child(FB_STORAGE_PATH+System.currentTimeMillis()+ "." + getImageExt(imguri));
+//            ref.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                @Override
+//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+//                {
+//                    dialog.dismiss();
+//                    Toast.makeText(getApplicationContext(), "Event Created", Toast.LENGTH_SHORT).show();
+//                    ImageUpload imageUpload = new ImageUpload(taskSnapshot.getDownloadUrl().toString());
+//
+//                    String uploadurl = myRef.push().getKey();
+//                    myRef.child(uploadurl).setValue(imageUpload);
+//                }
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//                    dialog.dismiss();
+//                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+//                }
+//            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//                @Override
+//                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+//                    double progress = (100 * taskSnapshot.getBytesTransferred())/taskSnapshot.getBytesTransferred();
+//                    dialog.setMessage("Creating Event...." + (int)progress + "%");
+//
+//                }
+//            });
+//        }
+//        else
+//        {
+//            Toast.makeText(getApplicationContext(), "Please select image", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
 
     @Override
     public void onStart() {

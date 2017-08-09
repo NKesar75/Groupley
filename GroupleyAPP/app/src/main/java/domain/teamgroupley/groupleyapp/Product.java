@@ -6,7 +6,7 @@ package domain.teamgroupley.groupleyapp;
 
 public class Product
 {
-    private  int imageid;
+    private  String imageid;
     private String title;
     private String Date;
     private String Category;
@@ -18,26 +18,14 @@ public class Product
 
     }
 
-    public Product(String title, String date, String category)
-    {
-        this.title = title;
-        this.Date = date;
-        this.Category = category;
-    }
-
-    public Product(String date)
-    {
-        this.Date = date;
-    }
-
-    public Product(String title, String date, String category,int imageid)
+    public Product(String title, String date, String category,String imageid)
     {
         this.imageid = imageid;
         this.title = title;
         this.Date = date;
         this.Category = category;
     }
-    public Product(String title, String date, String category,int imageid, int Eventnumber)
+    public Product(String title, String date, String category,String imageid, int Eventnumber)
     {
         this.imageid = imageid;
         this.title = title;
@@ -46,11 +34,11 @@ public class Product
         mEventnumber = Eventnumber;
     }
 
-    public int getImageid() {
+    public String getImageid() {
         return imageid;
     }
 
-    public void setImageid(int imageid) {
+    public void setImageid(String imageid) {
         this.imageid = imageid;
     }
 

@@ -232,9 +232,10 @@ public class CreatedEventList extends AppCompatActivity
             String tit = dataSnapshot.child(Userid).child("CreatedEvents").child(Event+count).child("Title").getValue(String.class).toString();
             String Dat = dataSnapshot.child(Userid).child("CreatedEvents").child(Event+count).child("Date").getValue(String.class).toString();
             String Cat = dataSnapshot.child(Userid).child("CreatedEvents").child(Event+count).child("Category").getValue(String.class).toString();
+            String Img = dataSnapshot.child(Userid).child("CreatedEvents").child(Event+count).child("Image").child("url").getValue(String.class).toString();
             ++count;
 
-            productList.add(new Product(tit,"Date: "+Dat,"Category: "+Cat,R.mipmap.ic_launcher_round));
+            productList.add(new Product(tit,"Date: "+Dat,"Category: "+Cat,Img));
         }
 
 

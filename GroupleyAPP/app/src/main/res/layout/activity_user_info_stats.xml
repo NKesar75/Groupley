@@ -127,6 +127,22 @@
                     android:textSize="18sp"
                     android:textStyle="bold|italic" />
 
+                <TextView
+                    android:id="@+id/textView60"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="    "
+                    android:layout_weight="0.53" />
+
+                <Button
+                    android:id="@+id/image_btn_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="image_upload"
+                    android:text="CLICK TO ADD IMAGE"
+                    android:textStyle="bold|italic" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -191,6 +207,20 @@
                     android:hint="UserName123"
                     android:inputType="textPersonName"
                     android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/textView61"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="    "
+                    android:layout_weight="0.68" />
+
+                <ImageView
+                    android:id="@+id/image_load_profile"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
 

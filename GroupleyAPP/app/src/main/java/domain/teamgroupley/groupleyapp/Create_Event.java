@@ -53,6 +53,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static domain.teamgroupley.groupleyapp.R.id.image_btn;
 import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 
 public class Create_Event extends AppCompatActivity
@@ -234,14 +235,16 @@ public class Create_Event extends AppCompatActivity
                 final String MAxppl = Max.getText().toString();
 
 
-
                 if (!Cator.equals("") && !Day.equals("") && !Tim.equals("")) {
                     if (!tie.equals("")) {
                             if (!ADd.equals("")) {
                                 if (!MAxppl.equals("")) {
                                     if (!Die.equals("")) {
+                                        if (imageView.getDrawable() != null)
+                                        {
+                                            final StorageReference ref = storageReference.child(userID).child(Event + EVENTCOUNT).child(System.currentTimeMillis() + "." + getImageExt(imguri));
 
-                                        final StorageReference ref = storageReference.child(userID).child(Event + EVENTCOUNT).child(System.currentTimeMillis() + "." + getImageExt(imguri));
+                                      
 
                                             ref.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                                 @Override
@@ -292,7 +295,7 @@ public class Create_Event extends AppCompatActivity
                                             }).addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(Create_Event.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                                                 }
                                             });
                                             Intent changepage = new Intent(Create_Event.this, Home.class);
@@ -371,49 +374,6 @@ public class Create_Event extends AppCompatActivity
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
-
-//    @SuppressWarnings("VisibleForTests")
-//    public void btnUpload(View v)
-//    {
-//        if(imguri != null)
-//        {
-//            final ProgressDialog dialog = new ProgressDialog(this);
-//            dialog.setTitle("Uploading Image.......");
-//            dialog.show();
-//
-//            StorageReference ref = storageReference.child(FB_STORAGE_PATH+System.currentTimeMillis()+ "." + getImageExt(imguri));
-//            ref.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
-//                {
-//                    dialog.dismiss();
-//                    Toast.makeText(getApplicationContext(), "Event Created", Toast.LENGTH_SHORT).show();
-//                    ImageUpload imageUpload = new ImageUpload(taskSnapshot.getDownloadUrl().toString());
-//
-//                    String uploadurl = myRef.push().getKey();
-//                    myRef.child(uploadurl).setValue(imageUpload);
-//                }
-//            }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception e) {
-//                    dialog.dismiss();
-//                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-//                }
-//            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-//                    double progress = (100 * taskSnapshot.getBytesTransferred())/taskSnapshot.getBytesTransferred();
-//                    dialog.setMessage("Creating Event...." + (int)progress + "%");
-//
-//                }
-//            });
-//        }
-//        else
-//        {
-//            Toast.makeText(getApplicationContext(), "Please select image", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-
 
     @Override
     public void onStart() {

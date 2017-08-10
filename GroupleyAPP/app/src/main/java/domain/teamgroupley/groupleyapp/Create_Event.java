@@ -240,11 +240,7 @@ public class Create_Event extends AppCompatActivity
                             if (!ADd.equals("")) {
                                 if (!MAxppl.equals("")) {
                                     if (!Die.equals("")) {
-                                        if (imageView.getDrawable() != null)
-                                        {
                                             final StorageReference ref = storageReference.child(userID).child(Event + EVENTCOUNT).child(System.currentTimeMillis() + "." + getImageExt(imguri));
-
-                                      
 
                                             ref.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                                 @Override
@@ -261,7 +257,6 @@ public class Create_Event extends AppCompatActivity
                                                     myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Address").setValue(ADd);
                                                     myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Max_People").setValue(MAxppl);
                                                     myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Image").setValue(imageUpload);
 
                                                     myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
                                                     myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
@@ -271,7 +266,7 @@ public class Create_Event extends AppCompatActivity
                                                     myRef.child("Events").child(Event + EVENTCOUNT).child("Address").setValue(ADd);
                                                     myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
                                                     myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Image").setValue(imageUpload);
+
 
                                                     myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username);
                                                     myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Photo").setValue(" ");
@@ -285,17 +280,18 @@ public class Create_Event extends AppCompatActivity
                                                     myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Address").setValue(ADd);
                                                     myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
                                                     myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Image").setValue(imageUpload);
-
-                                                    if (imguri != null) {}
-                                                    else{}
 
 
-                                                }
-                                            }).addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(Create_Event.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                                                    if (imageView.getDrawable() != null) {
+                                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Image").setValue(imageUpload);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Image").setValue(imageUpload);
+                                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Image").setValue(imageUpload);
+                                                    }
+                                                    else{
+                                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Image").setValue(defulaturi);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Image").setValue(defulaturi);
+                                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Image").setValue(defulaturi);
+                                                    }
                                                 }
                                             });
                                             Intent changepage = new Intent(Create_Event.this, Home.class);

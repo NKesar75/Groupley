@@ -30,7 +30,7 @@ public class PeopleAttending extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
 
-    private List<String> Userseverywhere = new ArrayList<>();
+    private List<Peopleclass> Userseverywhere = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,12 +76,14 @@ public class PeopleAttending extends AppCompatActivity {
         int counter = 1;
         String Event = "Event";
         String username;
+        String mPhoto;
         int evenum = Description.desnum;
 
         for (DataSnapshot ds : dataSnapshot.child("Events").child(Event + evenum).child("People").getChildren()) {
 
-                username = dataSnapshot.child("Events").child(Event + evenum).child("People").child("Person" + counter).getValue(String.class).toString();
-                Userseverywhere.add(username);
+                username = dataSnapshot.child("Events").child(Event + evenum).child("People").child("Person" + counter).child("Name").getValue(String.class).toString();
+                mPhoto = dataSnapshot.child("Events").child(Event + evenum).child("People").child("Person" + counter).child("Photo").getValue(String.class).toString();
+                Userseverywhere.add(new Peopleclass(username,mPhoto));
                 ++counter;
             }
         ListAdapter listviewadapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,Userseverywhere);

@@ -78,6 +78,7 @@ public class Create_Event extends AppCompatActivity
     private StorageReference storageReference;
     private ImageView imageView;
     private Uri imguri;
+    private String defulaturi;
 
     public  static final int Request_Code = 1234;
 
@@ -87,6 +88,8 @@ public class Create_Event extends AppCompatActivity
     long CreatedEVENTCOUNT;
     long REGISTEREDEVENTCOUNT;
     String Event = "Event";
+
+    String createUsername;
 
     private DatePickerDialog.OnDateSetListener mDateSetListner;
 
@@ -104,7 +107,7 @@ public class Create_Event extends AppCompatActivity
                 Time = (EditText) findViewById(R.id.time_txt);
 
                 imageView =(ImageView) findViewById(R.id.image_load);
-
+                defulaturi = "https://firebasestorage.googleapis.com/v0/b/groupleyproject.appspot.com/o/deflut.png?alt=media&token=41443f2c-7c29-4bd1-be7b-ec74167fc1ee";
 
         final EditText Title = (EditText) findViewById(R.id.Title_txt);
         final EditText Disc = (EditText) findViewById(R.id.des_txt);
@@ -230,14 +233,15 @@ public class Create_Event extends AppCompatActivity
                 final String ADd = Addey.getText().toString();
                 final String MAxppl = Max.getText().toString();
 
-                final StorageReference ref = storageReference.child(userID).child(Event + EVENTCOUNT).child(System.currentTimeMillis() + "." + getImageExt(imguri));
+
 
                 if (!Cator.equals("") && !Day.equals("") && !Tim.equals("")) {
                     if (!tie.equals("")) {
                             if (!ADd.equals("")) {
                                 if (!MAxppl.equals("")) {
                                     if (!Die.equals("")) {
-                                        if (imguri != null) {
+
+                                        final StorageReference ref = storageReference.child(userID).child(Event + EVENTCOUNT).child(System.currentTimeMillis() + "." + getImageExt(imguri));
 
                                             ref.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                                 @Override
@@ -265,8 +269,10 @@ public class Create_Event extends AppCompatActivity
                                                     myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
                                                     myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
                                                     myRef.child("Events").child(Event + EVENTCOUNT).child("Image").setValue(imageUpload);
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").setValue(username);
 
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username);
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Photo").setValue(" ");
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("FID").setValue(userID);
 
                                                     myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Title").setValue(tie);
                                                     myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Description").setValue(Die);
@@ -277,6 +283,11 @@ public class Create_Event extends AppCompatActivity
                                                     myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
                                                     myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
                                                     myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Image").setValue(imageUpload);
+
+                                                    if (imguri != null) {}
+                                                    else{}
+
+
                                                 }
                                             }).addOnFailureListener(new OnFailureListener() {
                                                 @Override
@@ -287,11 +298,7 @@ public class Create_Event extends AppCompatActivity
                                             Intent changepage = new Intent(Create_Event.this, Home.class);
                                             startActivity(changepage);
                                             Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();
-                                        }
-                                        else
-                                            {
-                                                Toast.makeText(getApplicationContext(), "Please select image", Toast.LENGTH_SHORT).show();
-                                            }
+
                                     }else{
                                         Disc.setError("Description can not be empty");
                                         Disc.requestFocus();
@@ -501,6 +508,8 @@ public class Create_Event extends AppCompatActivity
     }
 
     private void shoData(DataSnapshot dataSnapshot) {
+
+        createUsername = dataSnapshot.child(userID).child("UserInfo").child("UserName").getValue(String.class).toString();
 
         Catgorylist = new ArrayList<>();
 

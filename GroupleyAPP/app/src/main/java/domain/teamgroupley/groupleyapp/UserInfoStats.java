@@ -176,7 +176,6 @@ public class UserInfoStats extends AppCompatActivity {
 
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 String userID = user.getUid();
-                                // Userinformaiton userinformaiton = new Userinformaiton(First, Last, DOB, User, Sex);
 
                                 myRef.child(userID).child("UserInfo").child("Firstname").setValue(First);
                                 myRef.child(userID).child("UserInfo").child("Lastname").setValue(Last);

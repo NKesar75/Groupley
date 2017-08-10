@@ -79,7 +79,7 @@ public class Create_Event extends AppCompatActivity
     private StorageReference storageReference;
     private ImageView imageView;
     private Uri imguri;
-    private String defulaturi;
+   private String defulaturi;
 
     public  static final int Request_Code = 1234;
 
@@ -108,7 +108,7 @@ public class Create_Event extends AppCompatActivity
                 Time = (EditText) findViewById(R.id.time_txt);
 
                 imageView =(ImageView) findViewById(R.id.image_load);
-                defulaturi = "https://firebasestorage.googleapis.com/v0/b/groupleyproject.appspot.com/o/deflut.png?alt=media&token=41443f2c-7c29-4bd1-be7b-ec74167fc1ee";
+               defulaturi = "https://firebasestorage.googleapis.com/v0/b/groupleyproject.appspot.com/o/deflut.png?alt=media&token=41443f2c-7c29-4bd1-be7b-ec74167fc1ee";
 
         final EditText Title = (EditText) findViewById(R.id.Title_txt);
         final EditText Disc = (EditText) findViewById(R.id.des_txt);
@@ -240,60 +240,59 @@ public class Create_Event extends AppCompatActivity
                             if (!ADd.equals("")) {
                                 if (!MAxppl.equals("")) {
                                     if (!Die.equals("")) {
-                                            final StorageReference ref = storageReference.child(userID).child(Event + EVENTCOUNT).child(System.currentTimeMillis() + "." + getImageExt(imguri));
 
+                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Title").setValue(tie);
+                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Description").setValue(Die);
+                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Category").setValue(Cator);
+                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Date").setValue(Day);
+                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Time").setValue(Tim);
+                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Address").setValue(ADd);
+                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
+                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
+                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
+                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
+                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
+                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Address").setValue(ADd);
+                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                        myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+
+                                        myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username);
+                                        myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Photo").setValue(" ");
+                                        myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("FID").setValue(userID);
+
+                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Title").setValue(tie);
+                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Description").setValue(Die);
+                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Category").setValue(Cator);
+                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Date").setValue(Day);
+                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Time").setValue(Tim);
+                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Address").setValue(ADd);
+                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+
+                                        if (imageView.getDrawable() != null) {
+                                            final StorageReference ref = storageReference.child(userID).child(Event + EVENTCOUNT).child(System.currentTimeMillis() + "." + getImageExt(imguri));
                                             ref.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                                 @Override
-                                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
-                                                {
+                                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                                     Toast.makeText(getApplicationContext(), "Event Created", Toast.LENGTH_SHORT).show();
                                                     ImageUpload imageUpload = new ImageUpload(taskSnapshot.getDownloadUrl().toString());
 
-                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Title").setValue(tie);
-                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Description").setValue(Die);
-                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Category").setValue(Cator);
-                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Date").setValue(Day);
-                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Time").setValue(Tim);
-                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Address").setValue(ADd);
-                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Max_People").setValue(MAxppl);
-                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").setValue(ADd);
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username);
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Photo").setValue(" ");
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("FID").setValue(userID);
-
-                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Title").setValue(tie);
-                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Description").setValue(Die);
-                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Category").setValue(Cator);
-                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Date").setValue(Day);
-                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Time").setValue(Tim);
-                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Address").setValue(ADd);
-                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Max_People").setValue(MAxppl);
-                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-
-                                                    if (imageView.getDrawable() != null) {
-                                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Image").setValue(imageUpload);
-                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Image").setValue(imageUpload);
-                                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Image").setValue(imageUpload);
-                                                    }
-                                                    else{
-                                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Image").setValue(defulaturi);
-                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Image").setValue(defulaturi);
-                                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Image").setValue(defulaturi);
-                                                    }
+                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Image").setValue(imageUpload);
+                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Image").setValue(imageUpload);
+                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Image").setValue(imageUpload);
                                                 }
                                             });
+                                        } else {
+                                            myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("Image").child("url").setValue(defulaturi);
+                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Image").child("url").setValue(defulaturi);
+                                            myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("Image").child("url").setValue(defulaturi);
+                                        }
+
                                             Intent changepage = new Intent(Create_Event.this, Home.class);
                                             startActivity(changepage);
                                             Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();

@@ -99,6 +99,13 @@ public class PeopleAttending extends AppCompatActivity {
         currentViewMode = share.getInt("CurrentViewMode", VIEW_MODE_LISTVIEW);
 
         switchView();
+
+
+        if(getSupportActionBar()!= null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
 
     private void showData(DataSnapshot dataSnapshot) {
@@ -157,8 +164,11 @@ public class PeopleAttending extends AppCompatActivity {
                 editor.commit();
 
                 break;
-
         }
+
+        if(item.getItemId()==android.R.id.home)
+            finish();
+
         return super.onOptionsItemSelected(item);
     }
 

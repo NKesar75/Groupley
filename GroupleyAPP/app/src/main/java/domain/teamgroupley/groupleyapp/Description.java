@@ -45,6 +45,8 @@ public class Description extends AppCompatActivity {
     private int Eventtie = Home.EventTitle;
     public static int desnum;
 
+    String createrid;
+
     String Event = "Event";
 
     long number = 1;
@@ -140,7 +142,9 @@ public class Description extends AppCompatActivity {
                     myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Max_People").setValue(MAxppl);
                     myRef.child(userID).child("RegisteredEvents").child(Event + number).child("EVENTNUMBER").setValue(Eventtie);
 
-                    myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).setValue(username);
+                    myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("Name").setValue(username);
+                    myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("Photo").setValue(" ");
+                    myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("FID").setValue(UserID);
 
                     startActivity(new Intent(Description.this, Home.class));
                     Toast.makeText(Description.this, "You Have Joined.", Toast.LENGTH_SHORT).show();
@@ -169,6 +173,7 @@ public class Description extends AppCompatActivity {
             number = dataSnapshot.child(UserID).child("RegisteredEvents").getChildrenCount() + 1;
             people = dataSnapshot.child("Events").child(Event + Eventtie).child("People").getChildrenCount() + 1;
             username = dataSnapshot.child(UserID).child("UserInfo").child("UserName").getValue(String.class).toString();
+            createrid =  dataSnapshot.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("FID").getValue(String.class).toString();
 
             int counter = 1;
             int evnum = 1;

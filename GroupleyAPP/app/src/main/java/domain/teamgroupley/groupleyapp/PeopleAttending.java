@@ -1,10 +1,18 @@
 package domain.teamgroupley.groupleyapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewStub;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -21,7 +29,6 @@ import java.util.List;
 
 public class PeopleAttending extends AppCompatActivity {
 
-    ListView peopleattendingevent;
 
     private static final String TAG = "PeopleAttending";
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -30,7 +37,18 @@ public class PeopleAttending extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
 
-    private List<Peopleclass> Userseverywhere = new ArrayList<>();
+    private ViewStub stubGrid;
+    private ViewStub stubList;
+    private ListView listview;
+    private GridView gridView;
+    private ListViewAdapterPeople listViewAdapter;
+    private GridViewAdapterPeople gridViewAdapter;
+    private List<People> peopleList = new ArrayList<>();
+    private int currentViewMode = 0;
+
+    static final int VIEW_MODE_LISTVIEW = 0;
+    static final int VIEW_MODE_GRIDVIEW = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,10 +84,21 @@ public class PeopleAttending extends AppCompatActivity {
             }
         });
 
-        peopleattendingevent = (ListView)findViewById(R.id.People_listView);;
+        stubList = (ViewStub) findViewById(R.id.stub_list_people);
+        stubGrid = (ViewStub) findViewById(R.id.stub_grid_people);
 
+        //inflate viewstub before get view
+        stubList.inflate();
+        stubGrid.inflate();
 
+        listview = (ListView) findViewById(R.id.my_listview_people);
+        gridView = (GridView) findViewById(R.id.mygridview_people);
 
+        //Get current view mode in share refrence
+        SharedPreferences share = getSharedPreferences("ViewMode", MODE_PRIVATE);
+        currentViewMode = share.getInt("CurrentViewMode", VIEW_MODE_LISTVIEW);
+
+        switchView();
     }
 
     private void showData(DataSnapshot dataSnapshot) {
@@ -83,10 +112,60 @@ public class PeopleAttending extends AppCompatActivity {
 
                 username = dataSnapshot.child("Events").child(Event + evenum).child("People").child("Person" + counter).child("Name").getValue(String.class).toString();
                 mPhoto = dataSnapshot.child("Events").child(Event + evenum).child("People").child("Person" + counter).child("Photo").getValue(String.class).toString();
-                Userseverywhere.add(new Peopleclass(username,mPhoto));
+                peopleList.add(new People(username,mPhoto));
                 ++counter;
             }
-        ListAdapter listviewadapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,Userseverywhere);
-        peopleattendingevent.setAdapter(listviewadapter);
+            setAdapters();
     }
+
+    private void switchView() {
+        if (VIEW_MODE_LISTVIEW == currentViewMode) {
+            //display listview
+            stubList.setVisibility(View.VISIBLE);
+            //hide gridview
+            stubGrid.setVisibility(View.GONE);
+        } else {
+            stubList.setVisibility(View.GONE);
+            stubGrid.setVisibility(View.VISIBLE);
+        }
+        setAdapters();
+    }
+
+    private void setAdapters() {
+        listViewAdapter = new ListViewAdapterPeople(this, R.layout.list_item_people, peopleList);
+        gridViewAdapter = new GridViewAdapterPeople(this, R.layout.grid_item_people, peopleList);
+        listview.setAdapter(listViewAdapter);
+        gridView.setAdapter(gridViewAdapter);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_menu_1_people:
+                if (VIEW_MODE_LISTVIEW == currentViewMode)
+                    currentViewMode = VIEW_MODE_GRIDVIEW;
+                else
+                    currentViewMode = VIEW_MODE_LISTVIEW;
+
+                //switch view
+                switchView();
+                //save view mode in share refrence
+                SharedPreferences share = getSharedPreferences("ViewMode", MODE_PRIVATE);
+                SharedPreferences.Editor editor = share.edit();
+                editor.putInt("CurrentViewMode", currentViewMode);
+                editor.commit();
+
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.peoplemenu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
 }

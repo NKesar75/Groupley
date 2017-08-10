@@ -53,6 +53,7 @@ public class Description extends AppCompatActivity {
 
     long people = 1;
     String username = "";
+    String image = "";
 
     boolean checkifalreadythere = false;
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
@@ -143,7 +144,7 @@ public class Description extends AppCompatActivity {
                     myRef.child(userID).child("RegisteredEvents").child(Event + number).child("EVENTNUMBER").setValue(Eventtie);
 
                     myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("Name").setValue(username);
-                    myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("Photo").setValue(" ");
+                    myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("Photo").setValue(image);
                     myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("FID").setValue(UserID);
 
                     startActivity(new Intent(Description.this, Home.class));
@@ -173,6 +174,7 @@ public class Description extends AppCompatActivity {
             number = dataSnapshot.child(UserID).child("RegisteredEvents").getChildrenCount() + 1;
             people = dataSnapshot.child("Events").child(Event + Eventtie).child("People").getChildrenCount() + 1;
             username = dataSnapshot.child(UserID).child("UserInfo").child("UserName").getValue(String.class).toString();
+            image = dataSnapshot.child(UserID).child("UserInfo").child("Image").child("url").getValue(String.class).toString();
             createrid =  dataSnapshot.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("FID").getValue(String.class).toString();
 
             int counter = 1;

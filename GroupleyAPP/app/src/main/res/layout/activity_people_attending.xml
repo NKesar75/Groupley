@@ -4,10 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="domain.teamgroupley.groupleyapp.PeopleAttending">
+    android:orientation="vertical"
+    android:background="#ffffff">
 
-    <ListView
-        android:id="@+id/People_listView"
+    <ViewStub
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:id="@+id/stub_list_people"
+        android:inflatedId="@+id/showlayout"
+        android:layout="@layout/my_listview_people"/>
+
+    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/stub_grid_people"
+        android:inflatedId="@+id/showlayout"
+        android:layout="@layout/my_gridview_people"/>
+
 </android.support.v4.widget.DrawerLayout>

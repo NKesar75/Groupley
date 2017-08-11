@@ -228,7 +228,7 @@ public class UserInfoStats extends AppCompatActivity {
                                 else
                                 {
                                     String defaulturl = "https://firebasestorage.googleapis.com/v0/b/groupleyproject.appspot.com/o/default%20profile.png?alt=media&token=3a4db2ed-5ceb-449c-b859-f788d22110af";
-                                    myRef.child(userID).child("UserInfo").child("Image").setValue(defaulturl);
+                                    myRef.child(userID).child("UserInfo").child("Image").child("url").setValue(defaulturl);
                                 }
 
                                 //   myRef.child(userID).child("UserInfo").setValue(userinformaiton);

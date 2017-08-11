@@ -146,6 +146,8 @@ public class Description extends AppCompatActivity {
                     myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("Photo").setValue(" ");
                     myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("FID").setValue(UserID);
 
+
+
                     startActivity(new Intent(Description.this, Home.class));
                     Toast.makeText(Description.this, "You Have Joined.", Toast.LENGTH_SHORT).show();
                 }

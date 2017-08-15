@@ -54,7 +54,6 @@ public class Home extends AppCompatActivity
     private static final String TAG = "Home";
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference toupdate;
     private DatabaseReference myRef;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();

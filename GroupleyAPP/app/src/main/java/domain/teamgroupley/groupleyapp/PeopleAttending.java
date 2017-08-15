@@ -115,6 +115,8 @@ public class PeopleAttending extends AppCompatActivity {
         String mPhoto;
         int evenum = Description.desnum;
 
+        peopleList.clear();
+
         for (DataSnapshot ds : dataSnapshot.child("Events").child(Event + evenum).child("People").getChildren()) {
 
                 username = dataSnapshot.child("Events").child(Event + evenum).child("People").child("Person" + counter).child("Name").getValue(String.class).toString();
@@ -176,6 +178,22 @@ public class PeopleAttending extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.peoplemenu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 
 }

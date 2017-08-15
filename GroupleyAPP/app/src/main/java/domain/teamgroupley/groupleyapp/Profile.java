@@ -14,8 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +36,7 @@ public class Profile extends AppCompatActivity
     private EditText Gender;
     private EditText DOB;
     private EditText username ;
+    private ImageView profileImage;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
     String USerid = user.getUid();
@@ -43,6 +46,7 @@ public class Profile extends AppCompatActivity
     DatabaseReference mGender = mRootRef.child(USerid).child("UserInfo").child("Sex");
     DatabaseReference mDOB = mRootRef.child(USerid).child("UserInfo").child("DOB");
     DatabaseReference mUsername = mRootRef.child(USerid).child("UserInfo").child("UserName");
+    DatabaseReference mProfileImage = mRootRef.child(USerid).child("UserInfo").child("Image").child("url");
 
 
     private Button Logout;
@@ -66,6 +70,7 @@ public class Profile extends AppCompatActivity
         Gender =   (EditText)findViewById(R.id.Gender_TST);
         DOB =      (EditText)findViewById(R.id.DOB_tst);
         username = (EditText)findViewById(R.id.USERNAME_Tst);
+        profileImage = (ImageView)findViewById(R.id.profile_download);
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -162,6 +167,18 @@ public class Profile extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String Temp = dataSnapshot.getValue(String.class);
                 Gender.setText(Temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mProfileImage.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String image = dataSnapshot.getValue(String.class);
+                Glide.with(Profile.this).load(image.toString()).into(profileImage);
             }
 
             @Override

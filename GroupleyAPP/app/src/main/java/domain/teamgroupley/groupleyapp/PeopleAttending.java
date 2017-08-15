@@ -46,8 +46,8 @@ public class PeopleAttending extends AppCompatActivity {
     private List<People> peopleList = new ArrayList<>();
     private int currentViewMode = 0;
 
-    static final int VIEW_MODE_LISTVIEW = 0;
-    static final int VIEW_MODE_GRIDVIEW = 1;
+    static final int VIEW_MODE_LISTVIEW_PEOPLE = 0;
+    static final int VIEW_MODE_GRIDVIEW_PEOPLE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +96,7 @@ public class PeopleAttending extends AppCompatActivity {
 
         //Get current view mode in share refrence
         SharedPreferences share = getSharedPreferences("ViewMode", MODE_PRIVATE);
-        currentViewMode = share.getInt("CurrentViewMode", VIEW_MODE_LISTVIEW);
+        currentViewMode = share.getInt("CurrentViewMode", VIEW_MODE_LISTVIEW_PEOPLE);
 
         switchView();
 
@@ -128,7 +128,7 @@ public class PeopleAttending extends AppCompatActivity {
     }
 
     private void switchView() {
-        if (VIEW_MODE_LISTVIEW == currentViewMode) {
+        if (VIEW_MODE_LISTVIEW_PEOPLE == currentViewMode) {
             //display listview
             stubList.setVisibility(View.VISIBLE);
             //hide gridview
@@ -152,10 +152,10 @@ public class PeopleAttending extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_menu_1_people:
-                if (VIEW_MODE_LISTVIEW == currentViewMode)
-                    currentViewMode = VIEW_MODE_GRIDVIEW;
+                if (VIEW_MODE_LISTVIEW_PEOPLE == currentViewMode)
+                    currentViewMode = VIEW_MODE_GRIDVIEW_PEOPLE;
                 else
-                    currentViewMode = VIEW_MODE_LISTVIEW;
+                    currentViewMode = VIEW_MODE_LISTVIEW_PEOPLE;
 
                 //switch view
                 switchView();

@@ -52,7 +52,7 @@ public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnCo
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private StorageReference storageReference;
-    private Uri imguri;
+    private String imguri;
     public  static final int Request_Code = 1234;
 
     private Button mlogin;
@@ -185,7 +185,7 @@ public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnCo
                 Username = account.getDisplayName();
                 DOB = "10/04/1997";
                 Gender = "PREFER NOT TO ANSWER";
-                imguri = account.getPhotoUrl();
+                imguri = account.getPhotoUrl().toString();
                 firebaseAuthWithGoogle(account);
             }
         }
@@ -289,15 +289,8 @@ public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnCo
                                 myRef.child(userID).child("Interests").child("ttalkShows").setValue(false);
                                 myRef.child(userID).child("Interests").child("twar").setValue(false);
 
-                         StorageReference ref = storageReference.child(userID).child("Profile Image").child(System.currentTimeMillis() + "." + getImageExt(imguri));
-                        ref.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                ImageUpload imageUpload = new ImageUpload(taskSnapshot.getDownloadUrl().toString());
-                                myRef.child(userID).child("UserInfo").child("Image").setValue(imageUpload);
+                                myRef.child(userID).child("UserInfo").child("Image").child("url").setValue(imguri);
 
-    }
-                        });
 
                             Intent changepage = new Intent(LoginUser.this, Home.class);
                             startActivity(changepage);

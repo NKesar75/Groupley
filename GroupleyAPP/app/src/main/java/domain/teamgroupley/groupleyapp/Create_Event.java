@@ -179,7 +179,6 @@ public class Create_Event extends AppCompatActivity
             }
         });
 
-
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         mAuth = FirebaseAuth.getInstance();

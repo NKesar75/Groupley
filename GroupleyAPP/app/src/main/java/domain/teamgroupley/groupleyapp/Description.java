@@ -29,9 +29,6 @@ public class Description extends AppCompatActivity {
     private String UserID = user.getUid();;
     private DatabaseReference myRef;
 
-    int refreshcount = 1;
-    DataSnapshot mdatasnapshot;
-
     private EditText Titl;
     private EditText Descrip;
     private EditText Cater;
@@ -45,13 +42,11 @@ public class Description extends AppCompatActivity {
     private int Eventtie = Home.EventTitle;
     public static int desnum;
 
-    String createrid;
-
     String Event = "Event";
 
-    long number = 1;
+    long number;
 
-    long people = 1;
+    long people;
     String username = "";
     String image = "";
 
@@ -69,15 +64,15 @@ public class Description extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
-        Descrip = (EditText)findViewById(R.id.des_txt_des);
-        Cater = (EditText)findViewById(R.id.Catergory_txt_des);
-        Dat = (EditText)findViewById(R.id.Date_txt_des);
-        Timy = (EditText)findViewById(R.id.time_txt_des);
-        Add = (EditText)findViewById(R.id.address_txt_des);
-        Maxppl = (EditText)findViewById(R.id.max_people_txt_des);
-        Titl = (EditText)findViewById(R.id.Title_txt_des);
+        Descrip = (EditText) findViewById(R.id.des_txt_des);
+        Cater = (EditText) findViewById(R.id.Catergory_txt_des);
+        Dat = (EditText) findViewById(R.id.Date_txt_des);
+        Timy = (EditText) findViewById(R.id.time_txt_des);
+        Add = (EditText) findViewById(R.id.address_txt_des);
+        Maxppl = (EditText) findViewById(R.id.max_people_txt_des);
+        Titl = (EditText) findViewById(R.id.Title_txt_des);
         Join = (Button) findViewById(R.id.Join_event_btn_des);
-        Peoplechanging = (Button)findViewById(R.id.Attending);
+        Peoplechanging = (Button) findViewById(R.id.Attending);
 
         Join.setFocusable(true);
         Join.setFocusableInTouchMode(true);///add this line
@@ -103,10 +98,7 @@ public class Description extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                mdatasnapshot = dataSnapshot;
                 showData(dataSnapshot);
-
-
             }
 
             @Override
@@ -123,11 +115,16 @@ public class Description extends AppCompatActivity {
             }
         });
 
+        if(getSupportActionBar()!= null)
+        {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         Join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                refresh();
                 String tie = Titl.getText().toString();
                 String Die = Descrip.getText().toString();
                 String Cator = Cater.getText().toString();
@@ -136,8 +133,8 @@ public class Description extends AppCompatActivity {
                 String ADd = Add.getText().toString();
                 String MAxppl = Maxppl.getText().toString();
 
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    String userID = user.getUid();
+                FirebaseUser user = mAuth.getCurrentUser();
+                String userID = user.getUid();
                 if (!checkifalreadythere) {
                     myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Title").setValue(tie);
                     myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Description").setValue(Die);
@@ -152,50 +149,34 @@ public class Description extends AppCompatActivity {
                     myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("Photo").setValue(image);
                     myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("FID").setValue(UserID);
 
-
-
-                    startActivity(new Intent(Description.this, Home.class));
                     Toast.makeText(Description.this, "You Have Joined.", Toast.LENGTH_SHORT).show();
-                }
-                else{
                     startActivity(new Intent(Description.this, Home.class));
+
+                } else {
                     Toast.makeText(Description.this, "You Have Already Joined This Event.", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Description.this, Home.class));
                 }
             }
         });
-
-        if(getSupportActionBar()!= null)
-        {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
     }
 
-    private void refresh() {
-        refreshcount = 0;
-        showData(mdatasnapshot);
-    }
 
     private void showData(DataSnapshot dataSnapshot) {
-        if (refreshcount == 0) {
+
             number = dataSnapshot.child(UserID).child("RegisteredEvents").getChildrenCount() + 1;
             people = dataSnapshot.child("Events").child(Event + Eventtie).child("People").getChildrenCount() + 1;
             username = dataSnapshot.child(UserID).child("UserInfo").child("UserName").getValue(String.class).toString();
             image = dataSnapshot.child(UserID).child("UserInfo").child("Image").child("url").getValue(String.class).toString();
-            createrid =  dataSnapshot.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("FID").getValue(String.class).toString();
 
             int counter = 1;
-            int evnum = 1;
 
             for (DataSnapshot ds : dataSnapshot.child(UserID).child("RegisteredEvents").getChildren()) {
-                evnum = dataSnapshot.child(UserID).child("RegisteredEvents").child(Event + counter).child("EVENTNUMBER").getValue(int.class);
+                int evnum = dataSnapshot.child(UserID).child("RegisteredEvents").child(Event + counter).child("EVENTNUMBER").getValue(int.class);
                 if (evnum == Eventtie) {
                     checkifalreadythere = true;
                 }
                 ++counter;
             }
-            refreshcount = 1;
-        }
     }
 
     @Override

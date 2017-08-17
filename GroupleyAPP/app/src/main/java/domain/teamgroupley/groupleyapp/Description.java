@@ -1,6 +1,7 @@
 package domain.teamgroupley.groupleyapp;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ public class Description extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
     FirebaseUser user = mAuth.getCurrentUser();
-    private String UserID = user.getUid();;
+    private String UserID = user.getUid();
     private DatabaseReference myRef;
 
     private EditText Titl;
@@ -44,14 +45,12 @@ public class Description extends AppCompatActivity {
 
     String Event = "Event";
 
-   
     long number;
 
-   
     long people;
-   
-    String username;
-    String image;
+    String username = "";
+    String image = "";
+    String Eventpic;
 
     boolean checkifalreadythere = false;
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
@@ -67,15 +66,15 @@ public class Description extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
-        Descrip = (EditText)findViewById(R.id.des_txt_des);
-        Cater = (EditText)findViewById(R.id.Catergory_txt_des);
-        Dat = (EditText)findViewById(R.id.Date_txt_des);
-        Timy = (EditText)findViewById(R.id.time_txt_des);
-        Add = (EditText)findViewById(R.id.address_txt_des);
-        Maxppl = (EditText)findViewById(R.id.max_people_txt_des);
-        Titl = (EditText)findViewById(R.id.Title_txt_des);
+        Descrip = (EditText) findViewById(R.id.des_txt_des);
+        Cater = (EditText) findViewById(R.id.Catergory_txt_des);
+        Dat = (EditText) findViewById(R.id.Date_txt_des);
+        Timy = (EditText) findViewById(R.id.time_txt_des);
+        Add = (EditText) findViewById(R.id.address_txt_des);
+        Maxppl = (EditText) findViewById(R.id.max_people_txt_des);
+        Titl = (EditText) findViewById(R.id.Title_txt_des);
         Join = (Button) findViewById(R.id.Join_event_btn_des);
-        Peoplechanging = (Button)findViewById(R.id.Attending);
+        Peoplechanging = (Button) findViewById(R.id.Attending);
 
         Join.setFocusable(true);
         Join.setFocusableInTouchMode(true);///add this line
@@ -136,17 +135,16 @@ public class Description extends AppCompatActivity {
                 String ADd = Add.getText().toString();
                 String MAxppl = Maxppl.getText().toString();
 
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    String userID = user.getUid();
                 if (!checkifalreadythere) {
-                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Title").setValue(tie);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Description").setValue(Die);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Category").setValue(Cator);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Date").setValue(Day);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Time").setValue(Tim);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Address").setValue(ADd);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("Max_People").setValue(MAxppl);
-                    myRef.child(userID).child("RegisteredEvents").child(Event + number).child("EVENTNUMBER").setValue(Eventtie);
+                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Title").setValue(tie);
+                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Description").setValue(Die);
+                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Category").setValue(Cator);
+                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Date").setValue(Day);
+                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Image").child("url").setValue(Eventpic);
+                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Time").setValue(Tim);
+                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Address").setValue(ADd);
+                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Max_People").setValue(MAxppl);
+                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("EVENTNUMBER").setValue(Eventtie);
 
                     myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("Name").setValue(username);
                     myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("Photo").setValue(image);
@@ -161,8 +159,7 @@ public class Description extends AppCompatActivity {
                 }
             }
         });
-        }
-
+    }
 
     private void showData(DataSnapshot dataSnapshot) {
 
@@ -170,17 +167,20 @@ public class Description extends AppCompatActivity {
             people = dataSnapshot.child("Events").child(Event + Eventtie).child("People").getChildrenCount() + 1;
             username = dataSnapshot.child(UserID).child("UserInfo").child("UserName").getValue(String.class).toString();
             image = dataSnapshot.child(UserID).child("UserInfo").child("Image").child("url").getValue(String.class).toString();
-
+            Eventpic = dataSnapshot.child("Events").child(Event + Eventtie).child("Image").child("url").getValue(String.class).toString();
             int counter = 1;
 
+            Integer evnum;
             for (DataSnapshot ds : dataSnapshot.child(UserID).child("RegisteredEvents").getChildren()) {
-                int evnum = dataSnapshot.child(UserID).child("RegisteredEvents").child(Event + counter).child("EVENTNUMBER").getValue(int.class);
-                if (evnum == Eventtie) {
-                    checkifalreadythere = true;
+                evnum = dataSnapshot.child(UserID).child("RegisteredEvents").child(Event + counter).child("EVENTNUMBER").getValue(Integer.class);
+                if (evnum != null) {
+                    if (evnum == Eventtie) {
+                        checkifalreadythere = true;
+                    }
                 }
-                ++counter;
+                    ++counter;
             }
-        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
@@ -286,9 +286,8 @@ public class Description extends AppCompatActivity {
 
             }
         });
-
-
     }
+
     @Override
     public void onStop() {
         super.onStop();

@@ -26,9 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
-            android:text="Settings Page"
+            android:text="Groupley v2017.08.17C"
             android:textAlignment="center"
-            android:textSize="36sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <FrameLayout

@@ -57,9 +57,9 @@ public class UserInfoStats extends AppCompatActivity {
     String userID = user.getUid();
 
     public Button Create;
-   public Spinner Gender;
+   //public Spinner Gender;
 
-    private DatePickerDialog.OnDateSetListener mDateSetListner;
+   // private DatePickerDialog.OnDateSetListener mDateSetListner;
 
     private StorageReference storageReference;
     private ImageView imageView;
@@ -72,96 +72,96 @@ public class UserInfoStats extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info_stats);
-      final EditText FirstName = (EditText)findViewById(R.id.First_NAME_Txt);
-      final EditText LastName = (EditText) findViewById(R.id.LAST_NAME_txt);
-      final EditText Dateofbirth = (EditText)findViewById(R.id.DOB_txt);
+//      final EditText FirstName = (EditText)findViewById(R.id.First_NAME_Txt);
+//      final EditText LastName = (EditText) findViewById(R.id.LAST_NAME_txt);
+//      final EditText Dateofbirth = (EditText)findViewById(R.id.DOB_txt);
       final EditText Username = (EditText)findViewById(R.id.USERNAME_TXT);
         imageView = (ImageView)findViewById(R.id.image_load_profile);
-        Gender = (Spinner) findViewById(R.id.GENDER_SPINNER);
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(UserInfoStats.this,
-                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Genders));
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Gender.setAdapter(myAdapter);
-
-        storageReference = FirebaseStorage.getInstance().getReference();;
-
-        Dateofbirth.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog = new DatePickerDialog(UserInfoStats.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListner,year,month,day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable());
-                dialog.show();
-            }
-        });
-
-        mDateSetListner = new DatePickerDialog.OnDateSetListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month + 1;
-                String date = month + "/" + dayOfMonth + "/" + year;
-
-                String mMonth = String.valueOf(month);
-                String mDay = String.valueOf(dayOfMonth);
-                String mYear = String.valueOf(year);
-
-                Calendar cal = Calendar.getInstance();
-                int curYear = cal.get(Calendar.YEAR);
-                int curMonth = cal.get(Calendar.MONTH);
-                int curDay = cal.get(Calendar.DAY_OF_MONTH);
-
-                String mCurMonth = String.valueOf(curMonth);
-                String mCurDay = String.valueOf(curDay);
-                String mCurYear = String.valueOf(curYear);
-
-
-
-                try
-                {
-                    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-                    Date enteredDate = sdf.parse(mMonth + "/" + mDay + "/" + mYear);
-                    Date curDate = sdf.parse(mCurMonth + "/" + mCurDay + "/" + mCurYear);
-
-                    if(curDate.after(enteredDate))
-                    {
-                        Dateofbirth.setText(date);
-                    }
-                    else
-                    {
-                        Toast.makeText(UserInfoStats.this, "Invaild Date", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (ParseException e)
-                {
-                    e.printStackTrace();
-                }
-
-            }
-        };
-
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-                // ...
-            }
-        };
+//        Gender = (Spinner) findViewById(R.id.GENDER_SPINNER);
+//        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(UserInfoStats.this,
+//                android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Genders));
+//        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        Gender.setAdapter(myAdapter);
+//
+//        storageReference = FirebaseStorage.getInstance().getReference();;
+//
+//        Dateofbirth.setOnClickListener(new View.OnClickListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.N)
+//            @Override
+//            public void onClick(View v) {
+//                Calendar cal = Calendar.getInstance();
+//                int year = cal.get(Calendar.YEAR);
+//                int month = cal.get(Calendar.MONTH);
+//                int day = cal.get(Calendar.DAY_OF_MONTH);
+//
+//                DatePickerDialog dialog = new DatePickerDialog(UserInfoStats.this,
+//                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+//                        mDateSetListner,year,month,day);
+//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable());
+//                dialog.show();
+//            }
+//        });
+//
+//        mDateSetListner = new DatePickerDialog.OnDateSetListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.N)
+//            @Override
+//            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//                month = month + 1;
+//                String date = month + "/" + dayOfMonth + "/" + year;
+//
+//                String mMonth = String.valueOf(month);
+//                String mDay = String.valueOf(dayOfMonth);
+//                String mYear = String.valueOf(year);
+//
+//                Calendar cal = Calendar.getInstance();
+//                int curYear = cal.get(Calendar.YEAR);
+//                int curMonth = cal.get(Calendar.MONTH);
+//                int curDay = cal.get(Calendar.DAY_OF_MONTH);
+//
+//                String mCurMonth = String.valueOf(curMonth);
+//                String mCurDay = String.valueOf(curDay);
+//                String mCurYear = String.valueOf(curYear);
+//
+//
+//
+//                try
+//                {
+//                    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+//                    Date enteredDate = sdf.parse(mMonth + "/" + mDay + "/" + mYear);
+//                    Date curDate = sdf.parse(mCurMonth + "/" + mCurDay + "/" + mCurYear);
+//
+//                    if(curDate.after(enteredDate))
+//                    {
+//                        Dateofbirth.setText(date);
+//                    }
+//                    else
+//                    {
+//                        Toast.makeText(UserInfoStats.this, "Invaild Date", Toast.LENGTH_SHORT).show();
+//                    }
+//                } catch (ParseException e)
+//                {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        };
+//
+//        mFirebaseDatabase = FirebaseDatabase.getInstance();
+//        myRef = mFirebaseDatabase.getReference();
+//        mAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                FirebaseUser user = firebaseAuth.getCurrentUser();
+//                if (user != null) {
+//                    // User is signed in
+//                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+//                } else {
+//                    // User is signed out
+//                    Log.d(TAG, "onAuthStateChanged:signed_out");
+//                }
+//                // ...
+//            }
+//        };
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -183,30 +183,30 @@ public class UserInfoStats extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String First = FirstName.getText().toString();
-
-                String Last = LastName.getText().toString();
-
-                String DOB = Dateofbirth.getText().toString();
+//                String First = FirstName.getText().toString();
+//
+//                String Last = LastName.getText().toString();
+//
+//                String DOB = Dateofbirth.getText().toString();
 
                 String User = Username.getText().toString();
 
-                String Sex = Gender.getSelectedItem().toString();
+//                String Sex = Gender.getSelectedItem().toString();
 
 
-                if (!First.equals("") && !Last.equals("") && !DOB.equals("") && !User.equals("") && !Sex.equals("")) {
-                    if (!First.contains(" ")){
-                        if (!Last.contains(" ")){
+//                if (!First.equals("") && !Last.equals("") && !DOB.equals("") && !User.equals("") && !Sex.equals("")) {
+//                    if (!First.contains(" ")){
+//                        if (!Last.contains(" ")){
                             if (!User.contains(" ")){
 
 
                                 // Userinformaiton userinformaiton = new Userinformaiton(First, Last, DOB, User, Sex);
-
-                                myRef.child(userID).child("UserInfo").child("Firstname").setValue(First);
-                                myRef.child(userID).child("UserInfo").child("Lastname").setValue(Last);
-                                myRef.child(userID).child("UserInfo").child("DOB").setValue(DOB);
+//
+//                                myRef.child(userID).child("UserInfo").child("Firstname").setValue(First);
+//                                myRef.child(userID).child("UserInfo").child("Lastname").setValue(Last);
+//                                myRef.child(userID).child("UserInfo").child("DOB").setValue(DOB);
                                 myRef.child(userID).child("UserInfo").child("UserName").setValue(User);
-                                myRef.child(userID).child("UserInfo").child("Sex").setValue(Sex);
+//                                myRef.child(userID).child("UserInfo").child("Sex").setValue(Sex);
 
                                 myRef.child(userID).child("Filter").child("Sortby").setValue("DATE");
                                 myRef.child(userID).child("Filter").child("Spefic").setValue("Yours");

@@ -39,78 +39,6 @@
                 android:weightSum="1">
 
                 <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="FIRST NAME:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="LAST NAME:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="GENDER:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="DOB:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
                     android:id="@+id/textView20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -136,68 +64,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:weightSum="1">
-
-                <EditText
-                    android:id="@+id/First_NAME_Tst"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="John"
-                    android:inputType="textPersonName"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold|italic" />
-
-                <EditText
-                    android:id="@+id/LAST_NAME_tst"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="Smith"
-                    android:inputType="textPersonName"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold|italic" />
-
-                <EditText
-                    android:id="@+id/Gender_TST"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:fontFamily="sans-serif-condensed"
-                    android:inputType="textPersonName"
-                    android:text="Gender"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold|italic" />
-
-                <EditText
-                    android:id="@+id/DOB_tst"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="MM/DD/YYYY"
-                    android:inputType="date"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold|italic" />
 
                 <TextView
                     android:id="@+id/textView32"
@@ -227,6 +93,12 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/profile_download"
+            android:layout_width="94dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center" />
 
         <TextView
             android:id="@+id/textView8"
@@ -287,11 +159,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/profile_download"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center" />
     </FrameLayout>
 
     <android.support.design.widget.NavigationView

@@ -49,11 +49,15 @@ public class PeopleAttending extends AppCompatActivity {
     static final int VIEW_MODE_LISTVIEW_PEOPLE = 0;
     static final int VIEW_MODE_GRIDVIEW_PEOPLE = 1;
 
+    private ListView peopleAttendingList;
+    private List<String> name = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_people_attending);
 
+        peopleAttendingList = (ListView)findViewById(R.id.peopleattending);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         myRef = mFirebaseDatabase.getReference();
@@ -84,22 +88,22 @@ public class PeopleAttending extends AppCompatActivity {
             }
         });
 
-        stubList = (ViewStub) findViewById(R.id.stub_list_people);
-        stubGrid = (ViewStub) findViewById(R.id.stub_grid_people);
-
-        //inflate viewstub before get view
-        stubList.inflate();
-        stubGrid.inflate();
-
-        listview = (ListView) findViewById(R.id.my_listview_people);
-        gridView = (GridView) findViewById(R.id.mygridview_people);
-
-        //Get current view mode in share refrence
-        SharedPreferences share = getSharedPreferences("ViewMode", MODE_PRIVATE);
-        currentViewMode = share.getInt("CurrentViewMode", VIEW_MODE_LISTVIEW_PEOPLE);
-
-        switchView();
-
+//        stubList = (ViewStub) findViewById(R.id.stub_list_people);
+//        stubGrid = (ViewStub) findViewById(R.id.stub_grid_people);
+//
+//        //inflate viewstub before get view
+//        stubList.inflate();
+//        stubGrid.inflate();
+//
+//        listview = (ListView) findViewById(R.id.my_listview_people);
+//        gridView = (GridView) findViewById(R.id.mygridview_people);
+//
+//        //Get current view mode in share refrence
+//        SharedPreferences share = getSharedPreferences("ViewMode", MODE_PRIVATE);
+//        currentViewMode = share.getInt("CurrentViewMode", VIEW_MODE_LISTVIEW_PEOPLE);
+//
+//        switchView();
+//
 
         if(getSupportActionBar()!= null)
         {
@@ -122,51 +126,54 @@ public class PeopleAttending extends AppCompatActivity {
                 username = dataSnapshot.child("Events").child(Event + evenum).child("People").child("Person" + counter).child("Name").getValue(String.class).toString();
                 mPhoto = dataSnapshot.child("Events").child(Event + evenum).child("People").child("Person" + counter).child("Photo").getValue(String.class).toString();
                 peopleList.add(new People(username,mPhoto));
+            name.add(username);
                 ++counter;
             }
-            setAdapters();
+            ListAdapter listAdapter = new ArrayAdapter<String>(PeopleAttending.this,android.R.layout.simple_list_item_1, name);
+            peopleAttendingList.setAdapter(listAdapter);
+            //setAdapters();
     }
 
-    private void switchView() {
-        if (VIEW_MODE_LISTVIEW_PEOPLE == currentViewMode) {
-            //display listview
-            stubList.setVisibility(View.VISIBLE);
-            //hide gridview
-            stubGrid.setVisibility(View.GONE);
-        } else {
-            stubList.setVisibility(View.GONE);
-            stubGrid.setVisibility(View.VISIBLE);
-        }
-        setAdapters();
-    }
-
-    private void setAdapters() {
-        listViewAdapter = new ListViewAdapterPeople(this, R.layout.list_item_people, peopleList);
-        gridViewAdapter = new GridViewAdapterPeople(this, R.layout.grid_item_people, peopleList);
-        listview.setAdapter(listViewAdapter);
-        gridView.setAdapter(gridViewAdapter);
-
-    }
+//    private void switchView() {
+//        if (VIEW_MODE_LISTVIEW_PEOPLE == currentViewMode) {
+//            //display listview
+//            stubList.setVisibility(View.VISIBLE);
+//            //hide gridview
+//            stubGrid.setVisibility(View.GONE);
+//        } else {
+//            stubList.setVisibility(View.GONE);
+//            stubGrid.setVisibility(View.VISIBLE);
+//        }
+//        setAdapters();
+//    }
+//
+//    private void setAdapters() {
+//        listViewAdapter = new ListViewAdapterPeople(this, R.layout.list_item_people, peopleList);
+//        gridViewAdapter = new GridViewAdapterPeople(this, R.layout.grid_item_people, peopleList);
+//        listview.setAdapter(listViewAdapter);
+//        gridView.setAdapter(gridViewAdapter);
+//
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_menu_1_people:
-                if (VIEW_MODE_LISTVIEW_PEOPLE == currentViewMode)
-                    currentViewMode = VIEW_MODE_GRIDVIEW_PEOPLE;
-                else
-                    currentViewMode = VIEW_MODE_LISTVIEW_PEOPLE;
-
-                //switch view
-                switchView();
-                //save view mode in share refrence
-                SharedPreferences share = getSharedPreferences("ViewMode", MODE_PRIVATE);
-                SharedPreferences.Editor editor = share.edit();
-                editor.putInt("CurrentViewMode", currentViewMode);
-                editor.commit();
-
-                break;
-        }
+//        switch (item.getItemId()) {
+//            case R.id.item_menu_1_people:
+//                if (VIEW_MODE_LISTVIEW_PEOPLE == currentViewMode)
+//                    currentViewMode = VIEW_MODE_GRIDVIEW_PEOPLE;
+//                else
+//                    currentViewMode = VIEW_MODE_LISTVIEW_PEOPLE;
+//
+//                //switch view
+//                switchView();
+//                //save view mode in share refrence
+//                SharedPreferences share = getSharedPreferences("ViewMode", MODE_PRIVATE);
+//                SharedPreferences.Editor editor = share.edit();
+//                editor.putInt("CurrentViewMode", currentViewMode);
+//                editor.commit();
+//
+//                break;
+//        }
 
         if(item.getItemId()==android.R.id.home)
             finish();

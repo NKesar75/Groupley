@@ -33,88 +33,17 @@
 
             <LinearLayout
                 android:layout_width="125dp"
-                android:layout_height="match_parent"
+                android:layout_height="393dp"
                 android:orientation="vertical"
                 android:weightSum="1">
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="FIRST NAME:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="LAST NAME:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="GENDER:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="DOB:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
 
                 <TextView
                     android:id="@+id/textView20"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
+                    android:text="    "
+                    android:layout_weight="0.14" />
 
                 <TextView
                     android:id="@+id/textView22"
@@ -151,52 +80,13 @@
                 android:orientation="vertical"
                 android:weightSum="1">
 
-                <EditText
-                    android:id="@+id/First_NAME_Txt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="First Name"
-                    android:inputType="textPersonName"
-                    android:textAlignment="textStart"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/LAST_NAME_txt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="Last Name"
-                    android:inputType="textPersonName"
-                    android:textAlignment="textStart"
-                    android:textSize="14sp" />
-
-                <Spinner
-                    android:id="@+id/GENDER_SPINNER"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <EditText
-                    android:id="@+id/DOB_txt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:ems="10"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="MM/DD/YYYY"
-                    android:selectAllOnFocus="false"
-                    android:singleLine="false"
-                    android:textAlignment="textStart"
-                    android:textSize="14sp" />
-
                 <TextView
-                    android:id="@+id/textView32"
+                    android:id="@+id/textView61"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
+                    android:text="    "
+                    android:layout_weight="0.14" />
 
                 <EditText
                     android:id="@+id/USERNAME_TXT"
@@ -209,18 +99,19 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/textView61"
+                    android:id="@+id/textView62"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.05"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="    "
-                    android:layout_weight="0.68" />
+                    android:text="    " />
 
                 <ImageView
                     android:id="@+id/image_load_profile"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"/>
+                    android:layout_width="236dp"
+                    android:layout_height="156dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.42" />
 
             </LinearLayout>
 
@@ -230,7 +121,6 @@
             android:id="@+id/textView29"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.26"
             android:fontFamily="sans-serif-condensed"
             android:text="    " />
 

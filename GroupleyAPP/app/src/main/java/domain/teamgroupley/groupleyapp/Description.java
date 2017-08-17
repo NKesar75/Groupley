@@ -45,15 +45,15 @@ public class Description extends AppCompatActivity {
     private int Eventtie = Home.EventTitle;
     public static int desnum;
 
-    String createrid;
+    String createrid = "";
 
     String Event = "Event";
 
     long number = 1;
 
     long people = 1;
-    String username = "";
-    String image = "";
+    String username;
+    String image;
 
     boolean checkifalreadythere = false;
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
@@ -122,7 +122,7 @@ public class Description extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                refresh();
+//                refresh();
                 String tie = Titl.getText().toString();
                 String Die = Descrip.getText().toString();
                 String Cator = Cater.getText().toString();
@@ -172,7 +172,7 @@ public class Description extends AppCompatActivity {
     }
 
     private void showData(DataSnapshot dataSnapshot) {
-        if (refreshcount == 0) {
+           if (refreshcount == 0) {
             number = dataSnapshot.child(UserID).child("RegisteredEvents").getChildrenCount() + 1;
             people = dataSnapshot.child("Events").child(Event + Eventtie).child("People").getChildrenCount() + 1;
             username = dataSnapshot.child(UserID).child("UserInfo").child("UserName").getValue(String.class).toString();

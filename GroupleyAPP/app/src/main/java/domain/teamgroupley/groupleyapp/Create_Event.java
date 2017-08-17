@@ -269,7 +269,7 @@ public class Create_Event extends AppCompatActivity
                                         myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
 
 
-                                        myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username);
+                                        myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username + "(Admin)");
                                         myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Photo").setValue(profileImage);
                                         myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("FID").setValue(userID);
 

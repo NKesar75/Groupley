@@ -49,15 +49,12 @@ public class PeopleAttending extends AppCompatActivity {
     static final int VIEW_MODE_LISTVIEW_PEOPLE = 0;
     static final int VIEW_MODE_GRIDVIEW_PEOPLE = 1;
 
-    private ListView peopleAttendingList;
-    private List<String> name = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_people_attending);
 
-        //peopleAttendingList = (ListView)findViewById(R.id.peopleattending);
         mFirebaseDatabase = FirebaseDatabase.getInstance();
 
         myRef = mFirebaseDatabase.getReference();
@@ -129,11 +126,8 @@ public class PeopleAttending extends AppCompatActivity {
             String cat = "";
             int eventNum = 0;
                 peopleList.add(new Product(username,Date,cat,mPhoto,eventNum));
-           // name.add(username);
                 ++counter;
             }
-//            ListAdapter listAdapter = new ArrayAdapter<String>(PeopleAttending.this,android.R.layout.simple_list_item_1, name);
-//            peopleAttendingList.setAdapter(listAdapter);
             setAdapters();
     }
 

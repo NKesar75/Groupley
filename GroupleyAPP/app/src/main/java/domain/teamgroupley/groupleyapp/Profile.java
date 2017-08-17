@@ -31,20 +31,13 @@ import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 public class Profile extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private EditText FirstName;
-    private EditText LastName ;
-    private EditText Gender;
-    private EditText DOB;
     private EditText username ;
     private ImageView profileImage;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
     String USerid = user.getUid();
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mFirstName = mRootRef.child(USerid).child("UserInfo").child("Firstname");
-    DatabaseReference mLastName = mRootRef.child(USerid).child("UserInfo").child("Lastname");
-    DatabaseReference mGender = mRootRef.child(USerid).child("UserInfo").child("Sex");
-    DatabaseReference mDOB = mRootRef.child(USerid).child("UserInfo").child("DOB");
+
     DatabaseReference mUsername = mRootRef.child(USerid).child("UserInfo").child("UserName");
     DatabaseReference mProfileImage = mRootRef.child(USerid).child("UserInfo").child("Image").child("url");
 
@@ -65,10 +58,11 @@ public class Profile extends AppCompatActivity
         Logout = (Button) findViewById(R.id.logout_btn);
         Interest = (Button)findViewById(R.id.SEE_INTREST_PROFILE_BTN);
         EditProfile = (Button)findViewById(R.id.EDIT_PROFILE_BTN);
-        FirstName = (EditText)findViewById(R.id.First_NAME_Tst);
-        LastName = (EditText)findViewById(R.id.LAST_NAME_tst);
-        Gender =   (EditText)findViewById(R.id.Gender_TST);
-        DOB =      (EditText)findViewById(R.id.DOB_tst);
+
+        EditProfile.setFocusable(true);
+        EditProfile.setFocusableInTouchMode(true);///add this line
+        EditProfile.requestFocus();
+
         username = (EditText)findViewById(R.id.USERNAME_Tst);
         profileImage = (ImageView)findViewById(R.id.profile_download);
         mAuth = FirebaseAuth.getInstance();
@@ -125,55 +119,7 @@ public class Profile extends AppCompatActivity
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
-        mFirstName.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String Name = dataSnapshot.getValue(String.class);
-                FirstName.setText(Name);
-            }
 
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mLastName.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String LName = dataSnapshot.getValue(String.class);
-                LastName.setText(LName);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mDOB.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String Temp = dataSnapshot.getValue(String.class);
-                DOB.setText(Temp);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mGender.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String Temp = dataSnapshot.getValue(String.class);
-                Gender.setText(Temp);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
         mProfileImage.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -186,7 +132,7 @@ public class Profile extends AppCompatActivity
 
             }
         });
-        ValueEventListener valueEventListener = mUsername.addValueEventListener(new ValueEventListener() {
+        mUsername.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String Temp = dataSnapshot.getValue(String.class);

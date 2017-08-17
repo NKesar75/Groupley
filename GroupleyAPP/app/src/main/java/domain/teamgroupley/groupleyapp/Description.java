@@ -78,6 +78,11 @@ public class Description extends AppCompatActivity {
         Titl = (EditText)findViewById(R.id.Title_txt_des);
         Join = (Button) findViewById(R.id.Join_event_btn_des);
         Peoplechanging = (Button)findViewById(R.id.Attending);
+
+        Join.setFocusable(true);
+        Join.setFocusableInTouchMode(true);///add this line
+        Join.requestFocus();
+
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         mAuthListener = new FirebaseAuth.AuthStateListener() {

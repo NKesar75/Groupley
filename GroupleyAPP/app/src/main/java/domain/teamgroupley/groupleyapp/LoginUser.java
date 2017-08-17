@@ -40,6 +40,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
     private static int RC_Sign_in = 0;
@@ -47,23 +50,18 @@ public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnCo
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private GoogleApiClient mgoogle;
-    DataSnapshot mdatasnapshot;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
     private StorageReference storageReference;
     private String imguri;
-    public  static final int Request_Code = 1234;
 
     private Button mlogin;
     private Button mcreate;
 
-    boolean inthere = false;
-    String Firstname;
-    String Lastname;
-    String DOB;
-    String Gender;
     String Username;
+
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +97,6 @@ public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnCo
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
             }
 
             @Override
@@ -165,6 +162,7 @@ public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnCo
         });
     }
 
+
     @Override
     public void onClick(View v) {
         Intent signInIntenet = Auth.GoogleSignInApi.getSignInIntent(mgoogle);
@@ -180,11 +178,7 @@ public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnCo
 
             if (result.isSuccess()){
                 GoogleSignInAccount account = result.getSignInAccount();
-                Firstname = account.getGivenName();
-                Lastname = account.getFamilyName();
                 Username = account.getDisplayName();
-                DOB = "10/04/1997";
-                Gender = "PREFER NOT TO ANSWER";
                 imguri = account.getPhotoUrl().toString();
                 firebaseAuthWithGoogle(account);
             }
@@ -198,132 +192,21 @@ public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnCo
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        String userID = user.getUid();
 
+                                   myRef.child(userID).child("UserInfo").child("UserName").setValue(Username);
+                                   myRef.child(userID).child("UserInfo").child("Image").child("url").setValue(imguri);
 
-                            if (!inthere) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            final String userID = user.getUid();
+                                   myRef.child(userID).child("Filter").child("Sortby").setValue("DATE");
+                                   myRef.child(userID).child("Filter").child("Spefic").setValue("Yours");
+                                   myRef.child(userID).child("Filter").child("SpeficString").setValue("sarchery");
 
+                                   Intent changepage = new Intent(LoginUser.this, Create_Interest.class);
+                                   startActivity(changepage);
 
-                            myRef.child(userID).child("UserInfo").child("Firstname").setValue(Firstname);
-                            myRef.child(userID).child("UserInfo").child("Lastname").setValue(Lastname);
-                            myRef.child(userID).child("UserInfo").child("DOB").setValue(DOB);
-                            myRef.child(userID).child("UserInfo").child("UserName").setValue(Username);
-                            myRef.child(userID).child("UserInfo").child("Sex").setValue(Gender);
+                       }
 
-                            myRef.child(userID).child("Filter").child("Sortby").setValue("DATE");
-                            myRef.child(userID).child("Filter").child("Spefic").setValue("Yours");
-                            myRef.child(userID).child("Filter").child("SpeficString").setValue("sarchery");
-
-                                myRef.child(userID).child("Interests").child("cactionfigures").setValue(false);
-                                myRef.child(userID).child("Interests").child("ccars").setValue(false);
-                                myRef.child(userID).child("Interests").child("ccoins").setValue(false);
-                                myRef.child(userID).child("Interests").child("ccomics").setValue(false);
-                                myRef.child(userID).child("Interests").child("cguns").setValue(false);
-                                myRef.child(userID).child("Interests").child("ctrucks").setValue(false);
-                                myRef.child(userID).child("Interests").child("dacting").setValue(false);
-                                myRef.child(userID).child("Interests").child("dcosplay").setValue(false);
-                                myRef.child(userID).child("Interests").child("dlarping").setValue(false);
-                                myRef.child(userID).child("Interests").child("gaction").setValue(false);
-                                myRef.child(userID).child("Interests").child("gadventure").setValue(false);
-                                myRef.child(userID).child("Interests").child("gfps").setValue(false);
-                                myRef.child(userID).child("Interests").child("gindies").setValue(false);
-                                myRef.child(userID).child("Interests").child("gmmo").setValue(false);
-                                myRef.child(userID).child("Interests").child("gpartyfamily").setValue(false);
-                                myRef.child(userID).child("Interests").child("grpg").setValue(false);
-                                myRef.child(userID).child("Interests").child("gsimulation").setValue(false);
-                                myRef.child(userID).child("Interests").child("gsports").setValue(false);
-                                myRef.child(userID).child("Interests").child("gstragy").setValue(false);
-                                myRef.child(userID).child("Interests").child("mcountry").setValue(false);
-                                myRef.child(userID).child("Interests").child("mdrillrap").setValue(false);
-                                myRef.child(userID).child("Interests").child("medm").setValue(false);
-                                myRef.child(userID).child("Interests").child("mjazz").setValue(false);
-                                myRef.child(userID).child("Interests").child("moAction").setValue(false);
-                                myRef.child(userID).child("Interests").child("moAnimation").setValue(false);
-                                myRef.child(userID).child("Interests").child("moComdey").setValue(false);
-                                myRef.child(userID).child("Interests").child("moDocumentary").setValue(false);
-                                myRef.child(userID).child("Interests").child("moFamily").setValue(false);
-                                myRef.child(userID).child("Interests").child("moHorror").setValue(false);
-                                myRef.child(userID).child("Interests").child("moMusical").setValue(false);
-                                myRef.child(userID).child("Interests").child("moSifi").setValue(false);
-                                myRef.child(userID).child("Interests").child("moSports").setValue(false);
-                                myRef.child(userID).child("Interests").child("moThriller").setValue(false);
-                                myRef.child(userID).child("Interests").child("moWar").setValue(false);
-                                myRef.child(userID).child("Interests").child("mrap").setValue(false);
-                                myRef.child(userID).child("Interests").child("mrnb").setValue(false);
-                                myRef.child(userID).child("Interests").child("mrock").setValue(false);
-                                myRef.child(userID).child("Interests").child("mscremo").setValue(false);
-                                myRef.child(userID).child("Interests").child("pfestivles").setValue(false);
-                                myRef.child(userID).child("Interests").child("phouseParites").setValue(false);
-                                myRef.child(userID).child("Interests").child("pnightClubs").setValue(false);
-                                myRef.child(userID).child("Interests").child("sarchery").setValue(false);
-                                myRef.child(userID).child("Interests").child("sbaseball").setValue(false);
-                                myRef.child(userID).child("Interests").child("sbasketball").setValue(false);
-                                myRef.child(userID).child("Interests").child("scycling").setValue(false);
-                                myRef.child(userID).child("Interests").child("sfishing").setValue(false);
-                                myRef.child(userID).child("Interests").child("sfootball").setValue(false);
-                                myRef.child(userID).child("Interests").child("sfrisbe").setValue(false);
-                                myRef.child(userID).child("Interests").child("sgolf").setValue(false);
-                                myRef.child(userID).child("Interests").child("shoccey").setValue(false);
-                                myRef.child(userID).child("Interests").child("shunting").setValue(false);
-                                myRef.child(userID).child("Interests").child("sskateboarding").setValue(false);
-                                myRef.child(userID).child("Interests").child("ssnowBoarding").setValue(false);
-                                myRef.child(userID).child("Interests").child("swaterSports").setValue(false);
-                                myRef.child(userID).child("Interests").child("swrestling").setValue(false);
-                                myRef.child(userID).child("Interests").child("taction").setValue(false);
-                                myRef.child(userID).child("Interests").child("tadventure").setValue(false);
-                                myRef.child(userID).child("Interests").child("tanimation").setValue(false);
-                                myRef.child(userID).child("Interests").child("tbiography").setValue(false);
-                                myRef.child(userID).child("Interests").child("tcomedy").setValue(false);
-                                myRef.child(userID).child("Interests").child("tcrime").setValue(false);
-                                myRef.child(userID).child("Interests").child("tdocoumentary").setValue(false);
-                                myRef.child(userID).child("Interests").child("tdrama").setValue(false);
-                                myRef.child(userID).child("Interests").child("tfamily").setValue(false);
-                                myRef.child(userID).child("Interests").child("tgameShows").setValue(false);
-                                myRef.child(userID).child("Interests").child("thistory").setValue(false);
-                                myRef.child(userID).child("Interests").child("thorror").setValue(false);
-                                myRef.child(userID).child("Interests").child("tmystery").setValue(false);
-                                myRef.child(userID).child("Interests").child("treality").setValue(false);
-                                myRef.child(userID).child("Interests").child("tsitcom").setValue(false);
-                                myRef.child(userID).child("Interests").child("tsports").setValue(false);
-                                myRef.child(userID).child("Interests").child("ttalkShows").setValue(false);
-                                myRef.child(userID).child("Interests").child("twar").setValue(false);
-
-                                myRef.child(userID).child("UserInfo").child("Image").child("url").setValue(imguri);
-
-
-                            Intent changepage = new Intent(LoginUser.this, Home.class);
-                            startActivity(changepage);
-                        }
-                        if (inthere) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            final String userID = user.getUid();
-
-                            myRef.child(userID).child("UserInfo").child("Firstname").setValue(Firstname);
-                            myRef.child(userID).child("UserInfo").child("Lastname").setValue(Lastname);
-                            myRef.child(userID).child("UserInfo").child("DOB").setValue(DOB);
-                            myRef.child(userID).child("UserInfo").child("UserName").setValue(Username);
-                            myRef.child(userID).child("UserInfo").child("Sex").setValue(Gender);
-
-                            myRef.child(userID).child("Filter").child("Sortby").setValue("DATE");
-                            myRef.child(userID).child("Filter").child("Spefic").setValue("Yours");
-                            myRef.child(userID).child("Filter").child("SpeficString").setValue("sarchery");
-
-//                         StorageReference ref = storageReference.child(userID).child("Profile Image").child(System.currentTimeMillis() + "." + getImageExt(imguri));
-//                        ref.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                            @Override
-//                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                                ImageUpload imageUpload = new ImageUpload(taskSnapshot.getDownloadUrl().toString());
-//                                myRef.child(userID).child("UserInfo").child("Image").setValue(imageUpload);
-//
-//    }
-//                        });
-
-                            Intent changepage = new Intent(LoginUser.this, Home.class);
-                            startActivity(changepage);
-                        }
-
-                    }
                 });
 
 
@@ -348,9 +231,5 @@ public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnCo
         }
     }
 
-    public String getImageExt(Uri uri) {
-        ContentResolver contentResolver = getContentResolver();
-        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
-    }
+
 }

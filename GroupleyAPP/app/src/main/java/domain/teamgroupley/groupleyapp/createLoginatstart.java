@@ -30,10 +30,13 @@ public class createLoginatstart extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
 
+
     public Button Create;
     public static String Email;
     public static String Pass;
     public static String Repass;
+
+
 
 
     @Override
@@ -79,11 +82,13 @@ public class createLoginatstart extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<AuthResult> task) {
                                                 if (task.isSuccessful()) {
                                                     SendemailVerication();
+                                                    FirebaseUser user = mAuth.getCurrentUser();
+                                                    String userID = user.getUid();
                                                     Intent changepage = new Intent(createLoginatstart.this, VerfiyEmail.class);
                                                     startActivity(changepage);
                                                 } else {
-                                                    Toast.makeText(createLoginatstart.this, "Account not created.",
-                                                            Toast.LENGTH_SHORT).show();
+                                                    EmailAccount.setError("Account already exists");
+                                                    EmailAccount.requestFocus();
                                                 }
 
                                                 // ...

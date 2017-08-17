@@ -35,8 +35,6 @@ import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 public class Registered_Events extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ListView mListView;
-
     private static final String TAG = "Registered_Events";
 
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -45,9 +43,6 @@ public class Registered_Events extends AppCompatActivity
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
     String USerid = user.getUid();
-    private String data;
-
-    private ArrayList<String> marry = new ArrayList();
 
     public static int regEventTitle;
 

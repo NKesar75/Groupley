@@ -21,10 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class UpdateProfile extends AppCompatActivity {
 
-    private EditText muFirstName;
-    private EditText muLastName ;
-    private EditText Gender;
-    private EditText DOB;
+
     private EditText muusername ;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -32,10 +29,6 @@ public class UpdateProfile extends AppCompatActivity {
     String USerid = user.getUid();
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mFirstName = mRootRef.child(USerid).child("UserInfo").child("Firstname");
-    DatabaseReference mLastName = mRootRef.child(USerid).child("UserInfo").child("Lastname");
-    DatabaseReference mGender = mRootRef.child(USerid).child("UserInfo").child("Sex");
-    DatabaseReference mDOB = mRootRef.child(USerid).child("UserInfo").child("DOB");
     DatabaseReference mUsername = mRootRef.child(USerid).child("UserInfo").child("UserName");
 
     private Button Save;
@@ -48,14 +41,14 @@ public class UpdateProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
         Save = (Button)findViewById(R.id.EDIT_PROFILE_BTN_update);
-         final EditText FirstName = (EditText)findViewById(R.id.First_NAME_Tst_update);
-         final EditText LastName = (EditText)findViewById(R.id.LAST_NAME_tst_update);
-        Gender = (EditText)findViewById(R.id.Gender_TST_update);
-        DOB = (EditText)findViewById(R.id.DOB_tst_update);
+
+       Save.setFocusable(true);
+       Save.setFocusableInTouchMode(true);///add this line
+       Save.requestFocus();
+
         final EditText username = (EditText)findViewById(R.id.USERNAME_Tst_update);
 
-        muFirstName = (EditText)findViewById(R.id.First_NAME_Tst_update);
-        muLastName = (EditText)findViewById(R.id.LAST_NAME_tst_update);
+
         muusername = (EditText)findViewById(R.id.USERNAME_Tst_update);
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -77,20 +70,16 @@ public class UpdateProfile extends AppCompatActivity {
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String First = FirstName.getText().toString();
-                String Last = LastName.getText().toString();
+
                 String User = username.getText().toString();
 
 
-                if (!First.equals("") && !First.equals(" ")){
-                    if (!Last.equals("") && !Last.equals(" ")){
+
                          if (!User.equals("") && !User.equals(" ")){
                     FirebaseUser user = mAuth.getCurrentUser();
                     String userID = user.getUid();
 
                     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-                    mRootRef.child(userID).child("UserInfo").child("Firstname").setValue(First);
-                    mRootRef.child(userID).child("UserInfo").child("Lastname").setValue(Last);
                     mRootRef.child(userID).child("UserInfo").child("UserName").setValue(User);
 
                     startActivity(new Intent(UpdateProfile.this,Profile.class));
@@ -100,14 +89,6 @@ public class UpdateProfile extends AppCompatActivity {
                      username.setError("Username can not be blank or have a space");
                      username.requestFocus();
                     }
-                 }else{
-                         LastName.setError("Last name can not be blank or have a space");
-                        LastName.requestFocus();
-                        }
-                }else{
-                    FirstName.setError("First name can not be blank or have a space");
-                    LastName.requestFocus();
-                }
 
             }
         });
@@ -131,55 +112,9 @@ public class UpdateProfile extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
-        mFirstName.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String Name = dataSnapshot.getValue(String.class);
-                muFirstName.setText(Name);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
-        mLastName.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String LName = dataSnapshot.getValue(String.class);
-                muLastName.setText(LName);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mDOB.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String Temp = dataSnapshot.getValue(String.class);
-                DOB.setText(Temp);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        mGender.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String Temp = dataSnapshot.getValue(String.class);
-                Gender.setText(Temp);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        ValueEventListener valueEventListener = mUsername.addValueEventListener(new ValueEventListener() {
+        mUsername.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String Temp = dataSnapshot.getValue(String.class);

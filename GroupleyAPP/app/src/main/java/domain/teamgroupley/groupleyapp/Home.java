@@ -107,7 +107,7 @@ public class Home extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 mdatasnapshot = dataSnapshot;
-                showData(dataSnapshot);
+               showData(dataSnapshot);
             }
 
             @Override
@@ -299,8 +299,6 @@ public class Home extends AppCompatActivity
             String img;
 
             for (DataSnapshot ds : dataSnapshot.child("Events").getChildren()) {
-                // Product value = ds.getValue(Product.class);
-                // value.setImageid(R.mipmap.ic_launcher_round);
 
                 tit = dataSnapshot.child("Events").child(Event + count).child("Title").getValue(String.class).toString();
                 Dat = dataSnapshot.child("Events").child(Event + count).child("Date").getValue(String.class).toString();

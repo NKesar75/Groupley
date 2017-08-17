@@ -222,6 +222,11 @@ public class Create_Event extends AppCompatActivity
         });
 
         Create = (Button) findViewById(R.id.Create_event_btn);
+
+        Create.setFocusable(true);
+        Create.setFocusableInTouchMode(true);///add this line
+        Create.requestFocus();
+
         Create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

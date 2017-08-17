@@ -192,6 +192,9 @@ public class Update_Create_event extends AppCompatActivity {
             }
         });
         Update = (Button)findViewById(R.id.Update_event_btn);
+        Update.setFocusable(true);
+        Update.setFocusableInTouchMode(true);///add this line
+        Update.requestFocus();
         Update.setOnClickListener(new View.OnClickListener()
         {
             @Override

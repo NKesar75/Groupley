@@ -148,6 +148,12 @@
                     android:textSize="18sp"
                     android:textStyle="bold|italic" />
 
+                <Button
+                    android:id="@+id/DISplay_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="Button" />
+
             </LinearLayout>
 
             <LinearLayout

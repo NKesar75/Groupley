@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,15 +49,12 @@ public class RegisteredEventDesc extends AppCompatActivity {
     private EditText Timy;
     private EditText Add;
     private EditText Maxppl;
+
+    private Button Display;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //hideKeyboard(this);
-        View view = this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+
 
         setContentView(R.layout.activity_registered_event_desc);
         Descrip = (EditText)findViewById(R.id.des_txt_des_reg_des);
@@ -66,6 +64,11 @@ public class RegisteredEventDesc extends AppCompatActivity {
         Add = (EditText)findViewById(R.id.address_txt_reg_des);
         Maxppl = (EditText)findViewById(R.id.max_people_txt_reg_des);
         Titl = (EditText)findViewById(R.id.Title_txt_reg_des);
+        Display = (Button)findViewById(R.id.DISplay_btn);
+
+        Display.setFocusable(true);
+        Display.setFocusableInTouchMode(true);///add this line
+        Display.requestFocus();
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -91,16 +94,7 @@ public class RegisteredEventDesc extends AppCompatActivity {
         }
     }
 
-//    public static void hideKeyboard(Activity activity) {
-//        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-//        //Find the currently focused view, so we can grab the correct window token from it.
-//        View view = activity.getCurrentFocus();
-//        //If no view currently has focus, create a new one, just so we can grab a window token from it
-//        if (view == null) {
-//            view = new View(activity);
-//        }
-//        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-//    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)

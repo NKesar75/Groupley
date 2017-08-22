@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="domain.teamgroupley.groupleyapp.UserInfoStats"
-    android:paddingBottom="100dp"
+    android:paddingBottom="50dp"
     android:paddingLeft="48dp"
     android:paddingRight="48dp"
-    android:paddingTop="100dp"
+    android:paddingTop="50dp"
     android:background="@color/colorPrimaryDark">
 
     <LinearLayout
@@ -33,19 +33,10 @@
 
         <ImageView
             android:id="@+id/image_load_profile"
-            android:layout_width="236dp"
-            android:layout_height="156dp"
-            android:layout_gravity="center"
-            android:layout_weight="0.42"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            style="@style/image_style"
             app:srcCompat="@mipmap/acting_icon_launcher" />
-
-
-        <TextView
-            android:id="@+id/textView29"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:text="    " />
 
         <Button
             android:id="@+id/Create_User_stats_btn"

@@ -75,7 +75,7 @@ public class UserInfoStats extends AppCompatActivity {
 
       final EditText Username = (EditText)findViewById(R.id.USERNAME_TXT);
         
-        imageView = (ImageView)findViewById(R.id.image_load);
+        imageView = (ImageView)findViewById(R.id.image_load_profile);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

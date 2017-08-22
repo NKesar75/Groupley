@@ -106,13 +106,6 @@
                     android:fontFamily="sans-serif-condensed"
                     android:text="    " />
 
-                <ImageView
-                    android:id="@+id/image_load_profile"
-                    android:layout_width="236dp"
-                    android:layout_height="156dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.42" />
-
             </LinearLayout>
 
         </LinearLayout>

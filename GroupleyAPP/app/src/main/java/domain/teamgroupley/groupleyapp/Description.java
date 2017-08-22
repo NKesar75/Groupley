@@ -41,7 +41,7 @@ public class Description extends AppCompatActivity {
     private Button Peoplechanging;
 
     private int Eventtie = Home.EventTitle;
-    public static int desnum;
+
 
     String Event = "Event";
 
@@ -74,7 +74,6 @@ public class Description extends AppCompatActivity {
         Maxppl = (EditText) findViewById(R.id.max_people_txt_des);
         Titl = (EditText) findViewById(R.id.Title_txt_des);
         Join = (Button) findViewById(R.id.Join_event_btn_des);
-        Peoplechanging = (Button) findViewById(R.id.Attending);
 
         Join.setFocusable(true);
         Join.setFocusableInTouchMode(true);///add this line
@@ -109,13 +108,6 @@ public class Description extends AppCompatActivity {
             }
         });
 
-        Peoplechanging.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                desnum = Eventtie;
-                startActivity(new Intent(Description.this, PeopleAttending.class));
-            }
-        });
 
         if(getSupportActionBar()!= null)
         {

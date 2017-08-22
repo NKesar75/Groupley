@@ -114,7 +114,7 @@ public class PeopleAttending extends AppCompatActivity {
         String Event = "Event";
         String username;
         String mPhoto;
-        int evenum = Description.desnum;
+        int evenum = RegisteredEventDesc.desnum;
 
         peopleList.clear();
 

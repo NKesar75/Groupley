@@ -54,7 +54,6 @@ public class Update_Create_event extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
     String USerid = user.getUid();
-
     ArrayList<String> Catgorylist;
 
     long EVENTCOUNT = CreatedEventList.CreateEventTitle;

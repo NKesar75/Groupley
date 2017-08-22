@@ -4,155 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="domain.teamgroupley.groupleyapp.Profile"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    tools:context="domain.teamgroupley.groupleyapp.LoginUser"
+    android:background="@color/colorPrimaryDark"
     android:id="@+id/activity_profile">
 
     <LinearLayout
-        android:layout_width="369dp"
-        android:layout_height="494dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="1"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="9dp">
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/textView10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
+            style="@style/txtview_style"
             android:text="Profile"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textSize="36sp"
-            android:textStyle="bold|italic" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.24"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="125dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1">
+            android:textSize="50sp"/>
 
                 <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    "
-                    android:layout_weight="0.13" />
-
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="USERNAME:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1">
-
-                <TextView
-                    android:id="@+id/textView32"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    "
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold|italic" />
-
-                <EditText
                     android:id="@+id/USERNAME_Tst"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="Dainel123"
-                    android:inputType="textPersonName"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold|italic" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+                    style="@style/EditText_style"
+                    android:inputType="textPersonName"/>
 
         <ImageView
             android:id="@+id/profile_download"
-            android:layout_width="94dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.28"
-            android:fontFamily="sans-serif-condensed"
-            android:text="    " />
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            style="@style/image_style"/>
 
         <Button
             android:id="@+id/EDIT_PROFILE_BTN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.11"
-            android:fontFamily="sans-serif-condensed"
-            android:text="EDIT PROFile"
-            android:textSize="24sp"
-            android:textStyle="bold|italic" />
-
-        <TextView
-            android:id="@+id/textView29"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="    " />
+            style="@style/button_style"
+            android:text="EDIT PROFile"/>
 
         <Button
             android:id="@+id/SEE_INTREST_PROFILE_BTN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.11"
-            android:fontFamily="sans-serif-condensed"
-            android:text="EDIT INTERESTS"
-            android:textSize="24sp"
-            android:textStyle="bold|italic" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="    " />
+            style="@style/button_style"
+            android:text="EDIT INTERESTS"/>
 
         <Button
             android:id="@+id/logout_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Log Out"
-            android:textAlignment="center"
-            android:textSize="36sp"
-            android:textStyle="bold|italic" />
+            style="@style/button_style"
+            android:text="Log Out"/>
 
-    </LinearLayout>
+            </LinearLayout>
 
     <FrameLayout
         android:id="@+id/fragment"

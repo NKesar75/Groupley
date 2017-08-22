@@ -1,264 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="domain.teamgroupley.groupleyapp.UpdateProfile">
+    android:paddingBottom="100dp"
+    android:paddingLeft="48dp"
+    android:paddingRight="48dp"
+    android:paddingTop="100dp"
+    tools:context="domain.teamgroupley.groupleyapp.LoginUser"
+    android:background="@color/colorPrimaryDark">
 
     <LinearLayout
-        android:layout_width="369dp"
-        android:layout_height="494dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="1"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="9dp">
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/textView10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Profile"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@android:color/background_dark"
-            android:textSize="36sp"
-            android:textStyle="bold|italic" />
+            style="@style/txtview_style"
+            android:text="Update Profile"
+            android:textSize="50sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.24"
-            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="125dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1">
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="FIRST NAME:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="LAST NAME:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="GENDER:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="DOB:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.13"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
-
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="USERNAME:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1">
-
-                <EditText
-                    android:id="@+id/First_NAME_Tst_update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:ems="10"
-                    android:enabled="true"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="John"
-                    android:inputType="textPersonName"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold|italic" />
-
-                <EditText
-                    android:id="@+id/LAST_NAME_tst_update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:ems="10"
-                    android:enabled="true"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="Smith"
-                    android:inputType="textPersonName"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold|italic" />
-
-                <EditText
-                    android:id="@+id/Gender_TST_update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:fontFamily="sans-serif-condensed"
-                    android:inputType="textPersonName"
-                    android:text="Gender"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold|italic" />
-
-                <EditText
-                    android:id="@+id/DOB_tst_update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="MM/DD/YYYY"
-                    android:inputType="date"
-                    android:textAlignment="textStart"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView32"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    "
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold|italic" />
-
-                <EditText
+        <EditText
                     android:id="@+id/USERNAME_Tst_update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
                     android:enabled="true"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="Dainel123"
                     android:inputType="textPersonName"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="16sp"
-                    android:textStyle="bold|italic" />
+                    style="@style/EditText_style"/>
 
-            </LinearLayout>
 
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.28"
-            android:fontFamily="sans-serif-condensed"
-            android:text="    " />
+        <ImageView
+            android:id="@+id/profile_update_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            style="@style/image_style"/>
 
         <Button
             android:id="@+id/EDIT_PROFILE_BTN_update"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.11"
-            android:fontFamily="sans-serif-condensed"
-            android:text="SAVE PROFile"
-            android:textSize="24sp"
-            android:textStyle="bold|italic" />
+            android:text="Update Profile"
+            style="@style/button_style"/>
 
-        <TextView
-            android:id="@+id/textView29"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="    " />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="    " />
 
     </LinearLayout>
-</android.support.v4.widget.DrawerLayout>
+</RelativeLayout>

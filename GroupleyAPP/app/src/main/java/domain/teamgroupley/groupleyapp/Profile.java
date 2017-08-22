@@ -15,9 +15,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.cast.TextTrackStyle;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +33,7 @@ import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 public class Profile extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private EditText username ;
+    private TextView username ;
     private ImageView profileImage;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
@@ -63,7 +65,7 @@ public class Profile extends AppCompatActivity
         EditProfile.setFocusableInTouchMode(true);///add this line
         EditProfile.requestFocus();
 
-        username = (EditText)findViewById(R.id.USERNAME_Tst);
+        username = (TextView)findViewById(R.id.USERNAME_Tst);
         profileImage = (ImageView)findViewById(R.id.profile_download);
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {

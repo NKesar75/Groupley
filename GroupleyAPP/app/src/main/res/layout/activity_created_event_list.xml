@@ -5,8 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="domain.teamgroupley.groupleyapp.CreatedEventList"
-    android:background="#ffffff"
-    android:id="@+id/activity_createdEventList">
+    android:id="@+id/activity_createdEventList"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:background="@color/colorPrimaryDark">
 
     <ViewStub
         android:layout_width="match_parent"

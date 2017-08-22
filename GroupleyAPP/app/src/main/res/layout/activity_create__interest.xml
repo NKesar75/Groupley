@@ -25,8 +25,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:weightSum="1">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -50,46 +49,35 @@
 
                 <CheckBox
                     android:id="@+id/Archery_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
                     android:text="ARCHERY"
                     android:buttonTint="@android:color/holo_green_light"
-                    android:textColor="@android:color/holo_green_dark"/>
+                    android:textColor="@android:color/holo_green_dark"
+                    style="@style/checkbox_style"/>
 
                 <CheckBox
                     android:id="@+id/Base_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="BASEBALL"
                     android:buttonTint="@android:color/holo_green_light"
                     android:textColor="@android:color/holo_green_dark"/>
 
                 <CheckBox
                     android:id="@+id/BASK_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="BASKETBALL"
                     android:buttonTint="@android:color/holo_green_light"
                     android:textColor="@android:color/holo_green_dark"/>
 
                 <CheckBox
                     android:id="@+id/BIKE_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="CYCLING"
                     android:buttonTint="@android:color/holo_green_light"
                     android:textColor="@android:color/holo_green_dark"/>
 
                 <CheckBox
                     android:id="@+id/Fish_cb_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="FISHING"
                     android:buttonTint="@android:color/holo_green_light"
                     android:textColor="@android:color/holo_green_dark"/>
@@ -97,78 +85,61 @@
                 <CheckBox
                     android:id="@+id/Foot_cb_create"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="FOOTBALL"
                     android:buttonTint="@android:color/holo_green_light"
                     android:textColor="@android:color/holo_green_dark"/>
 
                 <CheckBox
                     android:id="@+id/Fri_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="FRISBEE"
                     android:buttonTint="@android:color/holo_green_light"
                     android:textColor="@android:color/holo_green_dark"/>
                 <CheckBox
                     android:id="@+id/Golf_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="GOLF"
                     android:buttonTint="@android:color/holo_green_light"
                     android:textColor="@android:color/holo_green_dark"/>
                 <CheckBox
                     android:id="@+id/Hoc_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="HOCKEY"
                     android:buttonTint="@android:color/holo_green_light"
                     android:textColor="@android:color/holo_green_dark"/>
 
                 <CheckBox
                     android:id="@+id/Hunt_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="HUNTING"
                     android:buttonTint="@android:color/holo_green_light"
                     android:textColor="@android:color/holo_green_dark"/>
 
                 <CheckBox
                     android:id="@+id/Skate_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="SKATEBOARDING"
                     android:buttonTint="@android:color/holo_green_light"
                     android:textColor="@android:color/holo_green_dark"/>
 
                 <CheckBox
                     android:id="@+id/Snow_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="SNOWBOARDING"
                     android:buttonTint="@android:color/holo_green_light"
                     android:textColor="@android:color/holo_green_dark"/>
 
                 <CheckBox
                     android:id="@+id/WS_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="WATER SPORTS"
                     android:buttonTint="@android:color/holo_green_light"
                     android:textColor="@android:color/holo_green_dark"/>
 
                 <CheckBox
                     android:id="@+id/Wres_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="WRESTLING"
                     android:buttonTint="@android:color/holo_green_light"
                     android:textColor="@android:color/holo_green_dark"/>
@@ -184,27 +155,21 @@
 
                 <CheckBox
                     android:id="@+id/Fest_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="FESTIVALS"
                     android:buttonTint="@android:color/holo_blue_light"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Hp_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="HOUSE PARTIES"
                     android:buttonTint="@android:color/holo_blue_light"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Nc_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="NIGHT CLUBS"
                     android:buttonTint="@android:color/holo_blue_light"
                     android:textColor="@android:color/holo_blue_dark"/>
@@ -220,63 +185,49 @@
 
                 <CheckBox
                     android:id="@+id/Act_cb__create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="ACTION"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark" />
 
                 <CheckBox
                     android:id="@+id/Ad_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="ADVENTURE"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark"/>
 
                 <CheckBox
                     android:id="@+id/Fps_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="FIRST PERSON SHOOTERS"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark"/>
 
                 <CheckBox
                     android:id="@+id/Ind_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="INDIES"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark"/>
 
                 <CheckBox
                     android:id="@+id/Mmo_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="MASS MULTIPLAYER ONLINE"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark" />
 
                 <CheckBox
                     android:id="@+id/Pf_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="PARTY / FAMILY "
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark" />
 
                 <CheckBox
                     android:id="@+id/Rpg_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="ROLE PLAYING GAMES"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark" />
@@ -292,18 +243,14 @@
 
                 <CheckBox
                     android:id="@+id/Spor_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="SPORTS"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark" />
 
                 <CheckBox
                     android:id="@+id/Str_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="STRATEGY"
                     android:textAllCaps="true"
                     android:buttonTint="@android:color/holo_orange_light"
@@ -321,36 +268,28 @@
 
                 <CheckBox
                     android:id="@+id/Country_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="COUNTRY"
                     android:buttonTint="@android:color/holo_purple"
                     android:textColor="@android:color/holo_purple" />
 
                 <CheckBox
                     android:id="@+id/Dr_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="DRILL RAP"
                     android:buttonTint="@android:color/holo_purple"
                     android:textColor="@android:color/holo_purple"/>
 
                 <CheckBox
                     android:id="@+id/Edm_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="EDM"
                     android:buttonTint="@android:color/holo_purple"
                     android:textColor="@android:color/holo_purple"/>
 
                 <CheckBox
                     android:id="@+id/Jazz_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="JAZZ"
                     android:buttonTint="@android:color/holo_purple"
                     android:textColor="@android:color/holo_purple"/>
@@ -366,27 +305,21 @@
 
                 <CheckBox
                     android:id="@+id/Rock_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="ROCK"
                     android:buttonTint="@android:color/holo_purple"
                     android:textColor="@android:color/holo_purple"/>
 
                 <CheckBox
                     android:id="@+id/Rnb_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="R AND B"
                     android:buttonTint="@android:color/holo_purple"
                     android:textColor="@android:color/holo_purple"/>
 
                 <CheckBox
                     android:id="@+id/Scremo_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="SCREMO"
                     android:buttonTint="@android:color/holo_purple"
                     android:textColor="@android:color/holo_purple" />
@@ -402,60 +335,42 @@
 
                 <CheckBox
                     android:id="@+id/Action_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="ACTION"
                     android:buttonTint="@android:color/holo_red_light"
                     android:textColor="@android:color/holo_red_dark"/>
 
                 <CheckBox
                     android:id="@+id/Animation_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="ANIMATION"
                     android:buttonTint="@android:color/holo_red_light"
                     android:textColor="@android:color/holo_red_dark" />
 
                 <CheckBox
                     android:id="@+id/Comedy_btn_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="COMEDY"
                     android:buttonTint="@android:color/holo_red_light"
                     android:textColor="@android:color/holo_red_dark"/>
 
                 <CheckBox
                     android:id="@+id/Documentary_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="DOCUMENTARY"
                     android:buttonTint="@android:color/holo_red_light"
                     android:textColor="@android:color/holo_red_dark"/>
 
                 <CheckBox
                     android:id="@+id/Family_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="FAMILY"
                     android:buttonTint="@android:color/holo_red_light"
                     android:textColor="@android:color/holo_red_dark"/>
 
                 <CheckBox
                     android:id="@+id/Horror_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="HORROR"
                     android:buttonTint="@android:color/holo_red_light"
                     android:textColor="@android:color/holo_red_dark"/>
@@ -463,49 +378,35 @@
                 <CheckBox
                     android:id="@+id/Musical_CB_create"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="MUSICAL"
                     android:buttonTint="@android:color/holo_red_light"
                     android:textColor="@android:color/holo_red_dark"/>
 
                 <CheckBox
                     android:id="@+id/SIFI_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="SCI FI"
                     android:buttonTint="@android:color/holo_red_light"
                     android:textColor="@android:color/holo_red_dark"/>
 
                 <CheckBox
                     android:id="@+id/Sports_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="SPORTS"
                     android:buttonTint="@android:color/holo_red_light"
                     android:textColor="@android:color/holo_red_dark" />
 
                 <CheckBox
                     android:id="@+id/Thriller_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="THRILLER"
                     android:buttonTint="@android:color/holo_red_light"
                     android:textColor="@android:color/holo_red_dark"/>
 
                 <CheckBox
                     android:id="@+id/War_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="WAR"
                     android:buttonTint="@android:color/holo_red_light"
                     android:textColor="@android:color/holo_red_dark" />
@@ -521,180 +422,126 @@
 
                 <CheckBox
                     android:id="@+id/Act_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="ACTION"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark" />
 
                 <CheckBox
                     android:id="@+id/Addy_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="ADVENTURE"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Anima_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="ANIMATION"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Bio_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="BIOGRAPHY"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Come_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="COMEDY"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Crime_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="CRIME"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Docu_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="DOCUMENTARY"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Drama_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="DRAMA"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Fam_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="FAMILY"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Game_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="GAME SHOW"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/History_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="HISTORY"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Hor_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="HORROR"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Mystry_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="MYSTERY"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Real_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="REALITY TV"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Sitcom_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="SITCOM"
-                android:buttonTint="@android:color/holo_blue_bright"
-                android:textColor="@android:color/holo_blue_dark" />
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark" />
 
                 <CheckBox
                     android:id="@+id/Spo_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="SPORTS"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/Talk_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="TALK SHOWS"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
 
                 <CheckBox
                     android:id="@+id/W_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="WAR"
                     android:buttonTint="@android:color/holo_blue_bright"
                     android:textColor="@android:color/holo_blue_dark"/>
@@ -710,27 +557,21 @@
 
                 <CheckBox
                     android:id="@+id/Acting_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
+                    style="@style/checkbox_style"
                     android:text="Acting"
                     android:buttonTint="@android:color/holo_purple"
                     android:textColor="@android:color/holo_purple"/>
 
                 <CheckBox
                     android:id="@+id/Cosplay_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
+                    style="@style/checkbox_style"
                     android:text="COSPLAY"
                     android:buttonTint="@android:color/holo_purple"
                     android:textColor="@android:color/holo_purple" />
 
                 <CheckBox
                     android:id="@+id/Larp_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
+                    style="@style/checkbox_style"
                     android:text="LARPING"
                     android:buttonTint="@android:color/holo_purple"
                     android:textColor="@android:color/holo_purple" />
@@ -747,54 +588,42 @@
 
                 <CheckBox
                     android:id="@+id/Actionfigure_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
+                    style="@style/checkbox_style"
                     android:text="ACTION FIGURES"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark"/>
 
                 <CheckBox
                     android:id="@+id/Cars_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
+                    style="@style/checkbox_style"
                     android:text="CARS"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark"/>
 
                 <CheckBox
                     android:id="@+id/Coins_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
+                    style="@style/checkbox_style"
                     android:text="COIN COLLECTING"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark"/>
 
                 <CheckBox
                     android:id="@+id/Comic_books_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
+                    style="@style/checkbox_style"
                     android:text="COMIC BOOKS"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark" />
 
                 <CheckBox
                     android:id="@+id/Guns_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
+                    style="@style/checkbox_style"
                     android:text="GUNS"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark" />
 
                 <CheckBox
                     android:id="@+id/Trucks_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.07"
+                    style="@style/checkbox_style"
                     android:text="TRUCKS"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark" />

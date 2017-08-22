@@ -191,7 +191,7 @@ public class Registered_Events extends AppCompatActivity
                 break;
 
             case R.id.item_menu_2:
-                startActivity(new Intent(Registered_Events.this,Filter.class));
+                startActivity(new Intent(Registered_Events.this, registered_filter.class));
                 break;
         }
         switch (item.getItemId())
@@ -233,6 +233,7 @@ public class Registered_Events extends AppCompatActivity
             ++count;
             productList.add(new Product(tit,"Date: "+Dat,"Category: "+Cat,Img));
         }
+
 
         setAdapters();
     }

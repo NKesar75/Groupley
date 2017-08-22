@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="domain.teamgroupley.groupleyapp.filter">
+    tools:context="domain.teamgroupley.groupleyapp.registered_filter">
 
     <LinearLayout
         android:layout_width="368dp"
@@ -27,7 +27,7 @@
             android:textStyle="bold" />
 
         <Spinner
-            android:id="@+id/SortbySpinner"
+            android:id="@+id/SortbySpinnerreg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.10" />
@@ -50,7 +50,7 @@
             android:layout_weight="0.01">
 
             <RadioButton
-                android:id="@+id/ALLEVENTSBTN"
+                android:id="@+id/ALLEVENTSBTNreg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ALL Interests "
@@ -59,7 +59,7 @@
                 android:textStyle="bold" />
 
             <RadioButton
-                android:id="@+id/YOUREVEENTSBUTTON"
+                android:id="@+id/YOUREVEENTSBUTTONreg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -70,7 +70,7 @@
                 android:textStyle="bold" />
 
             <RadioButton
-                android:id="@+id/SPEFICEVENTSBTN"
+                android:id="@+id/SPEFICEVENTSBTNreg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SPEFIC INTERESTs"
@@ -82,7 +82,7 @@
         </RadioGroup>
 
         <Spinner
-            android:id="@+id/Speficspiner"
+            android:id="@+id/Speficspinerreg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.14" />
@@ -94,7 +94,7 @@
             android:layout_weight="0.27" />
 
         <Button
-            android:id="@+id/FilterSave"
+            android:id="@+id/FilterSavereg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="FILTEr"

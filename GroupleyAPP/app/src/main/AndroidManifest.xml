@@ -17,7 +17,6 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".LoginUser">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,25 +50,22 @@
         <activity android:name=".UpdateProfile" />
         <activity android:name=".VerfiyEmail" />
         <activity android:name=".Filter" />
-        <activity android:name=".PeopleAttending"></activity>
+        <activity android:name=".PeopleAttending" />
 
-
-        <service
-            android:name=".myFirebaseInstanceIdIDService">
+        <service android:name=".myFirebaseInstanceIdIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".MyFirebasaeMessagingservice">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <service
-            android:name=".MyFirebasaeMessagingservice">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-
+        <activity android:name=".registered_filter" />
+        <activity android:name=".filter" />
+        <activity android:name=".createdfilter"></activity>
     </application>
-
-
 
 </manifest>

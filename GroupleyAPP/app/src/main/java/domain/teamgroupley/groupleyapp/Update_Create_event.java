@@ -87,7 +87,7 @@ public class Update_Create_event extends AppCompatActivity {
         Max = (EditText)findViewById(R.id.max_people_txt_update);
         Title = (EditText)findViewById(R.id.Title_txt_update);
         Disc = (EditText) findViewById(R.id.des_txt_update);
-        imageupdate123 = (ImageView)findViewById(R.id.image_load_update);
+        imageupdate123 = (ImageView)findViewById(R.id.img_update);
 
       final EditText Addeyy = (EditText)findViewById(R.id.address_txt_update);
       final EditText Maxy = (EditText)findViewById(R.id.max_people_txt_update);
@@ -300,20 +300,6 @@ public class Update_Create_event extends AppCompatActivity {
             }
         });
 
-        mimage.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        String image = dataSnapshot.getValue(String.class);
-                        Glide.with(Update_Create_event.this).load(image.toString()).into(imageupdate123);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
         mDescription.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
@@ -412,6 +398,20 @@ public class Update_Create_event extends AppCompatActivity {
             {
                 String temp = dataSnapshot.getValue(String.class);
                 Max.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mimage.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                String image = dataSnapshot.getValue(String.class);
+                Glide.with(Update_Create_event.this).load(image.toString()).into(imageupdate123);
             }
 
             @Override

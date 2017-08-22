@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="100dp"
+    android:paddingBottom="80dp"
     android:paddingLeft="48dp"
     android:paddingRight="48dp"
-    android:paddingTop="100dp"
+    android:paddingTop="80dp"
     tools:context="domain.teamgroupley.groupleyapp.LoginUser"
     android:background="@color/colorPrimaryDark">
 

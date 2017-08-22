@@ -240,13 +240,11 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView29"
+        <Button
+            android:id="@+id/Attending"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.15"
-            android:fontFamily="sans-serif-condensed"
-            android:text="    " />
+            android:text="People Attending" />
 
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

@@ -74,8 +74,8 @@ public class UserInfoStats extends AppCompatActivity {
 
 
       final EditText Username = (EditText)findViewById(R.id.USERNAME_TXT);
-        imageView = (ImageView)findViewById(R.id.image_load_profile);
-
+        
+        imageView = (ImageView)findViewById(R.id.image_load);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,7 +129,6 @@ public class UserInfoStats extends AppCompatActivity {
                 if ( !User.equals("")) {
 
                     myRef.child(userID).child("UserInfo").child("UserName").setValue(User);
-
                     myRef.child(userID).child("Filter").child("Sortby").setValue("DATE");
                     myRef.child(userID).child("Filter").child("Spefic").setValue("Yours");
                     myRef.child(userID).child("Filter").child("SpeficString").setValue("sarchery");

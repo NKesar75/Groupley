@@ -241,19 +241,6 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/Attending"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="People Attending" />
-
-        <TextView
-            android:id="@+id/textView52"
-            android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="    " />
-
-        <Button
             android:id="@+id/Join_event_btn_des"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

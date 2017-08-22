@@ -2,6 +2,7 @@ package domain.teamgroupley.groupleyapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class RegisteredEventDesc extends AppCompatActivity {
     private String UserID = user.getUid();;
     private DatabaseReference myRef;
 
+    public static int desnum;
     private int Eventtie = Registered_Events.regEventTitle;
     String Event = "Event";
 
@@ -51,6 +53,8 @@ public class RegisteredEventDesc extends AppCompatActivity {
     private EditText Maxppl;
 
     private Button Display;
+    private Button Peoplechanging;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +69,7 @@ public class RegisteredEventDesc extends AppCompatActivity {
         Maxppl = (EditText)findViewById(R.id.max_people_txt_reg_des);
         Titl = (EditText)findViewById(R.id.Title_txt_reg_des);
         Display = (Button)findViewById(R.id.DISplay_btn);
-
+        Peoplechanging = (Button) findViewById(R.id.Attending);
         Display.setFocusable(true);
         Display.setFocusableInTouchMode(true);///add this line
         Display.requestFocus();
@@ -86,6 +90,14 @@ public class RegisteredEventDesc extends AppCompatActivity {
                 // ...
             }
         };
+
+        Peoplechanging.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                desnum = Eventtie;
+                startActivity(new Intent(RegisteredEventDesc.this, PeopleAttending.class));
+            }
+        });
 
         if(getSupportActionBar()!= null)
         {

@@ -10,6 +10,25 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/txtdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/txtcat" />
+
+    <TextView
+        android:id="@+id/txtcat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginStart="21dp"
+        android:layout_alignBottom="@+id/imgLoad"
+        android:layout_alignStart="@+id/txttitle" />
+
     <ImageView
         android:id="@+id/imgLoad"
         android:layout_width="80dp"
@@ -23,31 +42,9 @@
         android:text="Title"
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginTop="12dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginStart="16dp"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/txtdate"
         android:layout_toEndOf="@+id/imgLoad" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtdate"
-        android:layout_below="@+id/txttitle"
-        android:layout_alignLeft="@+id/txttitle"
-        android:text="Date"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtcat"
-        android:text="Category"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_alignBaseline="@+id/txtdate"
-        android:layout_alignBottom="@+id/txtdate"
-        android:layout_toEndOf="@+id/txttitle"
-        android:layout_marginStart="65dp" />
 
 </RelativeLayout>

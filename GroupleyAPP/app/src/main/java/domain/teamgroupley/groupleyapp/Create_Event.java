@@ -397,7 +397,8 @@ public class Create_Event extends AppCompatActivity
             }
             catch(FileNotFoundException e) {
                 e.printStackTrace();
-            } catch (IOException e) {
+            } catch (IOException e)
+            {
                 e.printStackTrace();
             }
         }

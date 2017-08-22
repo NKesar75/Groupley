@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -43,13 +44,15 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+public class LoginUser extends AppCompatActivity
+        //implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener
+        {
 
-    private static int RC_Sign_in = 0;
+    //private static int RC_Sign_in = 0;
     private static final String TAG = "LoginUser";
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private GoogleApiClient mgoogle;
+    //private GoogleApiClient mgoogle;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference myRef;
@@ -57,7 +60,7 @@ public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnCo
     private String imguri;
 
     private Button mlogin;
-    private Button mcreate;
+    private TextView mcreate;
 
     String Username;
 
@@ -67,7 +70,7 @@ public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnCo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_user);
         mlogin = (Button) findViewById(R.id.LOGIN_BTN_LOgin);
-        mcreate = (Button) findViewById(R.id.CREATE__ACCOUNT_BTN_LOGin);
+        mcreate = (TextView) findViewById(R.id.createacc_txt_btn);
         final EditText Email = (EditText) findViewById(R.id.Email_txt);
         final EditText Password = (EditText) findViewById(R.id.Password_txxt);
 
@@ -106,17 +109,17 @@ public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnCo
             }
         });
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-        mgoogle = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
-                .build();
-
-        findViewById(R.id.Google_sign_in).setOnClickListener(this);
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestIdToken(getString(R.string.default_web_client_id))
+//                .requestEmail()
+//                .build();
+//
+//        mgoogle = new GoogleApiClient.Builder(this)
+//                .enableAutoManage(this, this)
+//                .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
+//                .build();
+//
+//        findViewById(R.id.Google_sign_in).setOnClickListener(this);
 
         mcreate.setOnClickListener((new View.OnClickListener() {
             @Override
@@ -163,60 +166,60 @@ public class LoginUser extends AppCompatActivity implements GoogleApiClient.OnCo
     }
 
 
-    @Override
-    public void onClick(View v) {
-        Intent signInIntenet = Auth.GoogleSignInApi.getSignInIntent(mgoogle);
-        startActivityForResult(signInIntenet,RC_Sign_in);
+//    @Override
+//    public void onClick(View v) {
+//        Intent signInIntenet = Auth.GoogleSignInApi.getSignInIntent(mgoogle);
+//        startActivityForResult(signInIntenet,RC_Sign_in);
+//
+//    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == RC_Sign_in){
+//            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+//
+//            if (result.isSuccess()){
+//                GoogleSignInAccount account = result.getSignInAccount();
+//                Username = account.getDisplayName();
+//                imguri = account.getPhotoUrl().toString();
+//                firebaseAuthWithGoogle(account);
+//            }
+//        }
+//    }
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_Sign_in){
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-
-            if (result.isSuccess()){
-                GoogleSignInAccount account = result.getSignInAccount();
-                Username = account.getDisplayName();
-                imguri = account.getPhotoUrl().toString();
-                firebaseAuthWithGoogle(account);
-            }
-        }
-    }
-
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct){
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(),null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        String userID = user.getUid();
-
-                                   myRef.child(userID).child("UserInfo").child("UserName").setValue(Username);
-                                   myRef.child(userID).child("UserInfo").child("Image").child("url").setValue(imguri);
-
-                                   myRef.child(userID).child("Filter").child("Sortby").setValue("DATE");
-                                   myRef.child(userID).child("Filter").child("Spefic").setValue("Yours");
-                                   myRef.child(userID).child("Filter").child("SpeficString").setValue("sarchery");
-
-                                   Intent changepage = new Intent(LoginUser.this, Create_Interest.class);
-                                   startActivity(changepage);
-
-                       }
-
-                });
-
-
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.d(TAG,"ConnectionFAiled");
-    }
+//    private void firebaseAuthWithGoogle(GoogleSignInAccount acct){
+//        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(),null);
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//
+//                        FirebaseUser user = mAuth.getCurrentUser();
+//                        String userID = user.getUid();
+//
+//                                   myRef.child(userID).child("UserInfo").child("UserName").setValue(Username);
+//                                   myRef.child(userID).child("UserInfo").child("Image").child("url").setValue(imguri);
+//
+//                                   myRef.child(userID).child("Filter").child("Sortby").setValue("DATE");
+//                                   myRef.child(userID).child("Filter").child("Spefic").setValue("Yours");
+//                                   myRef.child(userID).child("Filter").child("SpeficString").setValue("sarchery");
+//
+//                                   Intent changepage = new Intent(LoginUser.this, Create_Interest.class);
+//                                   startActivity(changepage);
+//
+//                       }
+//
+//                });
+//
+//
+//
+//    }
+//
+//    @Override
+//    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+//        Log.d(TAG,"ConnectionFAiled");
+//    }
 
     @Override
     public void onStart() {

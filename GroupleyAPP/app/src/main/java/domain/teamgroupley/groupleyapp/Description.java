@@ -10,8 +10,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +33,7 @@ public class Description extends AppCompatActivity {
     private String UserID = user.getUid();
     private DatabaseReference myRef;
 
-    private EditText Titl;
+    private TextView Titl;
     private EditText Descrip;
     private EditText Cater;
     private EditText Dat;
@@ -38,7 +41,7 @@ public class Description extends AppCompatActivity {
     private EditText Add;
     private EditText Maxppl;
     private Button Join;
-    private Button Peoplechanging;
+    private ImageView imageupdate;
 
     private int Eventtie = Home.EventTitle;
 
@@ -61,6 +64,7 @@ public class Description extends AppCompatActivity {
     DatabaseReference mTime = mRootRef.child("Events").child(Event+Eventtie).child("Time");
     DatabaseReference mAddress = mRootRef.child("Events").child(Event+Eventtie).child("Address");
     DatabaseReference mMax = mRootRef.child("Events").child(Event+Eventtie).child("Max_People");
+    DatabaseReference mimage = mRootRef.child("Events").child(Event+Eventtie).child("Image").child("url");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +76,9 @@ public class Description extends AppCompatActivity {
         Timy = (EditText) findViewById(R.id.time_txt_des);
         Add = (EditText) findViewById(R.id.address_txt_des);
         Maxppl = (EditText) findViewById(R.id.max_people_txt_des);
-        Titl = (EditText) findViewById(R.id.Title_txt_des);
+        Titl = (TextView) findViewById(R.id.Title_txt_des);
         Join = (Button) findViewById(R.id.Join_event_btn_des);
+        imageupdate = (ImageView)findViewById(R.id.image_load_Des);
 
         Join.setFocusable(true);
         Join.setFocusableInTouchMode(true);///add this line
@@ -193,6 +198,20 @@ public class Description extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String temp = dataSnapshot.getValue(String.class).toString();
                 Titl.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mimage.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String image = dataSnapshot.getValue(String.class);
+                Glide.with(Description.this).load(image.toString()).into(imageupdate);
+
             }
 
             @Override

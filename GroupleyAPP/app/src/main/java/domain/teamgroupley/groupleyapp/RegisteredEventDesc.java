@@ -12,7 +12,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,23 +39,23 @@ public class RegisteredEventDesc extends AppCompatActivity {
     String Event = "Event";
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mTitle = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Title");
-    DatabaseReference mDesc = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Description");
-    DatabaseReference mCater = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Category");
-    DatabaseReference mDate = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Date");
-    DatabaseReference mTime = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Time");
-    DatabaseReference mAddress = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Address");
-    DatabaseReference mMax = mRootRef.child(UserID).child("RegisteredEvents").child(Event+Eventtie).child("Max_People");
+    DatabaseReference mTitle = mRootRef.child("Events").child(Event+Eventtie).child("Title");
+    DatabaseReference mDesc =  mRootRef.child("Events").child(Event+Eventtie).child("Description");
+    DatabaseReference mCater =  mRootRef.child("Events").child(Event+Eventtie).child("Category");
+    DatabaseReference mDate = mRootRef.child("Events").child(Event+Eventtie).child("Date");
+    DatabaseReference mTime = mRootRef.child("Events").child(Event+Eventtie).child("Time");
+    DatabaseReference mAddress =  mRootRef.child("Events").child(Event+Eventtie).child("Address");
+    DatabaseReference mMax = mRootRef.child("Events").child(Event+Eventtie).child("Max_People");
+    DatabaseReference mimage = mRootRef.child("Events").child(Event+Eventtie).child("Image").child("url");
 
-    private EditText Titl;
+    private TextView Titl;
     private EditText Descrip;
     private EditText Cater;
     private EditText Dat;
     private EditText Timy;
     private EditText Add;
     private EditText Maxppl;
-
-    private Button Display;
+    private ImageView imageupdate;
     private Button Peoplechanging;
 
     @Override
@@ -67,12 +70,12 @@ public class RegisteredEventDesc extends AppCompatActivity {
         Timy = (EditText)findViewById(R.id.time_txt_reg_des);
         Add = (EditText)findViewById(R.id.address_txt_reg_des);
         Maxppl = (EditText)findViewById(R.id.max_people_txt_reg_des);
-        Titl = (EditText)findViewById(R.id.Title_txt_reg_des);
-        Display = (Button)findViewById(R.id.DISplay_btn);
+        Titl = (TextView)findViewById(R.id.Title_txt_reg_des);
         Peoplechanging = (Button) findViewById(R.id.Attending);
-        Display.setFocusable(true);
-        Display.setFocusableInTouchMode(true);///add this line
-        Display.requestFocus();
+        imageupdate = (ImageView)findViewById(R.id.image_load_Reg);
+        Peoplechanging.setFocusable(true);
+        Peoplechanging.setFocusableInTouchMode(true);///add this line
+        Peoplechanging.requestFocus();
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
@@ -125,7 +128,22 @@ public class RegisteredEventDesc extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String temp = dataSnapshot.getValue(String.class);
-                Titl.setText(temp);
+                Titl.setText("Tilte: " + temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mimage.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                String image = dataSnapshot.getValue(String.class);
+                Glide.with(RegisteredEventDesc.this).load(image.toString()).into(imageupdate);
+
             }
 
             @Override
@@ -138,7 +156,7 @@ public class RegisteredEventDesc extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String temp = dataSnapshot.getValue(String.class);
-                Descrip.setText(temp);
+                Descrip.setText("Description: " + temp);
             }
 
             @Override
@@ -151,7 +169,7 @@ public class RegisteredEventDesc extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String temp = dataSnapshot.getValue(String.class);
-                Cater.setText(temp);
+                Cater.setText("Category: " + temp);
             }
 
             @Override
@@ -164,7 +182,7 @@ public class RegisteredEventDesc extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String temp = dataSnapshot.getValue(String.class);
-                Dat.setText(temp);
+                Dat.setText("Date: " + temp);
             }
 
             @Override
@@ -177,7 +195,7 @@ public class RegisteredEventDesc extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String temp = dataSnapshot.getValue(String.class);
-                Timy.setText(temp);
+                Timy.setText("Time: " + temp);
             }
 
             @Override
@@ -190,7 +208,7 @@ public class RegisteredEventDesc extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String temp = dataSnapshot.getValue(String.class);
-                Add.setText(temp);
+                Add.setText("Address: " + temp);
             }
 
             @Override
@@ -203,7 +221,7 @@ public class RegisteredEventDesc extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String temp = dataSnapshot.getValue(String.class);
-                Maxppl.setText(temp);
+                Maxppl.setText("Max People: " + temp);
             }
 
             @Override

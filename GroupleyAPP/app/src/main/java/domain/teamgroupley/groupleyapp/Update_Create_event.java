@@ -18,10 +18,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -44,7 +46,7 @@ public class Update_Create_event extends AppCompatActivity {
     private EditText Max;
     private EditText Title;
     private EditText Disc;
-
+    private ImageView imageupdate123;
     private Button Update;
 
     private static final String TAG = "Update_Create_event";
@@ -69,6 +71,7 @@ public class Update_Create_event extends AppCompatActivity {
     DatabaseReference mAddress = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Address");
     DatabaseReference mMaxPpl = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Max_People");
     DatabaseReference mNumber = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("EVENTNUMBER");
+    DatabaseReference mimage = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Image").child("url");
 
     private DatePickerDialog.OnDateSetListener mDateSetListner;
 
@@ -84,6 +87,7 @@ public class Update_Create_event extends AppCompatActivity {
         Max = (EditText)findViewById(R.id.max_people_txt_update);
         Title = (EditText)findViewById(R.id.Title_txt_update);
         Disc = (EditText) findViewById(R.id.des_txt_update);
+        imageupdate123 = (ImageView)findViewById(R.id.image_load_update);
 
       final EditText Addeyy = (EditText)findViewById(R.id.address_txt_update);
       final EditText Maxy = (EditText)findViewById(R.id.max_people_txt_update);
@@ -288,6 +292,20 @@ public class Update_Create_event extends AppCompatActivity {
             {
                 String temp = dataSnapshot.getValue(String.class);
                 Title.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mimage.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        String image = dataSnapshot.getValue(String.class);
+                        Glide.with(Update_Create_event.this).load(image.toString()).into(imageupdate123);
             }
 
             @Override

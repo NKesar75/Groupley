@@ -177,8 +177,8 @@ public class Home extends AppCompatActivity
     AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            EventTitle = productList.get(position).getmEventnumber();
 
+            EventTitle = productList.get(position).getmEventnumber();
             startActivity(new Intent(Home.this, Description.class));
         }
     };

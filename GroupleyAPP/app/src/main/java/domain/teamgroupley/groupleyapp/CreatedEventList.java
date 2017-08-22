@@ -158,8 +158,7 @@ public class CreatedEventList extends AppCompatActivity implements NavigationVie
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            CreateEventTitle = position + 1;
-
+            CreateEventTitle = productList.get(position).getmEventnumber();
             startActivity(new Intent(CreatedEventList.this,Update_Create_event.class));
         }
     };
@@ -231,9 +230,10 @@ public class CreatedEventList extends AppCompatActivity implements NavigationVie
             String Dat = dataSnapshot.child(Userid).child("CreatedEvents").child(Event + count).child("Date").getValue(String.class).toString();
             String Cat = dataSnapshot.child(Userid).child("CreatedEvents").child(Event + count).child("Category").getValue(String.class).toString();
             String Img = dataSnapshot.child(Userid).child("CreatedEvents").child(Event + count).child("Image").child("url").getValue(String.class).toString();
+            int evntum = dataSnapshot.child(Userid).child("CreatedEvents").child(Event + count).child("EVENTNUMBER").getValue(int.class).intValue();
             ++count;
 
-            productList.add(new Product(tit, Dat, Cat, Img));
+            productList.add(new Product(tit, Dat, Cat, Img, evntum));
         }
 
         String tempTilte = dataSnapshot.child(USerid).child("Filter").child("Sortby").getValue(String.class).toString();

@@ -30,6 +30,7 @@
         android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
     </FrameLayout>
 
     <android.support.design.widget.NavigationView
@@ -38,6 +39,7 @@
         android:layout_height="match_parent"
         app:menu="@menu/navigation_menu"
         android:layout_gravity="start">
+
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

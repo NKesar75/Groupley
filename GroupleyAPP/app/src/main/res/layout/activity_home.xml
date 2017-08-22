@@ -6,7 +6,11 @@
     android:layout_height="match_parent"
     android:id="@+id/activity_home"
     android:orientation="vertical"
-    android:background="#ffffff">
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:background="@color/colorPrimaryDark">
 
     <ViewStub
         android:layout_width="match_parent"

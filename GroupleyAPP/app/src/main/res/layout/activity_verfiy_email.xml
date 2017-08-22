@@ -44,4 +44,4 @@
             style="@style/button_style"/>
 
     </LinearLayout>
-</>
+</RelativeLayout>

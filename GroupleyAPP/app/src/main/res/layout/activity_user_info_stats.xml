@@ -1,121 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="domain.teamgroupley.groupleyapp.UserInfoStats">
+    tools:context="domain.teamgroupley.groupleyapp.UserInfoStats"
+    android:paddingBottom="100dp"
+    android:paddingLeft="48dp"
+    android:paddingRight="48dp"
+    android:paddingTop="100dp"
+    android:background="@color/colorPrimaryDark">
 
     <LinearLayout
-        android:layout_width="369dp"
-        android:layout_height="494dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="1"
-        tools:layout_editor_absoluteX="7dp"
-        tools:layout_editor_absoluteY="9dp">
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/textView10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
             android:text="Create Profile"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textSize="36sp"
-            android:textStyle="bold|italic" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.24"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="125dp"
-                android:layout_height="393dp"
-                android:orientation="vertical"
-                android:weightSum="1">
-
-                <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    "
-                    android:layout_weight="0.14" />
-
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="USERNAME:"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/textView60"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    "
-                    android:layout_weight="0.53" />
-
-                <Button
-                    android:id="@+id/image_btn_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="image_upload"
-                    android:text="CLICK TO ADD IMAGE"
-                    android:textStyle="bold|italic" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1">
-
-                <TextView
-                    android:id="@+id/textView61"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    "
-                    android:layout_weight="0.14" />
+            style="@style/txtview_style"
+            android:textSize="30sp"/>
 
                 <EditText
                     android:id="@+id/USERNAME_TXT"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:fontFamily="sans-serif-condensed"
-                    android:hint="UserName123"
+                    android:hint="Username"
                     android:inputType="textPersonName"
-                    android:textSize="14sp" />
+                    style="@style/EditText_style"/>
 
-                <TextView
-                    android:id="@+id/textView62"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.05"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="    " />
 
-                <ImageView
-                    android:id="@+id/image_load_profile"
-                    android:layout_width="236dp"
-                    android:layout_height="156dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.42" />
+        <ImageView
+            android:id="@+id/image_load_profile"
+            android:layout_width="236dp"
+            android:layout_height="156dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.42"
+            app:srcCompat="@mipmap/acting_icon_launcher" />
 
-            </LinearLayout>
-
-        </LinearLayout>
 
         <TextView
             android:id="@+id/textView29"
@@ -126,10 +49,8 @@
 
         <Button
             android:id="@+id/Create_User_stats_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="NEXT"
-            android:textStyle="bold|italic" />
+            android:text="Next"
+            style="@style/button_style"/>
 
     </LinearLayout>
-</android.support.v4.widget.DrawerLayout>
+</RelativeLayout>

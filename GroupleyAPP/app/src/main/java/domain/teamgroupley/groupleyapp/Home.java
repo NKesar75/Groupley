@@ -1,10 +1,13 @@
 package domain.teamgroupley.groupleyapp;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +23,7 @@ import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -38,11 +42,13 @@ import java.sql.Array;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import static android.R.attr.contextUri;
 import static android.R.attr.data;
 import static android.R.attr.eventsInterceptionEnabled;
 import static android.R.attr.value;
@@ -58,7 +64,6 @@ public class Home extends AppCompatActivity
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
     String USerid = user.getUid();
-
 
     public static int EventTitle;
 
@@ -309,6 +314,41 @@ public class Home extends AppCompatActivity
                 productList.add(new Product(tit, Dat, Cat, img, eventnum));
             }
 
+
+
+            Calendar cal = Calendar.getInstance();
+            int curYear = cal.get(Calendar.YEAR);
+            int curMonth = cal.get(Calendar.MONTH ) + 1;
+            int curDay = cal.get(Calendar.DAY_OF_MONTH);
+
+            for (int i = 0; i < productList.size(); ++i) {
+
+                String[] parts1 = productList.get(i).getDate().split("/");
+
+                if (curYear > Integer.parseInt(parts1[2])){
+                    productList.remove(i);
+                    --i;
+                }
+                else if (curYear <= Integer.parseInt(parts1[2])){
+                    if (curMonth > Integer.parseInt(parts1[0])){
+                        productList.remove(i);
+                        --i;
+                    }
+                    else if (curMonth == Integer.parseInt(parts1[0])){
+                        if (curDay > Integer.parseInt(parts1[1])){
+                            productList.remove(i);
+                            --i;
+                        }
+                        else {
+                            continue;
+                        }
+                    }
+                    else if (curMonth < Integer.parseInt(parts1[0])){
+                        continue;
+                    }
+                }
+            }
+
             Product compare[] = new Product[productList.size()];
 
             for (int i = 0; i < compare.length; ++i) {
@@ -326,6 +366,7 @@ public class Home extends AppCompatActivity
                         }
                     }
                 }
+
             } else if (FilterDate) {
 
 

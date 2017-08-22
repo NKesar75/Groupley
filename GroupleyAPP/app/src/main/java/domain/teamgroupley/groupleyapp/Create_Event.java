@@ -53,7 +53,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static domain.teamgroupley.groupleyapp.R.id.image_btn;
 import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 
 public class Create_Event extends AppCompatActivity
@@ -108,6 +107,15 @@ public class Create_Event extends AppCompatActivity
                 Time = (EditText) findViewById(R.id.time_txt);
 
                 imageView =(ImageView) findViewById(R.id.image_load);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent,"SelectImage"),Request_Code);
+            }
+        });
 
 
         final EditText Title = (EditText) findViewById(R.id.Title_txt);
@@ -373,14 +381,6 @@ public class Create_Event extends AppCompatActivity
         NavigationView navigation = (NavigationView)findViewById(R.id.nav_view);
         navigation.setNavigationItemSelectedListener(this);
 
-    }
-
-    public void chooseimg_btn(View v)
-    {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"SelectImage"),Request_Code);
     }
 
     @Override

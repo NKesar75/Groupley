@@ -193,7 +193,7 @@ public class CreatedEventList extends AppCompatActivity
                 break;
 
             case R.id.item_menu_2:
-                startActivity(new Intent(CreatedEventList.this,Filter.class));
+                startActivity(new Intent(CreatedEventList.this,createdfilter.class));
                 break;
         }
         switch (item.getItemId())
@@ -237,7 +237,6 @@ public class CreatedEventList extends AppCompatActivity
 
             productList.add(new Product(tit,"Date: "+Dat,"Category: "+Cat,Img));
         }
-
 
         setAdapters();
     }

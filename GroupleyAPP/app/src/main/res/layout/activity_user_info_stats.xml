@@ -11,37 +11,42 @@
     android:paddingTop="50dp"
     android:background="@color/colorPrimaryDark">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView10"
-            android:text="Create Profile"
-            style="@style/txtview_style"
-            android:textSize="30sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/USERNAME_TXT"
-                    android:hint="Username"
-                    android:inputType="textPersonName"
-                    style="@style/EditText_style"/>
+            <TextView
+                android:id="@+id/textView10"
+                style="@style/txtview_style"
+                android:layout_width="match_parent"
+                android:text="Create Profile"
+                android:textSize="30sp" />
 
+            <EditText
+                android:id="@+id/USERNAME_TXT"
+                style="@style/EditText_style"
+                android:layout_width="match_parent"
+                android:hint="Username"
+                android:inputType="textPersonName" />
 
-        <ImageView
-            android:id="@+id/image_load_profile"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            style="@style/image_style"
-            app:srcCompat="@mipmap/acting_icon_launcher" />
+            <ImageView
+                android:id="@+id/image_load_profile"
+                style="@style/image_style"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:srcCompat="@mipmap/acting_icon_launcher" />
 
-        <Button
-            android:id="@+id/Create_User_stats_btn"
-            android:text="Next"
-            style="@style/button_style"/>
+            <Button
+                android:id="@+id/Create_User_stats_btn"
+                style="@style/button_style"
+                android:layout_width="match_parent"
+                android:text="Next" />
+        </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
 </RelativeLayout>

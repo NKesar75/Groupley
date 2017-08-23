@@ -2,11 +2,15 @@ package domain.teamgroupley.groupleyapp;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
+import android.net.Uri;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -31,7 +36,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,6 +58,12 @@ public class Update_Create_event extends AppCompatActivity {
     private ImageView imageupdate123;
     private Button Update;
 
+    private StorageReference storageReference;
+    private Uri imguri;
+
+    public  static final int Request_Code = 1234;
+
+
     private static final String TAG = "Update_Create_event";
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;
@@ -59,19 +74,18 @@ public class Update_Create_event extends AppCompatActivity {
     ArrayList<String> Catgorylist;
 
     long EVENTCOUNT = CreatedEventList.CreateEventTitle;
-    long updatecount;
+
     String Event = "Event";
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mTitle = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Title");
-    DatabaseReference mDescription = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Description");
-    DatabaseReference mCategory = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Category");
-    DatabaseReference mDate = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Date");
-    DatabaseReference mTime = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Time");
-    DatabaseReference mAddress = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Address");
-    DatabaseReference mMaxPpl = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Max_People");
-    DatabaseReference mNumber = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("EVENTNUMBER");
-    DatabaseReference mimage = mRootRef.child(USerid).child("CreatedEvents").child(Event+EVENTCOUNT).child("Image").child("url");
+    DatabaseReference mTitle = mRootRef.child("Events").child(Event + EVENTCOUNT).child("Title");
+    DatabaseReference mDescription = mRootRef.child("Events").child(Event + EVENTCOUNT).child("Description");
+    DatabaseReference mCategory =  mRootRef.child("Events").child(Event + EVENTCOUNT).child("Category");
+    DatabaseReference mDate =  mRootRef.child("Events").child(Event + EVENTCOUNT).child("Date");
+    DatabaseReference mTime =  mRootRef.child("Events").child(Event + EVENTCOUNT).child("Time");
+    DatabaseReference mAddress = mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address");
+    DatabaseReference mMaxPpl = mRootRef.child("Events").child(Event + EVENTCOUNT).child("Max_People");
+    DatabaseReference mimage = mRootRef.child("Events").child(Event+EVENTCOUNT).child("Image").child("url");
 
     private DatePickerDialog.OnDateSetListener mDateSetListner;
 
@@ -87,7 +101,6 @@ public class Update_Create_event extends AppCompatActivity {
         Max = (EditText)findViewById(R.id.max_people_txt_update);
         Title = (EditText)findViewById(R.id.Title_txt_update);
         Disc = (EditText) findViewById(R.id.des_txt_update);
-        imageupdate123 = (ImageView)findViewById(R.id.img_update);
 
       final EditText Addeyy = (EditText)findViewById(R.id.address_txt_update);
       final EditText Maxy = (EditText)findViewById(R.id.max_people_txt_update);
@@ -165,6 +178,7 @@ public class Update_Create_event extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         mAuth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -217,25 +231,14 @@ public class Update_Create_event extends AppCompatActivity {
                                 if (!Die.equals("")) {
                                     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
 
-                                    mRootRef.child(USerid).child("CreatedEvents").child(Event + EVENTCOUNT).child("EVENTNUMBER");
-
-                                    mRootRef.child(USerid).child("CreatedEvents").child(Event + EVENTCOUNT).child("Description").setValue(Die);
-                                    mRootRef.child(USerid).child("CreatedEvents").child(Event + EVENTCOUNT).child("Date").setValue(Day);
-                                    mRootRef.child(USerid).child("CreatedEvents").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
-                                    mRootRef.child(USerid).child("CreatedEvents").child(Event + EVENTCOUNT).child("Address").setValue(ADd);
-                                    mRootRef.child(USerid).child("CreatedEvents").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
-                                    mRootRef.child(USerid).child("CreatedEvents").child(Event + EVENTCOUNT).child("Title").setValue(tie);
-                                    mRootRef.child(USerid).child("CreatedEvents").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
-
-
-                                    mRootRef.child("Events").child(Event + updatecount).child("Description").setValue(Die);
-                                    mRootRef.child("Events").child(Event + updatecount).child("Date").setValue(Day);
-                                    mRootRef.child("Events").child(Event + updatecount).child("Time").setValue(Tim);
-                                    mRootRef.child("Events").child(Event + updatecount).child("Address").setValue(ADd);
-                                    mRootRef.child("Events").child(Event + updatecount).child("Max_People").setValue(MAxppl);
-                                    mRootRef.child("Events").child(Event + updatecount).child("Title").setValue(tie);
-                                    mRootRef.child("Events").child(Event + updatecount).child("Category").setValue(Cator);
-
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address").setValue(ADd);
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Image").child("url").setValue(imguri.toString());
 
                                     Intent changepage = new Intent(Update_Create_event.this, CreatedEventList.class);
                                     startActivity(changepage);
@@ -366,17 +369,6 @@ public class Update_Create_event extends AppCompatActivity {
             }
         });
 
-        mNumber.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                updatecount = dataSnapshot.getValue(long.class);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         mAddress.addValueEventListener(new ValueEventListener() {
             @Override

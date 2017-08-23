@@ -51,6 +51,7 @@ import java.util.List;
 import static android.R.attr.contextUri;
 import static android.R.attr.data;
 import static android.R.attr.eventsInterceptionEnabled;
+import static android.R.attr.max;
 import static android.R.attr.value;
 import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 
@@ -302,20 +303,28 @@ public class Home extends AppCompatActivity
             String Cat;
             int eventnum;
             String img;
+            long pplattending;
+            long maxppl;
 
             for (DataSnapshot ds : dataSnapshot.child("Events").getChildren()) {
 
-                tit = dataSnapshot.child("Events").child(Event + count).child("Title").getValue(String.class).toString();
-                Dat = dataSnapshot.child("Events").child(Event + count).child("Date").getValue(String.class).toString();
-                Cat = dataSnapshot.child("Events").child(Event + count).child("Category").getValue(String.class).toString();
-                eventnum = dataSnapshot.child("Events").child(Event + count).child("EVENTNUMBER").getValue(int.class).intValue();
-                img = dataSnapshot.child("Events").child(Event + count).child("Image").child("url").getValue(String.class).toString();
+                maxppl = Long.parseLong(dataSnapshot.child("Events").child(Event + count).child("Max_People").getValue(String.class).toString());
+                pplattending = dataSnapshot.child("Events").child(Event + count).child("People").getChildrenCount();
+
+                if (maxppl > pplattending) {
+                    tit = dataSnapshot.child("Events").child(Event + count).child("Title").getValue(String.class).toString();
+                    Dat = dataSnapshot.child("Events").child(Event + count).child("Date").getValue(String.class).toString();
+                    Cat = dataSnapshot.child("Events").child(Event + count).child("Category").getValue(String.class).toString();
+                    eventnum = dataSnapshot.child("Events").child(Event + count).child("EVENTNUMBER").getValue(int.class).intValue();
+                    img = dataSnapshot.child("Events").child(Event + count).child("Image").child("url").getValue(String.class).toString();
+                    productList.add(new Product(tit, Dat, Cat, img, eventnum));
+                }
                 ++count;
-                productList.add(new Product(tit, Dat, Cat, img, eventnum));
             }
 
 
 
+            int index = 0;
             Calendar cal = Calendar.getInstance();
             int curYear = cal.get(Calendar.YEAR);
             int curMonth = cal.get(Calendar.MONTH ) + 1;

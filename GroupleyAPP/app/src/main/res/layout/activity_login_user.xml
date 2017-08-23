@@ -11,55 +11,65 @@
     tools:context="domain.teamgroupley.groupleyapp.LoginUser"
     android:background="@color/colorPrimaryDark">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            app:srcCompat="@mipmap/event_image"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                app:srcCompat="@mipmap/event_image" />
 
-        <EditText
-            android:id="@+id/Email_txt"
-            style="@style/EditText_style"
-            android:inputType="textEmailAddress"
-            android:hint="Email"/>
+            <EditText
+                android:id="@+id/Email_txt"
+                style="@style/EditText_style"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
 
-        <EditText
-            android:id="@+id/Password_txxt"
-            android:inputType="textPassword"
-            android:hint="Password"
-            style="@style/EditText_style"/>
+            <EditText
+                android:id="@+id/Password_txxt"
+                style="@style/EditText_style"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:hint="Password"
+                android:inputType="textPassword" />
 
-        <Button
-            android:id="@+id/LOGIN_BTN_LOgin"
-            android:text="Log in"
-            style="@style/button_style" />
+            <Button
+                android:id="@+id/LOGIN_BTN_LOgin"
+                style="@style/button_style"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Log in" />
 
-        <TextView
-            android:id="@+id/createacc_txt_btn"
-            android:text="No Account? Sign Up"
-            style="@style/txtview_style"/>
+            <TextView
+                android:id="@+id/createacc_txt_btn"
+                style="@style/txtview_style"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="No Account? Sign Up" />
 
-        <TextView
-            android:id="@+id/textView40"
-            style="@style/txtview_style"
-            android:text="Forgot Your Password?" />
+            <TextView
+                android:id="@+id/textView40"
+                style="@style/txtview_style"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Forgot Your Password?" />
+        </LinearLayout>
+    </ScrollView>
 
-        <!--<com.google.android.gms.common.SignInButton-->
-            <!--android:id="@+id/Google_sign_in"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content">-->
-
-        <!--</com.google.android.gms.common.SignInButton>-->
-
-    </LinearLayout>
 </RelativeLayout>

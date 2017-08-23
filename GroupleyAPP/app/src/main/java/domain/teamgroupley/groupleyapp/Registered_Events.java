@@ -157,7 +157,6 @@ public class Registered_Events extends AppCompatActivity
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            String d = "asdfjasdf";
             regEventTitle = productList.get(position).getmEventnumber();
 
             startActivity(new Intent(Registered_Events.this,RegisteredEventDesc.class));
@@ -222,19 +221,19 @@ public class Registered_Events extends AppCompatActivity
     {
         productList.clear();
         String Event = "Event";
-        int count = 1;
+        int Rcount = 1;
 
         for (DataSnapshot ds: dataSnapshot.child(USerid).child("RegisteredEvents").getChildren())
         {
             // Product value = ds.getValue(Product.class);
             // value.setImageid(R.mipmap.ic_launcher_round);
-            String tit = dataSnapshot.child(USerid).child("RegisteredEvents").child(Event+count).child("Title").getValue(String.class).toString();
-            String Dat = dataSnapshot.child(USerid).child("RegisteredEvents").child(Event+count).child("Date").getValue(String.class).toString();
-            String Cat = dataSnapshot.child(USerid).child("RegisteredEvents").child(Event+count).child("Category").getValue(String.class).toString();
-            String Img = dataSnapshot.child(USerid).child("RegisteredEvents").child(Event+count).child("Image").child("url").getValue(String.class).toString();
-            int eventnum = dataSnapshot.child(USerid).child("RegisteredEvents").child(Event+count).child("EVENTNUMBER").getValue(int.class).intValue();
-            ++count;
-            productList.add(new Product(tit, Dat, Cat,Img,eventnum));
+                int eventnum = dataSnapshot.child(USerid).child("RegisteredEvents").child(Event+Rcount).child("EVENTNUMBER").getValue(int.class).intValue();
+                String tit = dataSnapshot.child("Events").child(Event+eventnum).child("Title").getValue(String.class).toString();
+                String Dat = dataSnapshot.child("Events").child(Event+eventnum).child("Date").getValue(String.class).toString();
+                String Cat = dataSnapshot.child("Events").child(Event+eventnum).child("Category").getValue(String.class).toString();
+                String Img = dataSnapshot.child("Events").child(Event+eventnum).child("Image").child("url").getValue(String.class).toString();
+                productList.add(new Product(tit, Dat, Cat,Img,eventnum));
+            ++Rcount;
         }
 
         String tempTilte = dataSnapshot.child(USerid).child("Filter").child("Sortby").getValue(String.class).toString();

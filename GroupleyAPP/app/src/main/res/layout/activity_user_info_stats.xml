@@ -36,6 +36,7 @@
             style="@style/image_style"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            
             android:background="@mipmap/addic_launcher" />
 
         <Button

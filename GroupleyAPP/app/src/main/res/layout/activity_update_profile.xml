@@ -11,38 +11,41 @@
     tools:context="domain.teamgroupley.groupleyapp.LoginUser"
     android:background="@color/colorPrimaryDark">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView10"
-            style="@style/txtview_style"
-            android:text="Update Profile"
-            android:textSize="50sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/textView10"
+                style="@style/txtview_style"
+                android:layout_width="match_parent"
+                android:text="Update Profile"
+                android:textSize="50sp" />
 
-        <EditText
-                    android:id="@+id/USERNAME_Tst_update"
-                    android:enabled="true"
-                    android:inputType="textPersonName"
-                    style="@style/EditText_style"/>
+            <EditText
+                android:id="@+id/USERNAME_Tst_update"
+                style="@style/EditText_style"
+                android:layout_width="match_parent"
+                android:enabled="true"
+                android:inputType="textPersonName" />
 
+            <ImageView
+                android:id="@+id/profile_update_image"
+                style="@style/image_style"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
 
-        <ImageView
-            android:id="@+id/profile_update_image"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            style="@style/image_style"/>
+            <Button
+                android:id="@+id/EDIT_PROFILE_BTN_update"
+                style="@style/button_style"
+                android:layout_width="match_parent"
+                android:text="Update Profile" />
+        </LinearLayout>
+    </ScrollView>
 
-        <Button
-            android:id="@+id/EDIT_PROFILE_BTN_update"
-            android:text="Update Profile"
-            style="@style/button_style"/>
-
-
-    </LinearLayout>
 </RelativeLayout>

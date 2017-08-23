@@ -124,25 +124,8 @@ public class Description extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String tie = Titl.getText().toString();
-                String Die = Descrip.getText().toString();
-                String Cator = Cater.getText().toString();
-                String Day = Dat.getText().toString();
-                String Tim = Timy.getText().toString();
-                String ADd = Add.getText().toString();
-                String MAxppl = Maxppl.getText().toString();
-
                 if (!checkifalreadythere) {
-                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Title").setValue(tie);
-                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Description").setValue(Die);
-                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Category").setValue(Cator);
-                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Date").setValue(Day);
-                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Image").child("url").setValue(Eventpic);
-                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Time").setValue(Tim);
-                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Address").setValue(ADd);
-                    myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("Max_People").setValue(MAxppl);
                     myRef.child(UserID).child("RegisteredEvents").child(Event + number).child("EVENTNUMBER").setValue(Eventtie);
-
                     myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("Name").setValue(username);
                     myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("Photo").setValue(image);
                     myRef.child("Events").child(Event + Eventtie).child("People").child("Person" + people).child("FID").setValue(UserID);

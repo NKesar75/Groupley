@@ -72,7 +72,7 @@ public class UpdateProfile extends AppCompatActivity {
             public void onClick(View v) {
 
                 String User = username.getText().toString();
-                
+
                          if (!User.equals("") && !User.equals(" ")){
                     FirebaseUser user = mAuth.getCurrentUser();
                     String userID = user.getUid();

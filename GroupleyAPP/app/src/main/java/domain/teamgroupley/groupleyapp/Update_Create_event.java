@@ -36,6 +36,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -55,6 +57,12 @@ public class Update_Create_event extends AppCompatActivity {
     private EditText Disc;
     private ImageView imageupdate123;
     private Button Update;
+
+    private StorageReference storageReference;
+    private Uri imguri;
+
+    public  static final int Request_Code = 1234;
+
 
     private static final String TAG = "Update_Create_event";
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -93,7 +101,6 @@ public class Update_Create_event extends AppCompatActivity {
         Max = (EditText)findViewById(R.id.max_people_txt_update);
         Title = (EditText)findViewById(R.id.Title_txt_update);
         Disc = (EditText) findViewById(R.id.des_txt_update);
-        imageupdate123 = (ImageView)findViewById(R.id.img_update);
 
       final EditText Addeyy = (EditText)findViewById(R.id.address_txt_update);
       final EditText Maxy = (EditText)findViewById(R.id.max_people_txt_update);
@@ -171,6 +178,7 @@ public class Update_Create_event extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         mAuth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -230,7 +238,7 @@ public class Update_Create_event extends AppCompatActivity {
                                     mRootRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
                                     mRootRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
                                     mRootRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
-
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Image").child("url").setValue(imguri.toString());
 
                                     Intent changepage = new Intent(Update_Create_event.this, CreatedEventList.class);
                                     startActivity(changepage);
@@ -265,33 +273,6 @@ public class Update_Create_event extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == Request_Code && resultCode == RESULT_OK && data != null && data.getData() != null)
-        {
-            imguri = data.getData();
-            try
-            {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(getContentResolver(),imguri);
-                imageupdate123.setImageBitmap(bm);
-            }
-            catch(FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public String getImageExt(Uri uri) {
-        ContentResolver contentResolver = getContentResolver();
-        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
     @Override

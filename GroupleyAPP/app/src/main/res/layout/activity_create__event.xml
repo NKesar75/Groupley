@@ -78,10 +78,10 @@
                 <ImageView
                     android:id="@+id/image_load"
                     style="@style/image_style"
-                   
+
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    app:srcCompat="@mipmap/imagedic_launcher" />
+                    android:background="@mipmap/addic_launcher" />
 
                 <Button
                     android:id="@+id/Create_event_btn"

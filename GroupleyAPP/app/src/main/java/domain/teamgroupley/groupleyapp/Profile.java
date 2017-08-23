@@ -46,7 +46,7 @@ public class Profile extends AppCompatActivity
 
     private Button Logout;
     private Button Interest;
-    private Button EditProfile;
+   // private Button EditProfile;
     private static final String TAG = "Profile";
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -59,11 +59,11 @@ public class Profile extends AppCompatActivity
         setContentView(R.layout.activity_profile);
         Logout = (Button) findViewById(R.id.logout_btn);
         Interest = (Button)findViewById(R.id.SEE_INTREST_PROFILE_BTN);
-        EditProfile = (Button)findViewById(R.id.EDIT_PROFILE_BTN);
+       // EditProfile = (Button)findViewById(R.id.EDIT_PROFILE_BTN);
 
-        EditProfile.setFocusable(true);
-        EditProfile.setFocusableInTouchMode(true);///add this line
-        EditProfile.requestFocus();
+        Interest.setFocusable(true);
+        Interest.setFocusableInTouchMode(true);///add this line
+        Interest.requestFocus();
 
         username = (TextView)findViewById(R.id.USERNAME_Tst);
         profileImage = (ImageView)findViewById(R.id.profile_download);
@@ -100,12 +100,12 @@ public class Profile extends AppCompatActivity
             }
         });
 
-        EditProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Profile.this,UpdateProfile.class));
-            }
-        });
+//        EditProfile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(Profile.this,UpdateProfile.class));
+//            }
+//        });
 
         draw = (DrawerLayout)findViewById(R.id.activity_profile);
         toggle = new ActionBarDrawerToggle(this,draw,R.string.open,R.string.close);

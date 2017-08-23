@@ -36,10 +36,10 @@
             android:layout_height="200dp"
             style="@style/image_style"/>
 
-        <Button
-            android:id="@+id/EDIT_PROFILE_BTN"
-            style="@style/button_style"
-            android:text="EDIT PROFile"/>
+        <!--<Button-->
+            <!--android:id="@+id/EDIT_PROFILE_BTN"-->
+            <!--style="@style/button_style"-->
+            <!--android:text="EDIT PROFile"/>-->
 
         <Button
             android:id="@+id/SEE_INTREST_PROFILE_BTN"

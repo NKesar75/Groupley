@@ -1,16 +1,23 @@
 package domain.teamgroupley.groupleyapp;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -18,11 +25,21 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class UpdateProfile extends AppCompatActivity {
 
 
-    private EditText muusername ;
+    private EditText muusername;
+    private ImageView updateImage;
+
+    private StorageReference storageReference;
+    private Uri imguri;
+
+    public  static final int Request_Code = 1234;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user = mAuth.getCurrentUser();
@@ -30,6 +47,7 @@ public class UpdateProfile extends AppCompatActivity {
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mUsername = mRootRef.child(USerid).child("UserInfo").child("UserName");
+    DatabaseReference mImage = mRootRef.child(USerid).child("UserInfo").child("Image").child("url");
 
     private Button Save;
 
@@ -50,6 +68,18 @@ public class UpdateProfile extends AppCompatActivity {
 
 
         muusername = (EditText)findViewById(R.id.USERNAME_Tst_update);
+        updateImage = (ImageView)findViewById(R.id.profile_update_image);
+
+        updateImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent,"SelectImage"),Request_Code);
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -101,6 +131,32 @@ public class UpdateProfile extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == Request_Code && resultCode == RESULT_OK && data != null && data.getData() != null)
+        {
+            imguri = data.getData();
+            try
+            {
+                Bitmap bm = MediaStore.Images.Media.getBitmap(getContentResolver(),imguri);
+                updateImage.setImageBitmap(bm);
+            }
+            catch(FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String getImageExt(Uri uri) {
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         if(item.getItemId()==android.R.id.home)
@@ -119,6 +175,19 @@ public class UpdateProfile extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String Temp = dataSnapshot.getValue(String.class);
                 muusername.setText(Temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mImage.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String image = dataSnapshot.getValue(String.class);
+                Glide.with(UpdateProfile.this).load(image.toString()).into(updateImage);
             }
 
             @Override

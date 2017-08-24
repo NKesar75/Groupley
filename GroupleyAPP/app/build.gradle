@@ -7,8 +7,8 @@ android {
         applicationId "domain.teamgroupley.groupleyapp"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 4
-        versionName "4.0"
+        versionCode 6
+        versionName "6.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
     }
@@ -48,6 +48,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-auth:10.0.1'
     testCompile 'junit:junit:4.12'
 }
+
 
 
 

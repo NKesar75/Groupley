@@ -61,8 +61,9 @@ public class LoginUser extends AppCompatActivity
 
     private Button mlogin;
     private TextView mcreate;
+    private TextView mReset;
 
-    String Username;
+
 
 
 
@@ -71,12 +72,15 @@ public class LoginUser extends AppCompatActivity
         setContentView(R.layout.activity_login_user);
         mlogin = (Button) findViewById(R.id.LOGIN_BTN_LOgin);
         mcreate = (TextView) findViewById(R.id.createacc_txt_btn);
+        mReset = (TextView) findViewById(R.id.Resetpassword);
         final EditText Email = (EditText) findViewById(R.id.Email_txt);
         final EditText Password = (EditText) findViewById(R.id.Password_txxt);
-
+       mlogin.setFocusable(true);
+       mlogin.setFocusableInTouchMode(true);///add this line
+       mlogin.requestFocus();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
-        storageReference = FirebaseStorage.getInstance().getReference();;
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -161,6 +165,14 @@ public class LoginUser extends AppCompatActivity
                         Email.requestFocus();
                     }
                 }
+            }
+        });
+
+        mReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent changepage2 = new Intent(LoginUser.this, ResetPassword.class);
+                startActivity(changepage2);
             }
         });
     }

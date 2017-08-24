@@ -11,9 +11,6 @@
     tools:context="domain.teamgroupley.groupleyapp.LoginUser"
     android:background="@color/colorPrimaryDark">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,13 +60,12 @@
                 android:text="No Account? Sign Up" />
 
             <TextView
-                android:id="@+id/textView40"
+                android:id="@+id/Resetpassword"
                 style="@style/txtview_style"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="Forgot Your Password?" />
         </LinearLayout>
-    </ScrollView>
 
 </RelativeLayout>

@@ -29,7 +29,7 @@
 
         <TextView
             android:id="@+id/textView"
-            android:text="GROUPLEY"
+            android:text="SPOOL"
             style="@style/txtview_style"
             android:textSize="50sp"/>
     </LinearLayout>

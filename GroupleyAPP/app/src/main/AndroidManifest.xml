@@ -76,6 +76,7 @@
         <activity android:name=".filter" />
         <activity android:name=".createdfilter" />
         <activity android:name=".info"></activity>
+        <activity android:name=".ResetPassword"></activity>
     </application>
 
 </manifest>

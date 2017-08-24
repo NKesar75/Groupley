@@ -226,14 +226,13 @@ public class CreatedEventList extends AppCompatActivity implements NavigationVie
         for (DataSnapshot ds : dataSnapshot.child(Userid).child("CreatedEvents").getChildren()) {
             // Product value = ds.getValue(Product.class);
             // value.setImageid(R.mipmap.ic_launcher_round);
-            String tit = dataSnapshot.child(Userid).child("CreatedEvents").child(Event + count).child("Title").getValue(String.class).toString();
-            String Dat = dataSnapshot.child(Userid).child("CreatedEvents").child(Event + count).child("Date").getValue(String.class).toString();
-            String Cat = dataSnapshot.child(Userid).child("CreatedEvents").child(Event + count).child("Category").getValue(String.class).toString();
-            String Img = dataSnapshot.child(Userid).child("CreatedEvents").child(Event + count).child("Image").child("url").getValue(String.class).toString();
-            int evntum = dataSnapshot.child(Userid).child("CreatedEvents").child(Event + count).child("EVENTNUMBER").getValue(int.class).intValue();
+            int eventnum = dataSnapshot.child(USerid).child("CreatedEvents").child(Event+count).child("EVENTNUMBER").getValue(int.class).intValue();
+            String tit = dataSnapshot.child("Events").child(Event+eventnum).child("Title").getValue(String.class).toString();
+            String Dat = dataSnapshot.child("Events").child(Event+eventnum).child("Date").getValue(String.class).toString();
+            String Cat = dataSnapshot.child("Events").child(Event+eventnum).child("Category").getValue(String.class).toString();
+            String Img = dataSnapshot.child("Events").child(Event+eventnum).child("Image").child("url").getValue(String.class).toString();
             ++count;
-
-            productList.add(new Product(tit, Dat, Cat, Img, evntum));
+            productList.add(new Product(tit, Dat, Cat, Img, eventnum));
         }
 
         String tempTilte = dataSnapshot.child(USerid).child("Filter").child("Sortby").getValue(String.class).toString();

@@ -94,7 +94,7 @@
                         android:id="@+id/zip_txt"
                         style="@style/EditText_style"
                         android:inputType="number"
-                        android:text="Zip Code"
+                        android:hint="Zip Code"
                         android:layout_width="156dp"
                         android:layout_weight="0.24" />
                     <EditText

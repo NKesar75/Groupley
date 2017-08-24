@@ -55,6 +55,10 @@ public class Update_Create_event extends AppCompatActivity {
     private EditText Max;
     private EditText Title;
     private EditText Disc;
+    private EditText city;
+    private EditText state;
+    private EditText zip;
+    private EditText country;
     private ImageView imageupdate123;
     private Button Update;
 
@@ -80,7 +84,11 @@ public class Update_Create_event extends AppCompatActivity {
     DatabaseReference mCategory =  mRootRef.child("Events").child(Event + EVENTCOUNT).child("Category");
     DatabaseReference mDate =  mRootRef.child("Events").child(Event + EVENTCOUNT).child("Date");
     DatabaseReference mTime =  mRootRef.child("Events").child(Event + EVENTCOUNT).child("Time");
-    DatabaseReference mAddress = mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address");
+    DatabaseReference mAddressStreet = mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Street");
+    DatabaseReference mAddressCity = mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("City");
+    DatabaseReference mAddressState = mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("State");
+    DatabaseReference mAddressZip = mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Zipcode");
+    DatabaseReference mAddressCountry = mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Country");
     DatabaseReference mMaxPpl = mRootRef.child("Events").child(Event + EVENTCOUNT).child("Max_People");
     DatabaseReference mimage = mRootRef.child("Events").child(Event+EVENTCOUNT).child("Image").child("url");
 
@@ -95,6 +103,10 @@ public class Update_Create_event extends AppCompatActivity {
         Date = (EditText)findViewById(R.id.Date_txt_update);
         Time = (EditText)findViewById(R.id.time_txt_update);
         Addey = (EditText)findViewById(R.id.address_txt_update);
+        state = (EditText)findViewById(R.id.state_txt_update);
+        city = (EditText)findViewById(R.id.city_txt_update);
+        zip = (EditText)findViewById(R.id.zip_txt_update);
+        country = (EditText)findViewById(R.id.country_txt_update);
         Max = (EditText)findViewById(R.id.max_people_txt_update);
         Title = (EditText)findViewById(R.id.Title_txt_update);
         Disc = (EditText) findViewById(R.id.des_txt_update);
@@ -219,18 +231,29 @@ public class Update_Create_event extends AppCompatActivity {
                 String MAxppl = Maxy.getText().toString();
                 String Cator = Cat.getSelectedItem().toString();
                 String tie = Titley.getText().toString();
+                String stateget = state.getText().toString();
+                String cityget = city.getText().toString();
+                String zipget = zip.getText().toString();
+                String countryget = country.getText().toString();
 
                 if (!Cator.equals("") && !Day.equals("") && !Tim.equals("")) {
                     if (!tie.equals("")) {
                         if (!ADd.equals("")) {
+                            if (!cityget.equals("")){
+                                if (!stateget.equals("")){
+                                    if (!zipget.equals("")){
+                                        if (!countryget.equals("")){
                             if (!MAxppl.equals("")) {
                                 if (!Die.equals("")) {
                                     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-
                                     mRootRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
                                     mRootRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
                                     mRootRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
-                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address").setValue(ADd);
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Street").setValue(ADd);
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("City").setValue(cityget);
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("State").setValue(stateget);
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Zipcode").setValue(zipget);
+                                    mRootRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Country").setValue(countryget);
                                     mRootRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
                                     mRootRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
                                     mRootRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
@@ -245,7 +268,23 @@ public class Update_Create_event extends AppCompatActivity {
                             } else {
                                 Maxy.setError("Max People can not be empty");
                                 Maxy.requestFocus();
-                            }
+                            }}
+                        else{
+                            country.setError("Country can not be empty");
+                            country.requestFocus();
+                        }}
+                    else{
+                        zip.setError("Zip Code can not be empty");
+                        zip.requestFocus();
+                    }}
+                else{
+                    state.setError("State can not be empty");
+                    state.requestFocus();
+                }}
+                                else{
+            city.setError("City can not be empty");
+            city.requestFocus();
+        }
                         } else {
                             Addeyy.setError("Address can not be empty");
                             Addeyy.requestFocus();
@@ -365,12 +404,61 @@ public class Update_Create_event extends AppCompatActivity {
         });
 
 
-        mAddress.addValueEventListener(new ValueEventListener() {
+        mAddressStreet.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 String temp = dataSnapshot.getValue(String.class);
                 Addey.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mAddressState.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String temp = dataSnapshot.getValue(String.class);
+                state.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mAddressCity.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String temp = dataSnapshot.getValue(String.class);
+                city.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mAddressCountry.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String temp = dataSnapshot.getValue(String.class);
+                country.setText(temp);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mAddressZip.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String temp = dataSnapshot.getValue(String.class);
+                zip.setText(temp);
             }
 
             @Override

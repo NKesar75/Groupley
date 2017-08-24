@@ -40,7 +40,8 @@
 
                     <EditText
                         android:id="@+id/Title_txt_update"
-                        style="@style/EditText_style" />
+                        style="@style/EditText_style"
+                        android:hint="Title"/>
 
                     <Spinner
                         android:id="@+id/Category_SPINNER_update"
@@ -50,29 +51,75 @@
                         android:id="@+id/Date_txt_update"
                         style="@style/EditText_style"
                         android:layout_width="match_parent"
-                        android:editable="false" />
+                        android:editable="false"
+                        android:hint="Date"/>
 
                     <EditText
                         android:id="@+id/time_txt_update"
                         style="@style/EditText_style"
                         android:layout_width="match_parent"
-                        android:editable="false" />
+                        android:editable="false"
+                        android:hint="Time"/>
 
                     <EditText
                         android:id="@+id/address_txt_update"
                         style="@style/EditText_style"
-                        android:layout_width="match_parent" />
+                        android:layout_width="match_parent"
+                        android:hint="Street"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <EditText
+                            android:id="@+id/city_txt_update"
+                            style="@style/EditText_style"
+                            android:hint="City"
+                            android:inputType="textPersonName"
+                            android:layout_width="159dp"
+                            android:layout_weight="0.24" />
+
+                        <EditText
+                            android:id="@+id/state_txt_update"
+                            style="@style/EditText_style"
+                            android:layout_width="175dp"
+                            android:hint="State"
+                            android:inputType="textPersonName" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+                        <EditText
+                            android:id="@+id/zip_txt_update"
+                            style="@style/EditText_style"
+                            android:inputType="number"
+                            android:hint="Zip Code"
+                            android:layout_width="156dp"
+                            android:layout_weight="0.24" />
+                        <EditText
+                            android:id="@+id/country_txt_update"
+                            style="@style/EditText_style"
+                            android:hint="Country"
+                            android:layout_width="166dp"
+                            android:layout_weight="0.22" />
+                    </LinearLayout>
 
                     <EditText
                         android:id="@+id/max_people_txt_update"
                         style="@style/EditText_style"
                         android:layout_width="match_parent"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:hint="max people"/>
 
                     <EditText
                         android:id="@+id/des_txt_update"
                         style="@style/EditText_style"
-                        android:layout_width="match_parent" />
+                        android:layout_width="match_parent"
+                        android:hint="description"/>
 
                     <ImageView
                         android:id="@+id/img_update"

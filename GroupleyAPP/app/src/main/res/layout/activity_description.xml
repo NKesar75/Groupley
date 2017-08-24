@@ -44,7 +44,8 @@
             <EditText
                 android:id="@+id/address_txt_des"
                 style="@style/EditText_style"
-                android:enabled="false" />
+                android:enabled="false"
+                android:layout_height="80dp"/>
 
             <EditText
                 android:id="@+id/max_people_txt_des"
@@ -54,7 +55,8 @@
             <EditText
                 android:id="@+id/des_txt_des"
                 style="@style/EditText_style"
-                android:enabled="false" />
+                android:enabled="false"
+                android:layout_height="100dp"/>
 
             <ImageView
                 android:id="@+id/image_load_Des"

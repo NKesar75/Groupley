@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_menu_1_profile"
+        android:icon="@mipmap/info_button"
+        android:title="Info"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/item_menu_2_profile"
+        android:icon="@mipmap/logout_btn"
+        android:title="Logout"
+        app:showAsAction="always" />
+
+</menu>

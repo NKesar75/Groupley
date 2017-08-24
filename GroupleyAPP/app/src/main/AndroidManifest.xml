@@ -39,7 +39,7 @@
                 android:name="com.google.android.geo.API_KEY"
                 android:value="AIzaSyCEB_JA0__O0z5Rko_vS4pr1wQIPLI2jXU" />
         </activity>
-        <activity android:name=".LoginUser"/>
+        <activity android:name=".LoginUser" />
         <activity android:name=".IntrestSelection" />
         <activity android:name=".createLoginatstart" />
         <activity android:name=".join" />
@@ -75,6 +75,7 @@
         <activity android:name=".registered_filter" />
         <activity android:name=".filter" />
         <activity android:name=".createdfilter" />
+        <activity android:name=".info"></activity>
     </application>
 
 </manifest>

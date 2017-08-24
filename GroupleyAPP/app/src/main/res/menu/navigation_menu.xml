@@ -15,11 +15,12 @@
             android:id="@+id/nav_your_event"
             android:title="Update Your Events" />
         <item
+            android:id="@+id/nav_settings"
+            android:title="Interests" />
+        <item
             android:id="@+id/nav_profile"
             android:title="Profile" />
-        <item
-            android:id="@+id/nav_settings"
-            android:title="Settings" />
+
 
     </group>
 </menu>

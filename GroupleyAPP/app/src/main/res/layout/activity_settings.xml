@@ -4,31 +4,634 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="domain.teamgroupley.groupleyapp.Settings"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    tools:context="domain.teamgroupley.groupleyapp.LoginUser"
+    android:background="@color/colorPrimaryDark"
     android:id="@+id/activity_settings">
 
     <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="1"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
-        <TextView
-            android:id="@+id/textView64"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.22" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView55"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Groupley v2017.08.17C"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
+
+                <TextView
+                    android:id="@+id/editText"
+                    android:text="INTERESTS"
+                    style="@style/txtview_style"
+                    android:textSize="50sp"/>
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:drawableLeft="@mipmap/sports_ic_launcher"
+                    android:drawableRight="@mipmap/sports_ic_launcher"
+                    android:text="SPORTS "
+                    android:textSize="20sp"
+                    style="@style/txtview_style"
+                    android:textStyle="bold|italic"/>
+
+                <CheckBox
+                    android:id="@+id/Archery_CB"
+                    style="@style/checkbox_style"
+                    android:text="ARCHERY"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Base_CB"
+                    style="@style/checkbox_style"
+                    android:text="BASEBALL"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <CheckBox
+                    android:id="@+id/BASK_CB"
+                    style="@style/checkbox_style"
+                    android:text="BASKETBALL"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <CheckBox
+                    android:id="@+id/BIKE_CB"
+                    style="@style/checkbox_style"
+                    android:text="CYCLING"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Fish_cb"
+                    style="@style/checkbox_style"
+                    android:text="FISHING"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Foot_cb"
+                    style="@style/checkbox_style"
+                    android:text="FOOTBALL"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Fri_CB"
+                    style="@style/checkbox_style"
+                    android:text="FRISBEE"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Golf_CB"
+                    style="@style/checkbox_style"
+                    android:text="GOLF"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Hoc_CB"
+                    style="@style/checkbox_style"
+                    android:text="HOCKEY"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Hunt_CB"
+                    style="@style/checkbox_style"
+                    android:text="HUNTING"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Skate_CB"
+                    style="@style/checkbox_style"
+                    android:text="SKATEBOARDING"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Snow_CB"
+                    style="@style/checkbox_style"
+                    android:text="SNOWBOARDING"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <CheckBox
+                    android:id="@+id/WS_CB"
+                    style="@style/checkbox_style"
+                    android:text="WATER SPORTS"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark" />
+
+                <CheckBox
+                    android:id="@+id/Wres_CB"
+                    style="@style/checkbox_style"
+                    android:text="WRESTLING"
+                    android:buttonTint="@android:color/holo_green_light"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <TextView
+                    android:id="@+id/PARTY_TXT"
+                    android:text="Parties"
+                    android:textSize="20sp"
+                    style="@style/txtview_style"
+                    android:textStyle="bold|italic"
+                    android:drawableLeft="@mipmap/party_ic_launcher"
+                    android:drawableRight="@mipmap/party_ic_launcher"/>
+
+                <CheckBox
+                    android:id="@+id/Fest_CB"
+                    style="@style/checkbox_style"
+                    android:text="FESTIVALS"
+                    android:buttonTint="@android:color/holo_blue_light"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Hp_CB"
+                    style="@style/checkbox_style"
+                    android:text="HOUSE PARTIES"
+                    android:buttonTint="@android:color/holo_blue_light"
+                    android:textColor="@android:color/holo_blue_dark" />
+
+                <CheckBox
+                    android:id="@+id/Nc_CB"
+                    style="@style/checkbox_style"
+                    android:text="NIGHT CLUBS"
+                    android:buttonTint="@android:color/holo_blue_light"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <TextView
+                    android:id="@+id/textView5"
+                    style="@style/txtview_style"
+                    android:text="VIDEO GAMES"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    android:drawableLeft="@mipmap/games_ic_launcher"
+                    android:drawableRight="@mipmap/games_ic_launcher" />
+
+                <CheckBox
+                    android:id="@+id/Act_CB"
+                    style="@style/checkbox_style"
+                    android:text="ACTION"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark" />
+
+                <CheckBox
+                    android:id="@+id/Ad_CB"
+                    style="@style/checkbox_style"
+                    android:text="ADVENTURE"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark" />
+
+                <CheckBox
+                    android:id="@+id/Fps_CB"
+                    style="@style/checkbox_style"
+                    android:text="FIRST PERSON SHOOTERS"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark" />
+
+                <CheckBox
+                    android:id="@+id/Ind_CB"
+                    style="@style/checkbox_style"
+                    android:text="INDIES"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark" />
+
+                <CheckBox
+                    android:id="@+id/Mmo_CB"
+                    style="@style/checkbox_style"
+                    android:text="MASS MULTIPLAYER ONLINE"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark" />
+
+                <CheckBox
+                    android:id="@+id/Pf_CB"
+                    style="@style/checkbox_style"
+                    android:text="PARTY / FAMILY "
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark" />
+
+                <CheckBox
+                    android:id="@+id/Rpg_CB"
+                    style="@style/checkbox_style"
+                    android:text="ROLE PLAYING GAMES"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark" />
+
+                <CheckBox
+                    android:id="@+id/Sim_CB"
+                    style="@style/checkbox_style"
+                    android:text="SIMULATION"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark" />
+
+                <CheckBox
+                    android:id="@+id/Spo_CB"
+                    style="@style/checkbox_style"
+                    android:text="SPORTS"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark" />
+
+                <CheckBox
+                    android:id="@+id/Str_CB"
+                    style="@style/checkbox_style"
+                    android:text="STRATEGY"
+                    android:textAllCaps="true"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:text="MUSIC GENRES"
+                    android:textAlignment="center"
+                    style="@style/txtview_style"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    android:drawableLeft="@mipmap/musci_ic_launcher"
+                    android:drawableRight="@mipmap/musci_ic_launcher"/>
+
+                <CheckBox
+                    android:id="@+id/Country_CB"
+                    style="@style/checkbox_style"
+                    android:text="COUNTRY"
+                    android:buttonTint="@android:color/holo_purple"
+                    android:textColor="@android:color/holo_purple" />
+
+                <CheckBox
+                    android:id="@+id/Dr_CB"
+                    style="@style/checkbox_style"
+                    android:text="DRILL RAP"
+                    android:buttonTint="@android:color/holo_purple"
+                    android:textColor="@android:color/holo_purple"  />
+
+                <CheckBox
+                    android:id="@+id/Edm_CB"
+                    style="@style/checkbox_style"
+                    android:text="EDM"
+                    android:buttonTint="@android:color/holo_purple"
+                    android:textColor="@android:color/holo_purple" />
+
+                <CheckBox
+                    android:id="@+id/Jazz_CB"
+                    style="@style/checkbox_style"
+                    android:text="JAZZ"
+                    android:buttonTint="@android:color/holo_purple"
+                    android:textColor="@android:color/holo_purple" />
+
+                <CheckBox
+                    android:id="@+id/Rap_CB"
+                    style="@style/checkbox_style"
+                    android:text="RAP"
+                    android:buttonTint="@android:color/holo_purple"
+                    android:textColor="@android:color/holo_purple"  />
+
+                <CheckBox
+                    android:id="@+id/Rock_CB"
+                    style="@style/checkbox_style"
+                    android:text="ROCK"
+                    android:buttonTint="@android:color/holo_purple"
+                    android:textColor="@android:color/holo_purple"  />
+
+                <CheckBox
+                    android:id="@+id/Rnb_CB"
+                    style="@style/checkbox_style"
+                    android:text="R AND B"
+                    android:buttonTint="@android:color/holo_purple"
+                    android:textColor="@android:color/holo_purple" />
+
+                <CheckBox
+                    android:id="@+id/Scremo_CB"
+                    style="@style/checkbox_style"
+                    android:text="SCREMO"
+                    android:buttonTint="@android:color/holo_purple"
+                    android:textColor="@android:color/holo_purple"  />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    style="@style/txtview_style"
+                    android:text="MOIVE GENRES"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    android:drawableLeft="@mipmap/moive_ic_launcher"
+                    android:drawableRight="@mipmap/moive_ic_launcher" />
+
+                <CheckBox
+                    android:id="@+id/Action_CB"
+                    style="@style/checkbox_style"
+                    android:text="ACTION"
+                    android:buttonTint="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_red_dark" />
+
+                <CheckBox
+                    android:id="@+id/Animation_CB"
+                    style="@style/checkbox_style"
+                    android:text="ANIMATION"
+                    android:buttonTint="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_red_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Comedy_btn"
+                    style="@style/checkbox_style"
+                    android:text="COMEDY"
+                    android:buttonTint="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_red_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Documentary_CB"
+                    style="@style/checkbox_style"
+                    android:text="DOCUMENTARYS"
+                    android:buttonTint="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_red_dark" />
+
+                <CheckBox
+                    android:id="@+id/Family_CB"
+                    style="@style/checkbox_style"
+                    android:text="FAMILY"
+                    android:buttonTint="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_red_dark" />
+
+                <CheckBox
+                    android:id="@+id/Horror_CB"
+                    style="@style/checkbox_style"
+                    android:text="HORROR"
+                    android:buttonTint="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_red_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Musical_CB"
+                    style="@style/checkbox_style"
+                    android:text="MUSICAL"
+                    android:buttonTint="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_red_dark"/>
+
+                <CheckBox
+                    android:id="@+id/SIFI_CB"
+                    style="@style/checkbox_style"
+                    android:text="SI FI"
+                    android:buttonTint="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_red_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Sports_CB"
+                    style="@style/checkbox_style"
+                    android:text="SPORTS"
+                    android:buttonTint="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_red_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Thriller_CB"
+                    style="@style/checkbox_style"
+                    android:text="THRILLER"
+                    android:buttonTint="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_red_dark"/>
+
+                <CheckBox
+                    android:id="@+id/War_CB"
+                    style="@style/checkbox_style"
+                    android:text="WAR"
+                    android:buttonTint="@android:color/holo_red_light"
+                    android:textColor="@android:color/holo_red_dark"/>
+
+                <TextView
+                    android:id="@+id/Tv_CB"
+                    style="@style/txtview_style"
+                    android:text="TELEVISION"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    android:drawableLeft="@mipmap/tv_icon_launcher"
+                    android:drawableRight="@mipmap/tv_icon_launcher"/>
+
+                <CheckBox
+                    android:id="@+id/TAct_CB"
+                    style="@style/checkbox_style"
+                    android:text="ACTION"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Addy_CB"
+                    style="@style/checkbox_style"
+                    android:text="ADVNTURE"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Anima_CB"
+                    style="@style/checkbox_style"
+                    android:text="ANIMATION"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Bio_CB"
+                    style="@style/checkbox_style"
+                    android:text="BIOGRAPHY"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Come_CB"
+                    style="@style/checkbox_style"
+                    android:text="COMEDY"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Crime_CB"
+                    style="@style/checkbox_style"
+                    android:text="CRIME"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Docu_CB"
+                    style="@style/checkbox_style"
+                    android:text="DOCUMENTARY"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Drama_CB"
+                    style="@style/checkbox_style"
+                    android:text="DRAMA"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Fam_CB"
+                    style="@style/checkbox_style"
+                    android:text="FAMILY"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Game_CB"
+                    style="@style/checkbox_style"
+                    android:text="GAME SHOW"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/History_CB"
+                    style="@style/checkbox_style"
+                    android:text="HISTORY"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Hor_CB"
+                    style="@style/checkbox_style"
+                    android:text="HORROR"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Mystry_CB"
+                    style="@style/checkbox_style"
+                    android:text="MYSTERY"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Real_CB"
+                    style="@style/checkbox_style"
+                    android:text="REALITY TV"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Sitcom_CB"
+                    style="@style/checkbox_style"
+                    android:text="SITCOM"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Spor_CB"
+                    style="@style/checkbox_style"
+                    android:text="SPORTS"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark" />
+
+                <CheckBox
+                    android:id="@+id/Talk_CB"
+                    style="@style/checkbox_style"
+                    android:text="TALK SHOWS"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark"/>
+
+                <CheckBox
+                    android:id="@+id/W_CB"
+                    style="@style/checkbox_style"
+                    android:text="WAR"
+                    android:buttonTint="@android:color/holo_blue_bright"
+                    android:textColor="@android:color/holo_blue_dark" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    style="@style/txtview_style"
+                    android:text="DRESSING UP"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    android:drawableLeft="@mipmap/acting_icon_launcher"
+                    android:drawableRight="@mipmap/acting_icon_launcher"/>
+
+                <CheckBox
+                    android:id="@+id/Acting_CB"
+                    style="@style/checkbox_style"
+                    android:text="Acting"
+                    android:buttonTint="@android:color/holo_purple"
+                    android:textColor="@android:color/holo_purple"/>
+
+                <CheckBox
+                    android:id="@+id/Cosplay_CB"
+                    style="@style/checkbox_style"
+                    android:text="COSPLAY"
+                    android:buttonTint="@android:color/holo_purple"
+                    android:textColor="@android:color/holo_purple"/>
+
+                <CheckBox
+                    android:id="@+id/Larp_CB"
+                    style="@style/checkbox_style"
+                    android:text="LARPING"
+                    android:buttonTint="@android:color/holo_purple"
+                    android:textColor="@android:color/holo_purple" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    style="@style/txtview_style"
+                    android:text="COLLECTIONS"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    android:drawableLeft="@mipmap/collections_ic_launcher"
+                    android:drawableRight="@mipmap/collections_ic_launcher"/>
+
+                <CheckBox
+                    android:id="@+id/Actionfigure_CB"
+                    style="@style/checkbox_style"
+                    android:text="ACTION FIGURES"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Cars_CB"
+                    style="@style/checkbox_style"
+                    android:text="CARS"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Coins_CB"
+                    style="@style/checkbox_style"
+                    android:text="COIN COLLECTING"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Comic_books_CB"
+                    style="@style/checkbox_style"
+                    android:text="COMIC BOOKS"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Guns_CB"
+                    style="@style/checkbox_style"
+                    android:text="GUNS"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark"/>
+
+                <CheckBox
+                    android:id="@+id/Trucks_CB"
+                    style="@style/checkbox_style"
+                    android:text="TRUCKS"
+                    android:buttonTint="@android:color/holo_orange_light"
+                    android:textColor="@android:color/holo_orange_dark" />
+
+                <Button
+                    android:id="@+id/Save_CB"
+                    style="@style/button_style"
+                    android:text="SAVE" />
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
     <FrameLayout

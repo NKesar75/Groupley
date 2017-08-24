@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static domain.teamgroupley.groupleyapp.R.id.item_menu_2_profile;
 import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 
 public class Profile extends AppCompatActivity
@@ -44,8 +46,8 @@ public class Profile extends AppCompatActivity
     DatabaseReference mProfileImage = mRootRef.child(USerid).child("UserInfo").child("Image").child("url");
 
 
-    private Button Logout;
-    private Button Interest;
+//    private Button Logout;
+//    private Button Interest;
    // private Button EditProfile;
     private static final String TAG = "Profile";
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -57,13 +59,13 @@ public class Profile extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        Logout = (Button) findViewById(R.id.logout_btn);
-        Interest = (Button)findViewById(R.id.SEE_INTREST_PROFILE_BTN);
-       // EditProfile = (Button)findViewById(R.id.EDIT_PROFILE_BTN);
-
-        Interest.setFocusable(true);
-        Interest.setFocusableInTouchMode(true);///add this line
-        Interest.requestFocus();
+//        Logout = (Button) findViewById(R.id.logout_btn);
+//        Interest = (Button)findViewById(R.id.SEE_INTREST_PROFILE_BTN);
+//       // EditProfile = (Button)findViewById(R.id.EDIT_PROFILE_BTN);
+//
+//        Interest.setFocusable(true);
+//        Interest.setFocusableInTouchMode(true);///add this line
+//        Interest.requestFocus();
 
         username = (TextView)findViewById(R.id.USERNAME_Tst);
         profileImage = (ImageView)findViewById(R.id.profile_download);
@@ -83,22 +85,22 @@ public class Profile extends AppCompatActivity
                 // ...
             }
         };
-        Logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.signOut();
-                startActivity(new Intent(Profile.this,LoginUser.class));
-
-            }
-
-        });
-
-        Interest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Profile.this,IntrestSelection.class));
-            }
-        });
+//        Logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mAuth.signOut();
+//                startActivity(new Intent(Profile.this,LoginUser.class));
+//
+//            }
+//
+//        });
+//
+//        Interest.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(Profile.this,IntrestSelection.class));
+//            }
+//        });
 
 //        EditProfile.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -155,6 +157,13 @@ public class Profile extends AppCompatActivity
         }
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.profile_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -176,6 +185,16 @@ public class Profile extends AppCompatActivity
         if(toggle.onOptionsItemSelected(item))
         {
             return true;
+        }
+
+        switch (item.getItemId()) {
+            case R.id.item_menu_1_profile:
+                startActivity(new Intent(Profile.this,info.class));
+                break;
+            case R.id.item_menu_2_profile:
+                mAuth.signOut();
+                startActivity(new Intent(Profile.this,LoginUser.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

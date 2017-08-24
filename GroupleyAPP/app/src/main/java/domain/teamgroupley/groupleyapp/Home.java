@@ -253,6 +253,8 @@ public class Home extends AppCompatActivity
             String tempTilte = dataSnapshot.child(USerid).child("Filter").child("Sortby").getValue(String.class).toString();
             String tempspefic = dataSnapshot.child(USerid).child("Filter").child("Spefic").getValue(String.class).toString();
             String tempkey = dataSnapshot.child(USerid).child("Filter").child("SpeficString").getValue(String.class).toString();
+            String tempLoc = dataSnapshot.child(USerid).child("Filter").child("Loc").getValue(String.class).toString();
+            String tempLocKey = dataSnapshot.child(USerid).child("Filter").child("SLoc").getValue(String.class).toString();
 
             boolean FilterTitle = false;
             boolean FilterDate = false;
@@ -263,6 +265,11 @@ public class Home extends AppCompatActivity
             boolean FilterYourInterest = false;
             boolean FilterSpefic = false;
             String FilterSpefickeyword = "false";
+
+
+            boolean FilterLocation = false;
+            boolean FilterSpeficLocation = false;
+            String FilterSpeficLocationkeyword = "false";
 
 
             if (tempTilte.equals("DATE")) {
@@ -298,9 +305,26 @@ public class Home extends AppCompatActivity
                 FilterSpefickeyword = tempkey;
             }
 
+            if (tempLoc.equals("AllLoc")){
+                FilterLocation = true;
+                FilterSpeficLocation = false;
+                FilterSpeficLocationkeyword = " ";
+            }
+            else if (tempLoc.equals("SpeficLoc")){
+                FilterLocation = false;
+                FilterSpeficLocation = true;
+                FilterSpeficLocationkeyword = tempLocKey;
+            }
+
+
+
             String tit;
             String Dat;
             String Cat;
+            String state;
+            String City;
+            String Country;
+            String zipcode;
             int eventnum;
             String img;
             long pplattending;
@@ -317,7 +341,11 @@ public class Home extends AppCompatActivity
                     Cat = dataSnapshot.child("Events").child(Event + count).child("Category").getValue(String.class).toString();
                     eventnum = dataSnapshot.child("Events").child(Event + count).child("EVENTNUMBER").getValue(int.class).intValue();
                     img = dataSnapshot.child("Events").child(Event + count).child("Image").child("url").getValue(String.class).toString();
-                    productList.add(new Product(tit, Dat, Cat, img, eventnum));
+                    zipcode = dataSnapshot.child("Events").child(Event + count).child("Address").child("Zipcode").getValue(String.class).toString();
+                    state = dataSnapshot.child("Events").child(Event + count).child("Address").child("State").getValue(String.class).toString();
+                    Country = dataSnapshot.child("Events").child(Event + count).child("Address").child("Country").getValue(String.class).toString();
+                    City = dataSnapshot.child("Events").child(Event + count).child("Address").child("City").getValue(String.class).toString();
+                    productList.add(new Product(tit, Dat, Cat, img, eventnum, City, state, Country, zipcode));
                 }
                 ++count;
             }
@@ -358,11 +386,51 @@ public class Home extends AppCompatActivity
                 }
             }
 
+
             Product compare[] = new Product[productList.size()];
 
             for (int i = 0; i < compare.length; ++i) {
                 compare[i] = productList.get(i);
             }
+
+
+            if (FilterSpeficLocation){
+                String one = tempLocKey.toUpperCase();
+                String cit;
+                String sta;
+                String Coun;
+                String zipco;
+
+                List<Product> runitup = new ArrayList<>();
+
+                for (int i = 0; i < compare.length; ++i) {
+                    runitup.add(i, compare[i]);
+                }
+
+
+
+                for (int i = 0; i < runitup.size(); ++i) {
+
+                    cit = runitup.get(i).getMcity().toString().toUpperCase();
+                    sta = runitup.get(i).getMstate().toString().toUpperCase();
+                    Coun = runitup.get(i).getMcountry().toString().toUpperCase();
+                    zipco = runitup.get(i).getMzipcode().toString().toUpperCase();
+
+                    if (one.equals(cit) || one.equals(sta) || one.equals(Coun) || one.equals(zipco)){
+                        continue;
+                    }
+                    else {
+                        runitup.remove(i);
+                        --i;
+                    }
+                }
+
+                compare = new Product[runitup.size()];
+                for (int i = 0; i < compare.length; ++i) {
+                    compare[i] = runitup.get(i);
+                }
+            }
+
 
 
             if (FilterTitle) {
@@ -844,12 +912,11 @@ public class Home extends AppCompatActivity
                     }
                 }
 
-                if (compare.length != 0) {
+
                     compare = new Product[runitup.size()];
                     for (int i = 0; i < compare.length; ++i) {
                         compare[i] = runitup.get(i);
                     }
-                }
             }
 
             productList.clear();

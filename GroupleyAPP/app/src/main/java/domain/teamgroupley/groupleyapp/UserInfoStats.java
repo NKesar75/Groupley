@@ -132,6 +132,8 @@ public class UserInfoStats extends AppCompatActivity {
                     myRef.child(userID).child("Filter").child("Sortby").setValue("DATE");
                     myRef.child(userID).child("Filter").child("Spefic").setValue("Yours");
                     myRef.child(userID).child("Filter").child("SpeficString").setValue("sarchery");
+                    myRef.child(userID).child("Filter").child("Loc").setValue("AllLoc");
+                    myRef.child(userID).child("Filter").child("SLoc").setValue("Country/State/City/Zip Code (Any One)");
 
                     if (imageView.getDrawable() != null) {
                         final StorageReference ref = storageReference.child(userID).child("Profile Image").child(System.currentTimeMillis() + "." + getImageExt(imguri));

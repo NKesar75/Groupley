@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
@@ -39,6 +40,11 @@ public class Filter extends AppCompatActivity {
         RadioButton Yevents;
         RadioButton Sevents;
 
+        RadioButton AL;
+        RadioButton SL;
+
+        EditText SPLT;
+
         Button Fil;
 
         ArrayList<String> filterCatgorylist = new ArrayList<>();
@@ -47,6 +53,9 @@ public class Filter extends AppCompatActivity {
         DatabaseReference mSortby = mRootRef.child(USerid).child("Filter").child("Sortby");
         DatabaseReference  mtakeout = mRootRef.child(USerid).child("Filter").child("Spefic");
         DatabaseReference mtakeoutstring = mRootRef.child(USerid).child("Filter").child("SpeficString");
+        DatabaseReference mlocation = mRootRef.child(USerid).child("Filter").child("Loc");
+        DatabaseReference mSpeficLoc = mRootRef.child(USerid).child("Filter").child("SLoc");
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +82,11 @@ public class Filter extends AppCompatActivity {
             Yevents = (RadioButton) findViewById(R.id.YOUREVEENTSBUTTON);
             Sevents = (RadioButton) findViewById(R.id.SPEFICEVENTSBTN);
 
+            AL = (RadioButton)findViewById(R.id.ALLAREABTN);
+            SL = (RadioButton)findViewById(R.id.SPEFICFICAREABTN);
+
+            SPLT = (EditText)findViewById(R.id.LocationText);
+
             Aevents.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -91,6 +105,19 @@ public class Filter extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Cata.setVisibility(View.VISIBLE);
+                }
+            });
+
+            AL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SPLT.setVisibility(View.GONE);
+                }
+            });
+            SL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SPLT.setVisibility(View.VISIBLE);
                 }
             });
 
@@ -131,8 +158,11 @@ public class Filter extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
+
+
                     String Sor = Sortby.getSelectedItem().toString();
                     String Spe;
+                    String Spl = " ";
                     if (Aevents.isChecked()) {
                         Spe = "All";
                     }else if (Yevents.isChecked()){
@@ -140,11 +170,23 @@ public class Filter extends AppCompatActivity {
                     } else {
                         Spe = "spefic";
                     }
+
+                    if (AL.isChecked()){
+                        Spl = "AllLoc";
+                    }
+                    else if (SL.isChecked()){
+                        Spl = "SpeficLoc";
+                    }
+
+
+                    String SPEFICLOCATION = SPLT.getText().toString();
                     String Sepficst = Cata.getSelectedItem().toString();
 
                     mRootRef.child(USerid).child("Filter").child("Sortby").setValue(Sor);
                     mRootRef.child(USerid).child("Filter").child("Spefic").setValue(Spe);
                     mRootRef.child(USerid).child("Filter").child("SpeficString").setValue(Sepficst);
+                    mRootRef.child(USerid).child("Filter").child("Loc").setValue(Spl);
+                    mRootRef.child(USerid).child("Filter").child("SLoc").setValue(SPEFICLOCATION);
 
                     startActivity(new Intent(domain.teamgroupley.groupleyapp.Filter.this,Home.class));
 
@@ -242,6 +284,40 @@ public class Filter extends AppCompatActivity {
                 }
             });
 
+            mlocation.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String Temp = dataSnapshot.getValue(String.class);
+
+                    if (Temp.equals("AllLoc")) {
+                         AL.setChecked(true);
+                         SL.setChecked(false);
+                        SPLT.setVisibility(View.GONE);
+                    } else if (Temp.equals("SpeficLoc")) {
+                        AL.setChecked(false);
+                        SL.setChecked(true);
+                        SPLT.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            mSpeficLoc.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String Temp = dataSnapshot.getValue(String.class);
+                    SPLT.setText(Temp);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
 
         }
 

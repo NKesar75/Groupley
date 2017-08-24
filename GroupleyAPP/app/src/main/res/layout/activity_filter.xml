@@ -12,58 +12,99 @@
     android:paddingTop="10dp"
     android:background="@color/colorPrimaryDark">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView55"
-            android:text="SORT BY:"
-            android:textSize="40sp"
-            style="@style/txtview_style"/>
-
-        <Spinner
-            android:id="@+id/SortbySpinner"
-            style="@style/Spinner_Style"/>
-
-        <TextView
-            android:id="@+id/textView33"
-            android:text="Filter BY:"
-            style="@style/txtview_style"
-            android:textSize="40sp"/>
-
-        <RadioGroup
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-            <RadioButton
-                android:id="@+id/ALLEVENTSBTN"
-                style="@style/Radiobtn_style"
-                android:text="All Interests "/>
+            <TextView
+                android:id="@+id/textView55"
+                style="@style/txtview_style"
+                android:layout_width="match_parent"
+                android:text="Sort By:"
+                android:textSize="40sp" />
 
-            <RadioButton
-                android:id="@+id/YOUREVEENTSBUTTON"
-                style="@style/Radiobtn_style"
-                android:text="Your Interests " />
+            <Spinner
+                android:id="@+id/SortbySpinner"
+                style="@style/Spinner_Style"
+                android:layout_width="match_parent" />
 
-            <RadioButton
-                android:id="@+id/SPEFICEVENTSBTN"
-                style="@style/Radiobtn_style"
-                android:text="Specific Interests" />
+            <TextView
+                android:id="@+id/textView33"
+                style="@style/txtview_style"
+                android:layout_width="match_parent"
+                android:text="Filter By:"
+                android:textSize="40sp" />
 
-        </RadioGroup>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <Spinner
-            android:id="@+id/Speficspiner"
-            style="@style/Spinner_Style"/>
+                <RadioButton
+                    android:id="@+id/ALLEVENTSBTN"
+                    style="@style/Radiobtn_style"
+                    android:text="All Interests " />
 
-        <Button
-            android:id="@+id/FilterSave"
-            style="@style/button_style"
-            android:text="Filter" />
-    </LinearLayout>
+                <RadioButton
+                    android:id="@+id/YOUREVEENTSBUTTON"
+                    style="@style/Radiobtn_style"
+                    android:text="Your Interests " />
+
+                <RadioButton
+                    android:id="@+id/SPEFICEVENTSBTN"
+                    style="@style/Radiobtn_style"
+                    android:text="Specific Interests" />
+
+            </RadioGroup>
+
+            <Spinner
+                android:id="@+id/Speficspiner"
+                style="@style/Spinner_Style"
+                android:layout_width="match_parent"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView331"
+                style="@style/txtview_style"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:text="Location By:"
+                android:textSize="40sp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/ALLAREABTN"
+                    style="@style/Radiobtn_style"
+                    android:text="All Areas" />
+
+                <RadioButton
+                    android:id="@+id/SPEFICFICAREABTN"
+                    style="@style/Radiobtn_style"
+                    android:text="Specific Area" />
+
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/LocationText"
+                style="@style/EditText_style"
+                android:hint="Country/State/City/Zip Code (Any One)"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/FilterSave"
+                style="@style/button_style"
+                android:layout_width="match_parent"
+                android:text="Filter" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

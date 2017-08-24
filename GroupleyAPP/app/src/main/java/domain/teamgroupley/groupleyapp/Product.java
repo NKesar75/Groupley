@@ -10,6 +10,43 @@ public class Product
     private String title;
     private String Date;
     private String Category;
+
+    public String getMcity() {
+        return mcity;
+    }
+
+    public void setMcity(String mcity) {
+        this.mcity = mcity;
+    }
+
+    public String getMstate() {
+        return mstate;
+    }
+
+    public void setMstate(String mstate) {
+        this.mstate = mstate;
+    }
+
+    public String getMcountry() {
+        return mcountry;
+    }
+
+    public void setMcountry(String mcountry) {
+        this.mcountry = mcountry;
+    }
+
+    public String getMzipcode() {
+        return mzipcode;
+    }
+
+    public void setMzipcode(String mzipcode) {
+        this.mzipcode = mzipcode;
+    }
+
+    private  String mcity;
+    private String mstate;
+    private String mcountry;
+    private String mzipcode;
     private int mEventnumber;
 
 
@@ -25,12 +62,26 @@ public class Product
         this.Date = date;
         this.Category = category;
     }
+
     public Product(String title, String date, String category,String imageid, int Eventnumber)
     {
         this.imageid = imageid;
         this.title = title;
         this.Date = date;
         this.Category = category;
+        mEventnumber = Eventnumber;
+    }
+
+    public Product(String title, String date, String category,String imageid, int Eventnumber, String city, String State, String Country, String Zipcode)
+    {
+        this.imageid = imageid;
+        this.title = title;
+        this.Date = date;
+        this.Category = category;
+        mcity = city;
+        mstate = State;
+        mcountry = Country;
+        mzipcode = Zipcode;
         mEventnumber = Eventnumber;
     }
 

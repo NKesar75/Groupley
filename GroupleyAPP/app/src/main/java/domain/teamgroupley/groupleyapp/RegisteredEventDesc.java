@@ -44,9 +44,9 @@ public class RegisteredEventDesc extends AppCompatActivity {
     DatabaseReference mCater =  mRootRef.child("Events").child(Event+Eventtie).child("Category");
     DatabaseReference mDate = mRootRef.child("Events").child(Event+Eventtie).child("Date");
     DatabaseReference mTime = mRootRef.child("Events").child(Event+Eventtie).child("Time");
-    DatabaseReference mAddress =  mRootRef.child("Events").child(Event+Eventtie).child("Address");
     DatabaseReference mMax = mRootRef.child("Events").child(Event+Eventtie).child("Max_People");
     DatabaseReference mimage = mRootRef.child("Events").child(Event+Eventtie).child("Image").child("url");
+
 
     private TextView Titl;
     private EditText Descrip;
@@ -93,6 +93,27 @@ public class RegisteredEventDesc extends AppCompatActivity {
                 // ...
             }
         };
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+           String one1  =  dataSnapshot.child("Events").child(Event+Eventtie).child("Address").child("Street").getValue(String.class).toString();
+           String one2  = dataSnapshot.child("Events").child(Event+Eventtie).child("Address").child("City").getValue(String.class).toString();
+           String one3  = dataSnapshot.child("Events").child(Event+Eventtie).child("Address").child("State").getValue(String.class).toString();
+           String one4  = dataSnapshot.child("Events").child(Event+Eventtie).child("Address").child("Zipcode").getValue(String.class).toString();
+           String one5  = dataSnapshot.child("Events").child(Event+Eventtie).child("Address").child("Country").getValue(String.class).toString();
+
+                Add.setText(one1 + ", " + one2 + ", " + one3 + "-" + one4 + ", " + one5);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
 
         Peoplechanging.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,19 +217,6 @@ public class RegisteredEventDesc extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String temp = dataSnapshot.getValue(String.class);
                 Timy.setText("Time: " + temp);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        mAddress.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String temp = dataSnapshot.getValue(String.class);
-                Add.setText("Address: " + temp);
             }
 
             @Override

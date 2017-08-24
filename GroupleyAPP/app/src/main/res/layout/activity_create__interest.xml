@@ -234,9 +234,7 @@
 
                 <CheckBox
                     android:id="@+id/Sim_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="SIMULATION"
                     android:buttonTint="@android:color/holo_orange_light"
                     android:textColor="@android:color/holo_orange_dark" />
@@ -296,9 +294,7 @@
 
                 <CheckBox
                     android:id="@+id/Rap_CB_create"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
+                    style="@style/checkbox_style"
                     android:text="RAP"
                     android:buttonTint="@android:color/holo_purple"
                     android:textColor="@android:color/holo_purple"/>

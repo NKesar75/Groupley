@@ -36,9 +36,7 @@
 
             <ImageView
                 android:id="@+id/profile_update_image"
-                style="@style/image_style"
-                android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                style="@style/image_style"/>
 
             <Button
                 android:id="@+id/EDIT_PROFILE_BTN_update"

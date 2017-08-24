@@ -41,7 +41,7 @@ public class MyFirebasaeMessagingservice extends FirebaseMessagingService{
         notificationBuilder.setContentTitle("FCM NOTIFICATION");
         notificationBuilder.setContentText(remoteMessage.getNotification().getBody());
         notificationBuilder.setAutoCancel(true);
-        notificationBuilder.setSmallIcon(R.mipmap.ic_launcher);
+        notificationBuilder.setSmallIcon(R.mipmap.app_logo);
         notificationBuilder.setContentIntent(pendingIntent);
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0,notificationBuilder.build());
@@ -98,7 +98,7 @@ public class MyFirebasaeMessagingservice extends FirebaseMessagingService{
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.mipmap.app_logo)
                 .setContentTitle("Groupley Notification")
                 .setContentText(messageBody)
                 .setAutoCancel(true)

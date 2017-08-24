@@ -56,6 +56,9 @@
         <item name="android:background">@drawable/image_bg</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_margin">10dp</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_height">200dp</item>
     </style>
 
     <style name="Radiobtn_style">

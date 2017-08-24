@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/item_menu_1"
-        android:title="Switch View" />
+    <item
+        android:id="@+id/item_menu_1"
+        android:title="Switch View"
+        app:showAsAction="always" />
 
-    <item android:id="@+id/item_menu_2"
-        android:title="Filter" />
-    <item android:id="@+id/item_menu_3"
-        android:title="Refresh"/>
+    <item
+        android:id="@+id/item_menu_2"
+        android:title="Filter"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/item_menu_3"
+        android:title="Refresh"
+        app:showAsAction="always" />
 
 </menu>

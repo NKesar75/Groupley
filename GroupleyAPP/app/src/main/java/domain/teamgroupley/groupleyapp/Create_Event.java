@@ -106,6 +106,7 @@ public class Create_Event extends AppCompatActivity
                 Date = (EditText) findViewById(R.id.Date_txt);
                 Time = (EditText) findViewById(R.id.time_txt);
 
+
                 imageView =(ImageView) findViewById(R.id.image_load);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +123,12 @@ public class Create_Event extends AppCompatActivity
         final EditText Disc = (EditText) findViewById(R.id.des_txt);
         final EditText Addey  = (EditText) findViewById(R.id.address_txt);
         final EditText Max = (EditText) findViewById(R.id.max_people_txt);
+
+        final EditText city = (EditText) findViewById(R.id.city_txt);
+        final EditText state = (EditText) findViewById(R.id.state_txt);
+        final EditText zip  = (EditText) findViewById(R.id.zip_txt);
+        final EditText country = (EditText) findViewById(R.id.country_txt);
+
 
         Date.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -246,84 +253,115 @@ public class Create_Event extends AppCompatActivity
                 final String Tim = Time.getText().toString();
                 final String ADd = Addey.getText().toString();
                 final String MAxppl = Max.getText().toString();
+                final String cityget = city.getText().toString();
+                final String stateget = state.getText().toString();
+                final String zipget = zip.getText().toString();
+                final String countryget = country.getText().toString();
 
                 if (!Cator.equals("") && !Day.equals("") && !Tim.equals("")) {
                     if (!tie.equals("")) {
                             if (!ADd.equals("")) {
-                                if (!MAxppl.equals("")) {
-                                    if (!Die.equals("")) {
-                                        if (imageView.getDrawable() != null) {
-                                            final StorageReference ref = storageReference.child(userID).child(Event + EVENTCOUNT).child(System.currentTimeMillis() + "." + getImageExt(imguri));
-                                            ref.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                                @Override
-                                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                if (!cityget.equals("")){
+                                    if (!stateget.equals("")){
+                                        if (!zipget.equals("")){
+                                            if (!countryget.equals("")){
+                                                if (!MAxppl.equals("")) {
+                                                    if (!Die.equals("")) {
+                                                        if (imageView.getDrawable() != null) {
+                                                            final StorageReference ref = storageReference.child(userID).child(Event + EVENTCOUNT).child(System.currentTimeMillis() + "." + getImageExt(imguri));
+                                                            ref.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                                                @Override
+                                                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+                                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
 
-                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
-                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
-                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
-                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
-                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
-                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Address").setValue(ADd);
-                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
-                                        myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-
-                                        myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username + "(Admin)");
-                                        myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Photo").setValue(profileImage);
-                                        myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("FID").setValue(userID);
-
-                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Street").setValue(ADd);
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("City").setValue(cityget);
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("State").setValue(stateget);
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Zipcode").setValue(zipget);
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Country").setValue(countryget);
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
 
 
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username + "(Admin)");
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Photo").setValue(profileImage);
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("FID").setValue(userID);
 
-                                                    ImageUpload imageUpload = new ImageUpload(taskSnapshot.getDownloadUrl().toString());
-                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Image").setValue(imageUpload);
+                                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
 
+
+
+                                                                    ImageUpload imageUpload = new ImageUpload(taskSnapshot.getDownloadUrl().toString());
+                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Image").setValue(imageUpload);
+
+                                                                }
+                                                            });
+                                                        } else
+                                                        {
+                                                            myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Street").setValue(ADd);
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("City").setValue(cityget);
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("State").setValue(stateget);
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Zipcode").setValue(zipget);
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Country").setValue(countryget);
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username + " (Admin)");
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Photo").setValue(profileImage);
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("FID").setValue(userID);
+
+                                                            myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+
+                                                            String defulaturi = "https://firebasestorage.googleapis.com/v0/b/groupleyproject.appspot.com/o/deflut.png?alt=media&token=41443f2c-7c29-4bd1-be7b-ec74167fc1ee";
+                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Image").child("url").setValue(defulaturi);
+
+                                                        }
+
+                                                        Intent changepage = new Intent(Create_Event.this, Home.class);
+                                                        startActivity(changepage);
+                                                        Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();
+
+                                                    }else{
+                                                        Disc.setError("Description can not be empty");
+                                                        Disc.requestFocus();
+                                                    }
                                                 }
-                                            });
-                                        } else
-                                            {
-                                                myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
-                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
-                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
-                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
-                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
-                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Address").setValue(ADd);
-                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
-                                                myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-
-                                                myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username + " (Admin)");
-                                                myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Photo").setValue(profileImage);
-                                                myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("FID").setValue(userID);
-
-                                                myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-
-                                                String defulaturi = "https://firebasestorage.googleapis.com/v0/b/groupleyproject.appspot.com/o/deflut.png?alt=media&token=41443f2c-7c29-4bd1-be7b-ec74167fc1ee";
-                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Image").child("url").setValue(defulaturi);
-
-                                        }
-
-                                            Intent changepage = new Intent(Create_Event.this, Home.class);
-                                            startActivity(changepage);
-                                            Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();
-
-                                    }else{
-                                        Disc.setError("Description can not be empty");
-                                        Disc.requestFocus();
-                                    }
-                            }
+                                                else{
+                                                    Max.setError("Max People can not be empty");
+                                                    Max.requestFocus();
+                                                }}
+                                                else{
+                                                    country.setError("Country can not be empty");
+                                                    country.requestFocus();
+                                                }}
+                                        else{
+                                            zip.setError("Zip Code can not be empty");
+                                            zip.requestFocus();
+                                        }}
+                                    else{
+                                        state.setError("State can not be empty");
+                                        state.requestFocus();
+                                    }}
                                 else{
-                                    Max.setError("Max People can not be empty");
-                                    Max.requestFocus();
-                                }
-                        }
-                        else{
+                                    city.setError("City can not be empty");
+                                    city.requestFocus();
+                                }}
+                         else{
                                 Addey.setError("Address can not be empty");
                                 Addey.requestFocus();
                             }

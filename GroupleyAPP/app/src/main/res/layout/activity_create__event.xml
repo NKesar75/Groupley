@@ -60,8 +60,50 @@
                 <EditText
                     android:id="@+id/address_txt"
                     style="@style/EditText_style"
-                    android:hint="Address"
-                    android:inputType="textPersonName"/>
+                    android:hint="Street Address"
+                    android:inputType="textPersonName" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <EditText
+                        android:id="@+id/city_txt"
+                        style="@style/EditText_style"
+                        android:hint="City"
+                        android:inputType="textPersonName"
+                        android:layout_width="159dp"
+                        android:layout_weight="0.24" />
+
+                    <EditText
+                        android:id="@+id/state_txt"
+                        style="@style/EditText_style"
+                        android:layout_width="175dp"
+                        android:hint="State"
+                        android:inputType="textPersonName" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+                    <EditText
+                        android:id="@+id/zip_txt"
+                        style="@style/EditText_style"
+                        android:inputType="number"
+                        android:text="Zip Code"
+                        android:layout_width="156dp"
+                        android:layout_weight="0.24" />
+                    <EditText
+                        android:id="@+id/country_txt"
+                        style="@style/EditText_style"
+                        android:hint="Country"
+                        android:layout_width="166dp"
+                        android:layout_weight="0.22" />
+                </LinearLayout>
 
                 <EditText
                     android:id="@+id/max_people_txt"
@@ -78,9 +120,6 @@
                 <ImageView
                     android:id="@+id/image_load"
                     style="@style/image_style"
-
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
                     android:background="@mipmap/addic_launcher" />
 
                 <Button

@@ -15,7 +15,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -28,27 +30,18 @@
             <EditText
                 android:id="@+id/Email_txt"
                 style="@style/EditText_style"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
                 android:hint="Email"
                 android:inputType="textEmailAddress" />
 
             <EditText
                 android:id="@+id/Password_txxt"
                 style="@style/EditText_style"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
                 android:hint="Password"
                 android:inputType="textPassword" />
 
             <Button
                 android:id="@+id/LOGIN_BTN_LOgin"
                 style="@style/button_style"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
                 android:text="Log in" />
 
             <TextView
@@ -62,9 +55,6 @@
             <TextView
                 android:id="@+id/Resetpassword"
                 style="@style/txtview_style"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
                 android:text="Forgot Your Password?" />
         </LinearLayout>
 

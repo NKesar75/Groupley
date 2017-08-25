@@ -67,7 +67,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true">
 
                     <EditText
                         android:id="@+id/city_txt"
@@ -89,7 +90,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true">
                     <EditText
                         android:id="@+id/zip_txt"
                         style="@style/EditText_style"

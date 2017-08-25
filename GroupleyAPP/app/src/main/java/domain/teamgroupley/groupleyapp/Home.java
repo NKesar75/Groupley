@@ -57,7 +57,10 @@ import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+     //added
+    //four lines of extra code
+    //to make it
+    //1000 lines of code
     private static final String TAG = "Home";
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseDatabase mFirebaseDatabase;

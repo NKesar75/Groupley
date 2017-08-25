@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="100dp"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="48dp"
+    android:paddingRight="48dp"
     android:paddingTop="100dp"
     tools:context="domain.teamgroupley.groupleyapp.LoginUser"
     android:background="@color/colorPrimaryDark">
@@ -14,7 +14,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true">
@@ -23,9 +23,8 @@
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                app:srcCompat="@mipmap/app_logo" />
+                app:srcCompat="@mipmap/app_logo"
+                android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/Email_txt"
@@ -47,9 +46,6 @@
             <TextView
                 android:id="@+id/createacc_txt_btn"
                 style="@style/txtview_style"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
                 android:text="No Account? Sign Up" />
 
             <TextView

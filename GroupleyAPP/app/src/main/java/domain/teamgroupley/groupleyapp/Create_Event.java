@@ -33,6 +33,7 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.nearby.messages.Message;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,6 +42,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -52,6 +54,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.RunnableFuture;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 import static domain.teamgroupley.groupleyapp.R.id.nav_profile;
 
@@ -265,81 +270,113 @@ public class Create_Event extends AppCompatActivity
                                     if (!stateget.equals("")){
                                         if (!zipget.equals("")){
                                             if (!countryget.equals("")){
-                                                if (!MAxppl.equals("")) {
-                                                    if (!Die.equals("")) {
-                                                        if (imageView.getDrawable() != null) {
-                                                            final StorageReference ref = storageReference.child(userID).child(Event + EVENTCOUNT).child(System.currentTimeMillis() + "." + getImageExt(imguri));
-                                                            ref.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                                if (!MAxppl.equals("")) if (!Die.equals("")) {
+                                                    if (imageView.getDrawable() != null) {
+                                                        final StorageReference ref = storageReference.child(userID).child(Event + EVENTCOUNT).child(System.currentTimeMillis() + "." + getImageExt(imguri));
+                                                        ref.putFile(imguri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                                            @Override
+                                                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                                                myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Street").setValue(ADd);
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("City").setValue(cityget);
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("State").setValue(stateget);
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Zipcode").setValue(zipget);
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Country").setValue(countryget);
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username + "(Admin)");
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Photo").setValue(profileImage);
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("FID").setValue(userID);
+
+                                                                myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+
+                                                                ImageUpload imageUpload = new ImageUpload(taskSnapshot.getDownloadUrl().toString());
+                                                                myRef.child("Events").child(Event + EVENTCOUNT).child("Image").setValue(imageUpload);
+
+                                                            }
+                                                        });
+                                                    } else {
+                                                        myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Street").setValue(ADd);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("City").setValue(cityget);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("State").setValue(stateget);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Zipcode").setValue(zipget);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Country").setValue(countryget);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username + " (Admin)");
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Photo").setValue(profileImage);
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("FID").setValue(userID);
+
+                                                        myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
+
+
+                                                        String defulaturi = "https://firebasestorage.googleapis.com/v0/b/groupleyproject.appspot.com/o/deflut.png?alt=media&token=41443f2c-7c29-4bd1-be7b-ec74167fc1ee";
+                                                        myRef.child("Events").child(Event + EVENTCOUNT).child("Image").child("url").setValue(defulaturi);
+
+                                                    }
+
+                                                    final ProgressDialog progressDialog = new ProgressDialog(Create_Event.this);
+                                                    progressDialog.setMax(100);
+                                                    progressDialog.setMessage("Please Wait.....");
+                                                    progressDialog.setTitle("Creating Event");
+                                                    progressDialog.setIcon(R.mipmap.app_logo);
+                                                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                                                    progressDialog.show();
+
+                                                    Thread t = new Thread(new Runnable() {
+                                                        @Override
+                                                        public void run()
+                                                        {
+                                                         int progress = 0;
+                                                            while (progress <= 100)
+                                                            {
+                                                                try
+                                                                {
+                                                                    progressDialog.setProgress(progress);
+                                                                    progress++;
+                                                                    Thread.sleep(100);
+                                                                }
+                                                                catch (Exception e)
+                                                                {
+                                                                }
+                                                            }
+                                                            progressDialog.dismiss();
+
+                                                            Create_Event.this.runOnUiThread(new Runnable() {
                                                                 @Override
-                                                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                                                                    myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Street").setValue(ADd);
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("City").setValue(cityget);
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("State").setValue(stateget);
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Zipcode").setValue(zipget);
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Country").setValue(countryget);
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username + "(Admin)");
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Photo").setValue(profileImage);
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("FID").setValue(userID);
-
-                                                                    myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-
-
-                                                                    ImageUpload imageUpload = new ImageUpload(taskSnapshot.getDownloadUrl().toString());
-                                                                    myRef.child("Events").child(Event + EVENTCOUNT).child("Image").setValue(imageUpload);
-
+                                                                public void run() {
+                                                                    Intent changepage = new Intent(Create_Event.this, Home.class);
+                                                                    startActivity(changepage);
+                                                                    Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();
                                                                 }
                                                             });
-                                                        } else
-                                                        {
-                                                            myRef.child(userID).child("CreatedEvents").child(Event + CreatedEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Title").setValue(tie);
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Description").setValue(Die);
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Category").setValue(Cator);
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Date").setValue(Day);
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Time").setValue(Tim);
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Street").setValue(ADd);
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("City").setValue(cityget);
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("State").setValue(stateget);
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Zipcode").setValue(zipget);
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Address").child("Country").setValue(countryget);
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Max_People").setValue(MAxppl);
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Name").setValue(username + " (Admin)");
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("Photo").setValue(profileImage);
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("People").child("Person1").child("FID").setValue(userID);
-
-                                                            myRef.child(userID).child("RegisteredEvents").child(Event + REGISTEREDEVENTCOUNT).child("EVENTNUMBER").setValue(EVENTCOUNT);
-
-
-                                                            String defulaturi = "https://firebasestorage.googleapis.com/v0/b/groupleyproject.appspot.com/o/deflut.png?alt=media&token=41443f2c-7c29-4bd1-be7b-ec74167fc1ee";
-                                                            myRef.child("Events").child(Event + EVENTCOUNT).child("Image").child("url").setValue(defulaturi);
-
                                                         }
+                                                    });
+                                                    t.start();
+                                                    progressDialog.show();
 
-                                                        Intent changepage = new Intent(Create_Event.this, Home.class);
-                                                        startActivity(changepage);
-                                                        Toast.makeText(Create_Event.this, "Event Has Been Created", Toast.LENGTH_SHORT).show();
-
-                                                    }else{
-                                                        Disc.setError("Description can not be empty");
-                                                        Disc.requestFocus();
-                                                    }
+                                                } else {
+                                                    Disc.setError("Description can not be empty");
+                                                    Disc.requestFocus();
                                                 }
                                                 else{
                                                     Max.setError("Max People can not be empty");

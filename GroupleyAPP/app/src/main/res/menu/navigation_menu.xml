@@ -16,7 +16,7 @@
             android:title="Update Your Events" />
         <item
             android:id="@+id/nav_settings"
-            android:title="Interests" />
+            android:title="Edit Interests" />
         <item
             android:id="@+id/nav_profile"
             android:title="Profile" />

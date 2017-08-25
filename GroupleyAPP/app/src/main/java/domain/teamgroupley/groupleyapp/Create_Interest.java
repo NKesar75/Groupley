@@ -1,5 +1,6 @@
 package domain.teamgroupley.groupleyapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -408,10 +409,45 @@ public class Create_Interest extends AppCompatActivity {
                     myRef.child(userID).child("Interests").child("ttalkShows").setValue(TTalky);
                     myRef.child(userID).child("Interests").child("twar").setValue(Tway);
 
+                    final ProgressDialog progressDialog = new ProgressDialog(Create_Interest.this);
+                    progressDialog.setMax(100);
+                    progressDialog.setMessage("Please Wait.....");
+                    progressDialog.setTitle("Creating Account");
+                    progressDialog.setIcon(R.mipmap.app_logo);
+                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    progressDialog.show();
 
-                    Intent changepage = new Intent(Create_Interest.this, Home.class);
-                    startActivity(changepage);
-                    Toast.makeText(Create_Interest.this, "Account Created.", Toast.LENGTH_SHORT).show();
+                    Thread t = new Thread(new Runnable() {
+                        @Override
+                        public void run()
+                        {
+                            int progress = 0;
+                            while (progress <= 100)
+                            {
+                                try
+                                {
+                                    progressDialog.setProgress(progress);
+                                    progress++;
+                                    Thread.sleep(100);
+                                }
+                                catch (Exception e)
+                                {
+                                }
+                            }
+                            progressDialog.dismiss();
+
+                            Create_Interest.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent changepage = new Intent(Create_Interest.this, Home.class);
+                                    startActivity(changepage);
+                                    Toast.makeText(Create_Interest.this, "Account Created.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+                    t.start();
+                    progressDialog.show();
                 }
                 else {
                     Toast.makeText(Create_Interest.this, "Select Atleast 10 Interests", Toast.LENGTH_SHORT).show();
